@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mile1990.xlddz"
+    android:versionCode="1"
+    android:versionName="1.0" >
+ <!-- End -->
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="23" />
+
+    <!-- 权限配置 -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
+    <application
+          android:allowBackup="true"
+          android:label="兴隆斗地主"
+          android:icon="@drawable/app_icon"
+          android:theme="@android:style/Theme.Holo.Light.DarkActionBar">
+      <activity
+          android:name="com.mile1990.xlddz.MainActivity"
+          android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+          android:label="兴隆斗地主" >
+        <intent-filter>
+          <action android:name="android.intent.action.MAIN" />
+          <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        <intent-filter>
+          <action android:name="android.intent.action.VIEW"/>
+          <category android:name="android.intent.category.DEFAULT"/>
+          <category android:name="android.intent.category.BROWSABLE"/>
+          <data
+                     android:scheme="app"
+                     android:host="mile1990.com"/>
+        </intent-filter>
+      </activity>
+
+      <!-- 友盟SDK -->
+      <activity
+        android:name="com.unity3d.player.UnityPlayerActivity"
+        android:label="@string/app_name"
+        android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen">
+      </activity>
+
+      <!-- 支付宝 Start -->
+      <activity
+          android:name="com.alipay.sdk.app.H5PayActivity"
+          android:configChanges="orientation|keyboardHidden|navigation"
+          android:exported="false"
+          android:screenOrientation="behind" >
+      </activity>
+      <activity
+          android:name="com.alipay.sdk.auth.AuthActivity"
+          android:configChanges="orientation|keyboardHidden|navigation"
+          android:exported="false"
+          android:screenOrientation="behind" >
+      </activity>
+      <!-- 支付宝 End -->
+
+      <!-- 微信 Start -->
+      <activity
+          android:name="com.mile1990.xlddz.wxapi.WXEntryActivity"
+          android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|uiMode|touchscreen"
+          android:exported="true"
+          android:label="兴隆斗地主"
+               />
+      <activity
+          android:name="com.mile1990.xlddz.wxapi.WXPayEntryActivity"
+          android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|uiMode|touchscreen"
+          android:exported="true"
+          android:label="兴隆斗地主"
+           
+              />
+      <!-- 微信 End -->
+	<meta-data android:name="android.max_aspect" android:value="2.1"/>
+    </application>
+
+</manifest>

@@ -1,0 +1,83 @@
+
+getaward_ani_title_award.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+getaward_ani_caidai
+  rotate: false
+  xy: 2, 4
+  size: 399, 121
+  orig: 399, 121
+  offset: 0, 0
+  index: -1
+getaward_ani_chibang1
+  rotate: false
+  xy: 637, 561
+  size: 110, 62
+  orig: 110, 62
+  offset: 0, 0
+  index: -1
+getaward_ani_chibang2
+  rotate: false
+  xy: 835, 669
+  size: 110, 61
+  orig: 110, 61
+  offset: 0, 0
+  index: -1
+getaward_ani_chibang3
+  rotate: false
+  xy: 637, 625
+  size: 196, 105
+  orig: 196, 105
+  offset: 0, 0
+  index: -1
+getaward_ani_chibang4
+  rotate: false
+  xy: 403, 20
+  size: 196, 105
+  orig: 196, 105
+  offset: 0, 0
+  index: -1
+getaward_ani_dikuangbg
+  rotate: false
+  xy: 2, 732
+  size: 969, 283
+  orig: 969, 283
+  offset: 0, 0
+  index: -1
+getaward_ani_huangguan
+  rotate: false
+  xy: 637, 499
+  size: 94, 60
+  orig: 94, 60
+  offset: 0, 0
+  index: -1
+getaward_ani_sanguang
+  rotate: false
+  xy: 2, 127
+  size: 633, 603
+  orig: 633, 603
+  offset: 0, 0
+  index: -1
+getaward_ani_saoguang
+  rotate: false
+  xy: 403, 10
+  size: 94, 8
+  orig: 94, 8
+  offset: 0, 0
+  index: -1
+getaward_ani_star
+  rotate: false
+  xy: 749, 569
+  size: 56, 54
+  orig: 56, 54
+  offset: 0, 0
+  index: -1
+getaward_ani_title_award
+  rotate: true
+  xy: 973, 855
+  size: 160, 44
+  orig: 160, 44
+  offset: 0, 0
+  index: -1

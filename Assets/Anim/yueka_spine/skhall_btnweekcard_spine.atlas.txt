@@ -1,0 +1,41 @@
+
+skhall_btnweekcard_spine.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+skhall_btnweekcard_spine/d01
+  rotate: false
+  xy: 2, 122
+  size: 73, 57
+  orig: 73, 57
+  offset: 0, 0
+  index: -1
+skhall_btnweekcard_spine/d02
+  rotate: false
+  xy: 152, 144
+  size: 28, 35
+  orig: 28, 35
+  offset: 0, 0
+  index: -1
+skhall_btnweekcard_spine/d03
+  rotate: false
+  xy: 2, 2
+  size: 43, 54
+  orig: 43, 54
+  offset: 0, 0
+  index: -1
+skhall_btnweekcard_spine/d04
+  rotate: false
+  xy: 2, 58
+  size: 60, 62
+  orig: 60, 62
+  offset: 0, 0
+  index: -1
+skhall_btnweekcard_spine/d05
+  rotate: false
+  xy: 77, 144
+  size: 73, 35
+  orig: 73, 35
+  offset: 0, 0
+  index: -1
