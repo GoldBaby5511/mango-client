@@ -4,7 +4,8 @@ using System.Net;
 using UnityEngine;
 using System.Runtime.InteropServices;
 using UnityEngine.Events;
-using bs.gateway;
+using Bs.Gateway;
+using Google.Protobuf;
 
 /// <summary>
 /// 实现了对数据的处理以及与服务器端的连接，包括收发数据等
@@ -264,16 +265,12 @@ public class ClientSocket
 
     }
 
-    public void SendDate2Gate<T>(UInt32 appType, UInt16 cmdId, T instance)
+    // |	msgSize	 |	headSize		| 						header 																				   | msgData
+    // |4bit(msgSize)| 2bit(headSize) 	| 2bit(version) + 2bit(encrypt) + 4bit(AppType) + 4bit(AppId) + 2bit(MainCmdID) + 2bit(SubCmdID) + Xbit(other) | msgData
+    public void SendDate2Gate(UInt32 mainCmdID, UInt16 subCmdID, IMessage instance)
     {
-        byte[] sendBytes;
-        using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
-        {
-            ProtoBuf.Serializer.Serialize(stream, instance);
-            sendBytes = stream.ToArray();
-        }
-
-        UInt16 headSize = 1 + 1 + 2 + 2 + 0;
+        byte[] sendBytes = NetPacket.Serialize(instance);
+        UInt16 headSize = 2 + 2 + 4 + 4 + 2 + 2 + 0;
         UInt32 allSize = 2 + (UInt32)headSize + (UInt32)sendBytes.Length;
 
         int ipos = 0;
@@ -293,19 +290,33 @@ public class ClientSocket
             ipos = ipos + 2;
         }
         {
-            bytes[ipos] = 99;
-            ipos++;
-            bytes[ipos] = 104;
-            ipos++;
+            bytes[ipos] = 0;
+            ipos += 2;
+            bytes[ipos] = 0;
+            ipos += 2;
         }
         {
-            byte[] bs = System.BitConverter.GetBytes((UInt16)appType);
+            UInt32 appType = 0;
+            byte[] bs = System.BitConverter.GetBytes(appType);
+            Array.Reverse(bs);
+            Array.Copy(bs, 0, bytes, ipos, 4);
+            ipos += 4;
+        }
+        {
+            UInt32 appID = 0;
+            byte[] bs = System.BitConverter.GetBytes(appID);
+            Array.Reverse(bs);
+            Array.Copy(bs, 0, bytes, ipos, 4);
+            ipos += 4;
+        }
+        {
+            byte[] bs = System.BitConverter.GetBytes((UInt16)mainCmdID);
             Array.Reverse(bs);
             Array.Copy(bs, 0, bytes, ipos, 2);
             ipos = ipos + 2;
         }
         {
-            byte[] bs = System.BitConverter.GetBytes((UInt16)cmdId);
+            byte[] bs = System.BitConverter.GetBytes((UInt16)subCmdID);
             Array.Reverse(bs);
             Array.Copy(bs, 0, bytes, ipos, 2);
             ipos = ipos + 2;
@@ -357,22 +368,16 @@ public class ClientSocket
         }
     }
 
-    public void SendTransferData2Gate<T>(UInt32 destAppType, UInt32 destAppId, UInt32 dataAppType, UInt32 cmdId, T instance)
+    public void SendTransferData2Gate(UInt32 destAppType, UInt32 destAppId, UInt32 dataAppType, UInt32 cmdId, IMessage instance)
     {
-        byte[] sendBytes;
-        using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
-        {
-            ProtoBuf.Serializer.Serialize(stream, instance);
-            sendBytes = stream.ToArray();
-        }
-
         TransferDataReq req = new TransferDataReq();
-        req.dest_apptype = destAppType;
-        req.dest_appid = destAppId;
-        req.data_apptype = dataAppType;
-        req.data_cmdid = cmdId;
-        req.data = sendBytes;
-        SendDate2Gate(NetManager.AppGate, (UInt16)CMDGateway.IDTransferDataReq, req);
+        req.DestApptype = destAppType;
+        req.DestAppid = destAppId;
+        req.DataApptype = dataAppType;
+        req.DataCmdid = cmdId;
+        req.Data = ByteString.CopyFrom(NetPacket.Serialize(instance));
+        //req.Data = sendBytes;
+        SendDate2Gate(NetManager.AppGate, (UInt16)CMDGateway.IdtransferDataReq, req);
     }
 
     /// <summary>

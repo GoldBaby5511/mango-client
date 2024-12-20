@@ -191,7 +191,8 @@ public class Util : MonoBehaviour
     //获取IP地址
     public static string GetIPAddress()
     {
-        return Network.player.ipAddress;
+        return "";
+        //return Network.player.ipAddress;
     }
 
     /// <summary>

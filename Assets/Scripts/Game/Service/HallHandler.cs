@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using bs.gateway;
+using Bs.Gateway;
 using System;
 using System.IO;
 
@@ -11,12 +11,12 @@ public class HallHandler : IHandler
         //NGUIDebug.Log("HallHandler ： " + packet.header.wMainCmdID + "-" + packet.header.wSubCmdID);
         //packet.GetHeader();
 
-        switch (packet.GetMsgAppType())
+        switch (packet.GetMainCmdID())
         {
             case NetManager.AppGate:
                 return handlerGateMessage(packet);
             default:
-                Debug.LogError("异常,竟然收到网关以外的消息,appType="+packet.GetMsgAppType()+",cmdId="+packet.GetMsgCmdId());
+                Debug.LogError("异常,竟然收到网关以外的消息,appType="+packet.GetMainCmdID()+",cmdId="+packet.GetSubCmdID());
                 break;
         }
 
@@ -267,65 +267,65 @@ public class HallHandler : IHandler
 
     private bool handlerGateMessage(NetPacket packet)
     {
-        switch (packet.GetMsgCmdId())
+        switch (packet.GetSubCmdID())
         {
-            case (UInt32)bs.gateway.CMDGateway.IDHelloRsp:
+            case (UInt32)Bs.Gateway.CMDGateway.IdhelloRsp:
                 {
                     HelloRsp rsp = packet.Deserialize<HelloRsp>();
                     HallService.Instance.OnHelloRsp();
                     return true;
                 }
-            case (UInt32)bs.gateway.CMDGateway.IDTransferDataReq:
+            case (UInt32)Bs.Gateway.CMDGateway.IdtransferDataReq:
                 {
-                    bs.gateway.TransferDataReq req = packet.Deserialize<bs.gateway.TransferDataReq>();
-                    Debug.Log("收到转发,data_apptype=" + req.data_apptype + ",data_cmdid=" + req.data_cmdid);
+                    Bs.Gateway.TransferDataReq req = packet.Deserialize<Bs.Gateway.TransferDataReq>();
+                    Debug.Log("收到转发,data_apptype=" + req.DataApptype + ",data_cmdid=" + req.DataCmdid);
 
-                    switch (req.data_apptype)
+                    switch (req.DataApptype)
                     {
                         case NetManager.AppLogin:
                             return handlerLoginMessage(req);
                         case NetManager.AppList:
                             return handlerListMessage(req);
                         default:
-                            Debug.LogError("异常,没有处理的消息,data_apptype=" + req.data_apptype + ",data_cmdid=" + req.data_cmdid);
+                            Debug.LogError("异常,没有处理的消息,data_apptype=" + req.DataApptype + ",data_cmdid=" + req.DataCmdid);
                             break;
                     }
                 }
                 return true;
             default:
-                Debug.LogError("异常,没有处理的消息,appType=" + packet.GetMsgAppType() + ",cmdId=" + packet.GetMsgCmdId());
+                Debug.LogError("异常,没有处理的消息,appType=" + packet.GetMainCmdID() + ",cmdId=" + packet.GetSubCmdID());
                 break;
         }
         return false;
     }
 
-    private bool handlerLoginMessage(bs.gateway.TransferDataReq req)
+    private bool handlerLoginMessage(Bs.Gateway.TransferDataReq req)
     {
-        switch (req.data_cmdid)
+        switch (req.DataCmdid)
         {
-            case (UInt32)bs.login.CMDLogin.IDLoginRsp:
+            case (UInt32)Bs.Lobby.CMDLobby.IdloginRsp:
                 {
                     HallService.Instance.OnLoginRsp(req);
                     return true;
                 }
             default:
-                Debug.LogError("异常,login没有处理的消息,data_cmdid=" + req.data_cmdid);
+                Debug.LogError("异常,login没有处理的消息,data_cmdid=" + req.DataCmdid);
                 break;
         }
         return false;
     }
 
-    private bool handlerListMessage(bs.gateway.TransferDataReq req)
+    private bool handlerListMessage(Bs.Gateway.TransferDataReq req)
     {
-        switch (req.data_cmdid)
+        switch (req.DataCmdid)
         {
-            case (UInt32)bs.list.CMDList.IDRoomListRsp:
+            case (UInt32)Bs.List.CMDList.IdroomListRsp:
                 {
                     HallService.Instance.OnRoomListRsp(req);
                     return true;
                 }
             default:
-                Debug.LogError("异常,list,没有处理的消息,data_cmdid=" + req.data_cmdid);
+                Debug.LogError("异常,list,没有处理的消息,DataCmdid=" + req.DataCmdid);
                 break;
         }
         return false;

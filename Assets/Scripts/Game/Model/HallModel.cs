@@ -151,7 +151,7 @@ public class HallModel
     //排行信息
     public static Dictionary<byte, CMD_Hall_S_RankInfo> rankDic = new Dictionary<byte, CMD_Hall_S_RankInfo>();
 
-    public static Dictionary<UInt32, bs.types.RoomInfo> roomList = new Dictionary<UInt32, bs.types.RoomInfo>();
+    public static Dictionary<UInt32, Bs.Types.RoomInfo> roomList = new Dictionary<UInt32, Bs.Types.RoomInfo>();
 
 
 
@@ -204,10 +204,7 @@ public class HallModel
     //低保总次数 - 红包场复活
     public static int totalIngotBaseEnsureTimes = 4;
 
-
     public static List<Texture> adTextureList = new List<Texture>();
-
-
 
     //签到信息
     public static bool isSign = false;

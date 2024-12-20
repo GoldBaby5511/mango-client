@@ -4,9 +4,9 @@ using System.Net;
 using System;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
-using bs.gateway;
+using Bs.Gateway;
 using System.IO;
-using bs.login;
+using Bs.Lobby;
 
 public class HallService : MonoBehaviour
 {
@@ -151,10 +151,10 @@ public class HallService : MonoBehaviour
     //发送网络心跳包
     public void SendHeartPacket()
     {
-        Debug.Log("发送网络心跳包");
+        //Debug.Log("发送网络心跳包");
 
-        bs.gateway.PulseReq req = new bs.gateway.PulseReq();
-        client.SendDate2Gate(NetManager.AppGate, (UInt16)CMDGateway.IDPulseReq, req);
+        PulseReq req = new PulseReq();
+        client.SendDate2Gate(NetManager.AppGate, (UInt16)CMDGateway.IdpulseReq, req);
     }
 
     //断开连接
@@ -180,8 +180,8 @@ public class HallService : MonoBehaviour
         Debug.Log("准备发送Hello");
 
         HelloReq req = new HelloReq();
-        req.ad_id = 110;
-        client.SendDate2Gate(NetManager.AppGate, (UInt16)CMDGateway.IDHelloReq, req);
+        req.AdId = 110;
+        client.SendDate2Gate(NetManager.AppGate, (UInt16)CMDGateway.IdhelloReq, req);
         return;
 
 
@@ -317,16 +317,17 @@ public class HallService : MonoBehaviour
         InvokeRepeating("SendHeartPacket", 1f, 5f);
 
         LoginReq req = new LoginReq();
-        req.game_kind = 120;
-        req.account = userAccount;
-        req.password = Util.GetMd5(userPassword);
-        client.SendTransferData2Gate(NetManager.AppLogin, NetManager.Send2AnyOne, NetManager.AppLogin, (UInt32)(CMDLogin.IDLoginReq), req);
+        req.GameKind = 120;
+        req.Account = userAccount;
+        req.Password = Util.GetMd5(userPassword);
+        client.SendTransferData2Gate(NetManager.AppLogin, NetManager.Send2AnyOne, NetManager.AppLogin, (UInt32)(CMDLobby.IdloginReq), req);
     }
 
-    public void OnLoginRsp(bs.gateway.TransferDataReq transferData)
+    public void OnLoginRsp(Bs.Gateway.TransferDataReq transferData)
     {
-        bs.login.LoginRsp rsp = ProtoBuf.Serializer.Deserialize<bs.login.LoginRsp>(new System.IO.MemoryStream(transferData.data));
-        if (rsp.err_info.code == 0)
+        //Bs.Lobby.LoginRsp rsp = ProtoBuf.Serializer.Deserialize<Bs.Lobby.LoginRsp>(new System.IO.MemoryStream(transferData.data));
+        LoginRsp rsp = NetPacket.Deserialize<LoginRsp>(transferData.Data.ToByteArray());
+        if (rsp.ErrInfo.Code == 0)
         {
             //微信登录时保存openId
             if (HallModel.loginType == LoginType.OtherSDK)
@@ -346,11 +347,11 @@ public class HallService : MonoBehaviour
                 }
             }
             //数据缓存
-            HallModel.userId = (int)rsp.base_info.user_id;
-            HallModel.gameId = (int)rsp.base_info.game_id;
-            HallModel.userName = rsp.base_info.nick_name;
+            HallModel.userId = (int)rsp.BaseInfo.UserId;
+            HallModel.gameId = (int)rsp.BaseInfo.GameId;
+            HallModel.userName = rsp.BaseInfo.NickName;
             HallModel.userSex = 0;
-            HallModel.faceId = (int)rsp.base_info.face_id;
+            HallModel.faceId = (int)rsp.BaseInfo.FaceId;
             HallModel.dynamicPassword = "";
             HallModel.userDiamondCount = 0;
             HallModel.userCoinInGame = 0;
@@ -410,7 +411,7 @@ public class HallService : MonoBehaviour
         {
             if (GameEvent.V_OpenDlgTip != null)
             {
-                GameEvent.V_OpenDlgTip.Invoke(rsp.err_info.info, "", null, null);
+                GameEvent.V_OpenDlgTip.Invoke(rsp.ErrInfo.Info, "", null, null);
             }
 
             //断开连接
@@ -418,14 +419,15 @@ public class HallService : MonoBehaviour
         }
     }
 
-    public void OnRoomListRsp(bs.gateway.TransferDataReq transferData)
+    public void OnRoomListRsp(Bs.Gateway.TransferDataReq transferData)
     {
-        bs.list.RoomListRsp rsp = ProtoBuf.Serializer.Deserialize<bs.list.RoomListRsp>(new System.IO.MemoryStream(transferData.data));
-        for (int i = 0; i < rsp.rooms.Count; i++)
-        {
-            HallModel.roomList[rsp.rooms[i].app_info.id] = rsp.rooms[i];
-            Debug.Log("插入房间,id=" + rsp.rooms[i].app_info.id);
-        }
+//         Google.Protobuf.IMessage.Descriptor.Parser.ParseFrom(new System.IO.MemoryStream(GetData()));
+//         Bs.List.RoomListRsp rsp = ProtoBuf.Serializer.Deserialize<Bs.List.RoomListRsp>(new System.IO.MemoryStream(transferData.data));
+//         for (int i = 0; i < rsp.rooms.Count; i++)
+//         {
+//             HallModel.roomList[rsp.rooms[i].app_info.id] = rsp.rooms[i];
+//             Debug.Log("插入房间,id=" + rsp.rooms[i].app_info.id);
+//         }
     }
 
     //登陆完成
@@ -778,9 +780,9 @@ public class HallService : MonoBehaviour
 
     public void QueryRoomList()
     {
-        bs.list.RoomListReq req = new bs.list.RoomListReq();
-        req.list_id = 0;
-        client.SendTransferData2Gate(NetManager.AppList, NetManager.Send2AnyOne, NetManager.AppList, (UInt32)(bs.list.CMDList.IDRoomListReq), req);
+        Bs.List.RoomListReq req = new Bs.List.RoomListReq();
+        req.ListId = 0;
+        client.SendTransferData2Gate(NetManager.AppList, NetManager.Send2AnyOne, NetManager.AppList, (UInt32)(Bs.List.CMDList.IdroomListReq), req);
     }
 
     //收到银行信息

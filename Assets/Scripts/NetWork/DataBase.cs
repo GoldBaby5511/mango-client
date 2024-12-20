@@ -6,17 +6,19 @@ using UnityEngine;
 //网络包头
 public class Header
 {
-    public Byte cbDataKind;							//数据类型
-    public Byte cbCheckCode;						//效验字段
-    public UInt16 wPacketSize;						//数据大小
+    public UInt16 wVersion;
+    public UInt16 wEncrypt;
+    public UInt32 dwAppType;
+    public UInt32 dwAppID;
     public UInt16 wMainCmdID;						//主命令码
     public UInt16 wSubCmdID;						//子命令码
 
     public Header()
     {
-        cbDataKind = 0x01;
-        cbCheckCode = 0;
-        wPacketSize = 0;
+        wVersion = 0x01;
+        wEncrypt = 0;
+        dwAppType = 0;
+        dwAppID = 0;
         wMainCmdID = 0;
         wSubCmdID = 0;
     }

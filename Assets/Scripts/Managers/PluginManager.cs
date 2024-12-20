@@ -89,9 +89,9 @@ public class PluginManager : MonoBehaviour
         string param = userId.ToString() + AppConfig.goodDic_android[goodId].RechargePrice + AppConfig.webKey1 + timrStr + _goodId;
         string md5Param = Util.GetMd5(param);
         string md5 = Util.GetMd5(md5Param + AppConfig.webKey2);
-        string url = AppConfig.url_weixinPayH5 + "?userid=" + userId.ToString() + "&awardID=" + goodId + "&money=" + AppConfig.goodDic_android[goodId].RechargePrice + "&ip=" + Network.player.ipAddress + "&buyType=" + AppConfig.goodDic_android[goodId].Type + "&sign=" + md5 + "&timestr=" + timrStr;
+        //string url = AppConfig.url_weixinPayH5 + "?userid=" + userId.ToString() + "&awardID=" + goodId + "&money=" + AppConfig.goodDic_android[goodId].RechargePrice + "&ip=" + Network.player.ipAddress + "&buyType=" + AppConfig.goodDic_android[goodId].Type + "&sign=" + md5 + "&timestr=" + timrStr;
         
-        Application.OpenURL(url);
+        //Application.OpenURL(url);
         Invoke("QueryCoinInfo", 60f);
         Invoke("QueryCoinInfo", 120f);
     }
@@ -263,14 +263,14 @@ public class PluginManager : MonoBehaviour
         //}
 
         //Web充值
-        string timrStr = Util.GetDateTimeSeconds();
-        string param = userId.ToString() + AppConfig.goodDic_android[goodId].RechargePrice + AppConfig.webKey1 + timrStr + Network.player.ipAddress + _goodId;
-        string md5Param = Util.GetMd5(param);
-        string md5 = Util.GetMd5(md5Param + AppConfig.webKey2);
-        string url = AppConfig.url_alipayH5 + "?userid=" + userId.ToString() + "&awardID=" + goodId + "&money=" + AppConfig.goodDic_android[goodId].RechargePrice + "&ip=" + Network.player.ipAddress + "&buyType=" + AppConfig.goodDic_android[goodId].Type + "&sign=" + md5 + "&timestr=" + timrStr;
-        Application.OpenURL(url);
-        Invoke("QueryCoinInfo", 60f);
-        Invoke(" ", 120f);
+        //string timrStr = Util.GetDateTimeSeconds();
+        //string param = userId.ToString() + AppConfig.goodDic_android[goodId].RechargePrice + AppConfig.webKey1 + timrStr + Network.player.ipAddress + _goodId;
+        //string md5Param = Util.GetMd5(param);
+        //string md5 = Util.GetMd5(md5Param + AppConfig.webKey2);
+        //string url = AppConfig.url_alipayH5 + "?userid=" + userId.ToString() + "&awardID=" + goodId + "&money=" + AppConfig.goodDic_android[goodId].RechargePrice + "&ip=" + Network.player.ipAddress + "&buyType=" + AppConfig.goodDic_android[goodId].Type + "&sign=" + md5 + "&timestr=" + timrStr;
+        //Application.OpenURL(url);
+        //Invoke("QueryCoinInfo", 60f);
+        //Invoke(" ", 120f);
     }
 
     /// <summary>

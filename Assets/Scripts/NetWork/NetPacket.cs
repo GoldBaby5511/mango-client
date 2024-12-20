@@ -3,14 +3,15 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Text;
 using System.Net.Sockets;
+using Google.Protobuf;
 
 /// <summary>
 /// 数据包类
 /// </summary>
 public class NetPacket
 {
-    // |	msgSize	 |	headSize		| 						header 												| msgData
-    // |4bit(msgSize)| 2bit(headSize) 	| 1bit(version) + 1bit(encrypt) + 2bit(AppType) + 2bit(CmdId) + Xbit(other) | msgData
+    // |	msgSize	 |	headSize		| 						header 																				   | msgData
+    // |4bit(msgSize)| 2bit(headSize) 	| 2bit(version) + 2bit(encrypt) + 4bit(AppType) + 4bit(AppId) + 2bit(MainCmdID) + 2bit(SubCmdID) + Xbit(other) | msgData
     public const int MSG_LEN = 4;                       //消息包长度
     public const int HEAD_LEN = 2;                      //记录消息头所占长度
     public const int BODY_LEN = 16384 - 8;              //最大消息体包
@@ -36,9 +37,10 @@ public class NetPacket
     // 构造函数，克隆一个新的NetPacket
     public NetPacket(NetPacket np)
     {
-        this.header.cbDataKind = np.header.cbDataKind;
-        this.header.cbCheckCode = np.header.cbCheckCode;
-        this.header.wPacketSize = np.header.wPacketSize;
+        this.header.wVersion = np.header.wVersion;
+        this.header.wEncrypt = np.header.wEncrypt;
+        this.header.dwAppType = np.header.dwAppType;
+        this.header.dwAppID = np.header.dwAppID;
         this.header.wMainCmdID = np.header.wMainCmdID;
         this.header.wSubCmdID = np.header.wSubCmdID;
 
@@ -105,9 +107,10 @@ public class NetPacket
     public void Reset()
     {
         ipos = 0;
-        header.cbDataKind = 0;
-        header.cbCheckCode = 0;
-        header.wPacketSize = 0;
+        header.wVersion = 0;
+        header.wEncrypt = 0;
+        header.dwAppType = 0;
+        header.dwAppID = 0;
         header.wMainCmdID = 0;
         header.wSubCmdID = 0;
         readLength = 0;
@@ -118,18 +121,18 @@ public class NetPacket
     // 取得数据头
     public void GetHeader()
     {
-        header.wMainCmdID = ReadUInt16(8);
-        header.wSubCmdID = ReadUInt16(10);
+        header.wMainCmdID = ReadUInt16(18);
+        header.wSubCmdID = ReadUInt16(20);
     }
 
-    public UInt32 GetMsgAppType()
+    public UInt32 GetMainCmdID()
     {
-        return ReadUInt16(8);
+        return ReadUInt16(18);
     }
 
-    public UInt32 GetMsgCmdId()
+    public UInt32 GetSubCmdID()
     {
-        return ReadUInt16(10);
+        return ReadUInt16(20);
     }
 
     // 获取数据包大小
@@ -157,9 +160,51 @@ public class NetPacket
         return data;
     }
 
-    public T Deserialize<T>()
+    //public T Deserialize<T>()
+    //{
+    //    return ProtoBuf.Serializer.Deserialize<T>(new System.IO.MemoryStream(GetData()));
+    //}
+
+    /// <summary>
+    /// 序列化
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
+    public static byte[] Serialize(IMessage message)
     {
-        return ProtoBuf.Serializer.Deserialize<T>(new System.IO.MemoryStream(GetData()));
+        return message.ToByteArray();
+    }
+
+    public T Deserialize<T>() where T : IMessage, new()
+    {
+        IMessage message = new T();
+        try
+        {
+            return (T)message.Descriptor.Parser.ParseFrom(new System.IO.MemoryStream(GetData()));
+        }
+        catch (System.Exception e)
+        {
+            throw e;
+        }
+    }
+
+    /// <summary>
+    /// 反序列化
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="packct"></param>
+    /// <returns></returns>
+    public static T Deserialize<T>(byte[] packct) where T : IMessage, new()
+    {
+        IMessage message = new T();
+        try
+        {
+            return (T)message.Descriptor.Parser.ParseFrom(packct);
+        }
+        catch (System.Exception e)
+        {
+            throw e;
+        }
     }
 
 }

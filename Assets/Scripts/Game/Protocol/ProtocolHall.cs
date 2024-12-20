@@ -394,27 +394,27 @@ public class CMD_Hall_S_GameKindList : DataBase
 
     protected override void UnPackBody()
     {
-        gameKindList.Clear();
-        count = (header.wPacketSize - 8)/155;
-        for (int i = 0; i < count; i++)
-        {
-            GameKindInfo info = new GameKindInfo();
-            info.wTypeID = ReadUInt16();
-            info.wJoinID = ReadUInt16();
-            info.wSortID = ReadUInt16();
-            info.wKindID = ReadUInt16();
-            info.wGameID = ReadUInt16();
-            info.cbSuportType = ReadByte();
-            info.wRecommend = ReadUInt16();
-            info.wGameFlag = ReadUInt16();
-            info.dwOnLineCount = ReadUInt32();
-            info.dwAndroidCount = ReadUInt32();
-            info.dwFullCount = ReadUInt32();
-            info.szKindName = ReadString(64);
-            info.szProcessName = ReadString(64);
+        //gameKindList.Clear();
+        //count = (header.wPacketSize - 8)/155;
+        //for (int i = 0; i < count; i++)
+        //{
+        //    GameKindInfo info = new GameKindInfo();
+        //    info.wTypeID = ReadUInt16();
+        //    info.wJoinID = ReadUInt16();
+        //    info.wSortID = ReadUInt16();
+        //    info.wKindID = ReadUInt16();
+        //    info.wGameID = ReadUInt16();
+        //    info.cbSuportType = ReadByte();
+        //    info.wRecommend = ReadUInt16();
+        //    info.wGameFlag = ReadUInt16();
+        //    info.dwOnLineCount = ReadUInt32();
+        //    info.dwAndroidCount = ReadUInt32();
+        //    info.dwFullCount = ReadUInt32();
+        //    info.szKindName = ReadString(64);
+        //    info.szProcessName = ReadString(64);
 
-            gameKindList.Add(info);
-        }
+        //    gameKindList.Add(info);
+        //}
     }
 }
 
@@ -426,33 +426,33 @@ public class CMD_Hall_S_GameServerList : DataBase
 
     protected override void UnPackBody()
     {
-        serverList.Clear();
-        serverCount = (header.wPacketSize - 8) / 177;
-        for (int i = 0; i < serverCount; i++)
-        {
-            GameServerInfo server = new GameServerInfo();
-            server.wKindID = ReadUInt16();
-            server.wNodeID = ReadUInt16();
-            server.wSortID = ReadUInt16();
-            server.wServerID = ReadUInt16();
-            server.wServerKind = ReadUInt16();
-            server.wServerType = ReadUInt16();
-            server.wServerLevel = ReadUInt16();
-            server.wServerPort = ReadUInt16();
-            server.lCellScore = ReadInt64();
-            server.wRatio = ReadInt16();
-            server.serviceMoney = ReadInt64();
-            server.cbEnterMember = ReadByte();
-            server.lEnterScore = ReadInt64();
-            server.dwServerRule = ReadUInt32();
-            server.dwOnLineCount = ReadUInt32();
-            server.dwAndroidCount = ReadUInt32();
-            server.dwFullCount = ReadUInt32();
-            server.szServerAddr = ReadString(64);
-            server.szServerName = ReadString(64);
+        //serverList.Clear();
+        //serverCount = (header.wPacketSize - 8) / 177;
+        //for (int i = 0; i < serverCount; i++)
+        //{
+        //    GameServerInfo server = new GameServerInfo();
+        //    server.wKindID = ReadUInt16();
+        //    server.wNodeID = ReadUInt16();
+        //    server.wSortID = ReadUInt16();
+        //    server.wServerID = ReadUInt16();
+        //    server.wServerKind = ReadUInt16();
+        //    server.wServerType = ReadUInt16();
+        //    server.wServerLevel = ReadUInt16();
+        //    server.wServerPort = ReadUInt16();
+        //    server.lCellScore = ReadInt64();
+        //    server.wRatio = ReadInt16();
+        //    server.serviceMoney = ReadInt64();
+        //    server.cbEnterMember = ReadByte();
+        //    server.lEnterScore = ReadInt64();
+        //    server.dwServerRule = ReadUInt32();
+        //    server.dwOnLineCount = ReadUInt32();
+        //    server.dwAndroidCount = ReadUInt32();
+        //    server.dwFullCount = ReadUInt32();
+        //    server.szServerAddr = ReadString(64);
+        //    server.szServerName = ReadString(64);
 
-            serverList.Add(server);
-        }
+        //    serverList.Add(server);
+        //}
     }
 }
 
@@ -1557,39 +1557,39 @@ public class CMD_Hall_S_CardGameServer : DataBase
 
     protected override void UnPackBody()
     {
-        cardServerList.Clear();
-        serverCount = (header.wPacketSize - 8) / 74;
-        for (int i = 0; i < serverCount; i++)
-        {
-            CardGameServerInfo cardServer = new CardGameServerInfo();
+        //cardServerList.Clear();
+        //serverCount = (header.wPacketSize - 8) / 74;
+        //for (int i = 0; i < serverCount; i++)
+        //{
+        //    CardGameServerInfo cardServer = new CardGameServerInfo();
 
-            cardServer.dwUserID = ReadUInt32();
-            cardServer.wKindID = ReadUInt16();
-            cardServer.wServerID = ReadUInt16();
-            cardServer.dwVersion = ReadUInt32();
-            cardServer.dwRoomID = ReadUInt32();
-            cardServer.dwRoomNum = ReadUInt32();
-            cardServer.dwFanTimes = ReadUInt32();
-            cardServer.dwMaxTimes = ReadUInt32();
-            cardServer.dwGameRule = ReadUInt32();
-            cardServer.cbRoomType = ReadByte();
-            for (int j = 0; j < 4; j++)
-            {
-                cardServer.cbPlayCout[j] = ReadByte();
-            }
-            for (int j = 0; j < 4; j++)
-            {
-                cardServer.lPlayCost[j] = ReadInt64();
-            }
-            for (int j = 0; j < 4; j++)
-            {
-                cardServer.lAAPlayCost[j] = ReadInt64();
-            }
-            cardServer.lCostGold = ReadInt64();
-            cardServer.cbPlayCountIndex = ReadByte();
+        //    cardServer.dwUserID = ReadUInt32();
+        //    cardServer.wKindID = ReadUInt16();
+        //    cardServer.wServerID = ReadUInt16();
+        //    cardServer.dwVersion = ReadUInt32();
+        //    cardServer.dwRoomID = ReadUInt32();
+        //    cardServer.dwRoomNum = ReadUInt32();
+        //    cardServer.dwFanTimes = ReadUInt32();
+        //    cardServer.dwMaxTimes = ReadUInt32();
+        //    cardServer.dwGameRule = ReadUInt32();
+        //    cardServer.cbRoomType = ReadByte();
+        //    for (int j = 0; j < 4; j++)
+        //    {
+        //        cardServer.cbPlayCout[j] = ReadByte();
+        //    }
+        //    for (int j = 0; j < 4; j++)
+        //    {
+        //        cardServer.lPlayCost[j] = ReadInt64();
+        //    }
+        //    for (int j = 0; j < 4; j++)
+        //    {
+        //        cardServer.lAAPlayCost[j] = ReadInt64();
+        //    }
+        //    cardServer.lCostGold = ReadInt64();
+        //    cardServer.cbPlayCountIndex = ReadByte();
 
-            cardServerList.Add(cardServer);
-        }
+        //    cardServerList.Add(cardServer);
+        //}
     }
 }
 
