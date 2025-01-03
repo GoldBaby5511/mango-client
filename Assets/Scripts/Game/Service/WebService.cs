@@ -192,9 +192,9 @@ public class WebService : MonoBehaviour
         HallModel.isGetMonthCardGift = false;
         HallModel.lastMonthCardDay = 0;
 
-        Web_C_PropInfo pro = new Web_C_PropInfo();
-        pro.userId = HallModel.userId;
-        Send<Web_S_PropInfo>(AppConfig.url_PropInfo, pro, OnGetPropInfo);
+        //Web_C_PropInfo pro = new Web_C_PropInfo();
+        //pro.userId = HallModel.userId;
+        //Send<Web_S_PropInfo>(AppConfig.url_PropInfo, pro, OnGetPropInfo);
     }
 
     void OnGetPropInfo(Web_S_PropInfo pro)
@@ -233,9 +233,9 @@ public class WebService : MonoBehaviour
     //请求月卡信息
     public void GetMonthCardInfo()
     {
-        Web_C_MonthCardInfo pro = new Web_C_MonthCardInfo();
-        pro.userId = HallModel.userId;
-        Send<Web_S_MonthCardInfo>(AppConfig.url_PropInfo, pro, OnGetMonthCardInfo);
+        //Web_C_MonthCardInfo pro = new Web_C_MonthCardInfo();
+        //pro.userId = HallModel.userId;
+        //Send<Web_S_MonthCardInfo>(AppConfig.url_PropInfo, pro, OnGetMonthCardInfo);
     }
 
     void OnGetMonthCardInfo(Web_S_MonthCardInfo pro)
@@ -271,12 +271,12 @@ public class WebService : MonoBehaviour
 
 
     //加载玩家头像
-    public void LoadUserPhoto(int userId, string url)
+    public void LoadUserPhoto(UInt64 userId, string url)
     {
         StartCoroutine(LoadPhoto(userId, url));
     }
 
-    IEnumerator LoadPhoto(int userId, string url)
+    IEnumerator LoadPhoto(UInt64 userId, string url)
     {
         WWW www = new WWW(url);
         yield return www;
@@ -312,6 +312,12 @@ public class WebService : MonoBehaviour
 
     void OnGetAdTextureInfo(Web_S_AdTextureInfo info)
     {
+        if(info == null)
+        {
+            Debug.LogError("加载广告图失败,info==null");
+            return;
+        }
+
         if (info.return_code == 10000)
         {
             HallModel.adTextureList.Clear();

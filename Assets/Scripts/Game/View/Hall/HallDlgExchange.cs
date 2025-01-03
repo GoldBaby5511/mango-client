@@ -325,10 +325,10 @@ public class HallDlgExchange : View
     //兑换商品
     void Exchange()
     {
-        Web_C_Exchange pro = new Web_C_Exchange();
-        pro.userId = HallModel.userId;
-        pro.goodsId = exchangeId;
-        WebService.Instance.Send<Web_S_Exchange>(AppConfig.url_Exchange, pro, OnExchangeResult);
+        //Web_C_Exchange pro = new Web_C_Exchange();
+        //pro.userId = HallModel.userId;
+        //pro.goodsId = exchangeId;
+        //WebService.Instance.Send<Web_S_Exchange>(AppConfig.url_Exchange, pro, OnExchangeResult);
     }
 
     void OnExchangeResult(Web_S_Exchange pro)
@@ -363,10 +363,10 @@ public class HallDlgExchange : View
     //请求兑换记录
     void GetExchangeRecord(int index)
     {
-        Web_C_ExchangRecord pro = new Web_C_ExchangRecord();
-        pro.userId = HallModel.userId;
-        pro.pageIndex = index;
-        WebService.Instance.Send<Web_S_ExchangeRecord>(AppConfig.url_Exchange, pro, OnGetExchangeRecord);
+        //Web_C_ExchangRecord pro = new Web_C_ExchangRecord();
+        //pro.userId = HallModel.userId;
+        //pro.pageIndex = index;
+        //WebService.Instance.Send<Web_S_ExchangeRecord>(AppConfig.url_Exchange, pro, OnGetExchangeRecord);
     }
 
     void OnGetExchangeRecord(Web_S_ExchangeRecord pro)

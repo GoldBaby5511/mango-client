@@ -18,12 +18,15 @@ public class NetManager
     public const UInt32 AppCenter = 2;
     public const UInt32 AppConfig = 3;
     public const UInt32 AppGate = 4;
-    public const UInt32 AppLogin = 5;
-    public const UInt32 AppList = 6;
-    public const UInt32 AppProperty = 7;
-    public const UInt32 AppTable = 8;
-    public const UInt32 AppRoom = 9;
-    public const UInt32 AppRobot = 10;
+    public const UInt32 AppLobby = 5;
+    public const UInt32 AppProperty = 6;
+    public const UInt32 AppBattle = 7;
+    public const UInt32 AppLogic = 8;
+    public const UInt32 AppRobot = 9;
+    public const UInt32 AppList = 10;
+    public const UInt32 AppTable = 11;
+    public const UInt32 AppRoom = 12;
+    public const UInt32 AppDaemon = 100;
 
     private Queue packetList = new Queue();                         // 存储网络数据包的队列
     private List<IHandler> handlerList = new List<IHandler>();      // 数据包处理类列表

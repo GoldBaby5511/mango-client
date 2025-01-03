@@ -281,19 +281,19 @@ public class HallDlgBindOp : View
 
         AudioManager.Instance.PlaySound(GameModel.audioButtonNormal);
         //请求手机验证码
-        Web_C_BindPhoneOp pro = new Web_C_BindPhoneOp();
-        pro.userid = HallModel.userId;
-        pro.phone = phoneNum;
-        pro.code = "";
-        pro.type = 0;
-        pro.codeType = 1;
-        string str = Util.GetMd5(pro.userid + pro.phone + AppConfig.webKey1 + pro.type + pro.codeType);
-        pro.sigin = Util.GetMd5(str + AppConfig.webKey2);
-        WebService.Instance.Send<Web_S_BindPhoneOp>(AppConfig.url_BindPhoneOp, pro, OnGetBindPhoneOpResult);
-        //60秒倒计时
-        opCode = pro.type;
-        btnGetCode_bindPhone.isEnabled = false;
-        StartTimeCount(60);
+        //Web_C_BindPhoneOp pro = new Web_C_BindPhoneOp();
+        //pro.userid = HallModel.userId;
+        //pro.phone = phoneNum;
+        //pro.code = "";
+        //pro.type = 0;
+        //pro.codeType = 1;
+        //string str = Util.GetMd5(pro.userid + pro.phone + AppConfig.webKey1 + pro.type + pro.codeType);
+        //pro.sigin = Util.GetMd5(str + AppConfig.webKey2);
+        //WebService.Instance.Send<Web_S_BindPhoneOp>(AppConfig.url_BindPhoneOp, pro, OnGetBindPhoneOpResult);
+        ////60秒倒计时
+        //opCode = pro.type;
+        //btnGetCode_bindPhone.isEnabled = false;
+        //StartTimeCount(60);
     }
 
     void OnBtnConfirmClick_bindPhone()
@@ -314,36 +314,36 @@ public class HallDlgBindOp : View
         }
         AudioManager.Instance.PlaySound(GameModel.audioButtonNormal);
         //绑定手机
-        Web_C_BindPhoneOp pro = new Web_C_BindPhoneOp();
-        pro.userid = HallModel.userId;
-        pro.phone = phoneNum;
-        pro.code = code;
-        pro.type = 1;
-        pro.codeType = 1;
-        string str = Util.GetMd5(pro.userid + pro.phone + AppConfig.webKey1 + pro.type + pro.codeType);
-        pro.sigin = Util.GetMd5(str + AppConfig.webKey2);
-        WebService.Instance.Send<Web_S_BindPhoneOp>(AppConfig.url_BindPhoneOp, pro, OnGetBindPhoneOpResult);
+        //Web_C_BindPhoneOp pro = new Web_C_BindPhoneOp();
+        //pro.userid = HallModel.userId;
+        //pro.phone = phoneNum;
+        //pro.code = code;
+        //pro.type = 1;
+        //pro.codeType = 1;
+        //string str = Util.GetMd5(pro.userid + pro.phone + AppConfig.webKey1 + pro.type + pro.codeType);
+        //pro.sigin = Util.GetMd5(str + AppConfig.webKey2);
+        //WebService.Instance.Send<Web_S_BindPhoneOp>(AppConfig.url_BindPhoneOp, pro, OnGetBindPhoneOpResult);
 
-        opCode = pro.type;
+        //opCode = pro.type;
     }
 
     void OnBtnGetCodeClick_unBindPhone()
     {
         AudioManager.Instance.PlaySound(GameModel.audioButtonNormal);
         //请求手机验证码
-        Web_C_BindPhoneOp pro = new Web_C_BindPhoneOp();
-        pro.userid = HallModel.userId;
-        pro.phone = HallModel.userPhone;
-        pro.code = "";
-        pro.type = 0;
-        pro.codeType = 2;
-        string str = Util.GetMd5(pro.userid + pro.phone + AppConfig.webKey1 + pro.type + pro.codeType);
-        pro.sigin = Util.GetMd5(str + AppConfig.webKey2);
-        WebService.Instance.Send<Web_S_BindPhoneOp>(AppConfig.url_BindPhoneOp, pro, OnGetBindPhoneOpResult);
-        //60秒倒计时
-        opCode = pro.type;
-        btnGetCode_unBindPhone.isEnabled = false;
-        StartTimeCount(60);
+        //Web_C_BindPhoneOp pro = new Web_C_BindPhoneOp();
+        //pro.userid = HallModel.userId;
+        //pro.phone = HallModel.userPhone;
+        //pro.code = "";
+        //pro.type = 0;
+        //pro.codeType = 2;
+        //string str = Util.GetMd5(pro.userid + pro.phone + AppConfig.webKey1 + pro.type + pro.codeType);
+        //pro.sigin = Util.GetMd5(str + AppConfig.webKey2);
+        //WebService.Instance.Send<Web_S_BindPhoneOp>(AppConfig.url_BindPhoneOp, pro, OnGetBindPhoneOpResult);
+        ////60秒倒计时
+        //opCode = pro.type;
+        //btnGetCode_unBindPhone.isEnabled = false;
+        //StartTimeCount(60);
     }
 
     void OnBtnConfirmClick_unBindPhone()
@@ -357,17 +357,17 @@ public class HallDlgBindOp : View
         }
         AudioManager.Instance.PlaySound(GameModel.audioButtonNormal);
         //解绑手机
-        Web_C_BindPhoneOp pro = new Web_C_BindPhoneOp();
-        pro.userid = HallModel.userId;
-        pro.phone = HallModel.userPhone;
-        pro.code = code;
-        pro.type = 2;
-        pro.codeType = 2;
-        string str = Util.GetMd5(pro.userid + pro.phone + AppConfig.webKey1 + pro.type + pro.codeType);
-        pro.sigin = Util.GetMd5(str + AppConfig.webKey2);
-        WebService.Instance.Send<Web_S_BindPhoneOp>(AppConfig.url_BindPhoneOp, pro, OnGetBindPhoneOpResult);
+        //Web_C_BindPhoneOp pro = new Web_C_BindPhoneOp();
+        //pro.userid = HallModel.userId;
+        //pro.phone = HallModel.userPhone;
+        //pro.code = code;
+        //pro.type = 2;
+        //pro.codeType = 2;
+        //string str = Util.GetMd5(pro.userid + pro.phone + AppConfig.webKey1 + pro.type + pro.codeType);
+        //pro.sigin = Util.GetMd5(str + AppConfig.webKey2);
+        //WebService.Instance.Send<Web_S_BindPhoneOp>(AppConfig.url_BindPhoneOp, pro, OnGetBindPhoneOpResult);
 
-        opCode = pro.type;
+        //opCode = pro.type;
     }
 
     void OnBtnConfirmClick_BindAgency()

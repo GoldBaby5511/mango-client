@@ -149,7 +149,7 @@ public class HallDlgRank : View
         {
             for (int i = 0; i < 3; i++)
             {
-                int userId = HallModel.rankDic[1].dwUserID[i];
+                ulong userId = (ulong)HallModel.rankDic[1].dwUserID[i];
                 if (HallModel.userPhotos.ContainsKey(userId))
                 {
                     btnOpen.transform.Find("photo_" + i).GetComponent<UITexture>().mainTexture = HallModel.userPhotos[userId];
@@ -207,9 +207,9 @@ public class HallDlgRank : View
                     itemList[i].Find("lblCount").GetComponent<UILabel>().text = Util.GetCoinNumStr(pro.lCount[i]);
                 }
                 //显示头像
-                if (HallModel.userPhotos.ContainsKey(pro.dwUserID[i]))
+                if (HallModel.userPhotos.ContainsKey((ulong)pro.dwUserID[i]))
                 {
-                    itemList[i].Find("photo").GetComponent<UITexture>().mainTexture = HallModel.userPhotos[pro.dwUserID[i]];
+                    itemList[i].Find("photo").GetComponent<UITexture>().mainTexture = HallModel.userPhotos[(ulong)pro.dwUserID[i]];
                 }
                 else
                 {

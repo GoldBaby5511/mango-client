@@ -303,9 +303,9 @@ public class HallDlgShareTask : View
     //请求邀请奖励信息
     void GetInviteAwardInfo()
     {
-        Web_C_InviteFriendInfo pro = new Web_C_InviteFriendInfo();
-        pro.userId = HallModel.userId;
-        WebService.Instance.Send<Web_S_InviteFriendInfo>(AppConfig.url_InviteFriend, pro, OnGetInviteAwardInfo);
+        //Web_C_InviteFriendInfo pro = new Web_C_InviteFriendInfo();
+        //pro.userId = HallModel.userId;
+        //WebService.Instance.Send<Web_S_InviteFriendInfo>(AppConfig.url_InviteFriend, pro, OnGetInviteAwardInfo);
     }
 
     //收到邀请奖励信息
@@ -341,10 +341,10 @@ public class HallDlgShareTask : View
     //领取邀请奖励
     void GetInviteAward(int taskid)
     {
-        Web_C_GetInviteAward pro = new Web_C_GetInviteAward();
-        pro.userId = HallModel.userId;
-        pro.taskid = taskid;
-        WebService.Instance.Send<Web_S_GetInviteAward>(AppConfig.url_InviteFriend, pro, OnGetInviteAward);
+        //Web_C_GetInviteAward pro = new Web_C_GetInviteAward();
+        //pro.userId = HallModel.userId;
+        //pro.taskid = taskid;
+        //WebService.Instance.Send<Web_S_GetInviteAward>(AppConfig.url_InviteFriend, pro, OnGetInviteAward);
     }
 
     //收到领取奖励
@@ -375,10 +375,10 @@ public class HallDlgShareTask : View
     //请求好友任务记录
     void GetPlayerTaskRecord(int index)
     {
-        Web_C_PlayerTaskRecord pro = new Web_C_PlayerTaskRecord();
-        pro.userId = HallModel.userId;
-        pro.pageIndex = index;
-        WebService.Instance.Send<Web_S_PlayerTaskRecord>(AppConfig.url_InviteFriend, pro, OnGetPlayerTaskRecord);
+        //Web_C_PlayerTaskRecord pro = new Web_C_PlayerTaskRecord();
+        //pro.userId = HallModel.userId;
+        //pro.pageIndex = index;
+        //WebService.Instance.Send<Web_S_PlayerTaskRecord>(AppConfig.url_InviteFriend, pro, OnGetPlayerTaskRecord);
     }
 
     //收到好友任务记录

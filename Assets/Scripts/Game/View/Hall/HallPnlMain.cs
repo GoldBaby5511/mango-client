@@ -22,13 +22,13 @@ public class HallPnlMain : View
     private UIButton btnGift;
     private UIButton btnActivity;
     private UIButton btnTask;
-    
+
     private UIButton btnReturn;
     private UILabel lblSystemMsg;
     private UILabel lblGameType;
     private UIButton btnDuiHuan;
     private UIButton btnInviteFriend;
-    
+
     //bottom
     private Transform bottom;
     private Transform hallBtnPnl;
@@ -87,10 +87,10 @@ public class HallPnlMain : View
         lblCoinCount = transform.Find("top/lblCoinCount").GetComponent<UILabel>();
         btnBuyZuan = transform.Find("top/lblZuanCount/btnBuyZuan").GetComponent<UIButton>();
         btnBuyCoin = transform.Find("top/lblCoinCount/btnBuyCoin").GetComponent<UIButton>();
-       
+
         btnGift = transform.Find("top/btnGift").GetComponent<UIButton>();
-        
-        
+
+
         btnReturn = transform.Find("top/info/btnReturn").GetComponent<UIButton>();
         lblSystemMsg = transform.Find("top/systemMessage/Panel/Label").GetComponent<UILabel>();
         lblGameType = transform.Find("top/info/lblGameType").GetComponent<UILabel>();
@@ -134,7 +134,7 @@ public class HallPnlMain : View
         {
             btnRooms[i] = transform.Find("roomList/Panel/btnRoom_" + i);
         }
-        
+
         EventDelegate.Add(sptPhoto.GetComponent<UIButton>().onClick, OnBtnPhotoClick);
         EventDelegate.Add(btnBuyZuan.onClick, OnBtnBuyZuanClick);
         EventDelegate.Add(btnBuyCoin.onClick, OnBtnBuyCoinClick);
@@ -231,7 +231,7 @@ public class HallPnlMain : View
         OpenCenter();
 
         btnReturn.gameObject.SetActive(false);
-        info.DOLocalMoveX(-AppConfig.screenWidth/2 + 150f, 0.3f);
+        info.DOLocalMoveX(-AppConfig.screenWidth / 2 + 150f, 0.3f);
         RefreshUserInfo(true);
         StartCoroutine(PlayerSystemMessage());
     }
@@ -319,60 +319,60 @@ public class HallPnlMain : View
         hallBtnPnl.gameObject.SetActive(false);
         btnQuickStart.gameObject.SetActive(true);
         systemMessage.gameObject.SetActive(false);
-        
+
         center.SetActive(false);
         roomList.SetActive(true);
         privateRoom.SetActive(false);
         roomList.transform.Find("Panel").GetComponent<UIScrollView>().ResetPosition();
         //数据保存
         Dictionary<System.UInt32, Bs.Types.RoomInfo> serverDic = new Dictionary<System.UInt32, Bs.Types.RoomInfo>();
-        //foreach(Bs.Types.RoomInfo server in HallModel.roomList.Values)
-        //{
-        //    if (server.Kind == (ushort)HallModel.currentGameKindId && server.Type == Bs.Types.RoomInfo.Gold)
-        //    {
-        //        if (!serverDic.ContainsKey(server.level))
-        //        {
-        //            serverDic.Add(server.level, server);
-        //        }
-        //    }
-        //}
+        foreach (Bs.Types.RoomInfo server in HallModel.roomList.Values)
+        {
+            if (server.Kind == (ushort)HallModel.currentGameKindId && server.Type == Bs.Types.RoomInfo.Types.RoomType.Gold)
+            {
+                if (!serverDic.ContainsKey(server.Level))
+                {
+                    serverDic.Add(server.Level, server);
+                }
+            }
+        }
         //界面初始化
-        //for (System.UInt32 i = 0; i < 4; i++)
-        //{
-        //    if (serverDic.ContainsKey(i))
-        //    {
-        //        btnRooms[i].gameObject.SetActive(true);
-        //        btnRooms[i].transform.Find("lblBaseScore").GetComponent<UILabel>().text = "底分：" + serverDic[i].base_score;
-        //        btnRooms[i].transform.Find("lblLimit").GetComponent<UILabel>().text = "最低进入" + serverDic[i].join_min + "金币";
-        //        //btnRooms[i].GetComponent<TweenScale>().ResetToBeginning();
-        //        btnRooms[i].GetComponent<TweenScale>().PlayForward();
-        //        btnRooms[i].GetComponent<TweenAlpha>().PlayForward();
-        //    }
-        //    else
-        //    {
-        //        btnRooms[i].gameObject.SetActive(false);
-        //    }
-        //}
+        for (System.UInt32 i = 0; i < 4; i++)
+        {
+            if (serverDic.ContainsKey(i))
+            {
+                btnRooms[i].gameObject.SetActive(true);
+                btnRooms[i].transform.Find("lblBaseScore").GetComponent<UILabel>().text = "底分：" + serverDic[i].BaseScore;
+                btnRooms[i].transform.Find("lblLimit").GetComponent<UILabel>().text = "最低进入" + serverDic[i].JoinMin + "金币";
+                //btnRooms[i].GetComponent<TweenScale>().ResetToBeginning();
+                btnRooms[i].GetComponent<TweenScale>().PlayForward();
+                btnRooms[i].GetComponent<TweenAlpha>().PlayForward();
+            }
+            else
+            {
+                btnRooms[i].gameObject.SetActive(false);
+            }
+        }
         int quickIndex = -1;
-        //for (int i = 3; i >= 0; i--)
-        //{
-        //    if (serverDic.ContainsKey((System.UInt32)i))
-        //    {
-        //        if (quickIndex == -1 && HallModel.userCoinInGame > serverDic[(System.UInt32)i].join_min)
-        //        {
-        //            quickIndex = i;
-        //        }
-        //    }
-        //}
+        for (int i = 3; i >= 0; i--)
+        {
+            if (serverDic.ContainsKey((System.UInt32)i))
+            {
+                if (quickIndex == -1 && HallModel.userCoinInGame > serverDic[(System.UInt32)i].JoinMin)
+                {
+                    quickIndex = i;
+                }
+            }
+        }
 
         //快速开始房间
         string roomName = "金币不足";
-        if(quickIndex != -1)
+        if (quickIndex != -1)
         {
-            if(quickIndex == 0) roomName="初级场";
-            else if(quickIndex == 1) roomName="中级场";
-            else if(quickIndex == 2) roomName="高级场";
-            else if(quickIndex == 3) roomName="大师场"; 
+            if (quickIndex == 0) roomName = "初级场";
+            else if (quickIndex == 1) roomName = "中级场";
+            else if (quickIndex == 2) roomName = "高级场";
+            else if (quickIndex == 3) roomName = "大师场";
         }
         btnQuickStart.transform.Find("lblRoomName").GetComponent<UILabel>().text = roomName;
     }
@@ -428,7 +428,7 @@ public class HallPnlMain : View
         }
         list.Sort
             (
-                    delegate(CMD_Hall_S_GameRecord record1, CMD_Hall_S_GameRecord record2)
+                    delegate (CMD_Hall_S_GameRecord record1, CMD_Hall_S_GameRecord record2)
                     {
                         return -record1.InsertTime.CompareTo(record2.InsertTime);//升序
                     }
@@ -445,7 +445,7 @@ public class HallPnlMain : View
                 {
                     gameRecordList[i].transform.Find("user_" + j).gameObject.SetActive(true);
                     gameRecordList[i].transform.Find("user_" + j + "/lblUserName").GetComponent<UILabel>().text = list[i].szUserNickName[j];
-                    gameRecordList[i].transform.Find("user_" + j + "/photo").GetComponent<UITexture>().mainTexture = GameModel.GetUserPhotoByUserId(list[i].dwUserID[j]);
+                    gameRecordList[i].transform.Find("user_" + j + "/photo").GetComponent<UITexture>().mainTexture = GameModel.GetUserPhotoByUserId((ulong)list[i].dwUserID[j]);
                     if (list[i].lUserScore[j] > 0)
                     {
                         gameRecordList[i].transform.Find("user_" + j + "/lblUserScore").GetComponent<UILabel>().color = new Color(255f / 255, 66f / 255, 66f / 255);
@@ -500,8 +500,8 @@ public class HallPnlMain : View
         lblSystemMsg.text = message;
         float dis = 420f + lblSystemMsg.localSize.x;
         float timer = dis / 100f;
-        lblSystemMsg.transform.localPosition = new Vector3(dis/2, 0f, 0f);
-        lblSystemMsg.transform.DOLocalMoveX(-dis/2, timer).SetEase(Ease.Linear);
+        lblSystemMsg.transform.localPosition = new Vector3(dis / 2, 0f, 0f);
+        lblSystemMsg.transform.DOLocalMoveX(-dis / 2, timer).SetEase(Ease.Linear);
         yield return new WaitForSeconds(timer);
         StartCoroutine(PlayerSystemMessage());
     }
@@ -575,7 +575,7 @@ public class HallPnlMain : View
             adTexture_1.transform.DOLocalMoveX(-320f, 0.5f);
             adTexture_0.transform.DOLocalMoveX(0f, 0.5f);
         }
-       
+
         CancelInvoke("SwitchAdTextureLeft");
         Invoke("SwitchAdTextureLeft", 5f);
     }
@@ -619,7 +619,7 @@ public class HallPnlMain : View
             adTexture_1.transform.DOLocalMoveX(0f, 0.5f);
             adTexture_0.transform.DOLocalMoveX(320f, 0.5f);
         }
-        
+
         CancelInvoke("SwitchAdTextureLeft");
         Invoke("SwitchAdTextureLeft", 5f);
     }
@@ -721,7 +721,7 @@ public class HallPnlMain : View
         }
         CloseBottom();
         systemMessage.gameObject.SetActive(true);
-        info.DOLocalMoveX(-AppConfig.screenWidth/2 + 150f, 0.3f);
+        info.DOLocalMoveX(-AppConfig.screenWidth / 2 + 150f, 0.3f);
         DoActionDelay(OpenBottom, 0.3f);
         DoActionDelay(OpenCenter, 0.3f);
     }
@@ -761,13 +761,13 @@ public class HallPnlMain : View
         //首充判断
         if (HallModel.isFirstCharge == false)
         {
-            DoAction(GameEvent.V_OpenDlgFirstCharge,delegate { HallEvent.V_OpenDlgStore.Invoke(DlgStoreArg.DiamondPage); });
+            DoAction(GameEvent.V_OpenDlgFirstCharge, delegate { HallEvent.V_OpenDlgStore.Invoke(DlgStoreArg.DiamondPage); });
         }
         else
         {
             DoAction(HallEvent.V_OpenDlgStore, DlgStoreArg.DiamondPage);
         }
-        
+
     }
 
     //设置
@@ -798,7 +798,7 @@ public class HallPnlMain : View
         AudioManager.Instance.PlaySound(GameModel.audioButtonNormal);
         DoAction(HallEvent.V_OpenDlgRealAuth);
     }
-    
+
     //低保
     void OnBtnBaseEnsureClick()
     {
@@ -815,13 +815,13 @@ public class HallPnlMain : View
         Util.Instance.DoAction(HallEvent.V_OpenDlgMonthCard, 4);
     }
 
-        //快速开始
-        void OnBtnQuckStartClick()
+    //快速开始
+    void OnBtnQuckStartClick()
     {
         AudioManager.Instance.PlaySound(GameModel.audioButtonNormal);
         //数据保存
         Dictionary<int, GameServerInfo> serverDic = new Dictionary<int, GameServerInfo>();
-        foreach(GameServerInfo server in HallModel.serverList.Values)
+        foreach (GameServerInfo server in HallModel.serverList.Values)
         {
             if (server.wKindID == (ushort)HallModel.currentGameKindId && server.wServerType == GameModel.ServerKind_Gold)
             {
@@ -842,7 +842,7 @@ public class HallPnlMain : View
                 break;
             }
         }
-        if(bSuccess == false)
+        if (bSuccess == false)
         {
             if (GameEvent.V_OpenDlgTip != null)
             {
@@ -894,14 +894,14 @@ public class HallPnlMain : View
         sptPhoto.gameObject.SetActive(false);
         lblNickName.gameObject.SetActive(false);
         lblGameId.gameObject.SetActive(false);
-        lblGameType.text="金币场";
+        lblGameType.text = "金币场";
         lblGameType.gameObject.SetActive(true);
 
         DoActionDelay(OpenRoomList, 0.3f);
         DoActionDelay(OpenBottom, 0.3f);
 
         btnReturn.gameObject.SetActive(true);
-        info.DOLocalMoveX(-AppConfig.screenWidth/2 + 220f, 0.3f);
+        info.DOLocalMoveX(-AppConfig.screenWidth / 2 + 220f, 0.3f);
     }
 
     void OnBtnPrivateGameClick()
@@ -914,34 +914,40 @@ public class HallPnlMain : View
         //背景切换
         bghall.depth = 0;
         bgother.depth = 1;
-        
+
         //头像信息切换
         sptPhoto.gameObject.SetActive(false);
         lblNickName.gameObject.SetActive(false);
         lblGameId.gameObject.SetActive(false);
-        lblGameType.text="好友场";
+        lblGameType.text = "好友场";
         lblGameType.gameObject.SetActive(true);
 
         DoActionDelay(OpenPrivateRoom, 0.3f);
         DoActionDelay(OpenBottom, 0.3f);
 
         btnReturn.gameObject.SetActive(true);
-        info.DOLocalMoveX(-AppConfig.screenWidth/2 + 220f, 0.3f);
+        info.DOLocalMoveX(-AppConfig.screenWidth / 2 + 220f, 0.3f);
     }
+    #endregion
 
     //点击房间
     void OnBtnRoomClick(GameObject obj)
     {
+        Debug.Log("点击房间");
+
         ushort level = ushort.Parse(obj.name.Split('_')[1]);
+
+        Debug.Log("点击房间,level="+level);
 
         AudioManager.Instance.PlaySound(GameModel.audioButtonOp);
         HallModel.currentGameFlag = GameFlag.Landlords3;
 
         HallModel.opOnLoginGame = OpOnLginGame.GetChair;
         GameModel.currentRoomId = 0xFFFFFFFF;
-        HallService.Instance.GetRoomServerInfo(GameModel.ServerKind_Gold, level);
+        GameService.Instance.EnterRoom();
+        //HallService.Instance.GetRoomServerInfo(GameModel.ServerKind_Gold, level);
     }
 
-    #endregion
+
 
 }

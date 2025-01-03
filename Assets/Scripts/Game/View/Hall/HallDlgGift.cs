@@ -312,13 +312,13 @@ public class HallDlgGift : View
             }
         }
         
-        if (exchangeId != 0)
-        {
-            Web_C_Exchange pro = new Web_C_Exchange();
-            pro.userId = HallModel.userId;
-            pro.goodsId = exchangeId;
-            WebService.Instance.Send<Web_S_Exchange>(AppConfig.url_Exchange, pro, OnGetGiftResult);
-        }
+        //if (exchangeId != 0)
+        //{
+        //    Web_C_Exchange pro = new Web_C_Exchange();
+        //    pro.userId = HallModel.userId;
+        //    pro.goodsId = exchangeId;
+        //    WebService.Instance.Send<Web_S_Exchange>(AppConfig.url_Exchange, pro, OnGetGiftResult);
+        //}
     }
 
     //领取结果

@@ -68,13 +68,13 @@ public class HallDlgEmail : View
 
         OpenEmailList();
 
-        Web_C_EmailInfo pro = new Web_C_EmailInfo();
-        pro.type = 1;
-        pro.userId = HallModel.userId;
-        pro.emailId = 0;
-        WebService.Instance.Send<Web_S_EmailInfo>(AppConfig.url_Email, pro, OnGetEmailResult);
+        //Web_C_EmailInfo pro = new Web_C_EmailInfo();
+        //pro.type = 1;
+        //pro.userId = HallModel.userId;
+        //pro.emailId = 0;
+        //WebService.Instance.Send<Web_S_EmailInfo>(AppConfig.url_Email, pro, OnGetEmailResult);
 
-        opCode = pro.type;
+        //opCode = pro.type;
     }
 
     void OpenEmailList()
@@ -216,13 +216,13 @@ public class HallDlgEmail : View
         CloseEmailList();
         DoActionDelay(OpenEmailInfo, 0.1f, index);
         //阅读邮件
-        Web_C_EmailInfo pro = new Web_C_EmailInfo();
-        pro.type = 2;
-        pro.userId = HallModel.userId;
-        pro.emailId = emailInfoList[index].EmailId;
-        WebService.Instance.Send<Web_S_EmailInfo>(AppConfig.url_Email, pro, OnGetEmailResult);
+        //Web_C_EmailInfo pro = new Web_C_EmailInfo();
+        //pro.type = 2;
+        //pro.userId = HallModel.userId;
+        //pro.emailId = emailInfoList[index].EmailId;
+        //WebService.Instance.Send<Web_S_EmailInfo>(AppConfig.url_Email, pro, OnGetEmailResult);
 
-        opCode = pro.type;
+        //opCode = pro.type;
     }
 
 

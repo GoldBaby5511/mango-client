@@ -27,39 +27,37 @@ namespace Bs.Gateway {
             "Cg1nYXRld2F5LnByb3RvEgpicy5nYXRld2F5IkcKCFB1bHNlUmVxEhAKCG15",
             "X3NwZWVkGAEgASgNEhIKCnNwZWVkX2RhdGEYAiABKA0SFQoNYXR0YWNoZWRf",
             "ZGF0YRgDIAEoDCJHCghQdWxzZVJzcBISCgpzcGVlZF9kYXRhGAEgASgNEhQK",
-            "DGF0dGFjaGRfZGF0YRgCIAEoDBIRCgl0aW1lc3RhbXAYAyABKAMi5QEKD1Ry",
+            "DGF0dGFjaGRfZGF0YRgCIAEoDBIRCgl0aW1lc3RhbXAYAyABKAMirwEKD1Ry",
             "YW5zZmVyRGF0YVJlcRIUCgxkZXN0X2FwcHR5cGUYASABKA0SEgoKZGVzdF9h",
-            "cHBpZBgCIAEoDRIUCgxkYXRhX2FwcHR5cGUYAyABKA0SEgoKZGF0YV9jbWRp",
-            "ZBgEIAEoDRIMCgRkYXRhGAUgASgMEg4KBnJlcV9pZBgGIAEoDRIUCgxjbGll",
-            "bnRfaXBfdjQYByABKA0SFQoNYXR0X3Nlc3Npb25pZBgIIAEoBBISCgpnYXRl",
-            "Y29ubmlkGAkgASgEEg4KBmdhdGVpZBgKIAEoDRIPCgd1c2VyX2lkGAsgASgE",
-            "IjEKD1RyYW5zZmVyRGF0YVJzcBIOCgZyZXN1bHQYASABKA0SDgoGcmVxX2lk",
-            "GAYgASgNIp8BCghBdXRoSW5mbxIPCgd1c2VyX2lkGAEgASgEEhIKCmdhdGVj",
-            "b25uaWQYAiABKAQSDgoGcmVzdWx0GAMgASgNEgwKBGluZm8YBCABKAkSLAoH",
-            "b3BfdHlwZRgFIAEoDjIbLmJzLmdhdGV3YXkuQXV0aEluZm8uT3BUeXBlIiIK",
-            "Bk9wVHlwZRIICgRCaW5kEAASDgoKRGlzY29ubmVjdBABIrQBCghIZWxsb1Jl",
-            "cRINCgVhZF9pZBgCIAEoDRIOCgZvdGhlcnMYAyABKAkSEgoKYnVpbGRlcl9u",
-            "bxgEIAEoDRIRCglnYW1lX2tpbmQYBSABKA0SFgoOY2xpZW50X3ZlcnNpb24Y",
-            "BiABKAkSEwoLY2xpZW50X3R5cGUYByABKA0SEgoKcHVibGljX2tleRgIIAEo",
-            "CRITCgtlbmNyeXB0X2tleRgJIAEoCRIMCgRndWlkGAogASgJIvQBCghIZWxs",
-            "b1JzcBIQCghyc3BfZmxhZxgBIAEoDRIUCgxnYXRlX2FkZHJlc3MYAiADKAkS",
-            "EwoLbG9naW5fdG9rZW4YBCABKA0SEgoKcHVibGljX2tleRgIIAEoCRITCgtl",
-            "bmNyeXB0X2tleRgDIAEoCRIWCg52ZXJzaW9uX3Jlc3VsdBgFIAEoDRIQCghk",
-            "b3duX3VybBgGIAEoCRIMCgRndWlkGAcgASgJIkoKB1JzcEZsYWcSCwoHVU5L",
-            "Tk9XThAAEg8KC0VuY3J5cHRJbmZvEAESEQoNQWR2aWNlTmV3R2F0ZRACEg4K",
-            "CkxvZ2luVG9rZW4QBCqWAQoKQ01ER2F0ZXdheRIKCgZJRE5vbmUQABIOCgpJ",
-            "RFB1bHNlUmVxEAESDgoKSURQdWxzZVJzcBACEhUKEUlEVHJhbnNmZXJEYXRh",
-            "UmVxEAMSFQoRSURUcmFuc2ZlckRhdGFSc3AQBBIOCgpJREF1dGhJbmZvEAUS",
-            "DgoKSURIZWxsb1JlcRAGEg4KCklESGVsbG9Sc3AQB0IKWggvZ2F0ZXdheWIG",
-            "cHJvdG8z"));
+            "cHBpZBgCIAEoDRITCgttYWluX2NtZF9pZBgDIAEoDRISCgpzdWJfY21kX2lk",
+            "GAQgASgNEgwKBGRhdGEYBSABKAwSFAoMY2xpZW50X2lwX3Y0GAYgASgNEhQK",
+            "DGdhdGVfY29ubl9pZBgHIAEoBBIPCgd1c2VyX2lkGAggASgEIjEKD1RyYW5z",
+            "ZmVyRGF0YVJzcBIOCgZyZXN1bHQYASABKA0SDgoGcmVxX2lkGAYgASgNIqEB",
+            "CghBdXRoSW5mbxIPCgd1c2VyX2lkGAEgASgEEhQKDGdhdGVfY29ubl9pZBgC",
+            "IAEoBBIOCgZyZXN1bHQYAyABKA0SDAoEaW5mbxgEIAEoCRIsCgdvcF90eXBl",
+            "GAUgASgOMhsuYnMuZ2F0ZXdheS5BdXRoSW5mby5PcFR5cGUiIgoGT3BUeXBl",
+            "EggKBEJpbmQQABIOCgpEaXNjb25uZWN0EAEitAEKCEhlbGxvUmVxEg0KBWFk",
+            "X2lkGAIgASgNEg4KBm90aGVycxgDIAEoCRISCgpidWlsZGVyX25vGAQgASgN",
+            "EhEKCWdhbWVfa2luZBgFIAEoDRIWCg5jbGllbnRfdmVyc2lvbhgGIAEoCRIT",
+            "CgtjbGllbnRfdHlwZRgHIAEoDRISCgpwdWJsaWNfa2V5GAggASgJEhMKC2Vu",
+            "Y3J5cHRfa2V5GAkgASgJEgwKBGd1aWQYCiABKAki9AEKCEhlbGxvUnNwEhAK",
+            "CHJzcF9mbGFnGAEgASgNEhQKDGdhdGVfYWRkcmVzcxgCIAMoCRITCgtsb2dp",
+            "bl90b2tlbhgEIAEoDRISCgpwdWJsaWNfa2V5GAggASgJEhMKC2VuY3J5cHRf",
+            "a2V5GAMgASgJEhYKDnZlcnNpb25fcmVzdWx0GAUgASgNEhAKCGRvd25fdXJs",
+            "GAYgASgJEgwKBGd1aWQYByABKAkiSgoHUnNwRmxhZxILCgdVTktOT1dOEAAS",
+            "DwoLRW5jcnlwdEluZm8QARIRCg1BZHZpY2VOZXdHYXRlEAISDgoKTG9naW5U",
+            "b2tlbhAEKpYBCgpDTURHYXRld2F5EgoKBklETm9uZRAAEg4KCklEUHVsc2VS",
+            "ZXEQARIOCgpJRFB1bHNlUnNwEAISFQoRSURUcmFuc2ZlckRhdGFSZXEQAxIV",
+            "ChFJRFRyYW5zZmVyRGF0YVJzcBAEEg4KCklEQXV0aEluZm8QBRIOCgpJREhl",
+            "bGxvUmVxEAYSDgoKSURIZWxsb1JzcBAHQgpaCC9nYXRld2F5YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Bs.Gateway.CMDGateway), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Gateway.PulseReq), global::Bs.Gateway.PulseReq.Parser, new[]{ "MySpeed", "SpeedData", "AttachedData" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Gateway.PulseRsp), global::Bs.Gateway.PulseRsp.Parser, new[]{ "SpeedData", "AttachdData", "Timestamp" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Gateway.TransferDataReq), global::Bs.Gateway.TransferDataReq.Parser, new[]{ "DestApptype", "DestAppid", "DataApptype", "DataCmdid", "Data", "ReqId", "ClientIpV4", "AttSessionid", "Gateconnid", "Gateid", "UserId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Gateway.TransferDataReq), global::Bs.Gateway.TransferDataReq.Parser, new[]{ "DestApptype", "DestAppid", "MainCmdId", "SubCmdId", "Data", "ClientIpV4", "GateConnId", "UserId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Gateway.TransferDataRsp), global::Bs.Gateway.TransferDataRsp.Parser, new[]{ "Result", "ReqId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Gateway.AuthInfo), global::Bs.Gateway.AuthInfo.Parser, new[]{ "UserId", "Gateconnid", "Result", "Info", "OpType" }, null, new[]{ typeof(global::Bs.Gateway.AuthInfo.Types.OpType) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Gateway.AuthInfo), global::Bs.Gateway.AuthInfo.Parser, new[]{ "UserId", "GateConnId", "Result", "Info", "OpType" }, null, new[]{ typeof(global::Bs.Gateway.AuthInfo.Types.OpType) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Gateway.HelloReq), global::Bs.Gateway.HelloReq.Parser, new[]{ "AdId", "Others", "BuilderNo", "GameKind", "ClientVersion", "ClientType", "PublicKey", "EncryptKey", "Guid" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Gateway.HelloRsp), global::Bs.Gateway.HelloRsp.Parser, new[]{ "RspFlag", "GateAddress", "LoginToken", "PublicKey", "EncryptKey", "VersionResult", "DownUrl", "Guid" }, null, new[]{ typeof(global::Bs.Gateway.HelloRsp.Types.RspFlag) }, null, null)
           }));
@@ -674,14 +672,11 @@ namespace Bs.Gateway {
     public TransferDataReq(TransferDataReq other) : this() {
       destApptype_ = other.destApptype_;
       destAppid_ = other.destAppid_;
-      dataApptype_ = other.dataApptype_;
-      dataCmdid_ = other.dataCmdid_;
+      mainCmdId_ = other.mainCmdId_;
+      subCmdId_ = other.subCmdId_;
       data_ = other.data_;
-      reqId_ = other.reqId_;
       clientIpV4_ = other.clientIpV4_;
-      attSessionid_ = other.attSessionid_;
-      gateconnid_ = other.gateconnid_;
-      gateid_ = other.gateid_;
+      gateConnId_ = other.gateConnId_;
       userId_ = other.userId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -722,33 +717,42 @@ namespace Bs.Gateway {
       }
     }
 
-    /// <summary>Field number for the "data_apptype" field.</summary>
-    public const int DataApptypeFieldNumber = 3;
-    private uint dataApptype_;
+    /// <summary>Field number for the "main_cmd_id" field.</summary>
+    public const int MainCmdIdFieldNumber = 3;
+    private uint mainCmdId_;
+    /// <summary>
+    ///主命令
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint DataApptype {
-      get { return dataApptype_; }
+    public uint MainCmdId {
+      get { return mainCmdId_; }
       set {
-        dataApptype_ = value;
+        mainCmdId_ = value;
       }
     }
 
-    /// <summary>Field number for the "data_cmdid" field.</summary>
-    public const int DataCmdidFieldNumber = 4;
-    private uint dataCmdid_;
+    /// <summary>Field number for the "sub_cmd_id" field.</summary>
+    public const int SubCmdIdFieldNumber = 4;
+    private uint subCmdId_;
+    /// <summary>
+    ///次命令
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint DataCmdid {
-      get { return dataCmdid_; }
+    public uint SubCmdId {
+      get { return subCmdId_; }
       set {
-        dataCmdid_ = value;
+        subCmdId_ = value;
       }
     }
 
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 5;
     private pb::ByteString data_ = pb::ByteString.Empty;
+    /// <summary>
+    ///转发数据
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pb::ByteString Data {
@@ -758,20 +762,8 @@ namespace Bs.Gateway {
       }
     }
 
-    /// <summary>Field number for the "req_id" field.</summary>
-    public const int ReqIdFieldNumber = 6;
-    private uint reqId_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint ReqId {
-      get { return reqId_; }
-      set {
-        reqId_ = value;
-      }
-    }
-
     /// <summary>Field number for the "client_ip_v4" field.</summary>
-    public const int ClientIpV4FieldNumber = 7;
+    public const int ClientIpV4FieldNumber = 6;
     private uint clientIpV4_;
     /// <summary>
     ///客户端的ip
@@ -785,53 +777,23 @@ namespace Bs.Gateway {
       }
     }
 
-    /// <summary>Field number for the "att_sessionid" field.</summary>
-    public const int AttSessionidFieldNumber = 8;
-    private ulong attSessionid_;
+    /// <summary>Field number for the "gate_conn_id" field.</summary>
+    public const int GateConnIdFieldNumber = 7;
+    private ulong gateConnId_;
     /// <summary>
-    ///联联的session id ，目前只由gate->client
+    ///gate连接id
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ulong AttSessionid {
-      get { return attSessionid_; }
+    public ulong GateConnId {
+      get { return gateConnId_; }
       set {
-        attSessionid_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "gateconnid" field.</summary>
-    public const int GateconnidFieldNumber = 9;
-    private ulong gateconnid_;
-    /// <summary>
-    ///关联的gate连接id
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ulong Gateconnid {
-      get { return gateconnid_; }
-      set {
-        gateconnid_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "gateid" field.</summary>
-    public const int GateidFieldNumber = 10;
-    private uint gateid_;
-    /// <summary>
-    ///关联的gate_id
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint Gateid {
-      get { return gateid_; }
-      set {
-        gateid_ = value;
+        gateConnId_ = value;
       }
     }
 
     /// <summary>Field number for the "user_id" field.</summary>
-    public const int UserIdFieldNumber = 11;
+    public const int UserIdFieldNumber = 8;
     private ulong userId_;
     /// <summary>
     ///用户ID
@@ -862,14 +824,11 @@ namespace Bs.Gateway {
       }
       if (DestApptype != other.DestApptype) return false;
       if (DestAppid != other.DestAppid) return false;
-      if (DataApptype != other.DataApptype) return false;
-      if (DataCmdid != other.DataCmdid) return false;
+      if (MainCmdId != other.MainCmdId) return false;
+      if (SubCmdId != other.SubCmdId) return false;
       if (Data != other.Data) return false;
-      if (ReqId != other.ReqId) return false;
       if (ClientIpV4 != other.ClientIpV4) return false;
-      if (AttSessionid != other.AttSessionid) return false;
-      if (Gateconnid != other.Gateconnid) return false;
-      if (Gateid != other.Gateid) return false;
+      if (GateConnId != other.GateConnId) return false;
       if (UserId != other.UserId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -880,14 +839,11 @@ namespace Bs.Gateway {
       int hash = 1;
       if (DestApptype != 0) hash ^= DestApptype.GetHashCode();
       if (DestAppid != 0) hash ^= DestAppid.GetHashCode();
-      if (DataApptype != 0) hash ^= DataApptype.GetHashCode();
-      if (DataCmdid != 0) hash ^= DataCmdid.GetHashCode();
+      if (MainCmdId != 0) hash ^= MainCmdId.GetHashCode();
+      if (SubCmdId != 0) hash ^= SubCmdId.GetHashCode();
       if (Data.Length != 0) hash ^= Data.GetHashCode();
-      if (ReqId != 0) hash ^= ReqId.GetHashCode();
       if (ClientIpV4 != 0) hash ^= ClientIpV4.GetHashCode();
-      if (AttSessionid != 0UL) hash ^= AttSessionid.GetHashCode();
-      if (Gateconnid != 0UL) hash ^= Gateconnid.GetHashCode();
-      if (Gateid != 0) hash ^= Gateid.GetHashCode();
+      if (GateConnId != 0UL) hash ^= GateConnId.GetHashCode();
       if (UserId != 0UL) hash ^= UserId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -915,40 +871,28 @@ namespace Bs.Gateway {
         output.WriteRawTag(16);
         output.WriteUInt32(DestAppid);
       }
-      if (DataApptype != 0) {
+      if (MainCmdId != 0) {
         output.WriteRawTag(24);
-        output.WriteUInt32(DataApptype);
+        output.WriteUInt32(MainCmdId);
       }
-      if (DataCmdid != 0) {
+      if (SubCmdId != 0) {
         output.WriteRawTag(32);
-        output.WriteUInt32(DataCmdid);
+        output.WriteUInt32(SubCmdId);
       }
       if (Data.Length != 0) {
         output.WriteRawTag(42);
         output.WriteBytes(Data);
       }
-      if (ReqId != 0) {
-        output.WriteRawTag(48);
-        output.WriteUInt32(ReqId);
-      }
       if (ClientIpV4 != 0) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(48);
         output.WriteUInt32(ClientIpV4);
       }
-      if (AttSessionid != 0UL) {
-        output.WriteRawTag(64);
-        output.WriteUInt64(AttSessionid);
-      }
-      if (Gateconnid != 0UL) {
-        output.WriteRawTag(72);
-        output.WriteUInt64(Gateconnid);
-      }
-      if (Gateid != 0) {
-        output.WriteRawTag(80);
-        output.WriteUInt32(Gateid);
+      if (GateConnId != 0UL) {
+        output.WriteRawTag(56);
+        output.WriteUInt64(GateConnId);
       }
       if (UserId != 0UL) {
-        output.WriteRawTag(88);
+        output.WriteRawTag(64);
         output.WriteUInt64(UserId);
       }
       if (_unknownFields != null) {
@@ -969,40 +913,28 @@ namespace Bs.Gateway {
         output.WriteRawTag(16);
         output.WriteUInt32(DestAppid);
       }
-      if (DataApptype != 0) {
+      if (MainCmdId != 0) {
         output.WriteRawTag(24);
-        output.WriteUInt32(DataApptype);
+        output.WriteUInt32(MainCmdId);
       }
-      if (DataCmdid != 0) {
+      if (SubCmdId != 0) {
         output.WriteRawTag(32);
-        output.WriteUInt32(DataCmdid);
+        output.WriteUInt32(SubCmdId);
       }
       if (Data.Length != 0) {
         output.WriteRawTag(42);
         output.WriteBytes(Data);
       }
-      if (ReqId != 0) {
-        output.WriteRawTag(48);
-        output.WriteUInt32(ReqId);
-      }
       if (ClientIpV4 != 0) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(48);
         output.WriteUInt32(ClientIpV4);
       }
-      if (AttSessionid != 0UL) {
-        output.WriteRawTag(64);
-        output.WriteUInt64(AttSessionid);
-      }
-      if (Gateconnid != 0UL) {
-        output.WriteRawTag(72);
-        output.WriteUInt64(Gateconnid);
-      }
-      if (Gateid != 0) {
-        output.WriteRawTag(80);
-        output.WriteUInt32(Gateid);
+      if (GateConnId != 0UL) {
+        output.WriteRawTag(56);
+        output.WriteUInt64(GateConnId);
       }
       if (UserId != 0UL) {
-        output.WriteRawTag(88);
+        output.WriteRawTag(64);
         output.WriteUInt64(UserId);
       }
       if (_unknownFields != null) {
@@ -1021,29 +953,20 @@ namespace Bs.Gateway {
       if (DestAppid != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(DestAppid);
       }
-      if (DataApptype != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(DataApptype);
+      if (MainCmdId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MainCmdId);
       }
-      if (DataCmdid != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(DataCmdid);
+      if (SubCmdId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SubCmdId);
       }
       if (Data.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
       }
-      if (ReqId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ReqId);
-      }
       if (ClientIpV4 != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ClientIpV4);
       }
-      if (AttSessionid != 0UL) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(AttSessionid);
-      }
-      if (Gateconnid != 0UL) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Gateconnid);
-      }
-      if (Gateid != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Gateid);
+      if (GateConnId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(GateConnId);
       }
       if (UserId != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(UserId);
@@ -1066,29 +989,20 @@ namespace Bs.Gateway {
       if (other.DestAppid != 0) {
         DestAppid = other.DestAppid;
       }
-      if (other.DataApptype != 0) {
-        DataApptype = other.DataApptype;
+      if (other.MainCmdId != 0) {
+        MainCmdId = other.MainCmdId;
       }
-      if (other.DataCmdid != 0) {
-        DataCmdid = other.DataCmdid;
+      if (other.SubCmdId != 0) {
+        SubCmdId = other.SubCmdId;
       }
       if (other.Data.Length != 0) {
         Data = other.Data;
       }
-      if (other.ReqId != 0) {
-        ReqId = other.ReqId;
-      }
       if (other.ClientIpV4 != 0) {
         ClientIpV4 = other.ClientIpV4;
       }
-      if (other.AttSessionid != 0UL) {
-        AttSessionid = other.AttSessionid;
-      }
-      if (other.Gateconnid != 0UL) {
-        Gateconnid = other.Gateconnid;
-      }
-      if (other.Gateid != 0) {
-        Gateid = other.Gateid;
+      if (other.GateConnId != 0UL) {
+        GateConnId = other.GateConnId;
       }
       if (other.UserId != 0UL) {
         UserId = other.UserId;
@@ -1117,11 +1031,11 @@ namespace Bs.Gateway {
             break;
           }
           case 24: {
-            DataApptype = input.ReadUInt32();
+            MainCmdId = input.ReadUInt32();
             break;
           }
           case 32: {
-            DataCmdid = input.ReadUInt32();
+            SubCmdId = input.ReadUInt32();
             break;
           }
           case 42: {
@@ -1129,26 +1043,14 @@ namespace Bs.Gateway {
             break;
           }
           case 48: {
-            ReqId = input.ReadUInt32();
-            break;
-          }
-          case 56: {
             ClientIpV4 = input.ReadUInt32();
             break;
           }
+          case 56: {
+            GateConnId = input.ReadUInt64();
+            break;
+          }
           case 64: {
-            AttSessionid = input.ReadUInt64();
-            break;
-          }
-          case 72: {
-            Gateconnid = input.ReadUInt64();
-            break;
-          }
-          case 80: {
-            Gateid = input.ReadUInt32();
-            break;
-          }
-          case 88: {
             UserId = input.ReadUInt64();
             break;
           }
@@ -1176,11 +1078,11 @@ namespace Bs.Gateway {
             break;
           }
           case 24: {
-            DataApptype = input.ReadUInt32();
+            MainCmdId = input.ReadUInt32();
             break;
           }
           case 32: {
-            DataCmdid = input.ReadUInt32();
+            SubCmdId = input.ReadUInt32();
             break;
           }
           case 42: {
@@ -1188,26 +1090,14 @@ namespace Bs.Gateway {
             break;
           }
           case 48: {
-            ReqId = input.ReadUInt32();
-            break;
-          }
-          case 56: {
             ClientIpV4 = input.ReadUInt32();
             break;
           }
+          case 56: {
+            GateConnId = input.ReadUInt64();
+            break;
+          }
           case 64: {
-            AttSessionid = input.ReadUInt64();
-            break;
-          }
-          case 72: {
-            Gateconnid = input.ReadUInt64();
-            break;
-          }
-          case 80: {
-            Gateid = input.ReadUInt32();
-            break;
-          }
-          case 88: {
             UserId = input.ReadUInt64();
             break;
           }
@@ -1485,7 +1375,7 @@ namespace Bs.Gateway {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public AuthInfo(AuthInfo other) : this() {
       userId_ = other.userId_;
-      gateconnid_ = other.gateconnid_;
+      gateConnId_ = other.gateConnId_;
       result_ = other.result_;
       info_ = other.info_;
       opType_ = other.opType_;
@@ -1513,18 +1403,18 @@ namespace Bs.Gateway {
       }
     }
 
-    /// <summary>Field number for the "gateconnid" field.</summary>
-    public const int GateconnidFieldNumber = 2;
-    private ulong gateconnid_;
+    /// <summary>Field number for the "gate_conn_id" field.</summary>
+    public const int GateConnIdFieldNumber = 2;
+    private ulong gateConnId_;
     /// <summary>
-    ///关联的gate连接id
+    ///gate连接id
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ulong Gateconnid {
-      get { return gateconnid_; }
+    public ulong GateConnId {
+      get { return gateConnId_; }
       set {
-        gateconnid_ = value;
+        gateConnId_ = value;
       }
     }
 
@@ -1589,7 +1479,7 @@ namespace Bs.Gateway {
         return true;
       }
       if (UserId != other.UserId) return false;
-      if (Gateconnid != other.Gateconnid) return false;
+      if (GateConnId != other.GateConnId) return false;
       if (Result != other.Result) return false;
       if (Info != other.Info) return false;
       if (OpType != other.OpType) return false;
@@ -1601,7 +1491,7 @@ namespace Bs.Gateway {
     public override int GetHashCode() {
       int hash = 1;
       if (UserId != 0UL) hash ^= UserId.GetHashCode();
-      if (Gateconnid != 0UL) hash ^= Gateconnid.GetHashCode();
+      if (GateConnId != 0UL) hash ^= GateConnId.GetHashCode();
       if (Result != 0) hash ^= Result.GetHashCode();
       if (Info.Length != 0) hash ^= Info.GetHashCode();
       if (OpType != global::Bs.Gateway.AuthInfo.Types.OpType.Bind) hash ^= OpType.GetHashCode();
@@ -1627,9 +1517,9 @@ namespace Bs.Gateway {
         output.WriteRawTag(8);
         output.WriteUInt64(UserId);
       }
-      if (Gateconnid != 0UL) {
+      if (GateConnId != 0UL) {
         output.WriteRawTag(16);
-        output.WriteUInt64(Gateconnid);
+        output.WriteUInt64(GateConnId);
       }
       if (Result != 0) {
         output.WriteRawTag(24);
@@ -1657,9 +1547,9 @@ namespace Bs.Gateway {
         output.WriteRawTag(8);
         output.WriteUInt64(UserId);
       }
-      if (Gateconnid != 0UL) {
+      if (GateConnId != 0UL) {
         output.WriteRawTag(16);
-        output.WriteUInt64(Gateconnid);
+        output.WriteUInt64(GateConnId);
       }
       if (Result != 0) {
         output.WriteRawTag(24);
@@ -1686,8 +1576,8 @@ namespace Bs.Gateway {
       if (UserId != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(UserId);
       }
-      if (Gateconnid != 0UL) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Gateconnid);
+      if (GateConnId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(GateConnId);
       }
       if (Result != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Result);
@@ -1713,8 +1603,8 @@ namespace Bs.Gateway {
       if (other.UserId != 0UL) {
         UserId = other.UserId;
       }
-      if (other.Gateconnid != 0UL) {
-        Gateconnid = other.Gateconnid;
+      if (other.GateConnId != 0UL) {
+        GateConnId = other.GateConnId;
       }
       if (other.Result != 0) {
         Result = other.Result;
@@ -1745,7 +1635,7 @@ namespace Bs.Gateway {
             break;
           }
           case 16: {
-            Gateconnid = input.ReadUInt64();
+            GateConnId = input.ReadUInt64();
             break;
           }
           case 24: {
@@ -1780,7 +1670,7 @@ namespace Bs.Gateway {
             break;
           }
           case 16: {
-            Gateconnid = input.ReadUInt64();
+            GateConnId = input.ReadUInt64();
             break;
           }
           case 24: {

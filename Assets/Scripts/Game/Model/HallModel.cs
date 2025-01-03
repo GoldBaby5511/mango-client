@@ -109,11 +109,11 @@ public class HallModel
     //默认头像
     public static Texture defaultPhoto;             
     //用户头像
-    public static Dictionary<int, Texture> userPhotos = new Dictionary<int, Texture>();
+    public static Dictionary<ulong, Texture> userPhotos = new Dictionary<ulong, Texture>();
 
     
-    public static int userId;
-    public static int gameId;
+    public static ulong userId;
+    public static ulong gameId;
     public static string userIP = "xx.xxx.x.xxx （中国）";               //用户IP地址
     public static string userName = "未登录";       //用户昵称
     public static string headImgUrl = "";           //用户头像url
@@ -218,7 +218,7 @@ public class HallModel
     {
         get
         {
-            string msg = "欢迎来到[FF2929FF]兴隆斗地主[-]，本游戏为休闲平台，禁止赌博！";
+            string msg = "欢迎来到[FF2929FF]兴隆斗地主[-]！";
             if (defaultMessageList.Count > 0)
             {
                 if (defaultMessageIndex >= defaultMessageList.Count)

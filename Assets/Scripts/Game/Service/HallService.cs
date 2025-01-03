@@ -38,7 +38,7 @@ public class HallService : MonoBehaviour
         }
     }
 
-    private ClientSocket client;
+    public ClientSocket client;
     [HideInInspector]
     public bool isConnect = false;                             //与服务器是否连接正常
     private ConnectType connectType = ConnectType.Normal;       //连接模式
@@ -320,12 +320,11 @@ public class HallService : MonoBehaviour
         req.GameKind = 120;
         req.Account = userAccount;
         req.Password = Util.GetMd5(userPassword);
-        client.SendTransferData2Gate(NetManager.AppLogin, NetManager.Send2AnyOne, NetManager.AppLogin, (UInt32)(CMDLobby.IdloginReq), req);
+        client.SendTransferData2Gate(NetManager.AppLobby, NetManager.Send2AnyOne, NetManager.AppLobby, (UInt32)(CMDLobby.IdloginReq), req);
     }
 
     public void OnLoginRsp(Bs.Gateway.TransferDataReq transferData)
     {
-        //Bs.Lobby.LoginRsp rsp = ProtoBuf.Serializer.Deserialize<Bs.Lobby.LoginRsp>(new System.IO.MemoryStream(transferData.data));
         LoginRsp rsp = NetPacket.Deserialize<LoginRsp>(transferData.Data.ToByteArray());
         if (rsp.ErrInfo.Code == 0)
         {
@@ -347,8 +346,8 @@ public class HallService : MonoBehaviour
                 }
             }
             //数据缓存
-            HallModel.userId = (int)rsp.BaseInfo.UserId;
-            HallModel.gameId = (int)rsp.BaseInfo.GameId;
+            HallModel.userId = rsp.BaseInfo.UserId;
+            HallModel.gameId = rsp.BaseInfo.GameId;
             HallModel.userName = rsp.BaseInfo.NickName;
             HallModel.userSex = 0;
             HallModel.faceId = (int)rsp.BaseInfo.FaceId;
@@ -421,13 +420,13 @@ public class HallService : MonoBehaviour
 
     public void OnRoomListRsp(Bs.Gateway.TransferDataReq transferData)
     {
-//         Google.Protobuf.IMessage.Descriptor.Parser.ParseFrom(new System.IO.MemoryStream(GetData()));
-//         Bs.List.RoomListRsp rsp = ProtoBuf.Serializer.Deserialize<Bs.List.RoomListRsp>(new System.IO.MemoryStream(transferData.data));
-//         for (int i = 0; i < rsp.rooms.Count; i++)
-//         {
-//             HallModel.roomList[rsp.rooms[i].app_info.id] = rsp.rooms[i];
-//             Debug.Log("插入房间,id=" + rsp.rooms[i].app_info.id);
-//         }
+        Bs.List.RoomListRsp rsp = NetPacket.Deserialize<Bs.List.RoomListRsp>(transferData.Data.ToByteArray());
+        Debug.Log("房间回复,count=" + rsp.Rooms.Count);
+        for (int i = 0; i < rsp.Rooms.Count; i++)
+        {
+            HallModel.roomList[rsp.Rooms[i].AppInfo.Id] = rsp.Rooms[i];
+            Debug.Log("插入房间,id=" + rsp.Rooms[i].AppInfo.Id);
+        }
     }
 
     //登陆完成
@@ -560,9 +559,9 @@ public class HallService : MonoBehaviour
             HallModel.userPhone = pro.szMobilePhone;
         }
         //加载用户头像
-        if (!HallModel.userPhotos.ContainsKey((int)pro.dwUserID))
+        if (!HallModel.userPhotos.ContainsKey((UInt64)pro.dwUserID))
         {
-            WebService.Instance.LoadUserPhoto((int)pro.dwUserID, pro.szWeChatURL);
+            WebService.Instance.LoadUserPhoto((UInt64)pro.dwUserID, pro.szWeChatURL);
         }
     }
 
@@ -780,6 +779,8 @@ public class HallService : MonoBehaviour
 
     public void QueryRoomList()
     {
+        Debug.Log("查询房间");
+
         Bs.List.RoomListReq req = new Bs.List.RoomListReq();
         req.ListId = 0;
         client.SendTransferData2Gate(NetManager.AppList, NetManager.Send2AnyOne, NetManager.AppList, (UInt32)(Bs.List.CMDList.IdroomListReq), req);
@@ -995,21 +996,21 @@ public class HallService : MonoBehaviour
 
     public void OnGetRankInfo(CMD_Hall_S_RankInfo pro)
     {
-        if (HallModel.rankDic.ContainsKey(pro.cbRankType))
-        {
-            HallModel.rankDic[pro.cbRankType] = pro;
-        }
-        else
-        {
-            HallModel.rankDic.Add(pro.cbRankType, pro);
-        }
-        for (int i = 0; i < 20; i++)
-        {
-            if (!HallModel.userPhotos.ContainsKey(pro.dwUserID[i]) && pro.szWeChatURL[i].Length > 5)
-            {
-                WebService.Instance.LoadUserPhoto(pro.dwUserID[i], pro.szWeChatURL[i]);
-            }
-        }
+        //if (HallModel.rankDic.ContainsKey(pro.cbRankType))
+        //{
+        //    HallModel.rankDic[pro.cbRankType] = pro;
+        //}
+        //else
+        //{
+        //    HallModel.rankDic.Add(pro.cbRankType, pro);
+        //}
+        //for (int i = 0; i < 20; i++)
+        //{
+        //    if (!HallModel.userPhotos.ContainsKey(pro.dwUserID[i]) && pro.szWeChatURL[i].Length > 5)
+        //    {
+        //        WebService.Instance.LoadUserPhoto(pro.dwUserID[i], pro.szWeChatURL[i]);
+        //    }
+        //}
     }
 
     #endregion

@@ -3,26 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-//网络包头
-public class Header
-{
-    public UInt16 wVersion;
-    public UInt16 wEncrypt;
-    public UInt32 dwAppType;
-    public UInt32 dwAppID;
-    public UInt16 wMainCmdID;						//主命令码
-    public UInt16 wSubCmdID;						//子命令码
 
-    public Header()
-    {
-        wVersion = 0x01;
-        wEncrypt = 0;
-        dwAppType = 0;
-        dwAppID = 0;
-        wMainCmdID = 0;
-        wSubCmdID = 0;
-    }
-}
 
 /// <summary>
 /// 消息基类

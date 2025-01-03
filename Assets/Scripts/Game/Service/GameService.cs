@@ -35,7 +35,7 @@ public class GameService : MonoBehaviour
     }
 
     [HideInInspector]
-    public ClientSocket client;
+    public ClientSocket client = HallService.Instance.client;
     [HideInInspector]
     public bool isConnect = false;
 
@@ -43,15 +43,15 @@ public class GameService : MonoBehaviour
 
     void Awake()
     {
-        client = new ClientSocket();
-        client.netManager.AddHandler(new GameHandler());
-        client.connectErrorEvent += OnConnectError;
+        //client = new ClientSocket();
+        //client.netManager.AddHandler(new GameHandler());
+        //client.connectErrorEvent += OnConnectError;
         DontDestroyOnLoad(this.gameObject);
     }
 
     void FixedUpdate()
     {
-        client.netManager.OnUpdate();   //实时接收网络消息
+        //client.netManager.OnUpdate();   //实时接收网络消息
     }
 
     //网络监测
@@ -369,18 +369,26 @@ public class GameService : MonoBehaviour
     }
 
     //收到用户状态
-    public void OnReceiveUserState(CMD_Game_S_UserState pro)
+    public bool OnReceiveUserState(Bs.Gateway.TransferDataReq req)
     {
+        Bs.Room.UserStatus rsp = NetPacket.Deserialize<Bs.Room.UserStatus>(req.Data.ToByteArray());
+        uint dwUserId = (uint)rsp.UserInfo.UserId;
+        byte cbUserStatus = (byte)rsp.UserInfo.Status;
+        UInt16 wTableID = (UInt16)rsp.UserInfo.TableId;
+        UInt16 wChairID = (UInt16)rsp.UserInfo.SeatId;
+
+        Debug.Log("收到用户状态,dwUserId=" + dwUserId + ",cbUserStatus=" + cbUserStatus + ",wTableID=" + wTableID + ",wChairID=" + wChairID);
+
         //自己
-        if (pro.dwUserId == HallModel.userId)
+        if (dwUserId == HallModel.userId)
         {
             //初始化自己的座位号，桌号
-            GameModel.deskId = pro.userState.wTableID;
-            GameModel.chairId = pro.userState.wChairID;
+            GameModel.deskId = wTableID; //pro.userState.wTableID;
+            GameModel.chairId = wChairID;// pro.userState.wChairID;
             //坐下时
             if (GameModel.playerInRoom.ContainsKey((uint)HallModel.userId) && GameModel.playerInRoom[(uint)HallModel.userId].cbUserStatus == UserState.US_FREE)
             {
-                if (pro.userState.cbUserStatus == UserState.US_SIT || pro.userState.cbUserStatus == UserState.US_READY || pro.userState.cbUserStatus == UserState.US_PLAYING)
+                if (cbUserStatus == UserState.US_SIT || cbUserStatus == UserState.US_READY || cbUserStatus == UserState.US_PLAYING)
                 {
                     //清空数据
                     GameModel.playerInDesk.Clear();
@@ -414,26 +422,28 @@ public class GameService : MonoBehaviour
                 }
             }
         }
+
         //更新用户列表中的状态
-        if (GameModel.playerInRoom.ContainsKey(pro.dwUserId))
+        if (GameModel.playerInRoom.ContainsKey(dwUserId))
         {
-            GameModel.playerInRoom[pro.dwUserId].cbUserStatus = pro.userState.cbUserStatus;
-            GameModel.playerInRoom[pro.dwUserId].wTableID = pro.userState.wTableID;
-            GameModel.playerInRoom[pro.dwUserId].wChairID = pro.userState.wChairID;
+            GameModel.playerInRoom[dwUserId].cbUserStatus = cbUserStatus;
+            GameModel.playerInRoom[dwUserId].wTableID = wTableID;
+            GameModel.playerInRoom[dwUserId].wChairID = wChairID;
+
             //用户状态为空时，表示离开房间
-            if (pro.userState.cbUserStatus == UserState.US_NULL)
+            if ((byte)rsp.UserInfo.Status == UserState.US_NULL)
             {
-                GameModel.playerInRoom.Remove(pro.dwUserId);
+                GameModel.playerInRoom.Remove(dwUserId);
             }
         }
         //维护本桌用户列表
-        if (pro.userState.cbUserStatus == UserState.US_FREE || pro.userState.cbUserStatus == UserState.US_NULL)
+        if (cbUserStatus == UserState.US_FREE || cbUserStatus == UserState.US_NULL)
         {
             //站起时从本桌用户列表中移除用户
             int chairID = -1;
             foreach (int key in GameModel.playerInDesk.Keys)
             {
-                if (GameModel.playerInDesk[key] == pro.dwUserId)
+                if (GameModel.playerInDesk[key] == dwUserId)
                 {
                     chairID = key;
                 }
@@ -444,30 +454,33 @@ public class GameService : MonoBehaviour
                 Util.Instance.DoAction(GameEvent.V_RefreshUserInfo, false);                
             }
         }
-        else if (GameModel.deskId != 65535 && GameModel.deskId == pro.userState.wTableID)
+        else if (GameModel.deskId != GameModel.INVALID_TABLE && GameModel.deskId == wTableID)
         {
-            if (GameModel.playerInDesk.ContainsKey(pro.userState.wChairID))
+            if (GameModel.playerInDesk.ContainsKey(wChairID))
             {
-                if (GameModel.playerInDesk[pro.userState.wChairID] != pro.dwUserId)
+                if (GameModel.playerInDesk[wChairID] != dwUserId)
                 {
-                    GameModel.playerInDesk[pro.userState.wChairID] = pro.dwUserId;
-                    HallService.Instance.QueryUserInfo(pro.dwUserId);
+                    GameModel.playerInDesk[wChairID] = dwUserId;
+                    HallService.Instance.QueryUserInfo(dwUserId);
                 }
                 Util.Instance.DoAction(GameEvent.V_RefreshUserInfo, false);
             }
             else
             {
                 //玩家坐在空位
-                GameModel.playerInDesk.Add(pro.userState.wChairID, pro.dwUserId);
-                HallService.Instance.QueryUserInfo(pro.dwUserId);
+                GameModel.playerInDesk.Add(wChairID, dwUserId);
+                HallService.Instance.QueryUserInfo(dwUserId);
                 Util.Instance.DoAction(GameEvent.V_RefreshUserInfo, true);
             }
         }
+
         //刷新桌子状态
         if (SceneManager.GetActiveScene().name.ToLower().Contains("hall"))
         {
             Util.Instance.DoAction(GameEvent.S_RefreshDeskState);
         }
+
+        return true;
     }
 
     //用户分数变化
@@ -498,6 +511,28 @@ public class GameService : MonoBehaviour
 
     #region 用户操作
 
+    //进入房间
+    public void EnterRoom()
+    {
+        Debug.Log("进入房间");
+        Bs.Room.EnterReq req = new Bs.Room.EnterReq();
+        client.SendTransferData2Gate(NetManager.AppRoom, NetManager.Send2AnyOne, NetManager.AppRoom, (UInt32)(Bs.Room.CMDRoom.IdenterReq), req);
+
+        GameModel.playerInDesk.Clear();
+    }
+
+    //进入回复
+    public bool EnterRoomRsp(Bs.Gateway.TransferDataReq req)
+    {
+        Bs.Room.EnterRsp rsp = NetPacket.Deserialize<Bs.Room.EnterRsp>(req.Data.ToByteArray());
+        if(rsp.ErrInfo.Code == Bs.Types.ErrorInfo.Types.ResultCode.Success)
+        {
+            GetChair();
+        }
+
+        return true;
+    }
+
     //请求游戏状态
     public void GetGameStatus()
     {
@@ -522,15 +557,23 @@ public class GameService : MonoBehaviour
     //请求座位
     public void GetChair()
     {
-        if (GameModel.deskId != 65535 || GameModel.chairId != 65535)
+        Debug.Log("请求座位,GetChair,deskId=" + GameModel.deskId + ",chairId=" + GameModel.chairId);
+        if (GameModel.deskId != GameModel.INVALID_TABLE || GameModel.chairId != GameModel.INVALID_CHAIR)
         {
             return;
         }
-        CMD_Game_C_UserSit pro = new CMD_Game_C_UserSit();
-        pro.wTableID = 65535;
-        pro.wChairID = 65535;
-        pro.szPassword = "";
-        client.SendPro(pro);
+
+        Bs.Room.GetChairReq req = new Bs.Room.GetChairReq();
+        req.TableId = GameModel.INVALID_TABLE;
+        req.ChairId = GameModel.INVALID_CHAIR;
+        req.Password = "";
+        client.SendTransferData2Gate(NetManager.AppRoom, NetManager.Send2AnyOne, NetManager.AppRoom, (UInt32)(Bs.Room.CMDRoom.IdgetChairReq),req);
+
+        //CMD_Game_C_UserSit pro = new CMD_Game_C_UserSit();
+        //pro.wTableID = 65535;
+        //pro.wChairID = 65535;
+        //pro.szPassword = "";
+        //client.SendPro(pro);
         //清空本桌用户列表
         GameModel.playerInDesk.Clear();
     }
@@ -631,7 +674,7 @@ public class GameService : MonoBehaviour
         GameModel.gameRule = (int)pro.dwGameRule;
         GameModel.ruleGameGrade = (int)pro.dwMaxTimes;
 
-        GameModel.hostUserId = (int)pro.dwCreateUserID;
+        GameModel.hostUserId = (ulong)pro.dwCreateUserID;
         
         Util.Instance.DoAction(GameEvent.V_RefreshUserInfo, false);
         Util.Instance.DoAction(GameEvent.V_RefreshRoomInfo);

@@ -373,8 +373,8 @@ public class ClientSocket
         TransferDataReq req = new TransferDataReq();
         req.DestApptype = destAppType;
         req.DestAppid = destAppId;
-        req.DataApptype = dataAppType;
-        req.DataCmdid = cmdId;
+        req.MainCmdId = dataAppType;
+        req.SubCmdId = cmdId;
         req.Data = ByteString.CopyFrom(NetPacket.Serialize(instance));
         //req.Data = sendBytes;
         SendDate2Gate(NetManager.AppGate, (UInt16)CMDGateway.IdtransferDataReq, req);

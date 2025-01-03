@@ -87,15 +87,15 @@ public class DlgPayMode : View
 
     void OnBtnAliPayClick()
     {
-        AudioManager.Instance.PlaySound(GameModel.audioButtonOp);
-        PluginManager.Instance.AliPay(HallModel.userId, goodId);
+        //AudioManager.Instance.PlaySound(GameModel.audioButtonOp);
+        //PluginManager.Instance.AliPay(HallModel.userId, goodId);
         Close();
     }
 
     void OnBtnWxPayClick()
     {
-        AudioManager.Instance.PlaySound(GameModel.audioButtonOp);
-        PluginManager.Instance.WxPay(HallModel.userId, goodId);
+        //AudioManager.Instance.PlaySound(GameModel.audioButtonOp);
+        //PluginManager.Instance.WxPay(HallModel.userId, goodId);
         Close();
     }
 

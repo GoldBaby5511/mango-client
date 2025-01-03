@@ -278,16 +278,18 @@ public class HallHandler : IHandler
             case (UInt32)Bs.Gateway.CMDGateway.IdtransferDataReq:
                 {
                     Bs.Gateway.TransferDataReq req = packet.Deserialize<Bs.Gateway.TransferDataReq>();
-                    Debug.Log("收到转发,data_apptype=" + req.DataApptype + ",data_cmdid=" + req.DataCmdid);
+                    Debug.Log("收到转发,MainCmdId=" + req.MainCmdId + ",SubCmdId=" + req.SubCmdId);
 
-                    switch (req.DataApptype)
+                    switch (req.MainCmdId)
                     {
-                        case NetManager.AppLogin:
+                        case NetManager.AppLobby:
                             return handlerLoginMessage(req);
                         case NetManager.AppList:
                             return handlerListMessage(req);
+                        case NetManager.AppRoom:
+                            return handlerRoomMessage(req);
                         default:
-                            Debug.LogError("异常,没有处理的消息,data_apptype=" + req.DataApptype + ",data_cmdid=" + req.DataCmdid);
+                            Debug.LogError("异常,没有处理的消息,data_apptype=" + req.MainCmdId + ",data_cmdid=" + req.SubCmdId);
                             break;
                     }
                 }
@@ -301,15 +303,15 @@ public class HallHandler : IHandler
 
     private bool handlerLoginMessage(Bs.Gateway.TransferDataReq req)
     {
-        switch (req.DataCmdid)
+        switch (req.SubCmdId)
         {
-            case (UInt32)Bs.Lobby.CMDLobby.IdloginRsp:
+            case (uint)Bs.Lobby.CMDLobby.IdloginRsp:
                 {
                     HallService.Instance.OnLoginRsp(req);
                     return true;
                 }
             default:
-                Debug.LogError("异常,login没有处理的消息,data_cmdid=" + req.DataCmdid);
+                Debug.LogError("异常,login没有处理的消息,data_cmdid=" + req.SubCmdId);
                 break;
         }
         return false;
@@ -317,17 +319,36 @@ public class HallHandler : IHandler
 
     private bool handlerListMessage(Bs.Gateway.TransferDataReq req)
     {
-        switch (req.DataCmdid)
+        switch (req.SubCmdId)
         {
-            case (UInt32)Bs.List.CMDList.IdroomListRsp:
+            case (uint)Bs.List.CMDList.IdroomListRsp:
                 {
                     HallService.Instance.OnRoomListRsp(req);
                     return true;
                 }
             default:
-                Debug.LogError("异常,list,没有处理的消息,DataCmdid=" + req.DataCmdid);
+                Debug.LogError("异常,list,没有处理的消息,SubCmdId=" + req.SubCmdId);
                 break;
         }
         return false;
+    }
+
+    private bool handlerRoomMessage(Bs.Gateway.TransferDataReq req)
+    {
+        switch(req.SubCmdId)
+        {
+            case (uint)Bs.Room.CMDRoom.IdenterRsp:
+                {
+                    return GameService.Instance.EnterRoomRsp(req);
+                }
+            case (uint)Bs.Room.CMDRoom.IduserStatus:
+                {
+                    return GameService.Instance.OnReceiveUserState(req);
+                }
+            default:
+                Debug.LogError("异常,room,没有处理的消息,SubCmdId=" + req.SubCmdId);
+                break;
+        }
+        return true;
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameModel
 {
 
-    #region
+    #region 常量
 
     //服务器类型
     public const int ServerKind_Gold = 0x0001;               //金币场
@@ -16,9 +16,11 @@ public class GameModel
     public const int ServerKind_Private = 0x0010;            //房卡场
     public const int ServerKind_RedPack = 0x0020;            //红包场
     //结算规则
-    public const int PAY_USE_INGOT = 0x00000800;				//元宝结算 
+    public const int PAY_USE_INGOT = 0x00000800;                //元宝结算 
 
-
+    //参数定义
+    public const UInt16 INVALID_CHAIR = 0xFFFF;								//无效椅子
+    public const UInt16 INVALID_TABLE = 0xFFFF;								//无效桌子
 
 
     ////聊天规则
@@ -106,8 +108,8 @@ public class GameModel
     #endregion
 
     //自己信息
-    public static int deskId;                    //桌号
-    public static int chairId;                   //座位号
+    public static UInt16 deskId = INVALID_TABLE;                    //桌号
+    public static UInt16 chairId = INVALID_CHAIR;                   //座位号
     public static int roomDeskCount = 0;         //房间桌子数量
     public static int deskPlayerCount = 0;       //每张桌子玩家数量
     public static Int64 roomCoinLimit = 0;         //房间金币（钻石）限制
@@ -155,7 +157,7 @@ public class GameModel
     public static int netSpeed = 2;                     //0~3之间的数字
 
     public static uint currentRoomId = 0;               //加入房间ID
-    public static int hostUserId = 0;                   //房主ID
+    public static ulong hostUserId = 0;                   //房主ID
     public static int hogChairId = 65535;               //庄家ID
 
     //音频初始化
@@ -218,7 +220,7 @@ public class GameModel
         }
         else
         {
-            int userId = (int)player.dwUserID;
+            UInt64 userId = (UInt64)player.dwUserID;
             if (HallModel.userPhotos.ContainsKey(userId))
             {
                 return HallModel.userPhotos[userId];
@@ -243,7 +245,7 @@ public class GameModel
     }
 
     //通过userId获取用户头像
-    public static Texture GetUserPhotoByUserId(int userId)
+    public static Texture GetUserPhotoByUserId(UInt64 userId)
     {
         if (HallModel.userPhotos.ContainsKey(userId))
         {

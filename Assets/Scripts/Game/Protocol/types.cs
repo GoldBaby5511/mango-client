@@ -24,54 +24,47 @@ namespace Bs.Types {
     static TypesReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cgt0eXBlcy5wcm90bxIIYnMudHlwZXMiJwoJRXJyb3JJbmZvEgwKBGNvZGUY",
-            "ASABKAUSDAoEaW5mbxgCIAEoCSJDCghQcm9wSXRlbRIjCgdwcm9wX2lkGAEg",
-            "ASgOMhIuYnMudHlwZXMuUHJvcFR5cGUSEgoKcHJvcF9jb3VudBgCIAEoAyJG",
-            "CgtCYXNlQXBwSW5mbxIMCgRuYW1lGAEgASgJEgwKBHR5cGUYAiABKA0SCgoC",
-            "aWQYAyABKA0SDwoHdmVyc2lvbhgEIAEoDSKRAwoMQmFzZVVzZXJJbmZvEg8K",
-            "B2FjY291bnQYASABKAkSDwoHdXNlcl9pZBgCIAEoBBIPCgdnYW1lX2lkGAMg",
-            "ASgEEg4KBmdlbmRlchgEIAEoDRIPCgdmYWNlX2lkGAUgASgNEhMKC2N1c3Rv",
-            "bV9mYWNlGAYgASgJEhEKCW5pY2tfbmFtZRgHIAEoCRIyCgl1c2VyX3R5cGUY",
-            "CCABKA4yHy5icy50eXBlcy5CYXNlVXNlckluZm8uVXNlclR5cGUSJgoKdXNl",
-            "cl9wcm9wcxgJIAMoCzISLmJzLnR5cGVzLlByb3BJdGVtEhEKCW1hcmtldF9p",
-            "ZBgKIAEoDRIPCgdzaXRlX2lkGAsgASgNEhUKDXJlZ19tYXJrZXRfaWQYDCAB",
-            "KA0SEwoLcmVnX3NpdGVfaWQYDSABKA0SFQoNcmVnaXN0ZXJfZGF0YRgOIAEo",
-            "CRITCgtnYXRlX2Nvbm5pZBgPIAEoBCItCghVc2VyVHlwZRIKCgZVTktOT1cQ",
-            "ABIKCgZOb3JtYWwQARIJCgVSb2JvdBAKIqsBCgxVc2VyUm9vbUluZm8SKQoJ",
-            "YmFzZV9pbmZvGAEgASgLMhYuYnMudHlwZXMuQmFzZVVzZXJJbmZvEhAKCHRh",
-            "YmxlX2lkGAIgASgEEg8KB3NlYXRfaWQYAyABKA0SEgoKdXNlcl9zdGF0ZRgE",
-            "IAEoDRISCgpsb3N0X2NvdW50GAUgASgNEhIKCmRyYXdfY291bnQYBiABKA0S",
-            "EQoJd2luX2NvdW50GAcgASgNIqECCghSb29tSW5mbxInCghhcHBfaW5mbxgB",
-            "IAEoCzIVLmJzLnR5cGVzLkJhc2VBcHBJbmZvEgwKBGtpbmQYAiABKA0SKQoE",
-            "dHlwZRgDIAEoDjIbLmJzLnR5cGVzLlJvb21JbmZvLlJvb21UeXBlEg0KBWxl",
-            "dmVsGAQgASgNEgwKBG5hbWUYBSABKAkSEgoKYmFzZV9zY29yZRgGIAEoAxIQ",
-            "Cghqb2luX21pbhgHIAEoAxIQCghqb2luX21heBgIIAEoAxIRCglvdXRfc2Nv",
-            "cmUYCSABKAMSEQoJd2luX2xpbWl0GAogASgDIjgKCFJvb21UeXBlEggKBE5v",
-            "bmUQABIICgRHb2xkEAESCwoHUHJpdmF0ZRAQEgsKB1JlZFBhY2sQICofCghQ",
-            "cm9wVHlwZRIICgROb25lEAASCQoFU2NvcmUQAUIRWg9tYW5nby9hcGkvdHlw",
-            "ZXNiBnByb3RvMw=="));
+            "Cgt0eXBlcy5wcm90bxIIYnMudHlwZXMibgoJRXJyb3JJbmZvEiwKBGNvZGUY",
+            "ASABKA4yHi5icy50eXBlcy5FcnJvckluZm8uUmVzdWx0Q29kZRIMCgRpbmZv",
+            "GAIgASgJIiUKClJlc3VsdENvZGUSCwoHc3VjY2VzcxAAEgoKBmZhaWxlZBAB",
+            "ImMKCFByb3BJdGVtEicKAmlkGAEgASgOMhsuYnMudHlwZXMuUHJvcEl0ZW0u",
+            "UHJvcFR5cGUSDQoFY291bnQYAiABKAMiHwoIUHJvcFR5cGUSCAoEbm9uZRAA",
+            "EgkKBXNjb3JlEAEiRgoLQmFzZUFwcEluZm8SDAoEbmFtZRgBIAEoCRIMCgR0",
+            "eXBlGAIgASgNEgoKAmlkGAMgASgNEg8KB3ZlcnNpb24YBCABKA0i0AQKDEJh",
+            "c2VVc2VySW5mbxIPCgdhY2NvdW50GAEgASgJEg8KB3VzZXJfaWQYAiABKAQS",
+            "DwoHZ2FtZV9pZBgDIAEoBBIOCgZnZW5kZXIYBCABKA0SDwoHZmFjZV9pZBgF",
+            "IAEoDRITCgtjdXN0b21fZmFjZRgGIAEoCRIRCgluaWNrX25hbWUYByABKAkS",
+            "LQoEdHlwZRgIIAEoDjIfLmJzLnR5cGVzLkJhc2VVc2VySW5mby5Vc2VyVHlw",
+            "ZRIhCgVwcm9wcxgJIAMoCzISLmJzLnR5cGVzLlByb3BJdGVtEhAKCHRhYmxl",
+            "X2lkGAogASgNEg8KB3NlYXRfaWQYCyABKA0SMQoGc3RhdHVzGAwgASgOMiEu",
+            "YnMudHlwZXMuQmFzZVVzZXJJbmZvLlVzZXJTdGF0dXMSEQoJbWFya2V0X2lk",
+            "GA0gASgNEg8KB3NpdGVfaWQYDiABKA0SFQoNcmVnX21hcmtldF9pZBgPIAEo",
+            "DRITCgtyZWdfc2l0ZV9pZBgQIAEoDRIVCg1yZWdpc3Rlcl9kYXRhGBEgASgJ",
+            "EhQKDGdhdGVfY29ubl9pZBgSIAEoBBIUCgxyb29tX2Nvbm5faWQYEyABKAQi",
+            "LQoIVXNlclR5cGUSCgoGdW5rbm93EAASCgoGbm9ybWFsEAESCQoFcm9ib3QQ",
+            "CiJaCgpVc2VyU3RhdHVzEggKBG5vbmUQABIICgRmcmVlEAESBwoDc2l0EAIS",
+            "CQoFcmVhZHkQAxIKCgZsb29rb24QBBILCgdwbGF5aW5nEAUSCwoHb2ZmbGlu",
+            "ZRAGIqECCghSb29tSW5mbxInCghhcHBfaW5mbxgBIAEoCzIVLmJzLnR5cGVz",
+            "LkJhc2VBcHBJbmZvEgwKBGtpbmQYAiABKA0SKQoEdHlwZRgDIAEoDjIbLmJz",
+            "LnR5cGVzLlJvb21JbmZvLlJvb21UeXBlEg0KBWxldmVsGAQgASgNEgwKBG5h",
+            "bWUYBSABKAkSEgoKYmFzZV9zY29yZRgGIAEoAxIQCghqb2luX21pbhgHIAEo",
+            "AxIQCghqb2luX21heBgIIAEoAxIRCglvdXRfc2NvcmUYCSABKAMSEQoJd2lu",
+            "X2xpbWl0GAogASgDIjgKCFJvb21UeXBlEggKBG5vbmUQABIICgRnb2xkEAES",
+            "CwoHcHJpdmF0ZRAQEgsKB3JlZFBhY2sQIEIRWg9tYW5nby9hcGkvdHlwZXNi",
+            "BnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Bs.Types.PropType), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Types.ErrorInfo), global::Bs.Types.ErrorInfo.Parser, new[]{ "Code", "Info" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Types.PropItem), global::Bs.Types.PropItem.Parser, new[]{ "PropId", "PropCount" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Types.ErrorInfo), global::Bs.Types.ErrorInfo.Parser, new[]{ "Code", "Info" }, null, new[]{ typeof(global::Bs.Types.ErrorInfo.Types.ResultCode) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Types.PropItem), global::Bs.Types.PropItem.Parser, new[]{ "Id", "Count" }, null, new[]{ typeof(global::Bs.Types.PropItem.Types.PropType) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Types.BaseAppInfo), global::Bs.Types.BaseAppInfo.Parser, new[]{ "Name", "Type", "Id", "Version" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Types.BaseUserInfo), global::Bs.Types.BaseUserInfo.Parser, new[]{ "Account", "UserId", "GameId", "Gender", "FaceId", "CustomFace", "NickName", "UserType", "UserProps", "MarketId", "SiteId", "RegMarketId", "RegSiteId", "RegisterData", "GateConnid" }, null, new[]{ typeof(global::Bs.Types.BaseUserInfo.Types.UserType) }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Types.UserRoomInfo), global::Bs.Types.UserRoomInfo.Parser, new[]{ "BaseInfo", "TableId", "SeatId", "UserState", "LostCount", "DrawCount", "WinCount" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Types.BaseUserInfo), global::Bs.Types.BaseUserInfo.Parser, new[]{ "Account", "UserId", "GameId", "Gender", "FaceId", "CustomFace", "NickName", "Type", "Props", "TableId", "SeatId", "Status", "MarketId", "SiteId", "RegMarketId", "RegSiteId", "RegisterData", "GateConnId", "RoomConnId" }, null, new[]{ typeof(global::Bs.Types.BaseUserInfo.Types.UserType), typeof(global::Bs.Types.BaseUserInfo.Types.UserStatus) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Types.RoomInfo), global::Bs.Types.RoomInfo.Parser, new[]{ "AppInfo", "Kind", "Type", "Level", "Name", "BaseScore", "JoinMin", "JoinMax", "OutScore", "WinLimit" }, null, new[]{ typeof(global::Bs.Types.RoomInfo.Types.RoomType) }, null, null)
           }));
     }
     #endregion
 
   }
-  #region Enums
-  public enum PropType {
-    [pbr::OriginalName("None")] None = 0,
-    [pbr::OriginalName("Score")] Score = 1,
-  }
-
-  #endregion
-
   #region Messages
   public sealed partial class ErrorInfo : pb::IMessage<ErrorInfo>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -120,10 +113,10 @@ namespace Bs.Types {
 
     /// <summary>Field number for the "code" field.</summary>
     public const int CodeFieldNumber = 1;
-    private int code_;
+    private global::Bs.Types.ErrorInfo.Types.ResultCode code_ = global::Bs.Types.ErrorInfo.Types.ResultCode.Success;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Code {
+    public global::Bs.Types.ErrorInfo.Types.ResultCode Code {
       get { return code_; }
       set {
         code_ = value;
@@ -166,7 +159,7 @@ namespace Bs.Types {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (Code != 0) hash ^= Code.GetHashCode();
+      if (Code != global::Bs.Types.ErrorInfo.Types.ResultCode.Success) hash ^= Code.GetHashCode();
       if (Info.Length != 0) hash ^= Info.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -186,9 +179,9 @@ namespace Bs.Types {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Code != 0) {
+      if (Code != global::Bs.Types.ErrorInfo.Types.ResultCode.Success) {
         output.WriteRawTag(8);
-        output.WriteInt32(Code);
+        output.WriteEnum((int) Code);
       }
       if (Info.Length != 0) {
         output.WriteRawTag(18);
@@ -204,9 +197,9 @@ namespace Bs.Types {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Code != 0) {
+      if (Code != global::Bs.Types.ErrorInfo.Types.ResultCode.Success) {
         output.WriteRawTag(8);
-        output.WriteInt32(Code);
+        output.WriteEnum((int) Code);
       }
       if (Info.Length != 0) {
         output.WriteRawTag(18);
@@ -222,8 +215,8 @@ namespace Bs.Types {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (Code != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Code);
+      if (Code != global::Bs.Types.ErrorInfo.Types.ResultCode.Success) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Code);
       }
       if (Info.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Info);
@@ -240,7 +233,7 @@ namespace Bs.Types {
       if (other == null) {
         return;
       }
-      if (other.Code != 0) {
+      if (other.Code != global::Bs.Types.ErrorInfo.Types.ResultCode.Success) {
         Code = other.Code;
       }
       if (other.Info.Length != 0) {
@@ -262,7 +255,7 @@ namespace Bs.Types {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Code = input.ReadInt32();
+            Code = (global::Bs.Types.ErrorInfo.Types.ResultCode) input.ReadEnum();
             break;
           }
           case 18: {
@@ -285,7 +278,7 @@ namespace Bs.Types {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Code = input.ReadInt32();
+            Code = (global::Bs.Types.ErrorInfo.Types.ResultCode) input.ReadEnum();
             break;
           }
           case 18: {
@@ -296,6 +289,19 @@ namespace Bs.Types {
       }
     }
     #endif
+
+    #region Nested types
+    /// <summary>Container for nested types declared in the ErrorInfo message type.</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static partial class Types {
+      public enum ResultCode {
+        [pbr::OriginalName("success")] Success = 0,
+        [pbr::OriginalName("failed")] Failed = 1,
+      }
+
+    }
+    #endregion
 
   }
 
@@ -333,8 +339,8 @@ namespace Bs.Types {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public PropItem(PropItem other) : this() {
-      propId_ = other.propId_;
-      propCount_ = other.propCount_;
+      id_ = other.id_;
+      count_ = other.count_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -344,27 +350,27 @@ namespace Bs.Types {
       return new PropItem(this);
     }
 
-    /// <summary>Field number for the "prop_id" field.</summary>
-    public const int PropIdFieldNumber = 1;
-    private global::Bs.Types.PropType propId_ = global::Bs.Types.PropType.None;
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private global::Bs.Types.PropItem.Types.PropType id_ = global::Bs.Types.PropItem.Types.PropType.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Bs.Types.PropType PropId {
-      get { return propId_; }
+    public global::Bs.Types.PropItem.Types.PropType Id {
+      get { return id_; }
       set {
-        propId_ = value;
+        id_ = value;
       }
     }
 
-    /// <summary>Field number for the "prop_count" field.</summary>
-    public const int PropCountFieldNumber = 2;
-    private long propCount_;
+    /// <summary>Field number for the "count" field.</summary>
+    public const int CountFieldNumber = 2;
+    private long count_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long PropCount {
-      get { return propCount_; }
+    public long Count {
+      get { return count_; }
       set {
-        propCount_ = value;
+        count_ = value;
       }
     }
 
@@ -383,8 +389,8 @@ namespace Bs.Types {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PropId != other.PropId) return false;
-      if (PropCount != other.PropCount) return false;
+      if (Id != other.Id) return false;
+      if (Count != other.Count) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -392,8 +398,8 @@ namespace Bs.Types {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (PropId != global::Bs.Types.PropType.None) hash ^= PropId.GetHashCode();
-      if (PropCount != 0L) hash ^= PropCount.GetHashCode();
+      if (Id != global::Bs.Types.PropItem.Types.PropType.None) hash ^= Id.GetHashCode();
+      if (Count != 0L) hash ^= Count.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -412,13 +418,13 @@ namespace Bs.Types {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PropId != global::Bs.Types.PropType.None) {
+      if (Id != global::Bs.Types.PropItem.Types.PropType.None) {
         output.WriteRawTag(8);
-        output.WriteEnum((int) PropId);
+        output.WriteEnum((int) Id);
       }
-      if (PropCount != 0L) {
+      if (Count != 0L) {
         output.WriteRawTag(16);
-        output.WriteInt64(PropCount);
+        output.WriteInt64(Count);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -430,13 +436,13 @@ namespace Bs.Types {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PropId != global::Bs.Types.PropType.None) {
+      if (Id != global::Bs.Types.PropItem.Types.PropType.None) {
         output.WriteRawTag(8);
-        output.WriteEnum((int) PropId);
+        output.WriteEnum((int) Id);
       }
-      if (PropCount != 0L) {
+      if (Count != 0L) {
         output.WriteRawTag(16);
-        output.WriteInt64(PropCount);
+        output.WriteInt64(Count);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -448,11 +454,11 @@ namespace Bs.Types {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (PropId != global::Bs.Types.PropType.None) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) PropId);
+      if (Id != global::Bs.Types.PropItem.Types.PropType.None) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Id);
       }
-      if (PropCount != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(PropCount);
+      if (Count != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Count);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -466,11 +472,11 @@ namespace Bs.Types {
       if (other == null) {
         return;
       }
-      if (other.PropId != global::Bs.Types.PropType.None) {
-        PropId = other.PropId;
+      if (other.Id != global::Bs.Types.PropItem.Types.PropType.None) {
+        Id = other.Id;
       }
-      if (other.PropCount != 0L) {
-        PropCount = other.PropCount;
+      if (other.Count != 0L) {
+        Count = other.Count;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -488,11 +494,11 @@ namespace Bs.Types {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PropId = (global::Bs.Types.PropType) input.ReadEnum();
+            Id = (global::Bs.Types.PropItem.Types.PropType) input.ReadEnum();
             break;
           }
           case 16: {
-            PropCount = input.ReadInt64();
+            Count = input.ReadInt64();
             break;
           }
         }
@@ -511,17 +517,30 @@ namespace Bs.Types {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PropId = (global::Bs.Types.PropType) input.ReadEnum();
+            Id = (global::Bs.Types.PropItem.Types.PropType) input.ReadEnum();
             break;
           }
           case 16: {
-            PropCount = input.ReadInt64();
+            Count = input.ReadInt64();
             break;
           }
         }
       }
     }
     #endif
+
+    #region Nested types
+    /// <summary>Container for nested types declared in the PropItem message type.</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static partial class Types {
+      public enum PropType {
+        [pbr::OriginalName("none")] None = 0,
+        [pbr::OriginalName("score")] Score = 1,
+      }
+
+    }
+    #endregion
 
   }
 
@@ -866,14 +885,18 @@ namespace Bs.Types {
       faceId_ = other.faceId_;
       customFace_ = other.customFace_;
       nickName_ = other.nickName_;
-      userType_ = other.userType_;
-      userProps_ = other.userProps_.Clone();
+      type_ = other.type_;
+      props_ = other.props_.Clone();
+      tableId_ = other.tableId_;
+      seatId_ = other.seatId_;
+      status_ = other.status_;
       marketId_ = other.marketId_;
       siteId_ = other.siteId_;
       regMarketId_ = other.regMarketId_;
       regSiteId_ = other.regSiteId_;
       registerData_ = other.registerData_;
-      gateConnid_ = other.gateConnid_;
+      gateConnId_ = other.gateConnId_;
+      roomConnId_ = other.roomConnId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -977,7 +1000,7 @@ namespace Bs.Types {
     public const int NickNameFieldNumber = 7;
     private string nickName_ = "";
     /// <summary>
-    ///昵称
+    ///用户昵称
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -988,37 +1011,82 @@ namespace Bs.Types {
       }
     }
 
-    /// <summary>Field number for the "user_type" field.</summary>
-    public const int UserTypeFieldNumber = 8;
-    private global::Bs.Types.BaseUserInfo.Types.UserType userType_ = global::Bs.Types.BaseUserInfo.Types.UserType.Unknow;
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 8;
+    private global::Bs.Types.BaseUserInfo.Types.UserType type_ = global::Bs.Types.BaseUserInfo.Types.UserType.Unknow;
     /// <summary>
     ///用户类别
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Bs.Types.BaseUserInfo.Types.UserType UserType {
-      get { return userType_; }
+    public global::Bs.Types.BaseUserInfo.Types.UserType Type {
+      get { return type_; }
       set {
-        userType_ = value;
+        type_ = value;
       }
     }
 
-    /// <summary>Field number for the "user_props" field.</summary>
-    public const int UserPropsFieldNumber = 9;
-    private static readonly pb::FieldCodec<global::Bs.Types.PropItem> _repeated_userProps_codec
+    /// <summary>Field number for the "props" field.</summary>
+    public const int PropsFieldNumber = 9;
+    private static readonly pb::FieldCodec<global::Bs.Types.PropItem> _repeated_props_codec
         = pb::FieldCodec.ForMessage(74, global::Bs.Types.PropItem.Parser);
-    private readonly pbc::RepeatedField<global::Bs.Types.PropItem> userProps_ = new pbc::RepeatedField<global::Bs.Types.PropItem>();
+    private readonly pbc::RepeatedField<global::Bs.Types.PropItem> props_ = new pbc::RepeatedField<global::Bs.Types.PropItem>();
     /// <summary>
     ///用户道具
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::Bs.Types.PropItem> UserProps {
-      get { return userProps_; }
+    public pbc::RepeatedField<global::Bs.Types.PropItem> Props {
+      get { return props_; }
+    }
+
+    /// <summary>Field number for the "table_id" field.</summary>
+    public const int TableIdFieldNumber = 10;
+    private uint tableId_;
+    /// <summary>
+    ///所有桌子
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint TableId {
+      get { return tableId_; }
+      set {
+        tableId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "seat_id" field.</summary>
+    public const int SeatIdFieldNumber = 11;
+    private uint seatId_;
+    /// <summary>
+    ///所在位置
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint SeatId {
+      get { return seatId_; }
+      set {
+        seatId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "status" field.</summary>
+    public const int StatusFieldNumber = 12;
+    private global::Bs.Types.BaseUserInfo.Types.UserStatus status_ = global::Bs.Types.BaseUserInfo.Types.UserStatus.None;
+    /// <summary>
+    ///用户状态
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Bs.Types.BaseUserInfo.Types.UserStatus Status {
+      get { return status_; }
+      set {
+        status_ = value;
+      }
     }
 
     /// <summary>Field number for the "market_id" field.</summary>
-    public const int MarketIdFieldNumber = 10;
+    public const int MarketIdFieldNumber = 13;
     private uint marketId_;
     /// <summary>
     ///登录主渠道
@@ -1033,7 +1101,7 @@ namespace Bs.Types {
     }
 
     /// <summary>Field number for the "site_id" field.</summary>
-    public const int SiteIdFieldNumber = 11;
+    public const int SiteIdFieldNumber = 14;
     private uint siteId_;
     /// <summary>
     ///登录子渠道
@@ -1048,7 +1116,7 @@ namespace Bs.Types {
     }
 
     /// <summary>Field number for the "reg_market_id" field.</summary>
-    public const int RegMarketIdFieldNumber = 12;
+    public const int RegMarketIdFieldNumber = 15;
     private uint regMarketId_;
     /// <summary>
     ///注册主渠道
@@ -1063,7 +1131,7 @@ namespace Bs.Types {
     }
 
     /// <summary>Field number for the "reg_site_id" field.</summary>
-    public const int RegSiteIdFieldNumber = 13;
+    public const int RegSiteIdFieldNumber = 16;
     private uint regSiteId_;
     /// <summary>
     ///注册子渠道
@@ -1078,7 +1146,7 @@ namespace Bs.Types {
     }
 
     /// <summary>Field number for the "register_data" field.</summary>
-    public const int RegisterDataFieldNumber = 14;
+    public const int RegisterDataFieldNumber = 17;
     private string registerData_ = "";
     /// <summary>
     ///注册时间
@@ -1092,18 +1160,33 @@ namespace Bs.Types {
       }
     }
 
-    /// <summary>Field number for the "gate_connid" field.</summary>
-    public const int GateConnidFieldNumber = 15;
-    private ulong gateConnid_;
+    /// <summary>Field number for the "gate_conn_id" field.</summary>
+    public const int GateConnIdFieldNumber = 18;
+    private ulong gateConnId_;
     /// <summary>
-    ///关联的gate连接id
+    ///所在gate
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ulong GateConnid {
-      get { return gateConnid_; }
+    public ulong GateConnId {
+      get { return gateConnId_; }
       set {
-        gateConnid_ = value;
+        gateConnId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "room_conn_id" field.</summary>
+    public const int RoomConnIdFieldNumber = 19;
+    private ulong roomConnId_;
+    /// <summary>
+    ///所在房间
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong RoomConnId {
+      get { return roomConnId_; }
+      set {
+        roomConnId_ = value;
       }
     }
 
@@ -1129,14 +1212,18 @@ namespace Bs.Types {
       if (FaceId != other.FaceId) return false;
       if (CustomFace != other.CustomFace) return false;
       if (NickName != other.NickName) return false;
-      if (UserType != other.UserType) return false;
-      if(!userProps_.Equals(other.userProps_)) return false;
+      if (Type != other.Type) return false;
+      if(!props_.Equals(other.props_)) return false;
+      if (TableId != other.TableId) return false;
+      if (SeatId != other.SeatId) return false;
+      if (Status != other.Status) return false;
       if (MarketId != other.MarketId) return false;
       if (SiteId != other.SiteId) return false;
       if (RegMarketId != other.RegMarketId) return false;
       if (RegSiteId != other.RegSiteId) return false;
       if (RegisterData != other.RegisterData) return false;
-      if (GateConnid != other.GateConnid) return false;
+      if (GateConnId != other.GateConnId) return false;
+      if (RoomConnId != other.RoomConnId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1151,14 +1238,18 @@ namespace Bs.Types {
       if (FaceId != 0) hash ^= FaceId.GetHashCode();
       if (CustomFace.Length != 0) hash ^= CustomFace.GetHashCode();
       if (NickName.Length != 0) hash ^= NickName.GetHashCode();
-      if (UserType != global::Bs.Types.BaseUserInfo.Types.UserType.Unknow) hash ^= UserType.GetHashCode();
-      hash ^= userProps_.GetHashCode();
+      if (Type != global::Bs.Types.BaseUserInfo.Types.UserType.Unknow) hash ^= Type.GetHashCode();
+      hash ^= props_.GetHashCode();
+      if (TableId != 0) hash ^= TableId.GetHashCode();
+      if (SeatId != 0) hash ^= SeatId.GetHashCode();
+      if (Status != global::Bs.Types.BaseUserInfo.Types.UserStatus.None) hash ^= Status.GetHashCode();
       if (MarketId != 0) hash ^= MarketId.GetHashCode();
       if (SiteId != 0) hash ^= SiteId.GetHashCode();
       if (RegMarketId != 0) hash ^= RegMarketId.GetHashCode();
       if (RegSiteId != 0) hash ^= RegSiteId.GetHashCode();
       if (RegisterData.Length != 0) hash ^= RegisterData.GetHashCode();
-      if (GateConnid != 0UL) hash ^= GateConnid.GetHashCode();
+      if (GateConnId != 0UL) hash ^= GateConnId.GetHashCode();
+      if (RoomConnId != 0UL) hash ^= RoomConnId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1205,34 +1296,50 @@ namespace Bs.Types {
         output.WriteRawTag(58);
         output.WriteString(NickName);
       }
-      if (UserType != global::Bs.Types.BaseUserInfo.Types.UserType.Unknow) {
+      if (Type != global::Bs.Types.BaseUserInfo.Types.UserType.Unknow) {
         output.WriteRawTag(64);
-        output.WriteEnum((int) UserType);
+        output.WriteEnum((int) Type);
       }
-      userProps_.WriteTo(output, _repeated_userProps_codec);
-      if (MarketId != 0) {
+      props_.WriteTo(output, _repeated_props_codec);
+      if (TableId != 0) {
         output.WriteRawTag(80);
+        output.WriteUInt32(TableId);
+      }
+      if (SeatId != 0) {
+        output.WriteRawTag(88);
+        output.WriteUInt32(SeatId);
+      }
+      if (Status != global::Bs.Types.BaseUserInfo.Types.UserStatus.None) {
+        output.WriteRawTag(96);
+        output.WriteEnum((int) Status);
+      }
+      if (MarketId != 0) {
+        output.WriteRawTag(104);
         output.WriteUInt32(MarketId);
       }
       if (SiteId != 0) {
-        output.WriteRawTag(88);
+        output.WriteRawTag(112);
         output.WriteUInt32(SiteId);
       }
       if (RegMarketId != 0) {
-        output.WriteRawTag(96);
+        output.WriteRawTag(120);
         output.WriteUInt32(RegMarketId);
       }
       if (RegSiteId != 0) {
-        output.WriteRawTag(104);
+        output.WriteRawTag(128, 1);
         output.WriteUInt32(RegSiteId);
       }
       if (RegisterData.Length != 0) {
-        output.WriteRawTag(114);
+        output.WriteRawTag(138, 1);
         output.WriteString(RegisterData);
       }
-      if (GateConnid != 0UL) {
-        output.WriteRawTag(120);
-        output.WriteUInt64(GateConnid);
+      if (GateConnId != 0UL) {
+        output.WriteRawTag(144, 1);
+        output.WriteUInt64(GateConnId);
+      }
+      if (RoomConnId != 0UL) {
+        output.WriteRawTag(152, 1);
+        output.WriteUInt64(RoomConnId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -1272,34 +1379,50 @@ namespace Bs.Types {
         output.WriteRawTag(58);
         output.WriteString(NickName);
       }
-      if (UserType != global::Bs.Types.BaseUserInfo.Types.UserType.Unknow) {
+      if (Type != global::Bs.Types.BaseUserInfo.Types.UserType.Unknow) {
         output.WriteRawTag(64);
-        output.WriteEnum((int) UserType);
+        output.WriteEnum((int) Type);
       }
-      userProps_.WriteTo(ref output, _repeated_userProps_codec);
-      if (MarketId != 0) {
+      props_.WriteTo(ref output, _repeated_props_codec);
+      if (TableId != 0) {
         output.WriteRawTag(80);
+        output.WriteUInt32(TableId);
+      }
+      if (SeatId != 0) {
+        output.WriteRawTag(88);
+        output.WriteUInt32(SeatId);
+      }
+      if (Status != global::Bs.Types.BaseUserInfo.Types.UserStatus.None) {
+        output.WriteRawTag(96);
+        output.WriteEnum((int) Status);
+      }
+      if (MarketId != 0) {
+        output.WriteRawTag(104);
         output.WriteUInt32(MarketId);
       }
       if (SiteId != 0) {
-        output.WriteRawTag(88);
+        output.WriteRawTag(112);
         output.WriteUInt32(SiteId);
       }
       if (RegMarketId != 0) {
-        output.WriteRawTag(96);
+        output.WriteRawTag(120);
         output.WriteUInt32(RegMarketId);
       }
       if (RegSiteId != 0) {
-        output.WriteRawTag(104);
+        output.WriteRawTag(128, 1);
         output.WriteUInt32(RegSiteId);
       }
       if (RegisterData.Length != 0) {
-        output.WriteRawTag(114);
+        output.WriteRawTag(138, 1);
         output.WriteString(RegisterData);
       }
-      if (GateConnid != 0UL) {
-        output.WriteRawTag(120);
-        output.WriteUInt64(GateConnid);
+      if (GateConnId != 0UL) {
+        output.WriteRawTag(144, 1);
+        output.WriteUInt64(GateConnId);
+      }
+      if (RoomConnId != 0UL) {
+        output.WriteRawTag(152, 1);
+        output.WriteUInt64(RoomConnId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -1332,10 +1455,19 @@ namespace Bs.Types {
       if (NickName.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(NickName);
       }
-      if (UserType != global::Bs.Types.BaseUserInfo.Types.UserType.Unknow) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) UserType);
+      if (Type != global::Bs.Types.BaseUserInfo.Types.UserType.Unknow) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
       }
-      size += userProps_.CalculateSize(_repeated_userProps_codec);
+      size += props_.CalculateSize(_repeated_props_codec);
+      if (TableId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TableId);
+      }
+      if (SeatId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SeatId);
+      }
+      if (Status != global::Bs.Types.BaseUserInfo.Types.UserStatus.None) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Status);
+      }
       if (MarketId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MarketId);
       }
@@ -1346,13 +1478,16 @@ namespace Bs.Types {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RegMarketId);
       }
       if (RegSiteId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RegSiteId);
+        size += 2 + pb::CodedOutputStream.ComputeUInt32Size(RegSiteId);
       }
       if (RegisterData.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(RegisterData);
+        size += 2 + pb::CodedOutputStream.ComputeStringSize(RegisterData);
       }
-      if (GateConnid != 0UL) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(GateConnid);
+      if (GateConnId != 0UL) {
+        size += 2 + pb::CodedOutputStream.ComputeUInt64Size(GateConnId);
+      }
+      if (RoomConnId != 0UL) {
+        size += 2 + pb::CodedOutputStream.ComputeUInt64Size(RoomConnId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1387,10 +1522,19 @@ namespace Bs.Types {
       if (other.NickName.Length != 0) {
         NickName = other.NickName;
       }
-      if (other.UserType != global::Bs.Types.BaseUserInfo.Types.UserType.Unknow) {
-        UserType = other.UserType;
+      if (other.Type != global::Bs.Types.BaseUserInfo.Types.UserType.Unknow) {
+        Type = other.Type;
       }
-      userProps_.Add(other.userProps_);
+      props_.Add(other.props_);
+      if (other.TableId != 0) {
+        TableId = other.TableId;
+      }
+      if (other.SeatId != 0) {
+        SeatId = other.SeatId;
+      }
+      if (other.Status != global::Bs.Types.BaseUserInfo.Types.UserStatus.None) {
+        Status = other.Status;
+      }
       if (other.MarketId != 0) {
         MarketId = other.MarketId;
       }
@@ -1406,8 +1550,11 @@ namespace Bs.Types {
       if (other.RegisterData.Length != 0) {
         RegisterData = other.RegisterData;
       }
-      if (other.GateConnid != 0UL) {
-        GateConnid = other.GateConnid;
+      if (other.GateConnId != 0UL) {
+        GateConnId = other.GateConnId;
+      }
+      if (other.RoomConnId != 0UL) {
+        RoomConnId = other.RoomConnId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1453,35 +1600,51 @@ namespace Bs.Types {
             break;
           }
           case 64: {
-            UserType = (global::Bs.Types.BaseUserInfo.Types.UserType) input.ReadEnum();
+            Type = (global::Bs.Types.BaseUserInfo.Types.UserType) input.ReadEnum();
             break;
           }
           case 74: {
-            userProps_.AddEntriesFrom(input, _repeated_userProps_codec);
+            props_.AddEntriesFrom(input, _repeated_props_codec);
             break;
           }
           case 80: {
-            MarketId = input.ReadUInt32();
+            TableId = input.ReadUInt32();
             break;
           }
           case 88: {
-            SiteId = input.ReadUInt32();
+            SeatId = input.ReadUInt32();
             break;
           }
           case 96: {
-            RegMarketId = input.ReadUInt32();
+            Status = (global::Bs.Types.BaseUserInfo.Types.UserStatus) input.ReadEnum();
             break;
           }
           case 104: {
-            RegSiteId = input.ReadUInt32();
+            MarketId = input.ReadUInt32();
             break;
           }
-          case 114: {
-            RegisterData = input.ReadString();
+          case 112: {
+            SiteId = input.ReadUInt32();
             break;
           }
           case 120: {
-            GateConnid = input.ReadUInt64();
+            RegMarketId = input.ReadUInt32();
+            break;
+          }
+          case 128: {
+            RegSiteId = input.ReadUInt32();
+            break;
+          }
+          case 138: {
+            RegisterData = input.ReadString();
+            break;
+          }
+          case 144: {
+            GateConnId = input.ReadUInt64();
+            break;
+          }
+          case 152: {
+            RoomConnId = input.ReadUInt64();
             break;
           }
         }
@@ -1528,35 +1691,51 @@ namespace Bs.Types {
             break;
           }
           case 64: {
-            UserType = (global::Bs.Types.BaseUserInfo.Types.UserType) input.ReadEnum();
+            Type = (global::Bs.Types.BaseUserInfo.Types.UserType) input.ReadEnum();
             break;
           }
           case 74: {
-            userProps_.AddEntriesFrom(ref input, _repeated_userProps_codec);
+            props_.AddEntriesFrom(ref input, _repeated_props_codec);
             break;
           }
           case 80: {
-            MarketId = input.ReadUInt32();
+            TableId = input.ReadUInt32();
             break;
           }
           case 88: {
-            SiteId = input.ReadUInt32();
+            SeatId = input.ReadUInt32();
             break;
           }
           case 96: {
-            RegMarketId = input.ReadUInt32();
+            Status = (global::Bs.Types.BaseUserInfo.Types.UserStatus) input.ReadEnum();
             break;
           }
           case 104: {
-            RegSiteId = input.ReadUInt32();
+            MarketId = input.ReadUInt32();
             break;
           }
-          case 114: {
-            RegisterData = input.ReadString();
+          case 112: {
+            SiteId = input.ReadUInt32();
             break;
           }
           case 120: {
-            GateConnid = input.ReadUInt64();
+            RegMarketId = input.ReadUInt32();
+            break;
+          }
+          case 128: {
+            RegSiteId = input.ReadUInt32();
+            break;
+          }
+          case 138: {
+            RegisterData = input.ReadString();
+            break;
+          }
+          case 144: {
+            GateConnId = input.ReadUInt64();
+            break;
+          }
+          case 152: {
+            RoomConnId = input.ReadUInt64();
             break;
           }
         }
@@ -1569,464 +1748,60 @@ namespace Bs.Types {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static partial class Types {
+      /// <summary>
+      ///用户类型
+      /// </summary>
       public enum UserType {
         /// <summary>
         ///未知
         /// </summary>
-        [pbr::OriginalName("UNKNOW")] Unknow = 0,
+        [pbr::OriginalName("unknow")] Unknow = 0,
         /// <summary>
         ///正常类型
         /// </summary>
-        [pbr::OriginalName("Normal")] Normal = 1,
+        [pbr::OriginalName("normal")] Normal = 1,
         /// <summary>
         ///机器人
         /// </summary>
-        [pbr::OriginalName("Robot")] Robot = 10,
+        [pbr::OriginalName("robot")] Robot = 10,
+      }
+
+      /// <summary>
+      ///用户状态
+      /// </summary>
+      public enum UserStatus {
+        /// <summary>
+        ///没有状态
+        /// </summary>
+        [pbr::OriginalName("none")] None = 0,
+        /// <summary>
+        ///站立状态
+        /// </summary>
+        [pbr::OriginalName("free")] Free = 1,
+        /// <summary>
+        ///坐下状态
+        /// </summary>
+        [pbr::OriginalName("sit")] Sit = 2,
+        /// <summary>
+        ///同意状态
+        /// </summary>
+        [pbr::OriginalName("ready")] Ready = 3,
+        /// <summary>
+        ///旁观状态
+        /// </summary>
+        [pbr::OriginalName("lookon")] Lookon = 4,
+        /// <summary>
+        ///游戏状态
+        /// </summary>
+        [pbr::OriginalName("playing")] Playing = 5,
+        /// <summary>
+        ///断线状态
+        /// </summary>
+        [pbr::OriginalName("offline")] Offline = 6,
       }
 
     }
     #endregion
-
-  }
-
-  public sealed partial class UserRoomInfo : pb::IMessage<UserRoomInfo>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<UserRoomInfo> _parser = new pb::MessageParser<UserRoomInfo>(() => new UserRoomInfo());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<UserRoomInfo> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Bs.Types.TypesReflection.Descriptor.MessageTypes[4]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public UserRoomInfo() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public UserRoomInfo(UserRoomInfo other) : this() {
-      baseInfo_ = other.baseInfo_ != null ? other.baseInfo_.Clone() : null;
-      tableId_ = other.tableId_;
-      seatId_ = other.seatId_;
-      userState_ = other.userState_;
-      lostCount_ = other.lostCount_;
-      drawCount_ = other.drawCount_;
-      winCount_ = other.winCount_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public UserRoomInfo Clone() {
-      return new UserRoomInfo(this);
-    }
-
-    /// <summary>Field number for the "base_info" field.</summary>
-    public const int BaseInfoFieldNumber = 1;
-    private global::Bs.Types.BaseUserInfo baseInfo_;
-    /// <summary>
-    ///基础信息
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Bs.Types.BaseUserInfo BaseInfo {
-      get { return baseInfo_; }
-      set {
-        baseInfo_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "table_id" field.</summary>
-    public const int TableIdFieldNumber = 2;
-    private ulong tableId_;
-    /// <summary>
-    ///所有桌子
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ulong TableId {
-      get { return tableId_; }
-      set {
-        tableId_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "seat_id" field.</summary>
-    public const int SeatIdFieldNumber = 3;
-    private uint seatId_;
-    /// <summary>
-    ///所在位置
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint SeatId {
-      get { return seatId_; }
-      set {
-        seatId_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "user_state" field.</summary>
-    public const int UserStateFieldNumber = 4;
-    private uint userState_;
-    /// <summary>
-    ///用户状态
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint UserState {
-      get { return userState_; }
-      set {
-        userState_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "lost_count" field.</summary>
-    public const int LostCountFieldNumber = 5;
-    private uint lostCount_;
-    /// <summary>
-    ///玩家总输局
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint LostCount {
-      get { return lostCount_; }
-      set {
-        lostCount_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "draw_count" field.</summary>
-    public const int DrawCountFieldNumber = 6;
-    private uint drawCount_;
-    /// <summary>
-    ///玩家总平局
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint DrawCount {
-      get { return drawCount_; }
-      set {
-        drawCount_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "win_count" field.</summary>
-    public const int WinCountFieldNumber = 7;
-    private uint winCount_;
-    /// <summary>
-    ///玩家总胜局		
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint WinCount {
-      get { return winCount_; }
-      set {
-        winCount_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as UserRoomInfo);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(UserRoomInfo other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(BaseInfo, other.BaseInfo)) return false;
-      if (TableId != other.TableId) return false;
-      if (SeatId != other.SeatId) return false;
-      if (UserState != other.UserState) return false;
-      if (LostCount != other.LostCount) return false;
-      if (DrawCount != other.DrawCount) return false;
-      if (WinCount != other.WinCount) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (baseInfo_ != null) hash ^= BaseInfo.GetHashCode();
-      if (TableId != 0UL) hash ^= TableId.GetHashCode();
-      if (SeatId != 0) hash ^= SeatId.GetHashCode();
-      if (UserState != 0) hash ^= UserState.GetHashCode();
-      if (LostCount != 0) hash ^= LostCount.GetHashCode();
-      if (DrawCount != 0) hash ^= DrawCount.GetHashCode();
-      if (WinCount != 0) hash ^= WinCount.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (baseInfo_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(BaseInfo);
-      }
-      if (TableId != 0UL) {
-        output.WriteRawTag(16);
-        output.WriteUInt64(TableId);
-      }
-      if (SeatId != 0) {
-        output.WriteRawTag(24);
-        output.WriteUInt32(SeatId);
-      }
-      if (UserState != 0) {
-        output.WriteRawTag(32);
-        output.WriteUInt32(UserState);
-      }
-      if (LostCount != 0) {
-        output.WriteRawTag(40);
-        output.WriteUInt32(LostCount);
-      }
-      if (DrawCount != 0) {
-        output.WriteRawTag(48);
-        output.WriteUInt32(DrawCount);
-      }
-      if (WinCount != 0) {
-        output.WriteRawTag(56);
-        output.WriteUInt32(WinCount);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (baseInfo_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(BaseInfo);
-      }
-      if (TableId != 0UL) {
-        output.WriteRawTag(16);
-        output.WriteUInt64(TableId);
-      }
-      if (SeatId != 0) {
-        output.WriteRawTag(24);
-        output.WriteUInt32(SeatId);
-      }
-      if (UserState != 0) {
-        output.WriteRawTag(32);
-        output.WriteUInt32(UserState);
-      }
-      if (LostCount != 0) {
-        output.WriteRawTag(40);
-        output.WriteUInt32(LostCount);
-      }
-      if (DrawCount != 0) {
-        output.WriteRawTag(48);
-        output.WriteUInt32(DrawCount);
-      }
-      if (WinCount != 0) {
-        output.WriteRawTag(56);
-        output.WriteUInt32(WinCount);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (baseInfo_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(BaseInfo);
-      }
-      if (TableId != 0UL) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(TableId);
-      }
-      if (SeatId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SeatId);
-      }
-      if (UserState != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UserState);
-      }
-      if (LostCount != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(LostCount);
-      }
-      if (DrawCount != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(DrawCount);
-      }
-      if (WinCount != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(WinCount);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(UserRoomInfo other) {
-      if (other == null) {
-        return;
-      }
-      if (other.baseInfo_ != null) {
-        if (baseInfo_ == null) {
-          BaseInfo = new global::Bs.Types.BaseUserInfo();
-        }
-        BaseInfo.MergeFrom(other.BaseInfo);
-      }
-      if (other.TableId != 0UL) {
-        TableId = other.TableId;
-      }
-      if (other.SeatId != 0) {
-        SeatId = other.SeatId;
-      }
-      if (other.UserState != 0) {
-        UserState = other.UserState;
-      }
-      if (other.LostCount != 0) {
-        LostCount = other.LostCount;
-      }
-      if (other.DrawCount != 0) {
-        DrawCount = other.DrawCount;
-      }
-      if (other.WinCount != 0) {
-        WinCount = other.WinCount;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (baseInfo_ == null) {
-              BaseInfo = new global::Bs.Types.BaseUserInfo();
-            }
-            input.ReadMessage(BaseInfo);
-            break;
-          }
-          case 16: {
-            TableId = input.ReadUInt64();
-            break;
-          }
-          case 24: {
-            SeatId = input.ReadUInt32();
-            break;
-          }
-          case 32: {
-            UserState = input.ReadUInt32();
-            break;
-          }
-          case 40: {
-            LostCount = input.ReadUInt32();
-            break;
-          }
-          case 48: {
-            DrawCount = input.ReadUInt32();
-            break;
-          }
-          case 56: {
-            WinCount = input.ReadUInt32();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (baseInfo_ == null) {
-              BaseInfo = new global::Bs.Types.BaseUserInfo();
-            }
-            input.ReadMessage(BaseInfo);
-            break;
-          }
-          case 16: {
-            TableId = input.ReadUInt64();
-            break;
-          }
-          case 24: {
-            SeatId = input.ReadUInt32();
-            break;
-          }
-          case 32: {
-            UserState = input.ReadUInt32();
-            break;
-          }
-          case 40: {
-            LostCount = input.ReadUInt32();
-            break;
-          }
-          case 48: {
-            DrawCount = input.ReadUInt32();
-            break;
-          }
-          case 56: {
-            WinCount = input.ReadUInt32();
-            break;
-          }
-        }
-      }
-    }
-    #endif
 
   }
 
@@ -2044,7 +1819,7 @@ namespace Bs.Types {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Bs.Types.TypesReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Bs.Types.TypesReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2565,19 +2340,19 @@ namespace Bs.Types {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static partial class Types {
       public enum RoomType {
-        [pbr::OriginalName("None")] None = 0,
+        [pbr::OriginalName("none")] None = 0,
         /// <summary>
         ///金币
         /// </summary>
-        [pbr::OriginalName("Gold")] Gold = 1,
+        [pbr::OriginalName("gold")] Gold = 1,
         /// <summary>
         ///私有
         /// </summary>
-        [pbr::OriginalName("Private")] Private = 16,
+        [pbr::OriginalName("private")] Private = 16,
         /// <summary>
         ///红包
         /// </summary>
-        [pbr::OriginalName("RedPack")] RedPack = 32,
+        [pbr::OriginalName("redPack")] RedPack = 32,
       }
 
     }
