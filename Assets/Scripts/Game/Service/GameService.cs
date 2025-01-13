@@ -529,6 +529,10 @@ public class GameService : MonoBehaviour
         {
             GetChair();
         }
+        else
+        {
+            GameEvent.V_OpenDlgTip.Invoke(rsp.ErrInfo.Info, "", null, null);
+        }
 
         return true;
     }
