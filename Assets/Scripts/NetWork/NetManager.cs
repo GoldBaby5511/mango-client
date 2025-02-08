@@ -52,7 +52,7 @@ public class NetManager
     /// <summary>
     /// 移除队列
     /// </summary>
-    public void RemoveHadler(IHandler hd) 
+    public void RemoveHadler(IHandler hd)
     {
         if (handlerList.Contains(hd))
         {
@@ -122,18 +122,20 @@ public class NetManager
     {
         //try
         //{
-            NetPacket packet = null;
-            for (packet = GetPacket(); packet != null; )
+        NetPacket packet = null;
+        for (packet = GetPacket(); packet != null;)
+        {
+            //Debug.Log("Count=" + handlerList.Count);
+            for (int i = 0; i < handlerList.Count; i++)
             {
-                for (int i = 0; i < handlerList.Count; i++)
+                if (handlerList[i].Handler(packet))
                 {
-                    if (handlerList[i].Handler(packet))
-                    {
-                        break;
-                    }
+                    //Debug.Log("break,Count=" + handlerList.Count);
+                    break;
                 }
-                packet = null;
             }
+            packet = null;
+        }
         //}
         //catch (Exception e)
         //{

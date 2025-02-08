@@ -122,9 +122,9 @@ public class HallModel
      
     public static int faceId;                       //系统头像ID
     public static int userSex;                      //用户性别
-    public static Int64 userCoinInGame;             //用户金币
-    public static Int64 userCoinInBank;             //银行金币
-    public static Int64 userDiamondCount;           //用户钻石
+    public static Int64 userCoinInGame = 0;         //用户金币
+    public static Int64 userCoinInBank = 0;         //银行金币
+    public static Int64 userDiamondCount = 0;       //用户钻石
     public static Int64 userCardCount = 0;          //用户房卡
     public static Int64 userRedPackCount = 0;       //红包券数量
 
@@ -145,20 +145,20 @@ public class HallModel
     //房卡游戏信息列表
     public static Dictionary<int, CardGameServerInfo> cardServerList = new Dictionary<int, CardGameServerInfo>();   
     //游戏服务器列表
-    public static Dictionary<UInt16, GameServerInfo> serverList = new Dictionary<ushort, GameServerInfo>();
+    public static Dictionary<UInt64, GameServerInfo> serverList = new Dictionary<UInt64, GameServerInfo>();
     //游戏记录
     public static Dictionary<int, CMD_Hall_S_GameRecord> gameRecordList = new Dictionary<int, CMD_Hall_S_GameRecord>();
     //排行信息
     public static Dictionary<byte, CMD_Hall_S_RankInfo> rankDic = new Dictionary<byte, CMD_Hall_S_RankInfo>();
 
-    public static Dictionary<UInt32, Bs.Types.RoomInfo> roomList = new Dictionary<UInt32, Bs.Types.RoomInfo>();
+    //public static Dictionary<UInt32, Bs.Types.RoomInfo> roomList = new Dictionary<UInt32, Bs.Types.RoomInfo>();
 
 
 
     //当前所选游戏
     public static GameFlag currentGameFlag = GameFlag.Landlords3;
     //当前所选服务器ID
-    public static UInt16 currentServerId = 0;
+    public static UInt64 currentServerId = 0;
     //当前所选游戏名称
     public static string currentGameName
     {

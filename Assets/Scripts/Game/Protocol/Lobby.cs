@@ -24,47 +24,49 @@ namespace Bs.Lobby {
     static LobbyReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cgtsb2JieS5wcm90bxIIYnMubG9iYnkaC3R5cGVzLnByb3RvIqQCCghMb2dp",
+            "Cgtsb2JieS5wcm90bxIIYnMubG9iYnkaC3R5cGVzLnByb3RvIqACCghMb2dp",
             "blJlcRIRCglnYW1lX2tpbmQYASABKA0SMAoKbG9naW5fdHlwZRgCIAEoDjIc",
             "LmJzLmxvYmJ5LkxvZ2luUmVxLkxvZ2luVHlwZRIPCgdhY2NvdW50GAMgASgJ",
-            "EhAKCHBhc3N3b3JkGAQgASgJEg8KB3ZlcnNpb24YBSABKAkSCgoCSVAYBiAB",
+            "EhAKCHBhc3N3b3JkGAQgASgJEg8KB3ZlcnNpb24YBSABKAkSCgoCaXAYBiAB",
             "KAkSFgoOc3lzdGVtX3ZlcnNpb24YByABKAkSEgoKY2hhbm5lbF9pZBgIIAEo",
             "DRIPCgdzaXRlX2lkGAkgASgNEhEKCWRldmljZV9pZBgKIAEoCRIRCgl1c2Vy",
-            "X3R5cGUYCyABKAUiMAoJTG9naW5UeXBlEgsKB0FjY291bnQQABIJCgVUb2tl",
-            "bhABEgsKB1VuaW9uSWQQAiKiAwoITG9naW5Sc3ASKQoGcmVzdWx0GAEgASgO",
-            "MhkuYnMubG9iYnkuTG9naW5Sc3AuUmVzdWx0EikKCWJhc2VfaW5mbxgCIAEo",
-            "CzIWLmJzLnR5cGVzLkJhc2VVc2VySW5mbxIlCghlcnJfaW5mbxhjIAEoCzIT",
-            "LmJzLnR5cGVzLkVycm9ySW5mbyKYAgoGUmVzdWx0EgsKB1NVQ0NFU1MQABIM",
-            "CghOT1RFWElTVBABEgoKBkZST1pFThACEgsKB0ZBTFNFUFcQAxIMCghORVRF",
-            "UlJPUhAEEg0KCUFQUElTQlVTWRAFEg8KC0dVRVNURk9SQklEEAYSEAoMQ09O",
-            "TkVDVEVSUk9SEAcSDgoKVkVSU0lPTk9MRBAIEg8KC05PTU9SRUdVRVNUEAkS",
-            "DgoKRlJFUVVFTlRMWRAKEg4KCkFQUElOSVRJTkcQCxIQCgtTRVJWRVJFUlJP",
-            "UhD/ARILCgZVTktPV04Q6AcSEQoMVE9LRU5fRkFJTEVEEOkHEhIKDVRPS0VO",
-            "X0VYUElSRUQQ6gcSEwoOVE9LRU5fTk9UTUFUQ0gQ6wciMAoJTG9nb3V0UmVx",
-            "Eg8KB3VzZXJfaWQYASACKAQSEgoKR2F0ZUNvbm5JZBgCIAEoBCKSAQoJTG9n",
-            "b3V0UnNwEjAKBnJlYXNvbhgBIAEoDjIgLmJzLmxvYmJ5LkxvZ291dFJzcC5M",
-            "b2dvdXRSZWFzb24SJQoIZXJyX2luZm8YYyABKAsyEy5icy50eXBlcy5FcnJv",
-            "ckluZm8iLAoMTG9nb3V0UmVhc29uEgoKBk5vcm1hbBAAEhAKDEFub3RoZXJM",
-            "b2dpbhABIg0KC0xvZ2ljUmVnUmVxIjQKC0xvZ2ljUmVnUnNwEiUKCGVycl9p",
-            "bmZvGGMgASgLMhMuYnMudHlwZXMuRXJyb3JJbmZvIsEBCg9Vc2VyT25saW5l",
-            "U3RhdGUSKQoJdXNlcl9pbmZvGAEgASgLMhYuYnMudHlwZXMuQmFzZVVzZXJJ",
-            "bmZvEjoKDG9ubGluZV9zdGF0ZRgCIAEoDjIkLmJzLmxvYmJ5LlVzZXJPbmxp",
-            "bmVTdGF0ZS5PbmxpbmVTdGF0IkcKCk9ubGluZVN0YXQSCgoGT25saW5lEAES",
-            "EQoNRGlzY29ubmVjdGlvbhACEg0KCVJlY29ubmVjdBADEgsKB09mZmxpbmUQ",
-            "BCqDAQoIQ01ETG9iYnkSDgoKSURMb2dpblJlcRABEg4KCklETG9naW5Sc3AQ",
-            "AhIPCgtJRExvZ291dFJlcRADEg8KC0lETG9nb3V0UnNwEAQSEQoNSURMb2dp",
-            "Y1JlZ1JlcRAFEhEKDUlETG9naWNSZWdSc3AQBhIPCgtJRFVzZXJTdGF0ZRAH",
-            "QghaBi9sb2JieQ=="));
+            "X3R5cGUYCyABKAUiLAoJTG9naW5UeXBlEgcKA2FjYxAAEgkKBXRva2VuEAES",
+            "CwoHdW5pb25JZBACIqIDCghMb2dpblJzcBIpCgZyZXN1bHQYASABKA4yGS5i",
+            "cy5sb2JieS5Mb2dpblJzcC5SZXN1bHQSKQoJdXNlcl9pbmZvGAIgASgLMhYu",
+            "YnMudHlwZXMuQmFzZVVzZXJJbmZvEiUKCGVycl9pbmZvGGMgASgLMhMuYnMu",
+            "dHlwZXMuRXJyb3JJbmZvIpgCCgZSZXN1bHQSCwoHU1VDQ0VTUxAAEgwKCE5P",
+            "VEVYSVNUEAESCgoGRlJPWkVOEAISCwoHRkFMU0VQVxADEgwKCE5FVEVSUk9S",
+            "EAQSDQoJQVBQSVNCVVNZEAUSDwoLR1VFU1RGT1JCSUQQBhIQCgxDT05ORUNU",
+            "RVJST1IQBxIOCgpWRVJTSU9OT0xEEAgSDwoLTk9NT1JFR1VFU1QQCRIOCgpG",
+            "UkVRVUVOVExZEAoSDgoKQVBQSU5JVElORxALEhAKC1NFUlZFUkVSUk9SEP8B",
+            "EgsKBlVOS09XThDoBxIRCgxUT0tFTl9GQUlMRUQQ6QcSEgoNVE9LRU5fRVhQ",
+            "SVJFRBDqBxITCg5UT0tFTl9OT1RNQVRDSBDrByIyCglMb2dvdXRSZXESDwoH",
+            "dXNlcl9pZBgBIAEoBBIUCgxnYXRlX2Nvbm5faWQYAiABKAQikgEKCUxvZ291",
+            "dFJzcBIwCgZyZWFzb24YASABKA4yIC5icy5sb2JieS5Mb2dvdXRSc3AuTG9n",
+            "b3V0UmVhc29uEiUKCGVycl9pbmZvGGMgASgLMhMuYnMudHlwZXMuRXJyb3JJ",
+            "bmZvIiwKDExvZ291dFJlYXNvbhIKCgZOb3JtYWwQABIQCgxBbm90aGVyTG9n",
+            "aW4QASINCgtMb2dpY1JlZ1JlcSI0CgtMb2dpY1JlZ1JzcBIlCghlcnJfaW5m",
+            "bxhjIAEoCzITLmJzLnR5cGVzLkVycm9ySW5mbyJNChBRdWVyeVVzZXJJbmZv",
+            "UmVxEg8KB3VzZXJfaWQYASABKAQSEgoKcXVlcnlfdHlwZRgCIAEoDRIUCgxy",
+            "b29tX2Nvbm5faWQYEyABKAQieAoQUXVlcnlVc2VySW5mb1JzcBIpCgl1c2Vy",
+            "X2luZm8YASABKAsyFi5icy50eXBlcy5CYXNlVXNlckluZm8SEgoKcXVlcnlf",
+            "dHlwZRgCIAEoDRIlCghlcnJfaW5mbxhjIAEoCzITLmJzLnR5cGVzLkVycm9y",
+            "SW5mbyquAQoIQ01ETG9iYnkSCgoGSUROb25lEAASDgoKSURMb2dpblJlcRAB",
+            "Eg4KCklETG9naW5Sc3AQAhIPCgtJRExvZ291dFJlcRADEg8KC0lETG9nb3V0",
+            "UnNwEAQSEQoNSURMb2dpY1JlZ1JlcRAFEhEKDUlETG9naWNSZWdSc3AQBhIW",
+            "ChJJRFF1ZXJ5VXNlckluZm9SZXEQBxIWChJJRFF1ZXJ5VXNlckluZm9Sc3AQ",
+            "CEIRWg9tYW5nby9hcGkvbG9iYnliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Bs.Types.TypesReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Bs.Lobby.CMDLobby), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Lobby.LoginReq), global::Bs.Lobby.LoginReq.Parser, new[]{ "GameKind", "LoginType", "Account", "Password", "Version", "IP", "SystemVersion", "ChannelId", "SiteId", "DeviceId", "UserType" }, null, new[]{ typeof(global::Bs.Lobby.LoginReq.Types.LoginType) }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Lobby.LoginRsp), global::Bs.Lobby.LoginRsp.Parser, new[]{ "Result", "BaseInfo", "ErrInfo" }, null, new[]{ typeof(global::Bs.Lobby.LoginRsp.Types.Result) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Lobby.LoginReq), global::Bs.Lobby.LoginReq.Parser, new[]{ "GameKind", "LoginType", "Account", "Password", "Version", "Ip", "SystemVersion", "ChannelId", "SiteId", "DeviceId", "UserType" }, null, new[]{ typeof(global::Bs.Lobby.LoginReq.Types.LoginType) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Lobby.LoginRsp), global::Bs.Lobby.LoginRsp.Parser, new[]{ "Result", "UserInfo", "ErrInfo" }, null, new[]{ typeof(global::Bs.Lobby.LoginRsp.Types.Result) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Lobby.LogoutReq), global::Bs.Lobby.LogoutReq.Parser, new[]{ "UserId", "GateConnId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Lobby.LogoutRsp), global::Bs.Lobby.LogoutRsp.Parser, new[]{ "Reason", "ErrInfo" }, null, new[]{ typeof(global::Bs.Lobby.LogoutRsp.Types.LogoutReason) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Lobby.LogicRegReq), global::Bs.Lobby.LogicRegReq.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Lobby.LogicRegRsp), global::Bs.Lobby.LogicRegRsp.Parser, new[]{ "ErrInfo" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Lobby.UserOnlineState), global::Bs.Lobby.UserOnlineState.Parser, new[]{ "UserInfo", "OnlineState" }, null, new[]{ typeof(global::Bs.Lobby.UserOnlineState.Types.OnlineStat) }, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Lobby.QueryUserInfoReq), global::Bs.Lobby.QueryUserInfoReq.Parser, new[]{ "UserId", "QueryType", "RoomConnId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Lobby.QueryUserInfoRsp), global::Bs.Lobby.QueryUserInfoRsp.Parser, new[]{ "UserInfo", "QueryType", "ErrInfo" }, null, null, null, null)
           }));
     }
     #endregion
@@ -72,6 +74,7 @@ namespace Bs.Lobby {
   }
   #region Enums
   public enum CMDLobby {
+    [pbr::OriginalName("IDNone")] Idnone = 0,
     /// <summary>
     ///登录请求
     /// </summary>
@@ -97,9 +100,13 @@ namespace Bs.Lobby {
     /// </summary>
     [pbr::OriginalName("IDLogicRegRsp")] IdlogicRegRsp = 6,
     /// <summary>
-    ///用户状态
+    ///查询用户
     /// </summary>
-    [pbr::OriginalName("IDUserState")] IduserState = 7,
+    [pbr::OriginalName("IDQueryUserInfoReq")] IdqueryUserInfoReq = 7,
+    /// <summary>
+    ///查询用户
+    /// </summary>
+    [pbr::OriginalName("IDQueryUserInfoRsp")] IdqueryUserInfoRsp = 8,
   }
 
   #endregion
@@ -115,7 +122,6 @@ namespace Bs.Lobby {
   {
     private static readonly pb::MessageParser<LoginReq> _parser = new pb::MessageParser<LoginReq>(() => new LoginReq());
     private pb::UnknownFieldSet _unknownFields;
-    private int _hasBits0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pb::MessageParser<LoginReq> Parser { get { return _parser; } }
@@ -143,13 +149,12 @@ namespace Bs.Lobby {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public LoginReq(LoginReq other) : this() {
-      _hasBits0 = other._hasBits0;
       gameKind_ = other.gameKind_;
       loginType_ = other.loginType_;
       account_ = other.account_;
       password_ = other.password_;
       version_ = other.version_;
-      iP_ = other.iP_;
+      ip_ = other.ip_;
       systemVersion_ = other.systemVersion_;
       channelId_ = other.channelId_;
       siteId_ = other.siteId_;
@@ -166,8 +171,6 @@ namespace Bs.Lobby {
 
     /// <summary>Field number for the "game_kind" field.</summary>
     public const int GameKindFieldNumber = 1;
-    private readonly static uint GameKindDefaultValue = 0;
-
     private uint gameKind_;
     /// <summary>
     ///游戏种类
@@ -175,204 +178,104 @@ namespace Bs.Lobby {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public uint GameKind {
-      get { if ((_hasBits0 & 1) != 0) { return gameKind_; } else { return GameKindDefaultValue; } }
+      get { return gameKind_; }
       set {
-        _hasBits0 |= 1;
         gameKind_ = value;
       }
-    }
-    /// <summary>Gets whether the "game_kind" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasGameKind {
-      get { return (_hasBits0 & 1) != 0; }
-    }
-    /// <summary>Clears the value of the "game_kind" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearGameKind() {
-      _hasBits0 &= ~1;
     }
 
     /// <summary>Field number for the "login_type" field.</summary>
     public const int LoginTypeFieldNumber = 2;
-    private readonly static global::Bs.Lobby.LoginReq.Types.LoginType LoginTypeDefaultValue = global::Bs.Lobby.LoginReq.Types.LoginType.Account;
-
-    private global::Bs.Lobby.LoginReq.Types.LoginType loginType_;
+    private global::Bs.Lobby.LoginReq.Types.LoginType loginType_ = global::Bs.Lobby.LoginReq.Types.LoginType.Acc;
     /// <summary>
     ///登录类型
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Bs.Lobby.LoginReq.Types.LoginType LoginType {
-      get { if ((_hasBits0 & 2) != 0) { return loginType_; } else { return LoginTypeDefaultValue; } }
+      get { return loginType_; }
       set {
-        _hasBits0 |= 2;
         loginType_ = value;
       }
-    }
-    /// <summary>Gets whether the "login_type" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasLoginType {
-      get { return (_hasBits0 & 2) != 0; }
-    }
-    /// <summary>Clears the value of the "login_type" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearLoginType() {
-      _hasBits0 &= ~2;
     }
 
     /// <summary>Field number for the "account" field.</summary>
     public const int AccountFieldNumber = 3;
-    private readonly static string AccountDefaultValue = "";
-
-    private string account_;
+    private string account_ = "";
     /// <summary>
     ///用户账号(根据 LoginAction填不通内容)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Account {
-      get { return account_ ?? AccountDefaultValue; }
+      get { return account_; }
       set {
         account_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
-    /// <summary>Gets whether the "account" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasAccount {
-      get { return account_ != null; }
-    }
-    /// <summary>Clears the value of the "account" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearAccount() {
-      account_ = null;
-    }
 
     /// <summary>Field number for the "password" field.</summary>
     public const int PasswordFieldNumber = 4;
-    private readonly static string PasswordDefaultValue = "";
-
-    private string password_;
+    private string password_ = "";
     /// <summary>
     ///用户密码
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Password {
-      get { return password_ ?? PasswordDefaultValue; }
+      get { return password_; }
       set {
         password_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
-    /// <summary>Gets whether the "password" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasPassword {
-      get { return password_ != null; }
-    }
-    /// <summary>Clears the value of the "password" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearPassword() {
-      password_ = null;
-    }
 
     /// <summary>Field number for the "version" field.</summary>
     public const int VersionFieldNumber = 5;
-    private readonly static string VersionDefaultValue = "";
-
-    private string version_;
+    private string version_ = "";
     /// <summary>
     ///客户端版本号
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Version {
-      get { return version_ ?? VersionDefaultValue; }
+      get { return version_; }
       set {
         version_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
-    /// <summary>Gets whether the "version" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasVersion {
-      get { return version_ != null; }
-    }
-    /// <summary>Clears the value of the "version" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearVersion() {
-      version_ = null;
-    }
 
-    /// <summary>Field number for the "IP" field.</summary>
-    public const int IPFieldNumber = 6;
-    private readonly static string IPDefaultValue = "";
-
-    private string iP_;
+    /// <summary>Field number for the "ip" field.</summary>
+    public const int IpFieldNumber = 6;
+    private string ip_ = "";
     /// <summary>
     ///客户端IP
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string IP {
-      get { return iP_ ?? IPDefaultValue; }
+    public string Ip {
+      get { return ip_; }
       set {
-        iP_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        ip_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
-    }
-    /// <summary>Gets whether the "IP" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasIP {
-      get { return iP_ != null; }
-    }
-    /// <summary>Clears the value of the "IP" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearIP() {
-      iP_ = null;
     }
 
     /// <summary>Field number for the "system_version" field.</summary>
     public const int SystemVersionFieldNumber = 7;
-    private readonly static string SystemVersionDefaultValue = "";
-
-    private string systemVersion_;
+    private string systemVersion_ = "";
     /// <summary>
     ///操作系统版本号
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string SystemVersion {
-      get { return systemVersion_ ?? SystemVersionDefaultValue; }
+      get { return systemVersion_; }
       set {
         systemVersion_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
-    /// <summary>Gets whether the "system_version" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasSystemVersion {
-      get { return systemVersion_ != null; }
-    }
-    /// <summary>Clears the value of the "system_version" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearSystemVersion() {
-      systemVersion_ = null;
-    }
 
     /// <summary>Field number for the "channel_id" field.</summary>
     public const int ChannelIdFieldNumber = 8;
-    private readonly static uint ChannelIdDefaultValue = 0;
-
     private uint channelId_;
     /// <summary>
     ///主渠道id
@@ -380,29 +283,14 @@ namespace Bs.Lobby {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public uint ChannelId {
-      get { if ((_hasBits0 & 4) != 0) { return channelId_; } else { return ChannelIdDefaultValue; } }
+      get { return channelId_; }
       set {
-        _hasBits0 |= 4;
         channelId_ = value;
       }
-    }
-    /// <summary>Gets whether the "channel_id" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasChannelId {
-      get { return (_hasBits0 & 4) != 0; }
-    }
-    /// <summary>Clears the value of the "channel_id" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearChannelId() {
-      _hasBits0 &= ~4;
     }
 
     /// <summary>Field number for the "site_id" field.</summary>
     public const int SiteIdFieldNumber = 9;
-    private readonly static uint SiteIdDefaultValue = 0;
-
     private uint siteId_;
     /// <summary>
     ///子渠道id
@@ -410,58 +298,29 @@ namespace Bs.Lobby {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public uint SiteId {
-      get { if ((_hasBits0 & 8) != 0) { return siteId_; } else { return SiteIdDefaultValue; } }
+      get { return siteId_; }
       set {
-        _hasBits0 |= 8;
         siteId_ = value;
       }
-    }
-    /// <summary>Gets whether the "site_id" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasSiteId {
-      get { return (_hasBits0 & 8) != 0; }
-    }
-    /// <summary>Clears the value of the "site_id" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearSiteId() {
-      _hasBits0 &= ~8;
     }
 
     /// <summary>Field number for the "device_id" field.</summary>
     public const int DeviceIdFieldNumber = 10;
-    private readonly static string DeviceIdDefaultValue = "";
-
-    private string deviceId_;
+    private string deviceId_ = "";
     /// <summary>
     ///设备唯一码
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string DeviceId {
-      get { return deviceId_ ?? DeviceIdDefaultValue; }
+      get { return deviceId_; }
       set {
         deviceId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
-    /// <summary>Gets whether the "device_id" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasDeviceId {
-      get { return deviceId_ != null; }
-    }
-    /// <summary>Clears the value of the "device_id" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearDeviceId() {
-      deviceId_ = null;
-    }
 
     /// <summary>Field number for the "user_type" field.</summary>
     public const int UserTypeFieldNumber = 11;
-    private readonly static int UserTypeDefaultValue = 0;
-
     private int userType_;
     /// <summary>
     ///用户类型(客户端禁止使用)
@@ -469,23 +328,10 @@ namespace Bs.Lobby {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int UserType {
-      get { if ((_hasBits0 & 16) != 0) { return userType_; } else { return UserTypeDefaultValue; } }
+      get { return userType_; }
       set {
-        _hasBits0 |= 16;
         userType_ = value;
       }
-    }
-    /// <summary>Gets whether the "user_type" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasUserType {
-      get { return (_hasBits0 & 16) != 0; }
-    }
-    /// <summary>Clears the value of the "user_type" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearUserType() {
-      _hasBits0 &= ~16;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -508,7 +354,7 @@ namespace Bs.Lobby {
       if (Account != other.Account) return false;
       if (Password != other.Password) return false;
       if (Version != other.Version) return false;
-      if (IP != other.IP) return false;
+      if (Ip != other.Ip) return false;
       if (SystemVersion != other.SystemVersion) return false;
       if (ChannelId != other.ChannelId) return false;
       if (SiteId != other.SiteId) return false;
@@ -521,17 +367,17 @@ namespace Bs.Lobby {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (HasGameKind) hash ^= GameKind.GetHashCode();
-      if (HasLoginType) hash ^= LoginType.GetHashCode();
-      if (HasAccount) hash ^= Account.GetHashCode();
-      if (HasPassword) hash ^= Password.GetHashCode();
-      if (HasVersion) hash ^= Version.GetHashCode();
-      if (HasIP) hash ^= IP.GetHashCode();
-      if (HasSystemVersion) hash ^= SystemVersion.GetHashCode();
-      if (HasChannelId) hash ^= ChannelId.GetHashCode();
-      if (HasSiteId) hash ^= SiteId.GetHashCode();
-      if (HasDeviceId) hash ^= DeviceId.GetHashCode();
-      if (HasUserType) hash ^= UserType.GetHashCode();
+      if (GameKind != 0) hash ^= GameKind.GetHashCode();
+      if (LoginType != global::Bs.Lobby.LoginReq.Types.LoginType.Acc) hash ^= LoginType.GetHashCode();
+      if (Account.Length != 0) hash ^= Account.GetHashCode();
+      if (Password.Length != 0) hash ^= Password.GetHashCode();
+      if (Version.Length != 0) hash ^= Version.GetHashCode();
+      if (Ip.Length != 0) hash ^= Ip.GetHashCode();
+      if (SystemVersion.Length != 0) hash ^= SystemVersion.GetHashCode();
+      if (ChannelId != 0) hash ^= ChannelId.GetHashCode();
+      if (SiteId != 0) hash ^= SiteId.GetHashCode();
+      if (DeviceId.Length != 0) hash ^= DeviceId.GetHashCode();
+      if (UserType != 0) hash ^= UserType.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -550,47 +396,47 @@ namespace Bs.Lobby {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (HasGameKind) {
+      if (GameKind != 0) {
         output.WriteRawTag(8);
         output.WriteUInt32(GameKind);
       }
-      if (HasLoginType) {
+      if (LoginType != global::Bs.Lobby.LoginReq.Types.LoginType.Acc) {
         output.WriteRawTag(16);
         output.WriteEnum((int) LoginType);
       }
-      if (HasAccount) {
+      if (Account.Length != 0) {
         output.WriteRawTag(26);
         output.WriteString(Account);
       }
-      if (HasPassword) {
+      if (Password.Length != 0) {
         output.WriteRawTag(34);
         output.WriteString(Password);
       }
-      if (HasVersion) {
+      if (Version.Length != 0) {
         output.WriteRawTag(42);
         output.WriteString(Version);
       }
-      if (HasIP) {
+      if (Ip.Length != 0) {
         output.WriteRawTag(50);
-        output.WriteString(IP);
+        output.WriteString(Ip);
       }
-      if (HasSystemVersion) {
+      if (SystemVersion.Length != 0) {
         output.WriteRawTag(58);
         output.WriteString(SystemVersion);
       }
-      if (HasChannelId) {
+      if (ChannelId != 0) {
         output.WriteRawTag(64);
         output.WriteUInt32(ChannelId);
       }
-      if (HasSiteId) {
+      if (SiteId != 0) {
         output.WriteRawTag(72);
         output.WriteUInt32(SiteId);
       }
-      if (HasDeviceId) {
+      if (DeviceId.Length != 0) {
         output.WriteRawTag(82);
         output.WriteString(DeviceId);
       }
-      if (HasUserType) {
+      if (UserType != 0) {
         output.WriteRawTag(88);
         output.WriteInt32(UserType);
       }
@@ -604,47 +450,47 @@ namespace Bs.Lobby {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (HasGameKind) {
+      if (GameKind != 0) {
         output.WriteRawTag(8);
         output.WriteUInt32(GameKind);
       }
-      if (HasLoginType) {
+      if (LoginType != global::Bs.Lobby.LoginReq.Types.LoginType.Acc) {
         output.WriteRawTag(16);
         output.WriteEnum((int) LoginType);
       }
-      if (HasAccount) {
+      if (Account.Length != 0) {
         output.WriteRawTag(26);
         output.WriteString(Account);
       }
-      if (HasPassword) {
+      if (Password.Length != 0) {
         output.WriteRawTag(34);
         output.WriteString(Password);
       }
-      if (HasVersion) {
+      if (Version.Length != 0) {
         output.WriteRawTag(42);
         output.WriteString(Version);
       }
-      if (HasIP) {
+      if (Ip.Length != 0) {
         output.WriteRawTag(50);
-        output.WriteString(IP);
+        output.WriteString(Ip);
       }
-      if (HasSystemVersion) {
+      if (SystemVersion.Length != 0) {
         output.WriteRawTag(58);
         output.WriteString(SystemVersion);
       }
-      if (HasChannelId) {
+      if (ChannelId != 0) {
         output.WriteRawTag(64);
         output.WriteUInt32(ChannelId);
       }
-      if (HasSiteId) {
+      if (SiteId != 0) {
         output.WriteRawTag(72);
         output.WriteUInt32(SiteId);
       }
-      if (HasDeviceId) {
+      if (DeviceId.Length != 0) {
         output.WriteRawTag(82);
         output.WriteString(DeviceId);
       }
-      if (HasUserType) {
+      if (UserType != 0) {
         output.WriteRawTag(88);
         output.WriteInt32(UserType);
       }
@@ -658,37 +504,37 @@ namespace Bs.Lobby {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (HasGameKind) {
+      if (GameKind != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(GameKind);
       }
-      if (HasLoginType) {
+      if (LoginType != global::Bs.Lobby.LoginReq.Types.LoginType.Acc) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) LoginType);
       }
-      if (HasAccount) {
+      if (Account.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Account);
       }
-      if (HasPassword) {
+      if (Password.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Password);
       }
-      if (HasVersion) {
+      if (Version.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Version);
       }
-      if (HasIP) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(IP);
+      if (Ip.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Ip);
       }
-      if (HasSystemVersion) {
+      if (SystemVersion.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(SystemVersion);
       }
-      if (HasChannelId) {
+      if (ChannelId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ChannelId);
       }
-      if (HasSiteId) {
+      if (SiteId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SiteId);
       }
-      if (HasDeviceId) {
+      if (DeviceId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(DeviceId);
       }
-      if (HasUserType) {
+      if (UserType != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(UserType);
       }
       if (_unknownFields != null) {
@@ -703,37 +549,37 @@ namespace Bs.Lobby {
       if (other == null) {
         return;
       }
-      if (other.HasGameKind) {
+      if (other.GameKind != 0) {
         GameKind = other.GameKind;
       }
-      if (other.HasLoginType) {
+      if (other.LoginType != global::Bs.Lobby.LoginReq.Types.LoginType.Acc) {
         LoginType = other.LoginType;
       }
-      if (other.HasAccount) {
+      if (other.Account.Length != 0) {
         Account = other.Account;
       }
-      if (other.HasPassword) {
+      if (other.Password.Length != 0) {
         Password = other.Password;
       }
-      if (other.HasVersion) {
+      if (other.Version.Length != 0) {
         Version = other.Version;
       }
-      if (other.HasIP) {
-        IP = other.IP;
+      if (other.Ip.Length != 0) {
+        Ip = other.Ip;
       }
-      if (other.HasSystemVersion) {
+      if (other.SystemVersion.Length != 0) {
         SystemVersion = other.SystemVersion;
       }
-      if (other.HasChannelId) {
+      if (other.ChannelId != 0) {
         ChannelId = other.ChannelId;
       }
-      if (other.HasSiteId) {
+      if (other.SiteId != 0) {
         SiteId = other.SiteId;
       }
-      if (other.HasDeviceId) {
+      if (other.DeviceId.Length != 0) {
         DeviceId = other.DeviceId;
       }
-      if (other.HasUserType) {
+      if (other.UserType != 0) {
         UserType = other.UserType;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -772,7 +618,7 @@ namespace Bs.Lobby {
             break;
           }
           case 50: {
-            IP = input.ReadString();
+            Ip = input.ReadString();
             break;
           }
           case 58: {
@@ -831,7 +677,7 @@ namespace Bs.Lobby {
             break;
           }
           case 50: {
-            IP = input.ReadString();
+            Ip = input.ReadString();
             break;
           }
           case 58: {
@@ -868,14 +714,14 @@ namespace Bs.Lobby {
         /// <summary>
         ///账号
         /// </summary>
-        [pbr::OriginalName("Account")] Account = 0,
+        [pbr::OriginalName("acc")] Acc = 0,
         /// <summary>
         /// </summary>
-        [pbr::OriginalName("Token")] Token = 1,
+        [pbr::OriginalName("token")] Token = 1,
         /// <summary>
         ///唯一标识(游客登录等)
         /// </summary>
-        [pbr::OriginalName("UnionId")] UnionId = 2,
+        [pbr::OriginalName("unionId")] UnionId = 2,
       }
 
     }
@@ -893,7 +739,6 @@ namespace Bs.Lobby {
   {
     private static readonly pb::MessageParser<LoginRsp> _parser = new pb::MessageParser<LoginRsp>(() => new LoginRsp());
     private pb::UnknownFieldSet _unknownFields;
-    private int _hasBits0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pb::MessageParser<LoginRsp> Parser { get { return _parser; } }
@@ -921,9 +766,8 @@ namespace Bs.Lobby {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public LoginRsp(LoginRsp other) : this() {
-      _hasBits0 = other._hasBits0;
       result_ = other.result_;
-      baseInfo_ = other.baseInfo_ != null ? other.baseInfo_.Clone() : null;
+      userInfo_ = other.userInfo_ != null ? other.userInfo_.Clone() : null;
       errInfo_ = other.errInfo_ != null ? other.errInfo_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -936,46 +780,31 @@ namespace Bs.Lobby {
 
     /// <summary>Field number for the "result" field.</summary>
     public const int ResultFieldNumber = 1;
-    private readonly static global::Bs.Lobby.LoginRsp.Types.Result ResultDefaultValue = global::Bs.Lobby.LoginRsp.Types.Result.Success;
-
-    private global::Bs.Lobby.LoginRsp.Types.Result result_;
+    private global::Bs.Lobby.LoginRsp.Types.Result result_ = global::Bs.Lobby.LoginRsp.Types.Result.Success;
     /// <summary>
     ///登录结果
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Bs.Lobby.LoginRsp.Types.Result Result {
-      get { if ((_hasBits0 & 1) != 0) { return result_; } else { return ResultDefaultValue; } }
+      get { return result_; }
       set {
-        _hasBits0 |= 1;
         result_ = value;
       }
     }
-    /// <summary>Gets whether the "result" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasResult {
-      get { return (_hasBits0 & 1) != 0; }
-    }
-    /// <summary>Clears the value of the "result" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearResult() {
-      _hasBits0 &= ~1;
-    }
 
-    /// <summary>Field number for the "base_info" field.</summary>
-    public const int BaseInfoFieldNumber = 2;
-    private global::Bs.Types.BaseUserInfo baseInfo_;
+    /// <summary>Field number for the "user_info" field.</summary>
+    public const int UserInfoFieldNumber = 2;
+    private global::Bs.Types.BaseUserInfo userInfo_;
     /// <summary>
     ///基本信息
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Bs.Types.BaseUserInfo BaseInfo {
-      get { return baseInfo_; }
+    public global::Bs.Types.BaseUserInfo UserInfo {
+      get { return userInfo_; }
       set {
-        baseInfo_ = value;
+        userInfo_ = value;
       }
     }
 
@@ -1007,7 +836,7 @@ namespace Bs.Lobby {
         return true;
       }
       if (Result != other.Result) return false;
-      if (!object.Equals(BaseInfo, other.BaseInfo)) return false;
+      if (!object.Equals(UserInfo, other.UserInfo)) return false;
       if (!object.Equals(ErrInfo, other.ErrInfo)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -1016,8 +845,8 @@ namespace Bs.Lobby {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (HasResult) hash ^= Result.GetHashCode();
-      if (baseInfo_ != null) hash ^= BaseInfo.GetHashCode();
+      if (Result != global::Bs.Lobby.LoginRsp.Types.Result.Success) hash ^= Result.GetHashCode();
+      if (userInfo_ != null) hash ^= UserInfo.GetHashCode();
       if (errInfo_ != null) hash ^= ErrInfo.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -1037,13 +866,13 @@ namespace Bs.Lobby {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (HasResult) {
+      if (Result != global::Bs.Lobby.LoginRsp.Types.Result.Success) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Result);
       }
-      if (baseInfo_ != null) {
+      if (userInfo_ != null) {
         output.WriteRawTag(18);
-        output.WriteMessage(BaseInfo);
+        output.WriteMessage(UserInfo);
       }
       if (errInfo_ != null) {
         output.WriteRawTag(154, 6);
@@ -1059,13 +888,13 @@ namespace Bs.Lobby {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (HasResult) {
+      if (Result != global::Bs.Lobby.LoginRsp.Types.Result.Success) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Result);
       }
-      if (baseInfo_ != null) {
+      if (userInfo_ != null) {
         output.WriteRawTag(18);
-        output.WriteMessage(BaseInfo);
+        output.WriteMessage(UserInfo);
       }
       if (errInfo_ != null) {
         output.WriteRawTag(154, 6);
@@ -1081,11 +910,11 @@ namespace Bs.Lobby {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (HasResult) {
+      if (Result != global::Bs.Lobby.LoginRsp.Types.Result.Success) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Result);
       }
-      if (baseInfo_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(BaseInfo);
+      if (userInfo_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(UserInfo);
       }
       if (errInfo_ != null) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(ErrInfo);
@@ -1102,14 +931,14 @@ namespace Bs.Lobby {
       if (other == null) {
         return;
       }
-      if (other.HasResult) {
+      if (other.Result != global::Bs.Lobby.LoginRsp.Types.Result.Success) {
         Result = other.Result;
       }
-      if (other.baseInfo_ != null) {
-        if (baseInfo_ == null) {
-          BaseInfo = new global::Bs.Types.BaseUserInfo();
+      if (other.userInfo_ != null) {
+        if (userInfo_ == null) {
+          UserInfo = new global::Bs.Types.BaseUserInfo();
         }
-        BaseInfo.MergeFrom(other.BaseInfo);
+        UserInfo.MergeFrom(other.UserInfo);
       }
       if (other.errInfo_ != null) {
         if (errInfo_ == null) {
@@ -1137,10 +966,10 @@ namespace Bs.Lobby {
             break;
           }
           case 18: {
-            if (baseInfo_ == null) {
-              BaseInfo = new global::Bs.Types.BaseUserInfo();
+            if (userInfo_ == null) {
+              UserInfo = new global::Bs.Types.BaseUserInfo();
             }
-            input.ReadMessage(BaseInfo);
+            input.ReadMessage(UserInfo);
             break;
           }
           case 794: {
@@ -1170,10 +999,10 @@ namespace Bs.Lobby {
             break;
           }
           case 18: {
-            if (baseInfo_ == null) {
-              BaseInfo = new global::Bs.Types.BaseUserInfo();
+            if (userInfo_ == null) {
+              UserInfo = new global::Bs.Types.BaseUserInfo();
             }
-            input.ReadMessage(BaseInfo);
+            input.ReadMessage(UserInfo);
             break;
           }
           case 794: {
@@ -1279,7 +1108,6 @@ namespace Bs.Lobby {
   {
     private static readonly pb::MessageParser<LogoutReq> _parser = new pb::MessageParser<LogoutReq>(() => new LogoutReq());
     private pb::UnknownFieldSet _unknownFields;
-    private int _hasBits0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pb::MessageParser<LogoutReq> Parser { get { return _parser; } }
@@ -1307,7 +1135,6 @@ namespace Bs.Lobby {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public LogoutReq(LogoutReq other) : this() {
-      _hasBits0 = other._hasBits0;
       userId_ = other.userId_;
       gateConnId_ = other.gateConnId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -1321,35 +1148,18 @@ namespace Bs.Lobby {
 
     /// <summary>Field number for the "user_id" field.</summary>
     public const int UserIdFieldNumber = 1;
-    private readonly static ulong UserIdDefaultValue = 0UL;
-
     private ulong userId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public ulong UserId {
-      get { if ((_hasBits0 & 1) != 0) { return userId_; } else { return UserIdDefaultValue; } }
+      get { return userId_; }
       set {
-        _hasBits0 |= 1;
         userId_ = value;
       }
     }
-    /// <summary>Gets whether the "user_id" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasUserId {
-      get { return (_hasBits0 & 1) != 0; }
-    }
-    /// <summary>Clears the value of the "user_id" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearUserId() {
-      _hasBits0 &= ~1;
-    }
 
-    /// <summary>Field number for the "GateConnId" field.</summary>
+    /// <summary>Field number for the "gate_conn_id" field.</summary>
     public const int GateConnIdFieldNumber = 2;
-    private readonly static ulong GateConnIdDefaultValue = 0UL;
-
     private ulong gateConnId_;
     /// <summary>
     ///客户端可不填
@@ -1357,23 +1167,10 @@ namespace Bs.Lobby {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public ulong GateConnId {
-      get { if ((_hasBits0 & 2) != 0) { return gateConnId_; } else { return GateConnIdDefaultValue; } }
+      get { return gateConnId_; }
       set {
-        _hasBits0 |= 2;
         gateConnId_ = value;
       }
-    }
-    /// <summary>Gets whether the "GateConnId" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasGateConnId {
-      get { return (_hasBits0 & 2) != 0; }
-    }
-    /// <summary>Clears the value of the "GateConnId" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearGateConnId() {
-      _hasBits0 &= ~2;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1400,8 +1197,8 @@ namespace Bs.Lobby {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (HasUserId) hash ^= UserId.GetHashCode();
-      if (HasGateConnId) hash ^= GateConnId.GetHashCode();
+      if (UserId != 0UL) hash ^= UserId.GetHashCode();
+      if (GateConnId != 0UL) hash ^= GateConnId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1420,11 +1217,11 @@ namespace Bs.Lobby {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (HasUserId) {
+      if (UserId != 0UL) {
         output.WriteRawTag(8);
         output.WriteUInt64(UserId);
       }
-      if (HasGateConnId) {
+      if (GateConnId != 0UL) {
         output.WriteRawTag(16);
         output.WriteUInt64(GateConnId);
       }
@@ -1438,11 +1235,11 @@ namespace Bs.Lobby {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (HasUserId) {
+      if (UserId != 0UL) {
         output.WriteRawTag(8);
         output.WriteUInt64(UserId);
       }
-      if (HasGateConnId) {
+      if (GateConnId != 0UL) {
         output.WriteRawTag(16);
         output.WriteUInt64(GateConnId);
       }
@@ -1456,10 +1253,10 @@ namespace Bs.Lobby {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (HasUserId) {
+      if (UserId != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(UserId);
       }
-      if (HasGateConnId) {
+      if (GateConnId != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(GateConnId);
       }
       if (_unknownFields != null) {
@@ -1474,10 +1271,10 @@ namespace Bs.Lobby {
       if (other == null) {
         return;
       }
-      if (other.HasUserId) {
+      if (other.UserId != 0UL) {
         UserId = other.UserId;
       }
-      if (other.HasGateConnId) {
+      if (other.GateConnId != 0UL) {
         GateConnId = other.GateConnId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -1543,7 +1340,6 @@ namespace Bs.Lobby {
   {
     private static readonly pb::MessageParser<LogoutRsp> _parser = new pb::MessageParser<LogoutRsp>(() => new LogoutRsp());
     private pb::UnknownFieldSet _unknownFields;
-    private int _hasBits0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pb::MessageParser<LogoutRsp> Parser { get { return _parser; } }
@@ -1571,7 +1367,6 @@ namespace Bs.Lobby {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public LogoutRsp(LogoutRsp other) : this() {
-      _hasBits0 = other._hasBits0;
       reason_ = other.reason_;
       errInfo_ = other.errInfo_ != null ? other.errInfo_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -1585,29 +1380,14 @@ namespace Bs.Lobby {
 
     /// <summary>Field number for the "reason" field.</summary>
     public const int ReasonFieldNumber = 1;
-    private readonly static global::Bs.Lobby.LogoutRsp.Types.LogoutReason ReasonDefaultValue = global::Bs.Lobby.LogoutRsp.Types.LogoutReason.Normal;
-
-    private global::Bs.Lobby.LogoutRsp.Types.LogoutReason reason_;
+    private global::Bs.Lobby.LogoutRsp.Types.LogoutReason reason_ = global::Bs.Lobby.LogoutRsp.Types.LogoutReason.Normal;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Bs.Lobby.LogoutRsp.Types.LogoutReason Reason {
-      get { if ((_hasBits0 & 1) != 0) { return reason_; } else { return ReasonDefaultValue; } }
+      get { return reason_; }
       set {
-        _hasBits0 |= 1;
         reason_ = value;
       }
-    }
-    /// <summary>Gets whether the "reason" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasReason {
-      get { return (_hasBits0 & 1) != 0; }
-    }
-    /// <summary>Clears the value of the "reason" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearReason() {
-      _hasBits0 &= ~1;
     }
 
     /// <summary>Field number for the "err_info" field.</summary>
@@ -1646,7 +1426,7 @@ namespace Bs.Lobby {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (HasReason) hash ^= Reason.GetHashCode();
+      if (Reason != global::Bs.Lobby.LogoutRsp.Types.LogoutReason.Normal) hash ^= Reason.GetHashCode();
       if (errInfo_ != null) hash ^= ErrInfo.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -1666,7 +1446,7 @@ namespace Bs.Lobby {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (HasReason) {
+      if (Reason != global::Bs.Lobby.LogoutRsp.Types.LogoutReason.Normal) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Reason);
       }
@@ -1684,7 +1464,7 @@ namespace Bs.Lobby {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (HasReason) {
+      if (Reason != global::Bs.Lobby.LogoutRsp.Types.LogoutReason.Normal) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Reason);
       }
@@ -1702,7 +1482,7 @@ namespace Bs.Lobby {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (HasReason) {
+      if (Reason != global::Bs.Lobby.LogoutRsp.Types.LogoutReason.Normal) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Reason);
       }
       if (errInfo_ != null) {
@@ -1720,7 +1500,7 @@ namespace Bs.Lobby {
       if (other == null) {
         return;
       }
-      if (other.HasReason) {
+      if (other.Reason != global::Bs.Lobby.LogoutRsp.Types.LogoutReason.Normal) {
         Reason = other.Reason;
       }
       if (other.errInfo_ != null) {
@@ -2159,19 +1939,18 @@ namespace Bs.Lobby {
   }
 
   /// <summary>
-  ///用户状态
+  ///查询用户
   /// </summary>
-  public sealed partial class UserOnlineState : pb::IMessage<UserOnlineState>
+  public sealed partial class QueryUserInfoReq : pb::IMessage<QueryUserInfoReq>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<UserOnlineState> _parser = new pb::MessageParser<UserOnlineState>(() => new UserOnlineState());
+    private static readonly pb::MessageParser<QueryUserInfoReq> _parser = new pb::MessageParser<QueryUserInfoReq>(() => new QueryUserInfoReq());
     private pb::UnknownFieldSet _unknownFields;
-    private int _hasBits0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<UserOnlineState> Parser { get { return _parser; } }
+    public static pb::MessageParser<QueryUserInfoReq> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -2187,7 +1966,7 @@ namespace Bs.Lobby {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public UserOnlineState() {
+    public QueryUserInfoReq() {
       OnConstruction();
     }
 
@@ -2195,24 +1974,299 @@ namespace Bs.Lobby {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public UserOnlineState(UserOnlineState other) : this() {
-      _hasBits0 = other._hasBits0;
-      userInfo_ = other.userInfo_ != null ? other.userInfo_.Clone() : null;
-      onlineState_ = other.onlineState_;
+    public QueryUserInfoReq(QueryUserInfoReq other) : this() {
+      userId_ = other.userId_;
+      queryType_ = other.queryType_;
+      roomConnId_ = other.roomConnId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public UserOnlineState Clone() {
-      return new UserOnlineState(this);
+    public QueryUserInfoReq Clone() {
+      return new QueryUserInfoReq(this);
+    }
+
+    /// <summary>Field number for the "user_id" field.</summary>
+    public const int UserIdFieldNumber = 1;
+    private ulong userId_;
+    /// <summary>
+    ///用户ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong UserId {
+      get { return userId_; }
+      set {
+        userId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "query_type" field.</summary>
+    public const int QueryTypeFieldNumber = 2;
+    private uint queryType_;
+    /// <summary>
+    ///操作类型 0进房查询
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint QueryType {
+      get { return queryType_; }
+      set {
+        queryType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "room_conn_id" field.</summary>
+    public const int RoomConnIdFieldNumber = 19;
+    private ulong roomConnId_;
+    /// <summary>
+    ///所在房间
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong RoomConnId {
+      get { return roomConnId_; }
+      set {
+        roomConnId_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as QueryUserInfoReq);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(QueryUserInfoReq other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (UserId != other.UserId) return false;
+      if (QueryType != other.QueryType) return false;
+      if (RoomConnId != other.RoomConnId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (UserId != 0UL) hash ^= UserId.GetHashCode();
+      if (QueryType != 0) hash ^= QueryType.GetHashCode();
+      if (RoomConnId != 0UL) hash ^= RoomConnId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (UserId != 0UL) {
+        output.WriteRawTag(8);
+        output.WriteUInt64(UserId);
+      }
+      if (QueryType != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(QueryType);
+      }
+      if (RoomConnId != 0UL) {
+        output.WriteRawTag(152, 1);
+        output.WriteUInt64(RoomConnId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (UserId != 0UL) {
+        output.WriteRawTag(8);
+        output.WriteUInt64(UserId);
+      }
+      if (QueryType != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(QueryType);
+      }
+      if (RoomConnId != 0UL) {
+        output.WriteRawTag(152, 1);
+        output.WriteUInt64(RoomConnId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (UserId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(UserId);
+      }
+      if (QueryType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(QueryType);
+      }
+      if (RoomConnId != 0UL) {
+        size += 2 + pb::CodedOutputStream.ComputeUInt64Size(RoomConnId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(QueryUserInfoReq other) {
+      if (other == null) {
+        return;
+      }
+      if (other.UserId != 0UL) {
+        UserId = other.UserId;
+      }
+      if (other.QueryType != 0) {
+        QueryType = other.QueryType;
+      }
+      if (other.RoomConnId != 0UL) {
+        RoomConnId = other.RoomConnId;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            UserId = input.ReadUInt64();
+            break;
+          }
+          case 16: {
+            QueryType = input.ReadUInt32();
+            break;
+          }
+          case 152: {
+            RoomConnId = input.ReadUInt64();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            UserId = input.ReadUInt64();
+            break;
+          }
+          case 16: {
+            QueryType = input.ReadUInt32();
+            break;
+          }
+          case 152: {
+            RoomConnId = input.ReadUInt64();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  ///查询用户
+  /// </summary>
+  public sealed partial class QueryUserInfoRsp : pb::IMessage<QueryUserInfoRsp>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<QueryUserInfoRsp> _parser = new pb::MessageParser<QueryUserInfoRsp>(() => new QueryUserInfoRsp());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<QueryUserInfoRsp> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Bs.Lobby.LobbyReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public QueryUserInfoRsp() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public QueryUserInfoRsp(QueryUserInfoRsp other) : this() {
+      userInfo_ = other.userInfo_ != null ? other.userInfo_.Clone() : null;
+      queryType_ = other.queryType_;
+      errInfo_ = other.errInfo_ != null ? other.errInfo_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public QueryUserInfoRsp Clone() {
+      return new QueryUserInfoRsp(this);
     }
 
     /// <summary>Field number for the "user_info" field.</summary>
     public const int UserInfoFieldNumber = 1;
     private global::Bs.Types.BaseUserInfo userInfo_;
     /// <summary>
-    ///基本信息
+    ///用户信息
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -2223,42 +2277,42 @@ namespace Bs.Lobby {
       }
     }
 
-    /// <summary>Field number for the "online_state" field.</summary>
-    public const int OnlineStateFieldNumber = 2;
-    private readonly static global::Bs.Lobby.UserOnlineState.Types.OnlineStat OnlineStateDefaultValue = global::Bs.Lobby.UserOnlineState.Types.OnlineStat.Online;
-
-    private global::Bs.Lobby.UserOnlineState.Types.OnlineStat onlineState_;
+    /// <summary>Field number for the "query_type" field.</summary>
+    public const int QueryTypeFieldNumber = 2;
+    private uint queryType_;
+    /// <summary>
+    ///操作类型 0进房查询
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Bs.Lobby.UserOnlineState.Types.OnlineStat OnlineState {
-      get { if ((_hasBits0 & 1) != 0) { return onlineState_; } else { return OnlineStateDefaultValue; } }
+    public uint QueryType {
+      get { return queryType_; }
       set {
-        _hasBits0 |= 1;
-        onlineState_ = value;
+        queryType_ = value;
       }
     }
-    /// <summary>Gets whether the "online_state" field is set</summary>
+
+    /// <summary>Field number for the "err_info" field.</summary>
+    public const int ErrInfoFieldNumber = 99;
+    private global::Bs.Types.ErrorInfo errInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasOnlineState {
-      get { return (_hasBits0 & 1) != 0; }
-    }
-    /// <summary>Clears the value of the "online_state" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearOnlineState() {
-      _hasBits0 &= ~1;
+    public global::Bs.Types.ErrorInfo ErrInfo {
+      get { return errInfo_; }
+      set {
+        errInfo_ = value;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as UserOnlineState);
+      return Equals(other as QueryUserInfoRsp);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(UserOnlineState other) {
+    public bool Equals(QueryUserInfoRsp other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -2266,7 +2320,8 @@ namespace Bs.Lobby {
         return true;
       }
       if (!object.Equals(UserInfo, other.UserInfo)) return false;
-      if (OnlineState != other.OnlineState) return false;
+      if (QueryType != other.QueryType) return false;
+      if (!object.Equals(ErrInfo, other.ErrInfo)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2275,7 +2330,8 @@ namespace Bs.Lobby {
     public override int GetHashCode() {
       int hash = 1;
       if (userInfo_ != null) hash ^= UserInfo.GetHashCode();
-      if (HasOnlineState) hash ^= OnlineState.GetHashCode();
+      if (QueryType != 0) hash ^= QueryType.GetHashCode();
+      if (errInfo_ != null) hash ^= ErrInfo.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2298,9 +2354,13 @@ namespace Bs.Lobby {
         output.WriteRawTag(10);
         output.WriteMessage(UserInfo);
       }
-      if (HasOnlineState) {
+      if (QueryType != 0) {
         output.WriteRawTag(16);
-        output.WriteEnum((int) OnlineState);
+        output.WriteUInt32(QueryType);
+      }
+      if (errInfo_ != null) {
+        output.WriteRawTag(154, 6);
+        output.WriteMessage(ErrInfo);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -2316,9 +2376,13 @@ namespace Bs.Lobby {
         output.WriteRawTag(10);
         output.WriteMessage(UserInfo);
       }
-      if (HasOnlineState) {
+      if (QueryType != 0) {
         output.WriteRawTag(16);
-        output.WriteEnum((int) OnlineState);
+        output.WriteUInt32(QueryType);
+      }
+      if (errInfo_ != null) {
+        output.WriteRawTag(154, 6);
+        output.WriteMessage(ErrInfo);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -2333,8 +2397,11 @@ namespace Bs.Lobby {
       if (userInfo_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(UserInfo);
       }
-      if (HasOnlineState) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) OnlineState);
+      if (QueryType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(QueryType);
+      }
+      if (errInfo_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(ErrInfo);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2344,7 +2411,7 @@ namespace Bs.Lobby {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(UserOnlineState other) {
+    public void MergeFrom(QueryUserInfoRsp other) {
       if (other == null) {
         return;
       }
@@ -2354,8 +2421,14 @@ namespace Bs.Lobby {
         }
         UserInfo.MergeFrom(other.UserInfo);
       }
-      if (other.HasOnlineState) {
-        OnlineState = other.OnlineState;
+      if (other.QueryType != 0) {
+        QueryType = other.QueryType;
+      }
+      if (other.errInfo_ != null) {
+        if (errInfo_ == null) {
+          ErrInfo = new global::Bs.Types.ErrorInfo();
+        }
+        ErrInfo.MergeFrom(other.ErrInfo);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2380,7 +2453,14 @@ namespace Bs.Lobby {
             break;
           }
           case 16: {
-            OnlineState = (global::Bs.Lobby.UserOnlineState.Types.OnlineStat) input.ReadEnum();
+            QueryType = input.ReadUInt32();
+            break;
+          }
+          case 794: {
+            if (errInfo_ == null) {
+              ErrInfo = new global::Bs.Types.ErrorInfo();
+            }
+            input.ReadMessage(ErrInfo);
             break;
           }
         }
@@ -2406,28 +2486,20 @@ namespace Bs.Lobby {
             break;
           }
           case 16: {
-            OnlineState = (global::Bs.Lobby.UserOnlineState.Types.OnlineStat) input.ReadEnum();
+            QueryType = input.ReadUInt32();
+            break;
+          }
+          case 794: {
+            if (errInfo_ == null) {
+              ErrInfo = new global::Bs.Types.ErrorInfo();
+            }
+            input.ReadMessage(ErrInfo);
             break;
           }
         }
       }
     }
     #endif
-
-    #region Nested types
-    /// <summary>Container for nested types declared in the UserOnlineState message type.</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static partial class Types {
-      public enum OnlineStat {
-        [pbr::OriginalName("Online")] Online = 1,
-        [pbr::OriginalName("Disconnection")] Disconnection = 2,
-        [pbr::OriginalName("Reconnect")] Reconnect = 3,
-        [pbr::OriginalName("Offline")] Offline = 4,
-      }
-
-    }
-    #endregion
 
   }
 

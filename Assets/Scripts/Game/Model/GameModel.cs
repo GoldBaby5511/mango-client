@@ -158,7 +158,7 @@ public class GameModel
 
     public static uint currentRoomId = 0;               //加入房间ID
     public static ulong hostUserId = 0;                   //房主ID
-    public static int hogChairId = 65535;               //庄家ID
+    public static int hogChairId = INVALID_CHAIR;               //庄家ID
 
     //音频初始化
     public static void InitRes()

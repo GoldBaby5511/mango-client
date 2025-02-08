@@ -196,7 +196,7 @@ public class HallPnlLogin : View
         {
             AppConfig.localAddress[0] = inputAddress.value;
         }
-        HallService.Instance.InitAccountInfo(LoginType.Account, "test001", "test001", "", "Test001", "", "", "", "");
+        HallService.Instance.InitAccountInfo(LoginType.Account, "111111", "123qwe", "", "Test001", "", "", "", "");
         HallService.Instance.Connect(ConnectType.Normal);
     }
 
@@ -207,7 +207,7 @@ public class HallPnlLogin : View
         {
             AppConfig.localAddress[0] = inputAddress.value;
         }
-        HallService.Instance.InitAccountInfo(LoginType.Account, "test002", "test002", "", "Test002", "", "", "", "");
+        HallService.Instance.InitAccountInfo(LoginType.Account, "222222", "123qwe", "", "Test002", "", "", "", "");
         HallService.Instance.Connect(ConnectType.Normal);
     }
 

@@ -616,4 +616,22 @@ public class Util : MonoBehaviour
         }
         return "";
     }
+
+    //合成64
+    public static UInt64 CombineUInt64(UInt32 high, UInt32 low)
+    {
+        return (((UInt64)high << 32) | low); 
+    }
+
+    //高32位
+    public static UInt32 GetHighUint32(UInt64 value)
+    {
+        return (uint)(value >> 32);       // 高32位
+    }
+
+    //低32位
+    public static UInt32 GetLowUint32(UInt64 value)
+    {
+        return (uint)(value & 0xFFFFFFFF); // 低32位
+    }
 }

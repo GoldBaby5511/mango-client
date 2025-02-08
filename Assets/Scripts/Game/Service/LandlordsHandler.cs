@@ -1,15 +1,43 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System;
 
 public class LandlordsHandler : IHandler 
 {
     int gameStatus = 0;
     public bool Handler(NetPacket packet)
     {
-        switch (packet.header.wMainCmdID + "-" + packet.header.wSubCmdID)
+        if(!(packet.GetMainCmdID() == NetManager.AppGate && packet.GetSubCmdID() == (UInt32)Bs.Gateway.CMDGateway.IdtransferDataReq))
+        {
+            Debug.LogError("游戏状态收到异常消息,MainCmdID=" + packet.GetMainCmdID() + ",SubCmdID=" + packet.GetSubCmdID());
+            return false;
+        }
+        Debug.Log("收到游戏状态,MainCmdID=" + packet.GetMainCmdID() + ",SubCmdID=" + packet.GetSubCmdID());
+        Bs.Gateway.TransferDataReq req = packet.Deserialize<Bs.Gateway.TransferDataReq>();
+        switch (req.MainCmdId)
+        {
+            case NetManager.AppRoom:
+                {
+                    switch(req.SubCmdId)
+                    {
+                        case (uint)Bs.Room.CMDRoom.IdgameStatus:
+                            {
+                                Bs.Room.GameStatus rsp = NetPacket.Deserialize<Bs.Room.GameStatus>(req.Data.ToByteArray());
+                                gameStatus = (int)rsp.GameStatus_;
+                                return true;
+                            }
+                    }
+
+                    return false;
+                }
+        }
+        return false;
+
+        switch (req.MainCmdId + "-" + req.SubCmdId)
         {
             case "100-100":
                 //收到游戏状态
+                Debug.Log("收到游戏状态");
+                return true;
                 CMD_Game_S_GameStatus pro_100_100 = new CMD_Game_S_GameStatus();
                 pro_100_100.UnPack(packet.bytes);
                 gameStatus = pro_100_100.cbGameStatus;

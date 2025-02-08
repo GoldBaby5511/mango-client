@@ -2,6 +2,7 @@
 using System.Collections;
 using DG.Tweening;
 using System.Collections.Generic;
+using System;
 
 public class HallPnlMain : View
 {
@@ -325,14 +326,14 @@ public class HallPnlMain : View
         privateRoom.SetActive(false);
         roomList.transform.Find("Panel").GetComponent<UIScrollView>().ResetPosition();
         //数据保存
-        Dictionary<System.UInt32, Bs.Types.RoomInfo> serverDic = new Dictionary<System.UInt32, Bs.Types.RoomInfo>();
-        foreach (Bs.Types.RoomInfo server in HallModel.roomList.Values)
+        Dictionary<System.UInt32, GameServerInfo> serverDic = new Dictionary<System.UInt32, GameServerInfo>();
+        foreach (GameServerInfo server in HallModel.serverList.Values)
         {
-            if (server.Kind == (ushort)HallModel.currentGameKindId && server.Type == Bs.Types.RoomInfo.Types.RoomType.Gold)
+            if (server.wKindID == (ushort)HallModel.currentGameKindId && server.wServerType == (UInt16)Bs.Types.RoomInfo.Types.RoomType.Gold)
             {
-                if (!serverDic.ContainsKey(server.Level))
+                if (!serverDic.ContainsKey(server.wServerLevel))
                 {
-                    serverDic.Add(server.Level, server);
+                    serverDic.Add(server.wServerLevel, server);
                 }
             }
         }
@@ -342,8 +343,8 @@ public class HallPnlMain : View
             if (serverDic.ContainsKey(i))
             {
                 btnRooms[i].gameObject.SetActive(true);
-                btnRooms[i].transform.Find("lblBaseScore").GetComponent<UILabel>().text = "底分：" + serverDic[i].BaseScore;
-                btnRooms[i].transform.Find("lblLimit").GetComponent<UILabel>().text = "最低进入" + serverDic[i].JoinMin + "金币";
+                btnRooms[i].transform.Find("lblBaseScore").GetComponent<UILabel>().text = "底分：" + serverDic[i].lCellScore;
+                btnRooms[i].transform.Find("lblLimit").GetComponent<UILabel>().text = "最低进入" + serverDic[i].lEnterScore + "金币";
                 //btnRooms[i].GetComponent<TweenScale>().ResetToBeginning();
                 btnRooms[i].GetComponent<TweenScale>().PlayForward();
                 btnRooms[i].GetComponent<TweenAlpha>().PlayForward();
@@ -358,7 +359,7 @@ public class HallPnlMain : View
         {
             if (serverDic.ContainsKey((System.UInt32)i))
             {
-                if (quickIndex == -1 && HallModel.userCoinInGame > serverDic[(System.UInt32)i].JoinMin)
+                if (quickIndex == -1 && HallModel.userCoinInGame > serverDic[(System.UInt32)i].lEnterScore)
                 {
                     quickIndex = i;
                 }
@@ -933,18 +934,16 @@ public class HallPnlMain : View
     //点击房间
     void OnBtnRoomClick(GameObject obj)
     {
-        Debug.Log("点击房间");
-
         ushort level = ushort.Parse(obj.name.Split('_')[1]);
 
-        Debug.Log("点击房间,level="+level);
+        Debug.Log("点击房间,level=" + level + ",name=" + obj.name);
 
         AudioManager.Instance.PlaySound(GameModel.audioButtonOp);
         HallModel.currentGameFlag = GameFlag.Landlords3;
 
         HallModel.opOnLoginGame = OpOnLginGame.GetChair;
         GameModel.currentRoomId = 0xFFFFFFFF;
-        GameService.Instance.EnterRoom();
+        GameService.Instance.EnterRoom(level);
         //HallService.Instance.GetRoomServerInfo(GameModel.ServerKind_Gold, level);
     }
 

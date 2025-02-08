@@ -320,6 +320,7 @@ public class HallService : MonoBehaviour
         req.GameKind = 120;
         req.Account = userAccount;
         req.Password = Util.GetMd5(userPassword);
+        req.LoginType = LoginReq.Types.LoginType.Acc;
         client.SendTransferData2Gate(NetManager.AppLobby, NetManager.Send2AnyOne, NetManager.AppLobby, (UInt32)(CMDLobby.IdloginReq), req);
     }
 
@@ -346,14 +347,30 @@ public class HallService : MonoBehaviour
                 }
             }
             //数据缓存
-            HallModel.userId = rsp.BaseInfo.UserId;
-            HallModel.gameId = rsp.BaseInfo.GameId;
-            HallModel.userName = rsp.BaseInfo.NickName;
+            HallModel.userId = rsp.UserInfo.UserId;
+            HallModel.gameId = rsp.UserInfo.GameId;
+            HallModel.userName = rsp.UserInfo.NickName;
             HallModel.userSex = 0;
-            HallModel.faceId = (int)rsp.BaseInfo.FaceId;
+            HallModel.faceId = (int)rsp.UserInfo.FaceId;
             HallModel.dynamicPassword = "";
-            HallModel.userDiamondCount = 0;
-            HallModel.userCoinInGame = 0;
+            foreach (var p in rsp.UserInfo.Props)
+            {
+                switch(p.Id)
+                {
+                    case Bs.Types.PropItem.Types.PropType.Ingot:
+                        HallModel.userDiamondCount = p.Count;
+                        break;
+                    case Bs.Types.PropItem.Types.PropType.Coin:
+                        HallModel.userCoinInGame = p.Count;
+                        break;
+                    case Bs.Types.PropItem.Types.PropType.RedPacket:
+                        HallModel.userRedPackCount = p.Count;
+                        break;
+                }
+            }
+
+            //HallModel.userDiamondCount = 0;// rsp.UserInfo.Props;
+            //HallModel.userCoinInGame = 0;
             HallModel.userCoinInBank = 0;
             HallModel.isBankEnable = false;
             //HallModel.userRateInfo = "胜 " + pro.dwWinCount + "，负 " + pro.dwLostCount + "，平 " + pro.dwDrawCount;
@@ -424,9 +441,36 @@ public class HallService : MonoBehaviour
         Debug.Log("房间回复,count=" + rsp.Rooms.Count);
         for (int i = 0; i < rsp.Rooms.Count; i++)
         {
-            HallModel.roomList[rsp.Rooms[i].AppInfo.Id] = rsp.Rooms[i];
-            Debug.Log("插入房间,id=" + rsp.Rooms[i].AppInfo.Id);
+            UInt64 serviceID = Util.CombineUInt64(rsp.Rooms[i].AppInfo.Type, rsp.Rooms[i].AppInfo.Id);
+
+            Debug.Log("插入房间,Type=" + rsp.Rooms[i].AppInfo.Type + ",ID=" + rsp.Rooms[i].AppInfo.Id + ",serviceID=" + serviceID);
+
+            GameServerInfo serverInfo = new GameServerInfo();
+
+            serverInfo.baseInfo = new ServiceBaseInfo();
+            serverInfo.baseInfo.dwType = rsp.Rooms[i].AppInfo.Type;
+            serverInfo.baseInfo.dwID = rsp.Rooms[i].AppInfo.Id;
+
+            serverInfo.wKindID = (UInt16)rsp.Rooms[i].Kind;
+            serverInfo.wServerType = (UInt16)rsp.Rooms[i].Type;
+            serverInfo.wServerLevel = (UInt16)rsp.Rooms[i].Level;
+            serverInfo.lEnterScore = rsp.Rooms[i].MinTableScore;
+
+            if (HallModel.serverList.ContainsKey(serviceID))
+            {
+                HallModel.serverList[serviceID] = serverInfo;
+            }
+            else
+            {
+                HallModel.serverList.Add(serviceID, serverInfo);
+            }
         }
+
+        //for (int i = 0; i < rsp.Rooms.Count; i++)
+        //{
+        //    HallModel.roomList[rsp.Rooms[i].AppInfo.Id] = rsp.Rooms[i];
+        //    Debug.Log("插入房间,id=" + rsp.Rooms[i].AppInfo.Id);
+        //}
     }
 
     //登陆完成

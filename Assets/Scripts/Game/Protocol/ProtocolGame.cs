@@ -31,52 +31,52 @@ public class CMD_Game_CS_NetSpeed : DataBase
 }
 
 /// 登陆游戏 1-2
-public class CMD_Game_C_LoginGame : DataBase
-{ 
-    //版本信息
-    public UInt32 wGameID;					//游戏标识
-	public UInt32 dwProcessVersion;			//进程版本
+//public class CMD_Game_C_LoginGame : DataBase
+//{ 
+//    //版本信息
+//    public UInt32 wGameID;					//游戏标识
+//	public UInt32 dwProcessVersion;			//进程版本
 
-	//桌子区域
-	public Byte cbDeviceType;                   //设备类型
-    public UInt16 wBehaviorFlags = 0;           //行为标识
-    public UInt16 wPageTableCount = 0;          //分页桌数
+//	//桌子区域
+//	public Byte cbDeviceType;                   //设备类型
+//    public UInt16 wBehaviorFlags = 0;           //行为标识
+//    public UInt16 wPageTableCount = 0;          //分页桌数
 
-	//登录信息
-	public UInt32 dwUserID;				    	//用户 I D
-	public string szPassword = "";				//登录密码
-	public string szServerPasswd = "";          //房间密码
-	public string szMachineID = "";		        //机器标识
+//	//登录信息
+//	public UInt32 dwUserID;				    	//用户 I D
+//	public string szPassword = "";				//登录密码
+//	public string szServerPasswd = "";          //房间密码
+//	public string szMachineID = "";		        //机器标识
 
-    //GPS信息
-    public float fLatitude;										//用户纬度
-    public float fLongitude;									//用户经度
-    public float fHeight;										//用户高度
+//    //GPS信息
+//    public float fLatitude;										//用户纬度
+//    public float fLongitude;									//用户经度
+//    public float fHeight;										//用户高度
 
 
-    public CMD_Game_C_LoginGame()
-    {
-        header.wMainCmdID = 1;
-        header.wSubCmdID = 2;
-    }
+//    public CMD_Game_C_LoginGame()
+//    {
+//        header.wMainCmdID = 1;
+//        header.wSubCmdID = 2;
+//    }
 
-    protected override void PackBody()
-    {
-        WriteUInt32(wGameID);
-        WriteUInt32(dwProcessVersion);
-        WriteByte(cbDeviceType);
-        WriteUInt16(wBehaviorFlags);
-        WriteUInt16(wPageTableCount);
-        WriteUInt32(dwUserID);
-        WriteString(szPassword, 66);
-        WriteString(szServerPasswd, 66);
-        WriteString(szMachineID, 66);
+//    protected override void PackBody()
+//    {
+//        WriteUInt32(wGameID);
+//        WriteUInt32(dwProcessVersion);
+//        WriteByte(cbDeviceType);
+//        WriteUInt16(wBehaviorFlags);
+//        WriteUInt16(wPageTableCount);
+//        WriteUInt32(dwUserID);
+//        WriteString(szPassword, 66);
+//        WriteString(szServerPasswd, 66);
+//        WriteString(szMachineID, 66);
 
-        WriteFloat(fLatitude);
-        WriteFloat(fLongitude);
-        WriteFloat(fHeight);
-    }
-}
+//        WriteFloat(fLatitude);
+//        WriteFloat(fLongitude);
+//        WriteFloat(fHeight);
+//    }
+//}
 
 /// 登录游戏成功 1-100
 public class CMD_Game_S_LoginGameSuccess : DataBase

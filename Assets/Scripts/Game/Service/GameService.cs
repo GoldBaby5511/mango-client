@@ -4,6 +4,7 @@ using System.Net;
 using System;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using System.Collections.Generic;
 
 public class GameService : MonoBehaviour
 {
@@ -173,23 +174,23 @@ public class GameService : MonoBehaviour
     }
 
     //链接服务器成功
-    public void OnConnectSuccess()
-    {
-        isConnect = true;
-        //开始网络连接状态监测
-        CancelInvoke("ConnectDetection");
-        InvokeRepeating("ConnectDetection", 3f, 5f);
-        //发送心跳包
-        CancelInvoke("SendHeartPacket");
-        InvokeRepeating("SendHeartPacket", 1f, 5f);
-        //网络测试
-        CancelInvoke("TestSpeed");
-        InvokeRepeating("TestSpeed", 1f, 5f);
-        //关闭连接提示
-        //Util.Instance.DoAction(GameEvent.V_CloseConnectTip);
-        //登录游戏
-        LoginGame();
-    }
+    //public void OnConnectSuccess()
+    //{
+    //    isConnect = true;
+    //    //开始网络连接状态监测
+    //    CancelInvoke("ConnectDetection");
+    //    InvokeRepeating("ConnectDetection", 3f, 5f);
+    //    //发送心跳包
+    //    CancelInvoke("SendHeartPacket");
+    //    InvokeRepeating("SendHeartPacket", 1f, 5f);
+    //    //网络测试
+    //    CancelInvoke("TestSpeed");
+    //    InvokeRepeating("TestSpeed", 1f, 5f);
+    //    //关闭连接提示
+    //    //Util.Instance.DoAction(GameEvent.V_CloseConnectTip);
+    //    //登录游戏
+    //    LoginGame();
+    //}
 
     //网络连接异常
     public void OnConnectError()
@@ -201,99 +202,134 @@ public class GameService : MonoBehaviour
 
 
     //登录游戏
-    public void LoginGame()
-    {
-        CMD_Game_C_LoginGame pro = new CMD_Game_C_LoginGame();
+    //public void LoginGame()
+    //{
+    //    CMD_Game_C_LoginGame pro = new CMD_Game_C_LoginGame();
 
-        pro.wGameID = (uint)HallModel.gameId;
-        pro.cbDeviceType = Util.GetDeviceType();
-        pro.wBehaviorFlags = 0;        //0x1000表示登录成功后自动坐下   0-表示不坐下
-        pro.dwUserID = (uint)HallModel.userId;
-        pro.szPassword = HallModel.dynamicPassword;
-        pro.szServerPasswd = "";
-        pro.szMachineID = Util.GetMacCode();
+    //    pro.wGameID = (uint)HallModel.gameId;
+    //    pro.cbDeviceType = Util.GetDeviceType();
+    //    pro.wBehaviorFlags = 0;        //0x1000表示登录成功后自动坐下   0-表示不坐下
+    //    pro.dwUserID = (uint)HallModel.userId;
+    //    pro.szPassword = HallModel.dynamicPassword;
+    //    pro.szServerPasswd = "";
+    //    pro.szMachineID = Util.GetMacCode();
 
-        pro.fLatitude = GPSManager.latitude;
-        pro.fLongitude = GPSManager.longitude;
+    //    pro.fLatitude = GPSManager.latitude;
+    //    pro.fLongitude = GPSManager.longitude;
 
-        client.SendPro(pro);
-        //初始化用户列表
-        GameModel.deskId = 65535;
-        GameModel.chairId = 65535;
-        GameModel.playerInRoom.Clear();
-        GameModel.playerInDesk.Clear();
-    }
+    //    client.SendPro(pro);
+    //    //初始化用户列表
+    //    GameModel.deskId = 65535;
+    //    GameModel.chairId = 65535;
+    //    GameModel.playerInRoom.Clear();
+    //    GameModel.playerInDesk.Clear();
+    //}
 
     //收到游戏服务器配置信息
-    public void OnReceiveGameServerConfig(CMD_Game_S_GameServerConfig pro)
+    public bool OnReceiveGameServerConfig(Bs.Gateway.TransferDataReq req)
     {
-        GameModel.roomDeskCount = pro.wTableCount;
-        GameModel.deskPlayerCount = pro.wChairCount;
+        Bs.Room.ConfigServer rsp = NetPacket.Deserialize<Bs.Room.ConfigServer>(req.Data.ToByteArray());
 
-        GameModel.roomCoinLimit = pro.roomCoinLimit;
+        GameModel.roomDeskCount = (int)rsp.TableCount;
+        GameModel.deskPlayerCount = (int)rsp.ChairCount;
+        GameModel.roomCoinLimit = rsp.MinTableScore;
+        return true;
     }
 
     //收到桌子信息
-    public void OnReceiveTableInfo(CMD_Game_S_TableInfo pro)
+    public bool OnReceiveTableInfo(Bs.Gateway.TransferDataReq req)
     {
+        Bs.Room.TableInfo rsp = NetPacket.Deserialize<Bs.Room.TableInfo>(req.Data.ToByteArray());
         GameModel.tableList.Clear();
-        for (int i = 0; i < pro.wTableCount; i++)
+        foreach (var t in rsp.TableStatusArray)
         {
-            GameModel.tableList.Add(pro.TableStatusArray[i]);
+            TagTableState ts = new TagTableState();
+            ts.cbTableLock = (byte)t.TableLock;
+            ts.cbPlayStatus = (byte)t.PlayStatus;
+            ts.lCellScore = t.CellScore;
+            GameModel.tableList.Add(ts);
         }
+        return true;
     }
 
     //收到桌子状态
-    public void OnReceiveTableState(CMD_Game_S_TableState pro)
+    public bool OnReceiveTableState(Bs.Gateway.TransferDataReq req)
     {
-        GameModel.tableList[pro.wTableID] = pro.TableStatus;
+        Bs.Room.TableStatus rsp = NetPacket.Deserialize<Bs.Room.TableStatus>(req.Data.ToByteArray());
+
+        TagTableState ts = new TagTableState();
+        ts.cbTableLock = (byte)rsp.TableStatus_.TableLock;
+        ts.cbPlayStatus = (byte)rsp.TableStatus_.PlayStatus;
+        ts.lCellScore = (byte)rsp.TableStatus_.CellScore;
+        GameModel.tableList[(int)rsp.TableId] = ts;
+
         //刷新桌子状态
         if (SceneManager.GetActiveScene().name.ToLower().Contains("hall"))
         {
             Util.Instance.DoAction(GameEvent.S_RefreshDeskState);
         }
+
+        return true;
     }
 
     // 用户进入房间
-    public void OnUserCome(CMD_Game_S_UserCome pro)
+    public bool OnUserCome(Bs.Gateway.TransferDataReq req)
     {
+        Bs.Room.UserEnter rsp = NetPacket.Deserialize<Bs.Room.UserEnter>(req.Data.ToByteArray());
+
+        PlayerInRoom player = new PlayerInRoom();
+        player.dwUserID = rsp.UserId;
+        player.dwGameID = rsp.GameId;
+        player.cbUserStatus = (Byte)rsp.UserStatus;
+        player.wTableID = (UInt16)rsp.TableId;
+        player.wChairID = (UInt16)rsp.ChairId;
+
+        player.lScore = rsp.Score;
+        player.lIngot = rsp.Ingot;
+        player.lInsure = rsp.Insure;
+        player.redPack = rsp.RedRevelopes;
+
         //自己进入房间，初始化自己的桌号、座位号
-        if (pro.player.dwUserID == HallModel.userId)
+        if (rsp.UserId == HallModel.userId)
         {
-            GameModel.deskId = pro.player.wTableID;
-            GameModel.chairId = pro.player.wChairID;
+            GameModel.deskId = player.wTableID;
+            GameModel.chairId = player.wChairID;
         }
         //维护房间用户列表
-        if (GameModel.playerInRoom.ContainsKey(pro.player.dwUserID))
+        if (GameModel.playerInRoom.ContainsKey(rsp.UserId))
         {
-            GameModel.playerInRoom[pro.player.dwUserID] = pro.player;
+            GameModel.playerInRoom[rsp.UserId] = player;
         }
         else
         {
-            GameModel.playerInRoom.Add(pro.player.dwUserID, pro.player);
+            GameModel.playerInRoom.Add(rsp.UserId, player);
         }
         //维护本桌用户列表
-        if (GameModel.deskId != 65535 && pro.player.wTableID == GameModel.deskId)
+        if (GameModel.deskId != GameModel.INVALID_TABLE && player.wTableID == GameModel.deskId)
         {
-            if (GameModel.playerInDesk.ContainsKey(pro.player.wChairID))
+            if (GameModel.playerInDesk.ContainsKey(player.wChairID))
             {
-                GameModel.playerInDesk[pro.player.wChairID] = pro.player.dwUserID;
+                GameModel.playerInDesk[player.wChairID] = rsp.UserId;
                 Util.Instance.DoAction(GameEvent.V_RefreshUserInfo, false);
             }
             else
             {
-                GameModel.playerInDesk.Add(pro.player.wChairID, pro.player.dwUserID);
+                GameModel.playerInDesk.Add(player.wChairID, rsp.UserId);
                 Util.Instance.DoAction(GameEvent.V_RefreshUserInfo, true);
             }
         }
+        return true;
     }
 
     //登陆完成
-    public void OnLoginFinish()
+    public bool OnLoginFinish(Bs.Gateway.TransferDataReq req)
     {
+        Bs.Room.LogonFinish rsp = NetPacket.Deserialize<Bs.Room.LogonFinish>(req.Data.ToByteArray());
+        Debug.Log("登陆完成,rsp.GuideTask=" + rsp.GuideTask + ",deskId=" + GameModel.deskId + ",opOnLoginGame=" + HallModel.opOnLoginGame);
+
         GameModel.serverType = HallModel.serverList[HallModel.currentServerId].wServerType;
         GameModel.serverRule = (int)HallModel.serverList[HallModel.currentServerId].dwServerRule;
-        if (GameModel.deskId == 65535)
+        if (GameModel.deskId == GameModel.INVALID_TABLE)
         {
             //用户状态为空
             switch (HallModel.opOnLoginGame)
@@ -340,6 +376,8 @@ public class GameService : MonoBehaviour
 
         //获取房间宝藏信息
         QueryDigTreasure();
+
+        return true;
     }
 
     //登陆失败
@@ -377,14 +415,15 @@ public class GameService : MonoBehaviour
         UInt16 wTableID = (UInt16)rsp.UserInfo.TableId;
         UInt16 wChairID = (UInt16)rsp.UserInfo.SeatId;
 
-        Debug.Log("收到用户状态,dwUserId=" + dwUserId + ",cbUserStatus=" + cbUserStatus + ",wTableID=" + wTableID + ",wChairID=" + wChairID);
+        Debug.Log("收到用户状态,dwUserId=" + dwUserId + ",HallModel.userId=" + HallModel.userId + ",cbUserStatus=" + cbUserStatus + ",wTableID=" + wTableID + ",wChairID=" + wChairID
+            + ",in=" + GameModel.playerInRoom.ContainsKey((uint)HallModel.userId));
 
         //自己
         if (dwUserId == HallModel.userId)
         {
             //初始化自己的座位号，桌号
-            GameModel.deskId = wTableID; //pro.userState.wTableID;
-            GameModel.chairId = wChairID;// pro.userState.wChairID;
+            GameModel.deskId = wTableID;
+            GameModel.chairId = wChairID;
             //坐下时
             if (GameModel.playerInRoom.ContainsKey((uint)HallModel.userId) && GameModel.playerInRoom[(uint)HallModel.userId].cbUserStatus == UserState.US_FREE)
             {
@@ -512,20 +551,68 @@ public class GameService : MonoBehaviour
     #region 用户操作
 
     //进入房间
-    public void EnterRoom()
+    public void EnterRoom(UInt16 serverLevel)
     {
-        Debug.Log("进入房间");
-        Bs.Room.EnterReq req = new Bs.Room.EnterReq();
-        client.SendTransferData2Gate(NetManager.AppRoom, NetManager.Send2AnyOne, NetManager.AppRoom, (UInt32)(Bs.Room.CMDRoom.IdenterReq), req);
+        // 从符合条件的元素中随机选取一个
+        KeyValuePair<UInt64, GameServerInfo>? randomServer = GetRandomServer(HallModel.serverList, info => (info.wServerLevel == serverLevel));
+        if(!randomServer.HasValue)
+        {
+            if (GameEvent.V_OpenDlgTip != null)
+            {
+                GameEvent.V_OpenDlgTip.Invoke("未找到合适房间,请尝试其他房间或重新登录刷新列表", "", null, null);
+            }
+            return;
+        }
 
+        //初始化用户列表
+        GameModel.deskId = GameModel.INVALID_TABLE;
+        GameModel.chairId = GameModel.INVALID_CHAIR;
+        GameModel.playerInRoom.Clear();
         GameModel.playerInDesk.Clear();
+
+        var baseInfo = randomServer.Value.Value.baseInfo;
+        HallModel.currentServerId = Util.CombineUInt64(baseInfo.dwType, baseInfo.dwID);
+        Debug.Log("进入房间,type=" + baseInfo.dwType + ",ID=" + baseInfo.dwID + ",currentServerId=" + HallModel.currentServerId);
+
+        Bs.Room.EnterReq req = new Bs.Room.EnterReq();
+        client.SendTransferData2Gate(baseInfo.dwType, baseInfo.dwID, NetManager.AppRoom, (UInt32)(Bs.Room.CMDRoom.IdenterReq), req);
+    }
+
+    private KeyValuePair<UInt64, GameServerInfo>? GetRandomServer(Dictionary<UInt64, GameServerInfo> servers, Func<GameServerInfo, bool> condition)
+    {
+        // 筛选出符合条件的元素
+        List<KeyValuePair<UInt64, GameServerInfo>> availableServers = new List<KeyValuePair<UInt64, GameServerInfo>>();
+        foreach (var server in servers)
+        {
+            if (condition(server.Value))
+            {
+                availableServers.Add(server);
+            }
+        }
+
+        // 如果没有符合条件的元素，返回 null
+        if (availableServers.Count == 0)
+        {
+            return null;
+        }
+
+        // 创建一个随机数生成器
+        System.Random random = new System.Random();
+        // 随机选取一个索引
+        int randomIndex = random.Next(0, availableServers.Count);
+        // 返回随机选取的元素
+        return availableServers[randomIndex];
     }
 
     //进入回复
     public bool EnterRoomRsp(Bs.Gateway.TransferDataReq req)
     {
         Bs.Room.EnterRsp rsp = NetPacket.Deserialize<Bs.Room.EnterRsp>(req.Data.ToByteArray());
-        if(rsp.ErrInfo.Code == Bs.Types.ErrorInfo.Types.ResultCode.Success)
+        Debug.Log("进入回复,rsp.ErrInfo.Code=" + rsp.ErrInfo.Code);
+
+        return true;
+        
+        if (rsp.ErrInfo.Code == Bs.Types.ErrorInfo.Types.ResultCode.Success)
         {
             GetChair();
         }
@@ -540,8 +627,11 @@ public class GameService : MonoBehaviour
     //请求游戏状态
     public void GetGameStatus()
     {
-        CMD_Game_C_GetGameStatus pro = new CMD_Game_C_GetGameStatus();
-        client.SendPro(pro);
+        Bs.Room.GameOption req = new Bs.Room.GameOption();
+        client.SendTransferData2Gate(Util.GetHighUint32(HallModel.currentServerId),Util.GetLowUint32(HallModel.currentServerId), NetManager.AppRoom, (UInt32)(Bs.Room.CMDRoom.IdgameOption), req);
+
+        //CMD_Game_C_GetGameStatus pro = new CMD_Game_C_GetGameStatus();
+        //client.SendPro(pro);
     }
 
     // 用户坐下
@@ -561,7 +651,7 @@ public class GameService : MonoBehaviour
     //请求座位
     public void GetChair()
     {
-        Debug.Log("请求座位,GetChair,deskId=" + GameModel.deskId + ",chairId=" + GameModel.chairId);
+        Debug.Log("请求座位,GetChair,deskId=" + GameModel.deskId + ",chairId=" + GameModel.chairId + ",currentServerId=" + HallModel.currentServerId);
         if (GameModel.deskId != GameModel.INVALID_TABLE || GameModel.chairId != GameModel.INVALID_CHAIR)
         {
             return;
@@ -571,7 +661,7 @@ public class GameService : MonoBehaviour
         req.TableId = GameModel.INVALID_TABLE;
         req.ChairId = GameModel.INVALID_CHAIR;
         req.Password = "";
-        client.SendTransferData2Gate(NetManager.AppRoom, NetManager.Send2AnyOne, NetManager.AppRoom, (UInt32)(Bs.Room.CMDRoom.IdgetChairReq),req);
+        client.SendTransferData2Gate(Util.GetHighUint32(HallModel.currentServerId), Util.GetLowUint32(HallModel.currentServerId), NetManager.AppRoom, (UInt32)(Bs.Room.CMDRoom.IdgetChairReq),req);
 
         //CMD_Game_C_UserSit pro = new CMD_Game_C_UserSit();
         //pro.wTableID = 65535;
@@ -822,13 +912,22 @@ public class GameService : MonoBehaviour
     #region 系统消息
 
     //请求失败
-    public void OnRequestFailure(CMD_Game_S_RequestFailure pro)
+    public bool OnRequestFailure(Bs.Gateway.TransferDataReq req)
     {
+        Bs.Room.RequestFailure rsp = NetPacket.Deserialize<Bs.Room.RequestFailure>(req.Data.ToByteArray());
         if (GameEvent.V_OpenDlgTip != null)
         {
-            GameEvent.V_OpenDlgTip.Invoke(pro.szDescribeString, "", null, null);
+            GameEvent.V_OpenDlgTip.Invoke(rsp.ErrInfo.Info, "", null, null);
         }
+        return true;
     }
+    //    public void OnRequestFailure(CMD_Game_S_RequestFailure pro)
+    //{
+    //    if (GameEvent.V_OpenDlgTip != null)
+    //    {
+    //        GameEvent.V_OpenDlgTip.Invoke(pro.szDescribeString, "", null, null);
+    //    }
+    //}
 
     //收到系统消息
     public void OnReceiveSystemInfo(CMD_Hall_S_SystemInfo pro)
@@ -885,6 +984,9 @@ public class GameService : MonoBehaviour
     /// </summary>
     public void QueryDigTreasure()
     {
+        //TODO
+        return;
+
         //加载配置
         CMD_CM_C_LoadDigInfo pro = new CMD_CM_C_LoadDigInfo();
         client.SendPro(pro);
@@ -1064,6 +1166,8 @@ public class GameService : MonoBehaviour
     /// 进入游戏
     void LoadGameScene()
     {
+        Debug.Log("进入游戏,sceneName=" + AppConfig.gameDic[HallModel.currentGameFlag].sceneName);
+
         Util.Instance.DoAction(GameEvent.V_CloseConnectTip);
         SceneManager.LoadScene(AppConfig.gameDic[HallModel.currentGameFlag].sceneName, LoadSceneMode.Single);
     }

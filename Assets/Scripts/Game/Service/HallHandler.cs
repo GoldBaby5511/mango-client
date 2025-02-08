@@ -289,13 +289,13 @@ public class HallHandler : IHandler
                         case NetManager.AppRoom:
                             return handlerRoomMessage(req);
                         default:
-                            Debug.LogError("异常,没有处理的消息,data_apptype=" + req.MainCmdId + ",data_cmdid=" + req.SubCmdId);
+                            Debug.LogError("异常,没有处理的网关消息,MainCmdId=" + req.MainCmdId + ",SubCmdId=" + req.SubCmdId);
                             break;
                     }
                 }
                 return true;
             default:
-                Debug.LogError("异常,没有处理的消息,appType=" + packet.GetMainCmdID() + ",cmdId=" + packet.GetSubCmdID());
+                Debug.LogError("异常,没有处理的消息,mainCmdId=" + packet.GetMainCmdID() + ",cmdId=" + packet.GetSubCmdID());
                 break;
         }
         return false;
@@ -333,6 +333,11 @@ public class HallHandler : IHandler
         return false;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="req"></param>
+    /// <returns>true 本层处理,false 其他Handler处理</returns>
     private bool handlerRoomMessage(Bs.Gateway.TransferDataReq req)
     {
         switch(req.SubCmdId)
@@ -345,10 +350,34 @@ public class HallHandler : IHandler
                 {
                     return GameService.Instance.OnReceiveUserState(req);
                 }
+            case (uint)Bs.Room.CMDRoom.IdrequestFailure:
+                {
+                    return GameService.Instance.OnRequestFailure(req);
+                }
+            case (uint)Bs.Room.CMDRoom.IdconfigServer:
+                {
+                    return GameService.Instance.OnReceiveGameServerConfig(req);
+                }
+            case (uint)Bs.Room.CMDRoom.IduserEnter:
+                {
+                    return GameService.Instance.OnUserCome(req);
+                }
+            case (uint)Bs.Room.CMDRoom.IdtableInfo:
+                {
+                    return GameService.Instance.OnReceiveTableInfo(req);
+                }
+            case (uint)Bs.Room.CMDRoom.IdtableStatus:
+                {
+                    return GameService.Instance.OnReceiveTableState(req);
+                }
+            case (uint)Bs.Room.CMDRoom.IdlogonFinish:
+                {
+                    return GameService.Instance.OnLoginFinish(req);
+                }
             default:
                 Debug.LogError("异常,room,没有处理的消息,SubCmdId=" + req.SubCmdId);
                 break;
         }
-        return true;
+        return false;
     }
 }

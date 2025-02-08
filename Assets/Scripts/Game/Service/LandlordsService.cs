@@ -7,8 +7,9 @@ public class LandlordsService : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log("AddHandler");
         Instance = this;
-        GameService.Instance.client.netManager.AddHandler(new LandlordsHandler());
+        HallService.Instance.client.netManager.AddHandler(new LandlordsHandler());
     }
 
     #region 发送

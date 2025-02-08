@@ -27,31 +27,36 @@ namespace Bs.Types {
             "Cgt0eXBlcy5wcm90bxIIYnMudHlwZXMibgoJRXJyb3JJbmZvEiwKBGNvZGUY",
             "ASABKA4yHi5icy50eXBlcy5FcnJvckluZm8uUmVzdWx0Q29kZRIMCgRpbmZv",
             "GAIgASgJIiUKClJlc3VsdENvZGUSCwoHc3VjY2VzcxAAEgoKBmZhaWxlZBAB",
-            "ImMKCFByb3BJdGVtEicKAmlkGAEgASgOMhsuYnMudHlwZXMuUHJvcEl0ZW0u",
-            "UHJvcFR5cGUSDQoFY291bnQYAiABKAMiHwoIUHJvcFR5cGUSCAoEbm9uZRAA",
-            "EgkKBXNjb3JlEAEiRgoLQmFzZUFwcEluZm8SDAoEbmFtZRgBIAEoCRIMCgR0",
-            "eXBlGAIgASgNEgoKAmlkGAMgASgNEg8KB3ZlcnNpb24YBCABKA0i0AQKDEJh",
-            "c2VVc2VySW5mbxIPCgdhY2NvdW50GAEgASgJEg8KB3VzZXJfaWQYAiABKAQS",
-            "DwoHZ2FtZV9pZBgDIAEoBBIOCgZnZW5kZXIYBCABKA0SDwoHZmFjZV9pZBgF",
-            "IAEoDRITCgtjdXN0b21fZmFjZRgGIAEoCRIRCgluaWNrX25hbWUYByABKAkS",
-            "LQoEdHlwZRgIIAEoDjIfLmJzLnR5cGVzLkJhc2VVc2VySW5mby5Vc2VyVHlw",
-            "ZRIhCgVwcm9wcxgJIAMoCzISLmJzLnR5cGVzLlByb3BJdGVtEhAKCHRhYmxl",
-            "X2lkGAogASgNEg8KB3NlYXRfaWQYCyABKA0SMQoGc3RhdHVzGAwgASgOMiEu",
-            "YnMudHlwZXMuQmFzZVVzZXJJbmZvLlVzZXJTdGF0dXMSEQoJbWFya2V0X2lk",
-            "GA0gASgNEg8KB3NpdGVfaWQYDiABKA0SFQoNcmVnX21hcmtldF9pZBgPIAEo",
-            "DRITCgtyZWdfc2l0ZV9pZBgQIAEoDRIVCg1yZWdpc3Rlcl9kYXRhGBEgASgJ",
-            "EhQKDGdhdGVfY29ubl9pZBgSIAEoBBIUCgxyb29tX2Nvbm5faWQYEyABKAQi",
-            "LQoIVXNlclR5cGUSCgoGdW5rbm93EAASCgoGbm9ybWFsEAESCQoFcm9ib3QQ",
-            "CiJaCgpVc2VyU3RhdHVzEggKBG5vbmUQABIICgRmcmVlEAESBwoDc2l0EAIS",
-            "CQoFcmVhZHkQAxIKCgZsb29rb24QBBILCgdwbGF5aW5nEAUSCwoHb2ZmbGlu",
-            "ZRAGIqECCghSb29tSW5mbxInCghhcHBfaW5mbxgBIAEoCzIVLmJzLnR5cGVz",
-            "LkJhc2VBcHBJbmZvEgwKBGtpbmQYAiABKA0SKQoEdHlwZRgDIAEoDjIbLmJz",
-            "LnR5cGVzLlJvb21JbmZvLlJvb21UeXBlEg0KBWxldmVsGAQgASgNEgwKBG5h",
-            "bWUYBSABKAkSEgoKYmFzZV9zY29yZRgGIAEoAxIQCghqb2luX21pbhgHIAEo",
-            "AxIQCghqb2luX21heBgIIAEoAxIRCglvdXRfc2NvcmUYCSABKAMSEQoJd2lu",
-            "X2xpbWl0GAogASgDIjgKCFJvb21UeXBlEggKBG5vbmUQABIICgRnb2xkEAES",
-            "CwoHcHJpdmF0ZRAQEgsKB3JlZFBhY2sQIEIRWg9tYW5nby9hcGkvdHlwZXNi",
-            "BnByb3RvMw=="));
+            "InMKCFByb3BJdGVtEicKAmlkGAEgASgOMhsuYnMudHlwZXMuUHJvcEl0ZW0u",
+            "UHJvcFR5cGUSDQoFY291bnQYAiABKAMiLwoIUHJvcFR5cGUSCAoEY29pbhAA",
+            "EgkKBWluZ290EAESDgoKcmVkX3BhY2tldBACIkYKC0Jhc2VBcHBJbmZvEgwK",
+            "BG5hbWUYASABKAkSDAoEdHlwZRgCIAEoDRIKCgJpZBgDIAEoDRIPCgd2ZXJz",
+            "aW9uGAQgASgNItAECgxCYXNlVXNlckluZm8SDwoHYWNjb3VudBgBIAEoCRIP",
+            "Cgd1c2VyX2lkGAIgASgEEg8KB2dhbWVfaWQYAyABKAQSDgoGZ2VuZGVyGAQg",
+            "ASgNEg8KB2ZhY2VfaWQYBSABKA0SEwoLY3VzdG9tX2ZhY2UYBiABKAkSEQoJ",
+            "bmlja19uYW1lGAcgASgJEi0KBHR5cGUYCCABKA4yHy5icy50eXBlcy5CYXNl",
+            "VXNlckluZm8uVXNlclR5cGUSIQoFcHJvcHMYCSADKAsyEi5icy50eXBlcy5Q",
+            "cm9wSXRlbRIQCgh0YWJsZV9pZBgKIAEoDRIPCgdzZWF0X2lkGAsgASgNEjEK",
+            "BnN0YXR1cxgMIAEoDjIhLmJzLnR5cGVzLkJhc2VVc2VySW5mby5Vc2VyU3Rh",
+            "dHVzEhEKCW1hcmtldF9pZBgNIAEoDRIPCgdzaXRlX2lkGA4gASgNEhUKDXJl",
+            "Z19tYXJrZXRfaWQYDyABKA0SEwoLcmVnX3NpdGVfaWQYECABKA0SFQoNcmVn",
+            "aXN0ZXJfZGF0YRgRIAEoCRIUCgxnYXRlX2Nvbm5faWQYEiABKAQSFAoMcm9v",
+            "bV9jb25uX2lkGBMgASgEIi0KCFVzZXJUeXBlEgoKBnVua25vdxAAEgoKBm5v",
+            "cm1hbBABEgkKBXJvYm90EAoiWgoKVXNlclN0YXR1cxIICgRub25lEAASCAoE",
+            "ZnJlZRABEgcKA3NpdBACEgkKBXJlYWR5EAMSCgoGbG9va29uEAQSCwoHcGxh",
+            "eWluZxAFEgsKB29mZmxpbmUQBiL/AgoIUm9vbUluZm8SJwoIYXBwX2luZm8Y",
+            "ASABKAsyFS5icy50eXBlcy5CYXNlQXBwSW5mbxIMCgRraW5kGAIgASgNEikK",
+            "BHR5cGUYAyABKA4yGy5icy50eXBlcy5Sb29tSW5mby5Sb29tVHlwZRINCgVs",
+            "ZXZlbBgEIAEoDRIMCgRuYW1lGAUgASgJEhIKCmNlbGxfc2NvcmUYBiABKAMS",
+            "FQoNcmV2ZW51ZV9yYXRpbxgHIAEoDRIVCg1zZXJ2aWNlX3Njb3JlGAggASgD",
+            "EhUKDXNlcnZpY2VfaW5nb3QYCSABKAMSFgoOcmVzdHJpY3Rfc2NvcmUYCiAB",
+            "KAMSFwoPbWluX3RhYmxlX3Njb3JlGAsgASgDEhcKD21pbl9lbnRlcl9zY29y",
+            "ZRgMIAEoAxIXCg9tYXhfZW50ZXJfc2NvcmUYDSABKAMiOAoIUm9vbVR5cGUS",
+            "CAoEbm9uZRAAEggKBGdvbGQQARILCgdwcml2YXRlEBASCwoHcmVkUGFjaxAg",
+            "Im4KC1RhYmxlU3RhdHVzEhIKCnRhYmxlX2xvY2sYASABKA0SEwoLcGxheV9z",
+            "dGF0dXMYAiABKA0SEAoIY2x1Yl9udW0YAyABKA0SEAoIcm9vbV9udW0YBCAB",
+            "KA0SEgoKY2VsbF9zY29yZRgFIAEoBUIRWg9tYW5nby9hcGkvdHlwZXNiBnBy",
+            "b3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -59,7 +64,8 @@ namespace Bs.Types {
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Types.PropItem), global::Bs.Types.PropItem.Parser, new[]{ "Id", "Count" }, null, new[]{ typeof(global::Bs.Types.PropItem.Types.PropType) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Types.BaseAppInfo), global::Bs.Types.BaseAppInfo.Parser, new[]{ "Name", "Type", "Id", "Version" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Types.BaseUserInfo), global::Bs.Types.BaseUserInfo.Parser, new[]{ "Account", "UserId", "GameId", "Gender", "FaceId", "CustomFace", "NickName", "Type", "Props", "TableId", "SeatId", "Status", "MarketId", "SiteId", "RegMarketId", "RegSiteId", "RegisterData", "GateConnId", "RoomConnId" }, null, new[]{ typeof(global::Bs.Types.BaseUserInfo.Types.UserType), typeof(global::Bs.Types.BaseUserInfo.Types.UserStatus) }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Types.RoomInfo), global::Bs.Types.RoomInfo.Parser, new[]{ "AppInfo", "Kind", "Type", "Level", "Name", "BaseScore", "JoinMin", "JoinMax", "OutScore", "WinLimit" }, null, new[]{ typeof(global::Bs.Types.RoomInfo.Types.RoomType) }, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Types.RoomInfo), global::Bs.Types.RoomInfo.Parser, new[]{ "AppInfo", "Kind", "Type", "Level", "Name", "CellScore", "RevenueRatio", "ServiceScore", "ServiceIngot", "RestrictScore", "MinTableScore", "MinEnterScore", "MaxEnterScore" }, null, new[]{ typeof(global::Bs.Types.RoomInfo.Types.RoomType) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Types.TableStatus), global::Bs.Types.TableStatus.Parser, new[]{ "TableLock", "PlayStatus", "ClubNum", "RoomNum", "CellScore" }, null, null, null, null)
           }));
     }
     #endregion
@@ -352,7 +358,7 @@ namespace Bs.Types {
 
     /// <summary>Field number for the "id" field.</summary>
     public const int IdFieldNumber = 1;
-    private global::Bs.Types.PropItem.Types.PropType id_ = global::Bs.Types.PropItem.Types.PropType.None;
+    private global::Bs.Types.PropItem.Types.PropType id_ = global::Bs.Types.PropItem.Types.PropType.Coin;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Bs.Types.PropItem.Types.PropType Id {
@@ -398,7 +404,7 @@ namespace Bs.Types {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (Id != global::Bs.Types.PropItem.Types.PropType.None) hash ^= Id.GetHashCode();
+      if (Id != global::Bs.Types.PropItem.Types.PropType.Coin) hash ^= Id.GetHashCode();
       if (Count != 0L) hash ^= Count.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -418,7 +424,7 @@ namespace Bs.Types {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Id != global::Bs.Types.PropItem.Types.PropType.None) {
+      if (Id != global::Bs.Types.PropItem.Types.PropType.Coin) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Id);
       }
@@ -436,7 +442,7 @@ namespace Bs.Types {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Id != global::Bs.Types.PropItem.Types.PropType.None) {
+      if (Id != global::Bs.Types.PropItem.Types.PropType.Coin) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Id);
       }
@@ -454,7 +460,7 @@ namespace Bs.Types {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (Id != global::Bs.Types.PropItem.Types.PropType.None) {
+      if (Id != global::Bs.Types.PropItem.Types.PropType.Coin) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Id);
       }
       if (Count != 0L) {
@@ -472,7 +478,7 @@ namespace Bs.Types {
       if (other == null) {
         return;
       }
-      if (other.Id != global::Bs.Types.PropItem.Types.PropType.None) {
+      if (other.Id != global::Bs.Types.PropItem.Types.PropType.Coin) {
         Id = other.Id;
       }
       if (other.Count != 0L) {
@@ -535,8 +541,9 @@ namespace Bs.Types {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static partial class Types {
       public enum PropType {
-        [pbr::OriginalName("none")] None = 0,
-        [pbr::OriginalName("score")] Score = 1,
+        [pbr::OriginalName("coin")] Coin = 0,
+        [pbr::OriginalName("ingot")] Ingot = 1,
+        [pbr::OriginalName("red_packet")] RedPacket = 2,
       }
 
     }
@@ -1844,11 +1851,14 @@ namespace Bs.Types {
       type_ = other.type_;
       level_ = other.level_;
       name_ = other.name_;
-      baseScore_ = other.baseScore_;
-      joinMin_ = other.joinMin_;
-      joinMax_ = other.joinMax_;
-      outScore_ = other.outScore_;
-      winLimit_ = other.winLimit_;
+      cellScore_ = other.cellScore_;
+      revenueRatio_ = other.revenueRatio_;
+      serviceScore_ = other.serviceScore_;
+      serviceIngot_ = other.serviceIngot_;
+      restrictScore_ = other.restrictScore_;
+      minTableScore_ = other.minTableScore_;
+      minEnterScore_ = other.minEnterScore_;
+      maxEnterScore_ = other.maxEnterScore_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1918,63 +1928,120 @@ namespace Bs.Types {
       }
     }
 
-    /// <summary>Field number for the "base_score" field.</summary>
-    public const int BaseScoreFieldNumber = 6;
-    private long baseScore_;
+    /// <summary>Field number for the "cell_score" field.</summary>
+    public const int CellScoreFieldNumber = 6;
+    private long cellScore_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long BaseScore {
-      get { return baseScore_; }
+    public long CellScore {
+      get { return cellScore_; }
       set {
-        baseScore_ = value;
+        cellScore_ = value;
       }
     }
 
-    /// <summary>Field number for the "join_min" field.</summary>
-    public const int JoinMinFieldNumber = 7;
-    private long joinMin_;
+    /// <summary>Field number for the "revenue_ratio" field.</summary>
+    public const int RevenueRatioFieldNumber = 7;
+    private uint revenueRatio_;
+    /// <summary>
+    ///税收比例
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long JoinMin {
-      get { return joinMin_; }
+    public uint RevenueRatio {
+      get { return revenueRatio_; }
       set {
-        joinMin_ = value;
+        revenueRatio_ = value;
       }
     }
 
-    /// <summary>Field number for the "join_max" field.</summary>
-    public const int JoinMaxFieldNumber = 8;
-    private long joinMax_;
+    /// <summary>Field number for the "service_score" field.</summary>
+    public const int ServiceScoreFieldNumber = 8;
+    private long serviceScore_;
+    /// <summary>
+    ///服务费用
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long JoinMax {
-      get { return joinMax_; }
+    public long ServiceScore {
+      get { return serviceScore_; }
       set {
-        joinMax_ = value;
+        serviceScore_ = value;
       }
     }
 
-    /// <summary>Field number for the "out_score" field.</summary>
-    public const int OutScoreFieldNumber = 9;
-    private long outScore_;
+    /// <summary>Field number for the "service_ingot" field.</summary>
+    public const int ServiceIngotFieldNumber = 9;
+    private long serviceIngot_;
+    /// <summary>
+    ///服务费用
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long OutScore {
-      get { return outScore_; }
+    public long ServiceIngot {
+      get { return serviceIngot_; }
       set {
-        outScore_ = value;
+        serviceIngot_ = value;
       }
     }
 
-    /// <summary>Field number for the "win_limit" field.</summary>
-    public const int WinLimitFieldNumber = 10;
-    private long winLimit_;
+    /// <summary>Field number for the "restrict_score" field.</summary>
+    public const int RestrictScoreFieldNumber = 10;
+    private long restrictScore_;
+    /// <summary>
+    ///限制积分
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long WinLimit {
-      get { return winLimit_; }
+    public long RestrictScore {
+      get { return restrictScore_; }
       set {
-        winLimit_ = value;
+        restrictScore_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "min_table_score" field.</summary>
+    public const int MinTableScoreFieldNumber = 11;
+    private long minTableScore_;
+    /// <summary>
+    ///最低积分
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long MinTableScore {
+      get { return minTableScore_; }
+      set {
+        minTableScore_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "min_enter_score" field.</summary>
+    public const int MinEnterScoreFieldNumber = 12;
+    private long minEnterScore_;
+    /// <summary>
+    ///最低积分
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long MinEnterScore {
+      get { return minEnterScore_; }
+      set {
+        minEnterScore_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "max_enter_score" field.</summary>
+    public const int MaxEnterScoreFieldNumber = 13;
+    private long maxEnterScore_;
+    /// <summary>
+    ///最高积分
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long MaxEnterScore {
+      get { return maxEnterScore_; }
+      set {
+        maxEnterScore_ = value;
       }
     }
 
@@ -1998,11 +2065,14 @@ namespace Bs.Types {
       if (Type != other.Type) return false;
       if (Level != other.Level) return false;
       if (Name != other.Name) return false;
-      if (BaseScore != other.BaseScore) return false;
-      if (JoinMin != other.JoinMin) return false;
-      if (JoinMax != other.JoinMax) return false;
-      if (OutScore != other.OutScore) return false;
-      if (WinLimit != other.WinLimit) return false;
+      if (CellScore != other.CellScore) return false;
+      if (RevenueRatio != other.RevenueRatio) return false;
+      if (ServiceScore != other.ServiceScore) return false;
+      if (ServiceIngot != other.ServiceIngot) return false;
+      if (RestrictScore != other.RestrictScore) return false;
+      if (MinTableScore != other.MinTableScore) return false;
+      if (MinEnterScore != other.MinEnterScore) return false;
+      if (MaxEnterScore != other.MaxEnterScore) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2015,11 +2085,14 @@ namespace Bs.Types {
       if (Type != global::Bs.Types.RoomInfo.Types.RoomType.None) hash ^= Type.GetHashCode();
       if (Level != 0) hash ^= Level.GetHashCode();
       if (Name.Length != 0) hash ^= Name.GetHashCode();
-      if (BaseScore != 0L) hash ^= BaseScore.GetHashCode();
-      if (JoinMin != 0L) hash ^= JoinMin.GetHashCode();
-      if (JoinMax != 0L) hash ^= JoinMax.GetHashCode();
-      if (OutScore != 0L) hash ^= OutScore.GetHashCode();
-      if (WinLimit != 0L) hash ^= WinLimit.GetHashCode();
+      if (CellScore != 0L) hash ^= CellScore.GetHashCode();
+      if (RevenueRatio != 0) hash ^= RevenueRatio.GetHashCode();
+      if (ServiceScore != 0L) hash ^= ServiceScore.GetHashCode();
+      if (ServiceIngot != 0L) hash ^= ServiceIngot.GetHashCode();
+      if (RestrictScore != 0L) hash ^= RestrictScore.GetHashCode();
+      if (MinTableScore != 0L) hash ^= MinTableScore.GetHashCode();
+      if (MinEnterScore != 0L) hash ^= MinEnterScore.GetHashCode();
+      if (MaxEnterScore != 0L) hash ^= MaxEnterScore.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2058,25 +2131,37 @@ namespace Bs.Types {
         output.WriteRawTag(42);
         output.WriteString(Name);
       }
-      if (BaseScore != 0L) {
+      if (CellScore != 0L) {
         output.WriteRawTag(48);
-        output.WriteInt64(BaseScore);
+        output.WriteInt64(CellScore);
       }
-      if (JoinMin != 0L) {
+      if (RevenueRatio != 0) {
         output.WriteRawTag(56);
-        output.WriteInt64(JoinMin);
+        output.WriteUInt32(RevenueRatio);
       }
-      if (JoinMax != 0L) {
+      if (ServiceScore != 0L) {
         output.WriteRawTag(64);
-        output.WriteInt64(JoinMax);
+        output.WriteInt64(ServiceScore);
       }
-      if (OutScore != 0L) {
+      if (ServiceIngot != 0L) {
         output.WriteRawTag(72);
-        output.WriteInt64(OutScore);
+        output.WriteInt64(ServiceIngot);
       }
-      if (WinLimit != 0L) {
+      if (RestrictScore != 0L) {
         output.WriteRawTag(80);
-        output.WriteInt64(WinLimit);
+        output.WriteInt64(RestrictScore);
+      }
+      if (MinTableScore != 0L) {
+        output.WriteRawTag(88);
+        output.WriteInt64(MinTableScore);
+      }
+      if (MinEnterScore != 0L) {
+        output.WriteRawTag(96);
+        output.WriteInt64(MinEnterScore);
+      }
+      if (MaxEnterScore != 0L) {
+        output.WriteRawTag(104);
+        output.WriteInt64(MaxEnterScore);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -2108,25 +2193,37 @@ namespace Bs.Types {
         output.WriteRawTag(42);
         output.WriteString(Name);
       }
-      if (BaseScore != 0L) {
+      if (CellScore != 0L) {
         output.WriteRawTag(48);
-        output.WriteInt64(BaseScore);
+        output.WriteInt64(CellScore);
       }
-      if (JoinMin != 0L) {
+      if (RevenueRatio != 0) {
         output.WriteRawTag(56);
-        output.WriteInt64(JoinMin);
+        output.WriteUInt32(RevenueRatio);
       }
-      if (JoinMax != 0L) {
+      if (ServiceScore != 0L) {
         output.WriteRawTag(64);
-        output.WriteInt64(JoinMax);
+        output.WriteInt64(ServiceScore);
       }
-      if (OutScore != 0L) {
+      if (ServiceIngot != 0L) {
         output.WriteRawTag(72);
-        output.WriteInt64(OutScore);
+        output.WriteInt64(ServiceIngot);
       }
-      if (WinLimit != 0L) {
+      if (RestrictScore != 0L) {
         output.WriteRawTag(80);
-        output.WriteInt64(WinLimit);
+        output.WriteInt64(RestrictScore);
+      }
+      if (MinTableScore != 0L) {
+        output.WriteRawTag(88);
+        output.WriteInt64(MinTableScore);
+      }
+      if (MinEnterScore != 0L) {
+        output.WriteRawTag(96);
+        output.WriteInt64(MinEnterScore);
+      }
+      if (MaxEnterScore != 0L) {
+        output.WriteRawTag(104);
+        output.WriteInt64(MaxEnterScore);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -2153,20 +2250,29 @@ namespace Bs.Types {
       if (Name.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
       }
-      if (BaseScore != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(BaseScore);
+      if (CellScore != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(CellScore);
       }
-      if (JoinMin != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(JoinMin);
+      if (RevenueRatio != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RevenueRatio);
       }
-      if (JoinMax != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(JoinMax);
+      if (ServiceScore != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(ServiceScore);
       }
-      if (OutScore != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(OutScore);
+      if (ServiceIngot != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(ServiceIngot);
       }
-      if (WinLimit != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(WinLimit);
+      if (RestrictScore != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(RestrictScore);
+      }
+      if (MinTableScore != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(MinTableScore);
+      }
+      if (MinEnterScore != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(MinEnterScore);
+      }
+      if (MaxEnterScore != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(MaxEnterScore);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2198,20 +2304,29 @@ namespace Bs.Types {
       if (other.Name.Length != 0) {
         Name = other.Name;
       }
-      if (other.BaseScore != 0L) {
-        BaseScore = other.BaseScore;
+      if (other.CellScore != 0L) {
+        CellScore = other.CellScore;
       }
-      if (other.JoinMin != 0L) {
-        JoinMin = other.JoinMin;
+      if (other.RevenueRatio != 0) {
+        RevenueRatio = other.RevenueRatio;
       }
-      if (other.JoinMax != 0L) {
-        JoinMax = other.JoinMax;
+      if (other.ServiceScore != 0L) {
+        ServiceScore = other.ServiceScore;
       }
-      if (other.OutScore != 0L) {
-        OutScore = other.OutScore;
+      if (other.ServiceIngot != 0L) {
+        ServiceIngot = other.ServiceIngot;
       }
-      if (other.WinLimit != 0L) {
-        WinLimit = other.WinLimit;
+      if (other.RestrictScore != 0L) {
+        RestrictScore = other.RestrictScore;
+      }
+      if (other.MinTableScore != 0L) {
+        MinTableScore = other.MinTableScore;
+      }
+      if (other.MinEnterScore != 0L) {
+        MinEnterScore = other.MinEnterScore;
+      }
+      if (other.MaxEnterScore != 0L) {
+        MaxEnterScore = other.MaxEnterScore;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2252,23 +2367,35 @@ namespace Bs.Types {
             break;
           }
           case 48: {
-            BaseScore = input.ReadInt64();
+            CellScore = input.ReadInt64();
             break;
           }
           case 56: {
-            JoinMin = input.ReadInt64();
+            RevenueRatio = input.ReadUInt32();
             break;
           }
           case 64: {
-            JoinMax = input.ReadInt64();
+            ServiceScore = input.ReadInt64();
             break;
           }
           case 72: {
-            OutScore = input.ReadInt64();
+            ServiceIngot = input.ReadInt64();
             break;
           }
           case 80: {
-            WinLimit = input.ReadInt64();
+            RestrictScore = input.ReadInt64();
+            break;
+          }
+          case 88: {
+            MinTableScore = input.ReadInt64();
+            break;
+          }
+          case 96: {
+            MinEnterScore = input.ReadInt64();
+            break;
+          }
+          case 104: {
+            MaxEnterScore = input.ReadInt64();
             break;
           }
         }
@@ -2310,23 +2437,35 @@ namespace Bs.Types {
             break;
           }
           case 48: {
-            BaseScore = input.ReadInt64();
+            CellScore = input.ReadInt64();
             break;
           }
           case 56: {
-            JoinMin = input.ReadInt64();
+            RevenueRatio = input.ReadUInt32();
             break;
           }
           case 64: {
-            JoinMax = input.ReadInt64();
+            ServiceScore = input.ReadInt64();
             break;
           }
           case 72: {
-            OutScore = input.ReadInt64();
+            ServiceIngot = input.ReadInt64();
             break;
           }
           case 80: {
-            WinLimit = input.ReadInt64();
+            RestrictScore = input.ReadInt64();
+            break;
+          }
+          case 88: {
+            MinTableScore = input.ReadInt64();
+            break;
+          }
+          case 96: {
+            MinEnterScore = input.ReadInt64();
+            break;
+          }
+          case 104: {
+            MaxEnterScore = input.ReadInt64();
             break;
           }
         }
@@ -2357,6 +2496,361 @@ namespace Bs.Types {
 
     }
     #endregion
+
+  }
+
+  /// <summary>
+  ///桌子状态
+  /// </summary>
+  public sealed partial class TableStatus : pb::IMessage<TableStatus>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<TableStatus> _parser = new pb::MessageParser<TableStatus>(() => new TableStatus());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<TableStatus> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Bs.Types.TypesReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TableStatus() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TableStatus(TableStatus other) : this() {
+      tableLock_ = other.tableLock_;
+      playStatus_ = other.playStatus_;
+      clubNum_ = other.clubNum_;
+      roomNum_ = other.roomNum_;
+      cellScore_ = other.cellScore_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TableStatus Clone() {
+      return new TableStatus(this);
+    }
+
+    /// <summary>Field number for the "table_lock" field.</summary>
+    public const int TableLockFieldNumber = 1;
+    private uint tableLock_;
+    /// <summary>
+    ///锁定标志
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint TableLock {
+      get { return tableLock_; }
+      set {
+        tableLock_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "play_status" field.</summary>
+    public const int PlayStatusFieldNumber = 2;
+    private uint playStatus_;
+    /// <summary>
+    ///游戏标志
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint PlayStatus {
+      get { return playStatus_; }
+      set {
+        playStatus_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "club_num" field.</summary>
+    public const int ClubNumFieldNumber = 3;
+    private uint clubNum_;
+    /// <summary>
+    ///圈子号码
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint ClubNum {
+      get { return clubNum_; }
+      set {
+        clubNum_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "room_num" field.</summary>
+    public const int RoomNumFieldNumber = 4;
+    private uint roomNum_;
+    /// <summary>
+    ///房间号码
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint RoomNum {
+      get { return roomNum_; }
+      set {
+        roomNum_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "cell_score" field.</summary>
+    public const int CellScoreFieldNumber = 5;
+    private int cellScore_;
+    /// <summary>
+    ///单元积分
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CellScore {
+      get { return cellScore_; }
+      set {
+        cellScore_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as TableStatus);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(TableStatus other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (TableLock != other.TableLock) return false;
+      if (PlayStatus != other.PlayStatus) return false;
+      if (ClubNum != other.ClubNum) return false;
+      if (RoomNum != other.RoomNum) return false;
+      if (CellScore != other.CellScore) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (TableLock != 0) hash ^= TableLock.GetHashCode();
+      if (PlayStatus != 0) hash ^= PlayStatus.GetHashCode();
+      if (ClubNum != 0) hash ^= ClubNum.GetHashCode();
+      if (RoomNum != 0) hash ^= RoomNum.GetHashCode();
+      if (CellScore != 0) hash ^= CellScore.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (TableLock != 0) {
+        output.WriteRawTag(8);
+        output.WriteUInt32(TableLock);
+      }
+      if (PlayStatus != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(PlayStatus);
+      }
+      if (ClubNum != 0) {
+        output.WriteRawTag(24);
+        output.WriteUInt32(ClubNum);
+      }
+      if (RoomNum != 0) {
+        output.WriteRawTag(32);
+        output.WriteUInt32(RoomNum);
+      }
+      if (CellScore != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(CellScore);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (TableLock != 0) {
+        output.WriteRawTag(8);
+        output.WriteUInt32(TableLock);
+      }
+      if (PlayStatus != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(PlayStatus);
+      }
+      if (ClubNum != 0) {
+        output.WriteRawTag(24);
+        output.WriteUInt32(ClubNum);
+      }
+      if (RoomNum != 0) {
+        output.WriteRawTag(32);
+        output.WriteUInt32(RoomNum);
+      }
+      if (CellScore != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(CellScore);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (TableLock != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TableLock);
+      }
+      if (PlayStatus != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayStatus);
+      }
+      if (ClubNum != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ClubNum);
+      }
+      if (RoomNum != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RoomNum);
+      }
+      if (CellScore != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CellScore);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(TableStatus other) {
+      if (other == null) {
+        return;
+      }
+      if (other.TableLock != 0) {
+        TableLock = other.TableLock;
+      }
+      if (other.PlayStatus != 0) {
+        PlayStatus = other.PlayStatus;
+      }
+      if (other.ClubNum != 0) {
+        ClubNum = other.ClubNum;
+      }
+      if (other.RoomNum != 0) {
+        RoomNum = other.RoomNum;
+      }
+      if (other.CellScore != 0) {
+        CellScore = other.CellScore;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            TableLock = input.ReadUInt32();
+            break;
+          }
+          case 16: {
+            PlayStatus = input.ReadUInt32();
+            break;
+          }
+          case 24: {
+            ClubNum = input.ReadUInt32();
+            break;
+          }
+          case 32: {
+            RoomNum = input.ReadUInt32();
+            break;
+          }
+          case 40: {
+            CellScore = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            TableLock = input.ReadUInt32();
+            break;
+          }
+          case 16: {
+            PlayStatus = input.ReadUInt32();
+            break;
+          }
+          case 24: {
+            ClubNum = input.ReadUInt32();
+            break;
+          }
+          case 32: {
+            RoomNum = input.ReadUInt32();
+            break;
+          }
+          case 40: {
+            CellScore = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 

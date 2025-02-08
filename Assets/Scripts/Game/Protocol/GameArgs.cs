@@ -251,6 +251,16 @@ public class ChatMessage
     }
 }
 
+//基础信息
+public class ServiceBaseInfo
+{
+    public string strName;
+    public UInt32 dwType;
+    public UInt32 dwID;
+    public string strListenOnAddr;
+    public string strCenterAddr;
+};
+
 /// <summary>
 /// 游戏类型信息
 /// </summary>
@@ -276,6 +286,7 @@ public class GameKindInfo
 /// </summary>
 public class GameServerInfo
 {
+    public ServiceBaseInfo baseInfo;    //基础信息
     public UInt16 wKindID;              //名称索引 - 游戏类型
     public UInt16 wNodeID;              //节点索引
     public UInt16 wSortID;              //排序索引
