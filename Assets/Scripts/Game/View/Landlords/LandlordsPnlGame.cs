@@ -16,7 +16,7 @@ public class LandlordsPnlGame : View
     private UIButton btnTrustee, btnCancelSelect, btnAuto;
 
     private UIButton btnOutCard, btnNotOutCard, btnCardTip, btnCallLandlord, btnGradLandlord, btnNotCall, btnNotHog, btnCannotAfford, btnDouble, btnNotDouble;
-    
+
     private Transform[] userPos = new Transform[3];
     private GameObject[] agreeFlags = new GameObject[3];
     private GameObject[] notCallFlags = new GameObject[3];
@@ -30,7 +30,7 @@ public class LandlordsPnlGame : View
     private GameObject[] autoFlags = new GameObject[3];
     private GameObject[] callPoliceFlags = new GameObject[3];
     private GameObject[] zhaDanFlags = new GameObject[3];
-    private GameObject shunZiFlag, lianDuiFlag, planeFlag, wangZhaFlag, chunTianFlag,  fanChunTianFlag;
+    private GameObject shunZiFlag, lianDuiFlag, planeFlag, wangZhaFlag, chunTianFlag, fanChunTianFlag;
 
     private GameObject[] timeCount = new GameObject[3];
     private int currentTimer = 0;
@@ -81,7 +81,7 @@ public class LandlordsPnlGame : View
         btnCannotAfford = transform.Find("btnCanotAfford").GetComponent<UIButton>();
         btnDouble = transform.Find("btnDouble").GetComponent<UIButton>();
         btnNotDouble = transform.Find("btnNotDouble").GetComponent<UIButton>();
-    
+
         for (int i = 0; i < 3; i++)
         {
             userPos[i] = transform.Find("userCard_" + i + "userPos");
@@ -141,10 +141,10 @@ public class LandlordsPnlGame : View
         EventDelegate.Add(btnCallLandlord.onClick, OnBtnCallLandlordClick);
         EventDelegate.Add(btnGradLandlord.onClick, OnBtnCallLandlordClick);
         EventDelegate.Add(btnCannotAfford.onClick, OnBtnCannotAffordClick);
-        EventDelegate.Add(btnNotCall.onClick, OnBtnNotHogClick);        
+        EventDelegate.Add(btnNotCall.onClick, OnBtnNotHogClick);
         EventDelegate.Add(btnNotHog.onClick, OnBtnNotHogClick);
         EventDelegate.Add(btnDouble.onClick, OnBtnDoubleClick);
-        EventDelegate.Add(btnNotDouble.onClick, OnBtnNotDoubleClick);    
+        EventDelegate.Add(btnNotDouble.onClick, OnBtnNotDoubleClick);
 
         for (int i = 0; i < LandlordsModel.MAX_COUNT; i++)
         {
@@ -216,7 +216,7 @@ public class LandlordsPnlGame : View
         }
 
         shunZiFlag.SetActive(false);
-        lianDuiFlag.SetActive(false);        
+        lianDuiFlag.SetActive(false);
         planeFlag.SetActive(false);
         wangZhaFlag.SetActive(false);
         chunTianFlag.SetActive(false);
@@ -234,7 +234,7 @@ public class LandlordsPnlGame : View
         landlordAnim.gameObject.SetActive(false);
 
         bottomScore.gameObject.SetActive(false);
-        currentTotalScore.gameObject.SetActive(false);     
+        currentTotalScore.gameObject.SetActive(false);
         //自适应
         landlordFlags[0].transform.localPosition = new Vector3(-AppConfig.screenWidth / 2 + 60f, -215f, 0f);
         landlordFlags[1].transform.localPosition = new Vector3(AppConfig.screenWidth / 2 - 80f, 230f, 0f);
@@ -254,7 +254,7 @@ public class LandlordsPnlGame : View
         {
             myHandCards[i].gameObject.SetActive(false);
             myHandCards[i].GetComponent<BoxCollider>().enabled = false;
-            myHandCards[i].transform.Find("landlordPokerFlag").gameObject.SetActive(false);      
+            myHandCards[i].transform.Find("landlordPokerFlag").gameObject.SetActive(false);
         }
         for (int i = 0; i < 3; i++)
         {
@@ -301,7 +301,7 @@ public class LandlordsPnlGame : View
         LandlordsEvent.S_UserAddTime += OnUserAddTime;
         LandlordsEvent.S_UserOutCard += OnUserOutCard;
         LandlordsEvent.S_OutCardFail += OnOutCardFail;
-        LandlordsEvent.S_GiveUpOutCard += OnGiveUpOutCard;
+        LandlordsEvent.S_PassCard += OnPassCard;
         LandlordsEvent.S_GameEnd += OnGameEnd;
         LandlordsEvent.OnUserTrustee += OnUserTrustee;
         LandlordsEvent.V_ReStartNewGame += ReStartNewGame;
@@ -327,7 +327,7 @@ public class LandlordsPnlGame : View
         LandlordsEvent.S_UserAddTime -= OnUserAddTime;
         LandlordsEvent.S_UserOutCard -= OnUserOutCard;
         LandlordsEvent.S_OutCardFail -= OnOutCardFail;
-        LandlordsEvent.S_GiveUpOutCard -= OnGiveUpOutCard;
+        LandlordsEvent.S_PassCard -= OnPassCard;
         LandlordsEvent.S_GameEnd -= OnGameEnd;
         LandlordsEvent.OnUserTrustee -= OnUserTrustee;
         LandlordsEvent.V_ReStartNewGame -= ReStartNewGame;
@@ -341,7 +341,7 @@ public class LandlordsPnlGame : View
         AudioManager.Instance.PlaySound(GameModel.audioButtonOp);
         int playerNum = 0;
         for (int i = 0; i < LandlordsModel.GAME_NUM; i++)
-        {            
+        {
             PlayerInRoom player = GameModel.GetDeskUser(i);
             if (player != null)
             {
@@ -361,7 +361,7 @@ public class LandlordsPnlGame : View
         else
         {
             Util.Instance.DoAction(GameEvent.V_OpenShortTip, "请等待其他玩家加入！");
-        } 
+        }
     }
 
     //准备
@@ -417,7 +417,7 @@ public class LandlordsPnlGame : View
             return;
         }
         //出牌
-        AudioManager.Instance.PlaySound(GameModel.audioButtonOp);            
+        AudioManager.Instance.PlaySound(GameModel.audioButtonOp);
         byte[] data = new byte[20];
         for (int i = 0; i < selectCardList.Count; i++)
         {
@@ -436,7 +436,7 @@ public class LandlordsPnlGame : View
     //提示   
     void OnBtnCardTipClick()
     {
-        AudioManager.Instance.PlaySound(GameModel.audioButtonOp);        
+        AudioManager.Instance.PlaySound(GameModel.audioButtonOp);
         if (tipCardList.Count != 0)
         {
             if (selectIndex >= tipCardList.Count)
@@ -449,7 +449,7 @@ public class LandlordsPnlGame : View
                 for (int j = 0; j < tipCardList[selectIndex].Length; j++)
                 {
                     selectCardList.Add(tipCardList[selectIndex][j]);
-                } 
+                }
                 for (int i = 0; i < handCardList.Count; i++)
                 {
                     myHandCards[i].transform.localPosition = new Vector3(-460f + i * 48.4f, 0f, 0f);
@@ -466,7 +466,7 @@ public class LandlordsPnlGame : View
                             if (!tempIndexList.Contains(i))
                             {
                                 tempIndexList.Add(i);
-                            }                            
+                            }
                         }
                     }
                 }
@@ -476,7 +476,7 @@ public class LandlordsPnlGame : View
                     myHandCards[tempIndexList[i]].transform.localPosition += new Vector3(0f, 25f, 0f);
                 }
                 selectIndex++;
-            }            
+            }
         }
     }
 
@@ -490,8 +490,15 @@ public class LandlordsPnlGame : View
     //要不起
     void OnBtnCannotAffordClick()
     {
-        AudioManager.Instance.PlaySound(GameModel.audioButtonOp);
-        LandlordsService.Instance.C2S_PassCard();
+        try
+        {
+            AudioManager.Instance.PlaySound(GameModel.audioButtonOp);
+            LandlordsService.Instance.C2S_PassCard();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error handling button click: {e.Message}");
+        }
     }
 
     //不抢 不叫
@@ -511,7 +518,7 @@ public class LandlordsPnlGame : View
     //不加倍
     void OnBtnNotDoubleClick()
     {
-        AudioManager.Instance.PlaySound(GameModel.audioButtonOp); 
+        AudioManager.Instance.PlaySound(GameModel.audioButtonOp);
         LandlordsService.Instance.C2S_AddTime(0);
     }
 
@@ -530,7 +537,7 @@ public class LandlordsPnlGame : View
     bool isAuto = false;
     //托管
     private void OnBtnAutoClick()
-    {        
+    {
         if (!isAuto)//点击一次，托管状态
         {
             LandlordsService.Instance.C2S_Trustee(1);
@@ -664,14 +671,14 @@ public class LandlordsPnlGame : View
             else
             {
                 myHandCards[i].gameObject.SetActive(false);
-            }            
+            }
         }
         if (LandlordsModel.bankerChairdId != 65535 && LandlordsModel.bankerChairdId == GameModel.chairId)
         {
             if (handCardList.Count > 0)
             {
                 myHandCards[handCardList.Count - 1].transform.Find("landlordPokerFlag").gameObject.SetActive(true);
-            }           
+            }
         }
     }
 
@@ -746,7 +753,7 @@ public class LandlordsPnlGame : View
                 }
             }
         }
-        
+
     }
 
     //刷新手牌数目
@@ -761,9 +768,9 @@ public class LandlordsPnlGame : View
             }
             if (cardCount[i] < 4)//显示警报
             {
-                callPoliceFlags[index].SetActive(true);                
+                callPoliceFlags[index].SetActive(true);
             }
-        }        
+        }
     }
 
     //刷新自己手牌的位置
@@ -778,7 +785,7 @@ public class LandlordsPnlGame : View
 
     //刷新托管按钮
     void RefreshAutoButton()
-    {         
+    {
         if (!isAuto)//点击一次，托管状态
         {
             isAuto = true;
@@ -978,7 +985,7 @@ public class LandlordsPnlGame : View
                 else
                 {
                     AudioManager.Instance.PlaySound(LandlordsModel.man_shunZi);
-                }                
+                }
                 #endregion
                 break;
             case 8:
@@ -1058,10 +1065,10 @@ public class LandlordsPnlGame : View
 
     void CloseCardTypeFlag()
     {
-        shunZiFlag.SetActive(false);        
-        lianDuiFlag.SetActive(false);        
+        shunZiFlag.SetActive(false);
+        lianDuiFlag.SetActive(false);
         planeFlag.SetActive(false);
-        wangZhaFlag.SetActive(false);        
+        wangZhaFlag.SetActive(false);
         chunTianFlag.SetActive(false);
         fanChunTianFlag.SetActive(false);
         for (int i = 0; i < 3; i++)
@@ -1084,10 +1091,10 @@ public class LandlordsPnlGame : View
         btnNotOutCard.gameObject.SetActive(false);
         btnCardTip.gameObject.SetActive(false);
         for (int i = 0; i < 3; i++)
-		{
+        {
             notCallFlags[i].SetActive(false);
             notOutCardFlags[i].SetActive(false);
-		}
+        }
     }
 
     //游戏结束后关闭相关显示
@@ -1108,7 +1115,7 @@ public class LandlordsPnlGame : View
                     outCards[i, j].SetActive(false);
                     outCards[i, j].transform.Find("landlordsFlag").gameObject.SetActive(false);
                 }
-            }  
+            }
         }
         //清空数据
         InitData();
@@ -1146,21 +1153,22 @@ public class LandlordsPnlGame : View
 
     #region 游戏状态
     //空闲状态
-    void OnStateFree(CMD_Landlords_S_StatusFree pro)
+    void OnStateFree(Bs.Gameddz.S_StatusFree pro)
     {
         InitData();//清空临时数据
         Invoke("SendTipMessage", 2f);
         #region 显示底分和倍数
         bottomScore.gameObject.SetActive(true);
         currentTotalScore.gameObject.SetActive(true);
-        bottomScore.text = pro.lCellScore.ToString();
+        bottomScore.text = pro.CellScore.ToString();
         for (int i = 0; i < LandlordsModel.GAME_NUM; i++)
         {
             if (i == GameModel.chairId)
-                currentTotalScore.text = pro.wUserTimes[i].ToString();
+                currentTotalScore.text = pro.Times[i].ToString();
         }
-        
+
         #endregion
+        //Debug.Log("serverType=" + GameModel.serverType);
         if (GameModel.serverType == GameModel.ServerKind_Private) //房卡模式
         {
             if (GameModel.currentGameCount > 0)//有局数
@@ -1186,11 +1194,11 @@ public class LandlordsPnlGame : View
                 Invoke("showChangeDeskBtn", 0.1f);
             }
         }
-        RefreshAgreeState(false);  
+        RefreshAgreeState(false);
     }
 
     //叫抢地主状态
-    void OnStateCall(CMD_Landlords_S_StatusCall pro)
+    void OnStateCall(Bs.Gameddz.S_StatusCall pro)
     {
         InitData();//清空临时数据
         Invoke("SendTipMessage", 2f);
@@ -1199,11 +1207,11 @@ public class LandlordsPnlGame : View
         #region 显示底分和倍数
         bottomScore.gameObject.SetActive(true);
         currentTotalScore.gameObject.SetActive(true);
-        bottomScore.text = pro.lCellScore.ToString();
+        bottomScore.text = pro.CellScore.ToString();
         for (int i = 0; i < LandlordsModel.GAME_NUM; i++)
         {
             if (i == GameModel.chairId)
-                currentTotalScore.text = pro.wUserTimes[i].ToString();
+                currentTotalScore.text = pro.Times[i].ToString();
         }
         #endregion
         #region 显示玩家托管状态
@@ -1234,9 +1242,9 @@ public class LandlordsPnlGame : View
             myHandCards[i].gameObject.SetActive(false);
             myHandCards[i].GetComponent<BoxCollider>().enabled = true;
         }
-        for (int i = 0; i < LandlordsModel.NORMAL_HANDCARDNUM; i++)
+        for (int i = 0; i < pro.HandCardData.Count; i++)
         {
-            handCardList.Add(pro.cbHandCardData[i]);
+            handCardList.Add((byte)pro.HandCardData[i]);
         }
         for (int j = 0; j < LandlordsModel.NORMAL_HANDCARDNUM; j++)
         {
@@ -1259,22 +1267,22 @@ public class LandlordsPnlGame : View
         for (int i = 0; i < LandlordsModel.GAME_NUM; i++)
         {
             int index = (i - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
-            if (pro.cbScoreInfo[i] != 255)
+            if (pro.ScoreInfo[i] != 255)
             {
-                notCallFlags[index].SetActive(pro.cbScoreInfo[i] == 0);
-                notHogFlags[index].SetActive(pro.cbScoreInfo[i] == 1);
-                hogFlags[index].SetActive(pro.cbScoreInfo[i] == 2);
-                gradLandlordFlags[index].SetActive(pro.cbScoreInfo[i] == 3);                
-            }            
+                notCallFlags[index].SetActive(pro.ScoreInfo[i] == 0);
+                notHogFlags[index].SetActive(pro.ScoreInfo[i] == 1);
+                hogFlags[index].SetActive(pro.ScoreInfo[i] == 2);
+                gradLandlordFlags[index].SetActive(pro.ScoreInfo[i] == 3);
+            }
         }
-        int currentCallIndex = (pro.wCurrentUser - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
-        if (pro.wCurrentUser != 65535)
-        {            
+        int currentCallIndex = ((int)pro.CurrentUser - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
+        if (pro.CurrentUser != 65535)
+        {
             hogFlags[currentCallIndex].SetActive(false);
             gradLandlordFlags[currentCallIndex].SetActive(false);
             notCallFlags[currentCallIndex].SetActive(false);
             notHogFlags[currentCallIndex].SetActive(false);
-            if (pro.wCurrentUser == GameModel.chairId)
+            if (pro.CurrentUser == GameModel.chairId)
             {
                 btnGradLandlord.gameObject.SetActive(true);
                 btnNotHog.gameObject.SetActive(true);
@@ -1286,7 +1294,7 @@ public class LandlordsPnlGame : View
     }
 
     //加倍状态
-    void OnStateAddTime(CMD_Landlords_S_StatusAddTime pro)
+    void OnStateAddTime(Bs.Gameddz.S_StatusAddTimes pro)
     {
         InitData();//清空临时数据
         Invoke("SendTipMessage", 2f);
@@ -1295,11 +1303,11 @@ public class LandlordsPnlGame : View
         #region 显示底分和倍数
         bottomScore.gameObject.SetActive(true);
         currentTotalScore.gameObject.SetActive(true);
-        bottomScore.text = pro.lCellScore.ToString();
+        bottomScore.text = pro.CellScore.ToString();
         for (int i = 0; i < LandlordsModel.GAME_NUM; i++)
         {
             if (i == GameModel.chairId)
-                currentTotalScore.text = pro.wUserTimes[i].ToString();
+                currentTotalScore.text = pro.Times[i].ToString();
         }
         #endregion
         #region 显示玩家托管状态
@@ -1321,7 +1329,7 @@ public class LandlordsPnlGame : View
                 int index = (i - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
                 autoFlags[index].SetActive(LandlordsModel.isPlayerTrustee[i]);
             }
-        }        
+        }
         #endregion
         #region 显示我自己的手牌
         //关闭上局显示的牌        
@@ -1330,18 +1338,18 @@ public class LandlordsPnlGame : View
             myHandCards[i].gameObject.SetActive(false);
             myHandCards[i].GetComponent<BoxCollider>().enabled = true;
         }
-        if (pro.wBankerChairId == GameModel.chairId)
+        if (pro.LandUser == GameModel.chairId)
         {
-            for (int i = 0; i < LandlordsModel.MAX_COUNT; i++)
+            for (int i = 0; i < pro.HandCardData.Count; i++)
             {
-                handCardList.Add(pro.cbHandCardData[i]);
+                handCardList.Add((byte)pro.HandCardData[i]);
             }
         }
         else
         {
-            for (int i = 0; i < LandlordsModel.NORMAL_HANDCARDNUM; i++)
+            for (int i = 0; i < pro.HandCardData.Count; i++)
             {
-                handCardList.Add(pro.cbHandCardData[i]);
+                handCardList.Add((byte)pro.HandCardData[i]);
             }
         }
         for (int j = 0; j < handCardList.Count; j++)
@@ -1356,30 +1364,30 @@ public class LandlordsPnlGame : View
         RefreshHandCard();//重排手牌
         #endregion
         #region 显示地主标志、底牌
-        int bankerIndex = (pro.wBankerChairId - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
+        int bankerIndex = ((int)pro.LandUser - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
         landlordFlags[bankerIndex].SetActive(true);
-        for (int i = 0; i < pro.cbBankerCard.Length; i++)
+        for (int i = 0; i < pro.BankerCard.Count; i++)
         {
             bankerHoleCards[i].gameObject.SetActive(true);
-            bankerHoleCards[i].spriteName = LandlordsModel.GetPokerName(pro.cbBankerCard[i]);
+            bankerHoleCards[i].spriteName = LandlordsModel.GetPokerName((byte)pro.BankerCard[i]);
         }
         #endregion
         #region 显示加倍分数
         for (int i = 0; i < LandlordsModel.GAME_NUM; i++)
         {
             int index = (i - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
-            if (pro.cbAddTimes[i] != 255)
+            if (pro.AddTimes[i] != 255)
             {
-                doubleFlags[index].SetActive(pro.cbAddTimes[i] == 1);
-                notDoubleFlags[index].SetActive(pro.cbAddTimes[i] == 0);
-                if (pro.cbAddTimes[i] == 1)
-                {                    
+                doubleFlags[index].SetActive(pro.AddTimes[i] == 1);
+                notDoubleFlags[index].SetActive(pro.AddTimes[i] == 0);
+                if (pro.AddTimes[i] == 1)
+                {
                     doubleFlags[index].SetActive(true);
                 }
                 else
                 {
                     notDoubleFlags[index].SetActive(true);
-                }                
+                }
             }
             else
             {
@@ -1394,7 +1402,7 @@ public class LandlordsPnlGame : View
     }
 
     //游戏中状态
-    void OnStatePlay(CMD_Landlords_S_StatusPlay pro)
+    void OnStatePlay(Bs.Gameddz.S_StatusPlay pro)
     {
         InitData();//清空临时数据
         Invoke("SendTipMessage", 2f);
@@ -1403,11 +1411,11 @@ public class LandlordsPnlGame : View
         #region 显示底分和倍数
         bottomScore.gameObject.SetActive(true);
         currentTotalScore.gameObject.SetActive(true);
-        bottomScore.text = pro.lCellScore.ToString();
+        bottomScore.text = pro.CellScore.ToString();
         for (int i = 0; i < LandlordsModel.GAME_NUM; i++)
         {
             if (i == GameModel.chairId)
-                currentTotalScore.text = pro.wUserTimes[i].ToString();
+                currentTotalScore.text = pro.Times[i].ToString();
         }
         #endregion
         #region 显示玩家托管状态
@@ -1432,37 +1440,38 @@ public class LandlordsPnlGame : View
         }
         #endregion
         #region 显示地主、地主底牌
-        int bankerIndex = (pro.wBankerUser - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
+        int bankerIndex = ((int)pro.BankerUser - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
         landlordFlags[bankerIndex].SetActive(true);
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < pro.BankerCard.Count; i++)
         {
             bankerHoleCards[i].gameObject.SetActive(true);
-            bankerHoleCards[i].spriteName = LandlordsModel.GetPokerName(pro.cbBankerCard[i]);
+            bankerHoleCards[i].spriteName = LandlordsModel.GetPokerName((byte)pro.BankerCard[i]);
         }
         #endregion
         #region 显示本轮出牌
         for (int i = 0; i < LandlordsModel.GAME_NUM; i++)
         {
-            if (i != pro.wCurrentUser)
+            if (i != pro.CurrentUser)
             {
-                if (pro.cbEpicycleOutState[i] != 255)
+                if (pro.LastOutState[i] != 255)
                 {
-                    if (pro.cbEpicycleCardCount[i] != 0)//该玩家出牌了
+                    if (pro.LastCardCount[i] != 0)//该玩家出牌了
                     {
                         //显示出牌玩家出的牌
                         int outCardIndex = (i - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
-                        byte[] cardData = new byte[pro.cbEpicycleCardCount[i]];
-                        for (int j = 0; j < pro.cbEpicycleCardCount[i]; j++)
+                        byte[] cardData = new byte[pro.LastCardCount[i]];
+                        for (int j = 0; j < pro.LastCardCount[i]; j++)
                         {
-                            if (pro.cbEpicycleCardData[i, j] != 0)
+                            var cardInfo = pro.LastCardData[i];
+                            if (cardInfo.Card[j] != 0)
                             {
-                                cardData[j] = pro.cbEpicycleCardData[i, j];
+                                cardData[j] = (byte)cardInfo.Card[j];
                             }
                         }
-                        RefreshOutCard(outCardIndex, pro.cbEpicycleCardCount[i], cardData);
-                        if (i == pro.wBankerUser)   //显示地主出牌的标志
+                        RefreshOutCard(outCardIndex, (int)pro.LastCardCount[i], cardData);
+                        if (i == pro.BankerUser)   //显示地主出牌的标志
                         {
-                            for (int j = 0; j < pro.cbEpicycleCardCount[i]; j++)
+                            for (int j = 0; j < pro.LastCardCount[i]; j++)
                             {
                                 outCards[outCardIndex, j].transform.Find("landlordsFlag").gameObject.SetActive(true);
                             }
@@ -1474,7 +1483,7 @@ public class LandlordsPnlGame : View
                         notOutCardFlags[notOutCardIndex].SetActive(true);
                     }
                 }
-            }            
+            }
         }
         #endregion
         #region 显示我自己的剩余手牌
@@ -1484,23 +1493,23 @@ public class LandlordsPnlGame : View
             myHandCards[i].gameObject.SetActive(false);
             myHandCards[i].GetComponent<BoxCollider>().enabled = true;
         }
-        int myHandCardCount = 0; 
+        int myHandCardCount = 0;
         for (int i = 0; i < LandlordsModel.GAME_NUM; i++)
         {
             int index = (i - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
             if (index == 0)
             {
-                myHandCardCount = pro.cbHandCardCount[i];               
+                myHandCardCount = (int)pro.HandCardCount[i];
             }
             else//显示别人剩余多少张牌
             {
                 userCardCount[index].SetActive(true);
-                userCardCount[index].GetComponent<UILabel>().text = pro.cbHandCardCount[i].ToString();
+                userCardCount[index].GetComponent<UILabel>().text = pro.HandCardCount[i].ToString();
             }
         }
         for (int i = 0; i < myHandCardCount; i++)
         {
-            handCardList.Add(pro.cbHandCardData[i]);
+            handCardList.Add((byte)pro.HandCardData[i]);
         }
         for (int j = 0; j < handCardList.Count; j++)
         {
@@ -1514,12 +1523,12 @@ public class LandlordsPnlGame : View
         RefreshHandCard();//重排手牌
         #endregion
         #region 显示当前出牌玩家操作
-        int currentIndex = (pro.wCurrentUser - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
-        if (pro.wCurrentUser == GameModel.chairId)
+        int currentIndex = ((int)pro.CurrentUser - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
+        if (pro.CurrentUser == GameModel.chairId)
         {
-            if (pro.cbActive == 0)//被动出牌
+            if (pro.Active == 0)//被动出牌
             {
-                if (pro.bySearchCount != 0)
+                if (pro.SearchCount != 0)
                 {
                     btnOutCard.transform.localPosition = new Vector3(220f, -45f, 0f);
                     btnCardTip.transform.localPosition = new Vector3(0f, -45f, 0f);
@@ -1529,12 +1538,13 @@ public class LandlordsPnlGame : View
                     btnNotOutCard.gameObject.SetActive(true);
                     //要的起 保存提示信息
                     tipCardList = new List<byte[]>();
-                    for (int i = 0; i < pro.bySearchCount; i++)
+                    for (int i = 0; i < pro.SearchCount; i++)
                     {
-                        byte[] temp = new byte[pro.cbEachResultCount[i]];
-                        for (int j = 0; j < pro.cbEachResultCount[i]; j++)
+                        var cardInfo = pro.ResultCard[i];
+                        byte[] temp = new byte[pro.SearchCardCount[i]];
+                        for (int j = 0; j < pro.SearchCardCount[i]; j++)
                         {
-                            temp[j] = pro.cbResultCard[i, j];
+                            temp[j] = (byte)cardInfo.Card[j];
                         }
                         tipCardList.Add(temp);
                     }
@@ -1549,7 +1559,7 @@ public class LandlordsPnlGame : View
                 btnOutCard.transform.localPosition = new Vector3(0f, -45f, 0f);
                 btnOutCard.gameObject.SetActive(true);
             }
-            
+
         }
         CloseTimer();
         StartTimeCount(LandlordsModel.outCardTime, currentIndex, null);
@@ -1558,7 +1568,7 @@ public class LandlordsPnlGame : View
     #endregion
 
     //游戏开始
-    void OnGameStart(CMD_Landlords_S_GameStart pro)
+    void OnGameStart(Bs.Gameddz.S_GameStart pro)
     {
         InitData();//清空临时数据
         CancelInvoke("showChangeDeskBtn");
@@ -1571,11 +1581,16 @@ public class LandlordsPnlGame : View
         btnJoinFriend.gameObject.SetActive(false);
         btnCopyRoomId.gameObject.SetActive(false);
         btnChangeDesk.gameObject.SetActive(false);
-        //btnAuto.gameObject.SetActive(GameModel.serverType != GameModel.ServerKind_Private);        
+        //btnAuto.gameObject.SetActive(GameModel.serverType != GameModel.ServerKind_Private);  
+
+        Debug.Log("游戏开始,StartUser=" + pro.StartUser + ",Count=" + pro.CardData.Count);
 
         LandlordsModel.bankerChairdId = 65535;
-        LandlordsModel.currentUser = pro.wStartUser;
-        LandlordsModel.myHandCards = pro.cbCardData;
+        LandlordsModel.currentUser = (int)pro.StartUser;
+        for (int i = 0; i < pro.CardData.Count; i++)
+        {
+            LandlordsModel.myHandCards[i] = (byte)pro.CardData[i];
+        }
 
         for (int i = 0; i < LandlordsModel.NORMAL_HANDCARDNUM; i++)
         {
@@ -1585,21 +1600,21 @@ public class LandlordsPnlGame : View
         StartCoroutine(PlayGameStartAnim());
     }
     //用户叫分
-    void OnUserCall(CMD_Landlords_S_CallScore pro)
+    void OnUserCall(Bs.Gameddz.S_RobLand pro)
     {
         #region 叫分音效
-        PlayerInRoom player = GameModel.GetDeskUser(pro.wCurrentUser);
+        PlayerInRoom player = GameModel.GetDeskUser((int)pro.RobLandUser);
         if (player != null)
         {
             if (player.cbGender == 0)
             {
-                switch (pro.cbCurrentScore)
+                switch (pro.RobLand)
                 {
                     case 0:
-                        AudioManager.Instance.PlaySound(LandlordsModel.woman_notCall);      
+                        AudioManager.Instance.PlaySound(LandlordsModel.woman_notCall);
                         break;
                     case 1:
-                        AudioManager.Instance.PlaySound(LandlordsModel.woman_notGrad);      
+                        AudioManager.Instance.PlaySound(LandlordsModel.woman_notGrad);
                         break;
                     case 2:
                         AudioManager.Instance.PlaySound(LandlordsModel.woman_callLandlord);
@@ -1609,11 +1624,11 @@ public class LandlordsPnlGame : View
                         break;
                     default:
                         break;
-                }                          
+                }
             }
             else
             {
-                switch (pro.cbCurrentScore)
+                switch (pro.RobLand)
                 {
                     case 0:
                         AudioManager.Instance.PlaySound(LandlordsModel.man_notCall);
@@ -1629,54 +1644,54 @@ public class LandlordsPnlGame : View
                         break;
                     default:
                         break;
-                } 
+                }
             }
         }
         #endregion
         #region 显示倍数
-        for (int i = 0; i < LandlordsModel.GAME_NUM; i++)
+        for (int i = 0; i < pro.Times.Count; i++)
         {
             if (i == GameModel.chairId)
-                currentTotalScore.text = pro.wUserTimes[i].ToString();
+                currentTotalScore.text = pro.Times[i].ToString();
         }
         #endregion
         #region  轮到自己抢地主时，显示抢地主按钮
-        int index = (pro.wCurrentUser - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
-        notCallFlags[index].SetActive(pro.cbCurrentScore == 0);
-        notHogFlags[index].SetActive(pro.cbCurrentScore == 1);
-        hogFlags[index].SetActive(pro.cbCurrentScore == 2);
-        gradLandlordFlags[index].SetActive(pro.cbCurrentScore == 3);
-        if (pro.wCurrentUser == GameModel.chairId)
+        int index = ((int)pro.RobLandUser - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
+        notCallFlags[index].SetActive(pro.RobLand == 0);
+        notHogFlags[index].SetActive(pro.RobLand == 1);
+        hogFlags[index].SetActive(pro.RobLand == 2);
+        gradLandlordFlags[index].SetActive(pro.RobLand == 3);
+        if (pro.RobLandUser == GameModel.chairId)
         {
             btnCallLandlord.gameObject.SetActive(false);
             btnGradLandlord.gameObject.SetActive(false);
             btnNotCall.gameObject.SetActive(false);
             btnNotHog.gameObject.SetActive(false);
         }
-        CloseTimer();        
-        int nextCallIndex = (pro.wCallScoreUser - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
+        CloseTimer();
+        int nextCallIndex = ((int)pro.NextUser - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
         timeCount[nextCallIndex].SetActive(true);
-        if (pro.wCallScoreUser != 65535)
+        if (pro.NextUser != 65535)
         {
             if (!LandlordsModel.isPlayerCallLandlord)
             {
-                if (pro.cbCurrentScore != 0)
+                if (pro.RobLand != 0)
                 {
                     LandlordsModel.isPlayerCallLandlord = true;
                 }
             }
-            if (pro.wCallScoreUser == GameModel.chairId)
-            {                
-                if (pro.cbCurrentScore == 0 && !LandlordsModel.isPlayerCallLandlord)
+            if (pro.NextUser == GameModel.chairId)
+            {
+                if (pro.RobLand == 0 && !LandlordsModel.isPlayerCallLandlord)
                 {
                     btnCallLandlord.gameObject.SetActive(true);
                     btnNotCall.gameObject.SetActive(true);
                 }
                 else
-                {                    
+                {
                     btnGradLandlord.gameObject.SetActive(true);
                     btnNotHog.gameObject.SetActive(true);
-                }                
+                }
             }
             notCallFlags[nextCallIndex].SetActive(false);
             notHogFlags[nextCallIndex].SetActive(false);
@@ -1688,7 +1703,7 @@ public class LandlordsPnlGame : View
     }
 
     //重新发牌
-    void OnReSendCard(CMD_Landlords_S_ReSendCard pro)
+    void OnReSendCard(Bs.Gameddz.S_ReOutCard pro)
     {
         #region 关闭显示状态
         for (int i = 0; i < 3; i++)
@@ -1705,8 +1720,11 @@ public class LandlordsPnlGame : View
         {
             myHandCards[i].gameObject.SetActive(false);
         }
-        LandlordsModel.currentUser = pro.wStartUser;
-        LandlordsModel.myHandCards = pro.cbCardData;
+        LandlordsModel.currentUser = (int)pro.StartUser;
+        for (int i = 0; i < pro.CardData.Count; i++)
+        {
+            LandlordsModel.myHandCards[i] = (byte)pro.CardData[i];
+        }
 
         for (int i = 0; i < LandlordsModel.NORMAL_HANDCARDNUM; i++)
         {
@@ -1717,7 +1735,7 @@ public class LandlordsPnlGame : View
     }
 
     //显示庄家信息，庄家开始出牌
-    void OnBankerStartOutCard(CMD_Landlords_S_BankerInfo pro)
+    void OnBankerStartOutCard(Bs.Gameddz.S_BankerInfo pro)
     {
         #region 显示地主信息
         for (int i = 0; i < 3; i++)
@@ -1735,7 +1753,7 @@ public class LandlordsPnlGame : View
         landlordAnim.localPosition = new Vector3(0f, 30f, 0f);
         landlordAnim.localScale = Vector3.one * 0.8f;
         landlordAnim.DOScale(Vector3.one * 0.3f, 0.6f).SetDelay(0.3f);
-        landlordAnim.DOLocalMove(tarPos, 0.6f).SetDelay(0.3f).onComplete = delegate 
+        landlordAnim.DOLocalMove(tarPos, 0.6f).SetDelay(0.3f).onComplete = delegate
         {
             landlordAnim.gameObject.SetActive(false);
             landlordFlags[BankerIndex].SetActive(true);
@@ -1745,7 +1763,7 @@ public class LandlordsPnlGame : View
                 bankerHoleCards[i].gameObject.SetActive(true);
                 bankerHoleCards[i].spriteName = LandlordsModel.GetPokerName(LandlordsModel.bankerHoleCards[i]);
             }
-        #endregion
+            #endregion
             #region 增加地主手牌
             if (LandlordsModel.bankerChairdId == GameModel.chairId)
             {
@@ -1763,7 +1781,7 @@ public class LandlordsPnlGame : View
             #endregion
             #region 是否有加倍
             CloseTimer();
-            if (pro.bHasAddTime == 0)
+            if (pro.HasAddTime == 0)
             {
                 if (LandlordsModel.bankerChairdId == GameModel.chairId)
                 {
@@ -1778,41 +1796,41 @@ public class LandlordsPnlGame : View
             }
             else
             {
-                btnDouble.gameObject.SetActive(pro.bHasAddTime == 1);
-                btnNotDouble.gameObject.SetActive(pro.bHasAddTime == 1);
+                btnDouble.gameObject.SetActive(pro.HasAddTime == 1);
+                btnNotDouble.gameObject.SetActive(pro.HasAddTime == 1);
                 timeCount[0].SetActive(true);
                 StartTimeCount(LandlordsModel.addTime, 0, null);
             }
             #endregion
         };
-        
-        
+
+
     }
 
     //用户加倍
-    void OnUserAddTime(CMD_Landlords_S_AddTimes pro)
+    void OnUserAddTime(Bs.Gameddz.S_AddTimes pro)
     {
         //显示倍数
         for (int i = 0; i < LandlordsModel.GAME_NUM; i++)
         {
             if (i == GameModel.chairId)
-                currentTotalScore.text = pro.wUserTimes[i].ToString();
+                currentTotalScore.text = pro.Times[i].ToString();
         }
 
         #region 播放音效
-        PlayerInRoom player = GameModel.GetDeskUser(pro.wAddUser);
+        PlayerInRoom player = GameModel.GetDeskUser((int)pro.User);
         if (player != null)
         {
             if (player.cbGender == 0)
             {
-                if (pro.cbAddTimes == 1)
+                if (pro.AddTimes == 1)
                     AudioManager.Instance.PlaySound(LandlordsModel.woman_double);
                 else
                     AudioManager.Instance.PlaySound(LandlordsModel.woman_notDouble);
             }
             else
             {
-                if (pro.cbAddTimes == 1)
+                if (pro.AddTimes == 1)
                     AudioManager.Instance.PlaySound(LandlordsModel.man_double);
                 else
                     AudioManager.Instance.PlaySound(LandlordsModel.man_notDouble);
@@ -1820,16 +1838,16 @@ public class LandlordsPnlGame : View
         }
         #endregion        
         #region 显示加倍状态
-        if (pro.cbAddTimes != 255)
+        if (pro.AddTimes != 255)
         {
-            int index = (pro.wAddUser - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
-            if (pro.wAddUser == GameModel.chairId)
+            int index = ((int)pro.User - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
+            if (pro.User == GameModel.chairId)
             {
                 btnNotDouble.gameObject.SetActive(false);
                 btnDouble.gameObject.SetActive(false);
                 CloseTimer();
             }
-            if (pro.cbAddTimes == 1) //加倍
+            if (pro.AddTimes == 1) //加倍
             {
                 doubleFlags[index].SetActive(true);
             }
@@ -1840,7 +1858,7 @@ public class LandlordsPnlGame : View
         }
         #endregion
         #region 显示庄家信息
-        if (pro.byCanOutCard == 1)//庄家可以开始出牌
+        if (pro.CanOutCard == 1)//庄家可以开始出牌
         {
             for (int i = 0; i < 3; i++)
             {
@@ -1860,58 +1878,73 @@ public class LandlordsPnlGame : View
             StartTimeCount(LandlordsModel.firstOutCardTime, bankerIndex, null);
         }
         #endregion
-    }    
+    }
 
     //用户出牌
-    void OnUserOutCard(CMD_Landlords_S_OutCard pro)
+    void OnUserOutCard(Bs.Gameddz.S_OutCard pro)
     {
         selectIndex = 0;    //重置提示选择下标
         //播放出牌音效
-        PlayOutCardTypeAudioAndAnim(pro.wOutCardUser, pro.byCardType, pro.cbCardData[0]);
-        LandlordsModel.finallyOutCardType = pro.byCardType;
+        PlayOutCardTypeAudioAndAnim((UInt16)pro.OutCardUser, (byte)pro.CardType, (byte)pro.CardData[0]);
+        LandlordsModel.finallyOutCardType = (int)pro.CardType;
         //显示出牌玩家出的牌
-        int outCardIndex = (pro.wOutCardUser - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
-        RefreshOutCard(outCardIndex, pro.cbCardCount, pro.cbCardData);
+        int outCardIndex = ((int)pro.OutCardUser - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
+
+        //Debug.Log("用户出牌,NextUserCanOutCard=" + pro.NextUserCanOutCard
+        //    + ",OutCardUser=" + pro.OutCardUser
+        //    + ",bankerChairdId=" + LandlordsModel.bankerChairdId
+        //    + ",pro.CardData.Count=" + pro.CardData.Count
+        //    + ",chairId=" + GameModel.chairId
+        //    + ",outCardIndex=" + outCardIndex
+        //    + ",NextUser=" + pro.NextUser
+        //    );
+
+        byte[] cbCardData = new byte[pro.CardData.Count];
+        for(int i = 0; i < pro.CardData.Count; i ++)
+        {
+            cbCardData[i] = (byte)pro.CardData[i];
+        }
+        RefreshOutCard(outCardIndex, (int)pro.CardData.Count, cbCardData);
         for (int i = 0; i < LandlordsModel.GAME_NUM; i++)
         {
             if (i == GameModel.chairId)
-                currentTotalScore.text = pro.wUserTimes[i].ToString();
+                currentTotalScore.text = pro.Times[i].ToString();
         }
         #region 出牌是地主
-        if (pro.wOutCardUser == LandlordsModel.bankerChairdId)
+        if (pro.OutCardUser == LandlordsModel.bankerChairdId)
         {
-            for (int i = 0; i < pro.cbCardCount; i++)
+            for (int i = 0; i < pro.CardData.Count; i++)
             {
-                outCards[outCardIndex,i].transform.Find("landlordsFlag").gameObject.SetActive(true);
+                outCards[outCardIndex, i].transform.Find("landlordsFlag").gameObject.SetActive(true);
             }
         }
         #endregion
         #region 出牌数据排序
-        if (pro.cbCardCount > 1)
+        if (pro.CardData.Count > 1)
         {
-            for (int i = 0; i < pro.cbCardCount; i++)
+            for (int i = 0; i < pro.CardData.Count; i++)
             {
-                for (int j = i + 1; j < pro.cbCardCount; j++)
+                for (int j = i + 1; j < pro.CardData.Count; j++)
                 {
-                    if (LandlordsModel.CompareCard(pro.cbCardData[i], pro.cbCardData[j]) < 0)
+                    if (LandlordsModel.CompareCard((byte)pro.CardData[i], (byte)pro.CardData[j]) < 0)
                     {
-                        byte mid = pro.cbCardData[i];
-                        pro.cbCardData[i] = pro.cbCardData[j];
-                        pro.cbCardData[i] = mid;
+                        byte mid = (byte)pro.CardData[i];
+                        pro.CardData[i] = pro.CardData[j];
+                        pro.CardData[i] = mid;
                     }
                 }
             }
         }
         #endregion
         #region 出牌玩家
-        if (pro.wOutCardUser == GameModel.chairId)
+        if (pro.OutCardUser == GameModel.chairId)
         {
             btnOutCard.gameObject.SetActive(false);
             btnCardTip.gameObject.SetActive(false);
-            btnNotOutCard.gameObject.SetActive(false);    
-            for (int i = 0; i < pro.cbCardCount; i++)
+            btnNotOutCard.gameObject.SetActive(false);
+            for (int i = 0; i < pro.CardData.Count; i++)
             {
-                handCardList.Remove(pro.cbCardData[i]);                
+                handCardList.Remove((byte)pro.CardData[i]);
             }
             RefreshHandCard();
         }
@@ -1919,22 +1952,28 @@ public class LandlordsPnlGame : View
         {
             //保存最后一个玩家出牌数据
             beforeUserOutCardList.Clear();
-            for (int i = 0; i < pro.cbCardCount; i++)
+            for (int i = 0; i < pro.CardData.Count; i++)
             {
-                beforeUserOutCardList.Add(pro.cbCardData[i]);
+                beforeUserOutCardList.Add((byte)pro.CardData[i]);
             }
             //刷新其他玩家的手牌数目
-            RefreshOtherHandCardNum(pro.cbRestCardCount);
+            byte[] cardCount = new byte[pro.RestCardCount.Count];
+            for(int i = 0;i < pro.RestCardCount.Count; i ++)
+            {
+                cardCount[i] = (byte)pro.RestCardCount[i];
+            }
+            RefreshOtherHandCardNum(cardCount);
         }
         #endregion
         #region 下一个出牌的是我
-        if (pro.wNextUser != 65535)
+        if (pro.NextUser != GameModel.INVALID_CHAIR)
         {
             CloseTimer();
-            int nextOutCardIndex = (pro.wNextUser - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
-            if (pro.wNextUser == GameModel.chairId)
+            int nextOutCardIndex = ((int)pro.NextUser - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
+            //Debug.Log("用户出牌,nextOutCardIndex=" + nextOutCardIndex + ",outCardTime=" + LandlordsModel.outCardTime);
+            if (pro.NextUser == GameModel.chairId)
             {
-                if (pro.bNextUserCanOutCard == 1)
+                if (pro.NextUserCanOutCard == 1)
                 {
                     StartTimeCount(LandlordsModel.outCardTime, nextOutCardIndex, null);
                     btnOutCard.transform.localPosition = new Vector3(220f, -45f, 0f);
@@ -1945,13 +1984,14 @@ public class LandlordsPnlGame : View
                     btnNotOutCard.gameObject.SetActive(true);
                     //要的起 保存提示信息
                     tipCardList = new List<byte[]>();
-
-                    for (int i = 0; i < pro.bySearchCount; i++)
+                    for (int i = 0; i < pro.SearchCount; i++)
                     {
-                        byte[] temp = new byte[pro.cbEachResultCount[i]];
-                        for (int j = 0; j < pro.cbEachResultCount[i]; j++)
+                        var cardInfo = pro.ResultCard[i];
+                        byte[] temp = new byte[pro.SearchCardCount[i]];
+                        for (int j = 0; j < pro.SearchCardCount[i]; j++)
                         {
-                            temp[j] = pro.cbResultCard[i, j];
+                            temp[j] = (byte)cardInfo.Card[j];
+                            //temp[j] = pro.cbResultCard[i, j];
                         }
                         tipCardList.Add(temp);
                     }
@@ -1965,7 +2005,7 @@ public class LandlordsPnlGame : View
             else
             {
                 StartTimeCount(LandlordsModel.outCardTime, nextOutCardIndex, null);
-            }            
+            }
             #region 倒计时、清除出的牌
             //清除出的牌
             for (int i = 0; i < 20; i++)
@@ -1981,19 +2021,19 @@ public class LandlordsPnlGame : View
         #endregion
     }
 
-    void OnOutCardFail(CMD_Landlords_S_OutCardFail pro)
+    void OnOutCardFail(Bs.Gameddz.S_OutCardFail pro)
     {
         AudioManager.Instance.PlaySound(GameModel.audioTipWarn);
         RefreshMyHandCardsPos();    //回复玩家的手牌位置
-        Util.Instance.DoAction(GameEvent.V_OpenShortTip, pro.szDescribeString);
+        Util.Instance.DoAction(GameEvent.V_OpenShortTip, pro.DescribeString);
     }
 
     //用户弃牌
-    void OnGiveUpOutCard(CMD_Landlords_S_PassCard pro)
+    void OnPassCard(Bs.Gameddz.S_PassCard pro)
     {
         selectIndex = 0;    //重置提示选择下标
         #region 播放音效
-        PlayerInRoom player = GameModel.GetDeskUser(pro.wPassCardUser);
+        PlayerInRoom player = GameModel.GetDeskUser((int)pro.PassCardUser);
         if (player != null)
         {
             if (player.cbGender == 0)
@@ -2007,9 +2047,9 @@ public class LandlordsPnlGame : View
         }
         #endregion
         #region  显示不出标志
-        int index = (pro.wPassCardUser - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
+        int index = ((int)pro.PassCardUser - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
         notOutCardFlags[index].SetActive(true);
-        if (pro.wPassCardUser == GameModel.chairId)
+        if (pro.PassCardUser == GameModel.chairId)
         {
             RefreshMyHandCardsPos();
             btnCannotAfford.gameObject.SetActive(false);
@@ -2020,16 +2060,28 @@ public class LandlordsPnlGame : View
         #endregion
         #region 下一个操作玩家
         CloseTimer();
-        int nextOutCardIndex = (pro.wCurrentUser - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
-        if (pro.wCurrentUser == GameModel.chairId)
+        int nextOutCardIndex = ((int)pro.NextUser - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
+
+        //Debug.Log("用户弃牌,PassCardUser=" + pro.PassCardUser
+        //    + ",chairId=" + GameModel.chairId
+        //    + ",NextUserCanOutCard=" + pro.NextUserCanOutCard
+        //    + ",TurnOver=" + pro.TurnOver
+        //    + ",SearchCount=" + pro.SearchCount
+        //    + ",player.null=" + (player == null)
+        //    + ",index=" + index
+        //    + ",nextOutCardIndex=" + nextOutCardIndex
+        //    + ",outCardTime=" + LandlordsModel.outCardTime
+        //    );
+
+        if (pro.NextUser == GameModel.chairId)
         {
-            if (pro.bNextUserCanOutCard == 1)//要的起
+            if (pro.NextUserCanOutCard == 1)//要的起
             {
                 StartTimeCount(LandlordsModel.outCardTime, nextOutCardIndex, null);
-                btnOutCard.gameObject.SetActive(true);                
-                if (pro.cbTurnOver != 1)
+                btnOutCard.gameObject.SetActive(true);
+                if (pro.TurnOver != 1)
                 {
-                    btnNotOutCard.gameObject.SetActive(pro.cbTurnOver != 1);
+                    btnNotOutCard.gameObject.SetActive(pro.TurnOver != 1);
                     btnCardTip.gameObject.SetActive(true);
                     btnOutCard.transform.localPosition = new Vector3(220f, -45f, 0f);
                     btnCardTip.transform.localPosition = new Vector3(0f, -45f, 0f);
@@ -2041,12 +2093,14 @@ public class LandlordsPnlGame : View
                 }
                 //要的起 保存提示信息
                 tipCardList = new List<byte[]>();
-                for (int i = 0; i < pro.bySearchCount; i++)
+                for (int i = 0; i < pro.SearchCount; i++)
                 {
-                    byte[] temp = new byte[pro.cbEachResultCount[i]];
-                    for (int j = 0; j < pro.cbEachResultCount[i]; j++)
+                    var cardInfo = pro.ResultCard[i];
+                    byte[] temp = new byte[pro.SearchCardCount[i]];
+                    for (int j = 0; j < pro.SearchCardCount[i]; j++)
                     {
-                        temp[j] = pro.cbResultCard[i, j];
+                        temp[j] = (byte)cardInfo.Card[j];
+                        //temp[j] = pro.cbResultCard[i, j];
                     }
                     tipCardList.Add(temp);
                 }
@@ -2063,13 +2117,13 @@ public class LandlordsPnlGame : View
         }
         #endregion
         #region 清除下操作个玩家显示、倒计时
-        
+
         //清除出的牌
         for (int i = 0; i < 20; i++)
         {
             outCards[nextOutCardIndex, i].SetActive(false);
             if (notOutCardFlags[nextOutCardIndex].activeSelf)
-            {                
+            {
                 notOutCardFlags[nextOutCardIndex].SetActive(false);
             }
         }
@@ -2078,7 +2132,7 @@ public class LandlordsPnlGame : View
 
     float waitTime = 0;// 动画等待时间
     //游戏结束
-    void OnGameEnd(CMD_Landlords_S_GameEnd pro)
+    void OnGameEnd(Bs.Gameddz.S_GameConclude pro)
     {
         #region 关闭游戏UI
         CloseTimer();
@@ -2105,7 +2159,11 @@ public class LandlordsPnlGame : View
                 res.isBankerId[i] = 1;
             }
         }
-        res.userScore = pro.lGameScore;
+        for(int i = 0; i < pro.GameScore.Count; i ++)
+        {
+            res.userScore[i] = pro.GameScore[i];
+            Debug.Log("游戏结束,GameScore=" + pro.GameScore[i]);
+        }
         #endregion
         #region 统计时间
         waitTime = 0;
@@ -2133,7 +2191,7 @@ public class LandlordsPnlGame : View
                     break;
             }
         }
-        if (pro.bChunTian == 1 || pro.bFanChunTian == 1)
+        if (pro.ChunTian == 1 || pro.FanChunTian == 1)
         {
             waitTime += 1f;
         }
@@ -2145,13 +2203,13 @@ public class LandlordsPnlGame : View
         }
         //刷新得分
         DoActionDelay(GameEvent.V_RefreshUserInfo, waitTime, true);
-        StartCoroutine(PlayGameEndAnim(pro)); 
+        StartCoroutine(PlayGameEndAnim(pro));
     }
 
     //用户托管
-    void OnUserTrustee(CMD_Landlords_S_Trustee pro)
+    void OnUserTrustee(Bs.Gameddz.S_TRUSTEE pro)
     {
-        if (pro.wTrusteeUser == GameModel.chairId)
+        if (pro.TrusteeUser == GameModel.chairId)
         {
             btnTrustee.gameObject.SetActive(LandlordsModel.isPlayerTrustee[GameModel.chairId]);
             if (LandlordsModel.isPlayerTrustee[GameModel.chairId])
@@ -2163,12 +2221,12 @@ public class LandlordsPnlGame : View
                 isAuto = true;
             }
             RefreshAutoButton();
-        }        
+        }
         for (int i = 0; i < LandlordsModel.GAME_NUM; i++)
-		{
+        {
             int index = (i - GameModel.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
             autoFlags[index].SetActive(LandlordsModel.isPlayerTrustee[i]);
-		}
+        }
     }
     #endregion
 
@@ -2216,7 +2274,7 @@ public class LandlordsPnlGame : View
         if (currentTimer <= 5)
         {
             if (timeIndex == 0)
-                AudioManager.Instance.PlaySound(LandlordsModel.audioTimer);            
+                AudioManager.Instance.PlaySound(LandlordsModel.audioTimer);
         }
         if (currentTimer < 0)
         {
@@ -2232,15 +2290,15 @@ public class LandlordsPnlGame : View
 
     //游戏开始动画
     IEnumerator PlayGameStartAnim()
-    {      
+    {
         //1.发牌
         for (int j = 0; j < LandlordsModel.NORMAL_HANDCARDNUM; j++)
         {
             AudioManager.Instance.PlaySound(LandlordsModel.audioSendCard);
             myHandCards[j].gameObject.SetActive(true);
             myHandCards[j].transform.localPosition += new Vector3(0f, 5f, 0f);
-            myHandCards[j].transform.DOLocalMoveY(0f, 0.1f);            
-            myHandCards[j].GetComponent<UISprite>().spriteName = LandlordsModel.GetPokerName(handCardList[j]);            
+            myHandCards[j].transform.DOLocalMoveY(0f, 0.1f);
+            myHandCards[j].GetComponent<UISprite>().spriteName = LandlordsModel.GetPokerName(handCardList[j]);
             //显示其他玩家的手牌数目
             for (int i = 0; i < LandlordsModel.GAME_NUM; i++)
             {
@@ -2250,7 +2308,7 @@ public class LandlordsPnlGame : View
                     userCardCount[cardNumIndex].SetActive(true);
                     userCardCount[cardNumIndex].GetComponent<UILabel>().text = (j + 1).ToString();
                 }
-            }  
+            }
             yield return new WaitForSeconds(0.05f);
         }
         yield return new WaitForSeconds(0.1f);
@@ -2278,7 +2336,7 @@ public class LandlordsPnlGame : View
             AudioManager.Instance.PlaySound(LandlordsModel.audioSendCard);
             myHandCards[j].gameObject.SetActive(true);
             myHandCards[j].transform.localPosition += new Vector3(0f, 5f, 0f);
-            myHandCards[j].transform.DOLocalMoveY(0f, 0.1f);            
+            myHandCards[j].transform.DOLocalMoveY(0f, 0.1f);
             myHandCards[j].GetComponent<UISprite>().spriteName = LandlordsModel.GetPokerName(handCardList[j]);
             yield return new WaitForSeconds(0.05f);
         }
@@ -2288,12 +2346,12 @@ public class LandlordsPnlGame : View
         //2.重排手牌
         //AudioManager.Instance.PlaySound(ShiSanShuiModel8.audioSortCard);
         RefreshHandCard();
-        yield return new WaitForSeconds(0.3f);        
+        yield return new WaitForSeconds(0.3f);
     }
 
-    
+
     //游戏结束动画
-    IEnumerator PlayGameEndAnim(CMD_Landlords_S_GameEnd pro)
+    IEnumerator PlayGameEndAnim(Bs.Gameddz.S_GameConclude pro)
     {
         Landlords3Result res = new Landlords3Result();
         res.chairId = GameModel.chairId;
@@ -2304,29 +2362,29 @@ public class LandlordsPnlGame : View
             switch (LandlordsModel.finallyOutCardType)
             {
                 case 3:
-                    yield return new WaitForSeconds(1.2f);                    
+                    yield return new WaitForSeconds(1.2f);
                     break;
                 case 7:
-                    yield return new WaitForSeconds(1.2f);                    
+                    yield return new WaitForSeconds(1.2f);
                     break;
                 case 10:
-                    yield return new WaitForSeconds(2.06f);                    
+                    yield return new WaitForSeconds(2.06f);
                     break;
                 case 11:
-                    yield return new WaitForSeconds(1.11f);                    
+                    yield return new WaitForSeconds(1.11f);
                     break;
                 case 12:
-                    yield return new WaitForSeconds(2.2f);                    
+                    yield return new WaitForSeconds(2.2f);
                     break;
                 default:
                     break;
             }
         }
-        if (pro.bChunTian == 1 || pro.bFanChunTian == 1)
+        if (pro.ChunTian == 1 || pro.FanChunTian == 1)
         {
-            chunTianFlag.SetActive(pro.bChunTian == 1);
-            fanChunTianFlag.SetActive(pro.bFanChunTian == 1);
-            yield return new WaitForSeconds(1f);        
+            chunTianFlag.SetActive(pro.ChunTian == 1);
+            fanChunTianFlag.SetActive(pro.FanChunTian == 1);
+            yield return new WaitForSeconds(1f);
         }
         yield return new WaitForSeconds(1f);
         CloseCardTypeFlag();
@@ -2336,22 +2394,24 @@ public class LandlordsPnlGame : View
         {
             if (i != res.chairId)
             {
-                if (pro.cbCardCount[i] != 255 && pro.cbCardCount[i] != 0)
+                if (pro.CardCount[i] != 255 && pro.CardCount[i] != 0)
                 {
                     //显示出牌玩家出的牌
                     int outCardIndex = (i - res.chairId + LandlordsModel.GAME_NUM) % LandlordsModel.GAME_NUM;
-                    byte[] cardData = new byte[pro.cbCardCount[i]];
-                    for (int j = 0; j < pro.cbCardCount[i]; j++)
+                    byte[] cardData = new byte[pro.CardCount[i]];
+                    var cardInfo = pro.CardData[i];
+                    for (int j = 0; j < pro.CardCount[i]; j++)
                     {
-                        if (pro.cbHandCardData[i, j] != 0)
+                        byte card = (byte)cardInfo.Card[j];
+                        if (card != 0)
                         {
-                            cardData[j] = pro.cbHandCardData[i, j];
+                            cardData[j] = card;
                         }
                     }
-                    RefreshOutCard(outCardIndex, pro.cbCardCount[i], cardData);
+                    RefreshOutCard(outCardIndex, (int)pro.CardCount[i], cardData);
                     if (i == LandlordsModel.bankerChairdId)   //显示地主出牌的标志
                     {
-                        for (int j = 0; j < pro.cbCardCount[i]; j++)
+                        for (int j = 0; j < pro.CardCount[i]; j++)
                         {
                             outCards[outCardIndex, j].transform.Find("landlordsFlag").gameObject.SetActive(true);
                         }
@@ -2359,29 +2419,29 @@ public class LandlordsPnlGame : View
                 }
             }
         }
-        yield return new WaitForSeconds(0.2f);    
+        yield return new WaitForSeconds(0.2f);
         #endregion
         #region 显示输赢
         for (int i = 0; i < 3; i++)
         {
             int chairId = (res.chairId + i) % 3;
             //显示输赢分数
-            if (pro.lGameScore[chairId] > 0)
+            if (pro.GameScore[chairId] > 0)
             {
                 lblWinScore[i].gameObject.SetActive(true);
-                lblWinScore[i].text = "+" + pro.lGameScore[chairId].ToString();
+                lblWinScore[i].text = "+" + pro.GameScore[chairId].ToString();
                 //lblWinScore[i].GetComponent<TweenAlpha>().PlayForward();
-                lblWinScore[i].GetComponent<TweenPosition>().PlayForward();                
+                lblWinScore[i].GetComponent<TweenPosition>().PlayForward();
             }
-            if (pro.lGameScore[chairId] < 0)
+            if (pro.GameScore[chairId] < 0)
             {
                 lblLoseScore[i].gameObject.SetActive(true);
-                lblLoseScore[i].text = pro.lGameScore[chairId].ToString();
+                lblLoseScore[i].text = pro.GameScore[chairId].ToString();
                 //lblLoseScore[i].GetComponent<TweenAlpha>().PlayForward();
-                lblLoseScore[i].GetComponent<TweenPosition>().PlayForward();                
+                lblLoseScore[i].GetComponent<TweenPosition>().PlayForward();
             }
         }
-        if (pro.lGameScore[res.chairId] >= 0)
+        if (pro.GameScore[res.chairId] >= 0)
         {
             AudioManager.Instance.PlaySound(LandlordsModel.audioGameWin);
         }
@@ -2394,7 +2454,7 @@ public class LandlordsPnlGame : View
         #region 显示输赢标志
         if (!isHaveRedPack)
         {
-            if (pro.lGameScore[res.chairId] > 0)
+            if (pro.GameScore[res.chairId] > 0)
             {
                 if (LandlordsModel.bankerChairdId == res.chairId)
                 {
@@ -2409,7 +2469,7 @@ public class LandlordsPnlGame : View
                 winFlag.GetComponent<TweenAlpha>().PlayForward();
                 winFlag.transform.Find("Sprite").GetComponent<TweenScale>().PlayForward();
             }
-            if (pro.lGameScore[res.chairId] < 0)
+            if (pro.GameScore[res.chairId] < 0)
             {
                 if (LandlordsModel.bankerChairdId == res.chairId)
                 {
@@ -2423,7 +2483,7 @@ public class LandlordsPnlGame : View
                 lostFlag.GetComponent<TweenPosition>().PlayForward();
                 lostFlag.GetComponent<TweenAlpha>().PlayForward();
                 lostFlag.transform.Find("Sprite").GetComponent<TweenScale>().PlayForward();
-            }            
+            }
         }
         isHaveRedPack = false;
         yield return new WaitForSeconds(1.5f);

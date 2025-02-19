@@ -28,6 +28,8 @@ public class NetManager
     public const UInt32 AppRoom = 12;
     public const UInt32 AppDaemon = 100;
 
+    public const UInt32 MDM_GF_GAME = 200;
+
     private Queue packetList = new Queue();                         // 存储网络数据包的队列
     private List<IHandler> handlerList = new List<IHandler>();      // 数据包处理类列表
 

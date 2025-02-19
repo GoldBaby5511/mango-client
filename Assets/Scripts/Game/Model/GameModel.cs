@@ -203,11 +203,22 @@ public class GameModel
     //取得房间用户
     public static PlayerInRoom GetDeskUser(int chairId)
     {
-        if (playerInDesk.ContainsKey(chairId) && playerInRoom.ContainsKey(playerInDesk[chairId]))
+        if (GameModel.deskId == GameModel.INVALID_TABLE) return null;
+
+        foreach (KeyValuePair<uint, PlayerInRoom> kvp in playerInRoom)
         {
-            return playerInRoom[playerInDesk[chairId]];
+            if (kvp.Value.wTableID != GameModel.deskId) continue;
+            if (kvp.Value.wChairID != chairId) continue;
+
+            return kvp.Value;
         }
+        Debug.Log("取得房间用户,未找到,chairId=" + GameModel.chairId + ",chairId=" + chairId + ",playerInRoom.Count=" + playerInRoom.Count);
         return null;
+        //if (playerInDesk.ContainsKey(chairId) && playerInRoom.ContainsKey(playerInDesk[chairId]))
+        //{
+        //    return playerInRoom[playerInDesk[chairId]];
+        //}
+        //return null;
     }
 
     //取得用户的头像

@@ -142,7 +142,7 @@ public class GameService : MonoBehaviour
         Util.Instance.DoAction(GameEvent.V_CloseConnectTip);
         CancelInvoke("ConnectDetection");
         CancelInvoke("TestSpeed");
-    }  
+    }
 
     //网速测试
     public void TestSpeed()
@@ -155,11 +155,11 @@ public class GameService : MonoBehaviour
     public void OnGetTestSpeedPack(CMD_Game_CS_NetSpeed pro)
     {
         float deltaTime = Time.time - pro.time;
-        if(deltaTime*1000 < 100)
+        if (deltaTime * 1000 < 100)
         {
             GameModel.netSpeed = 3;
         }
-        else if(deltaTime * 1000 < 200)
+        else if (deltaTime * 1000 < 200)
         {
             GameModel.netSpeed = 2;
         }
@@ -280,6 +280,9 @@ public class GameService : MonoBehaviour
         PlayerInRoom player = new PlayerInRoom();
         player.dwUserID = rsp.UserId;
         player.dwGameID = rsp.GameId;
+        player.dwGroupID = rsp.GameId;
+        player.wFaceID = (UInt16)rsp.FaceId;
+
         player.cbUserStatus = (Byte)rsp.UserStatus;
         player.wTableID = (UInt16)rsp.TableId;
         player.wChairID = (UInt16)rsp.ChairId;
@@ -288,6 +291,11 @@ public class GameService : MonoBehaviour
         player.lIngot = rsp.Ingot;
         player.lInsure = rsp.Insure;
         player.redPack = rsp.RedRevelopes;
+
+        player.nickName = rsp.NickName;
+
+
+        Debug.Log("用户进入,player=" + JsonUtility.ToJson(player) + ",userId=" + HallModel.userId);
 
         //自己进入房间，初始化自己的桌号、座位号
         if (rsp.UserId == HallModel.userId)
@@ -399,11 +407,12 @@ public class GameService : MonoBehaviour
     #region 状态
 
     //等待分配
-    public void OnReceiveWaitDistribute()
+    public bool OnReceiveWaitDistribute()
     {
         Util.Instance.DoAction(GameEvent.V_ShowWaitMatch, true);
         Util.Instance.DoAction(LandlordsEvent.V_CloseDlgResult);
         Util.Instance.DoAction(LandlordsEvent.V_ReStartNewGame);
+        return true;
     }
 
     //收到用户状态
@@ -415,7 +424,10 @@ public class GameService : MonoBehaviour
         UInt16 wTableID = (UInt16)rsp.UserInfo.TableId;
         UInt16 wChairID = (UInt16)rsp.UserInfo.SeatId;
 
-        Debug.Log("收到用户状态,dwUserId=" + dwUserId + ",HallModel.userId=" + HallModel.userId + ",cbUserStatus=" + cbUserStatus + ",wTableID=" + wTableID + ",wChairID=" + wChairID
+        Debug.Log("收到用户状态,dwUserId=" + dwUserId + ",HallModel.userId=" + HallModel.userId
+            + ",cbUserStatus=" + cbUserStatus
+            + ",wTableID=" + wTableID
+            + ",wChairID=" + wChairID
             + ",in=" + GameModel.playerInRoom.ContainsKey((uint)HallModel.userId));
 
         //自己
@@ -447,6 +459,11 @@ public class GameService : MonoBehaviour
                             HallService.Instance.QueryUserInfo(player.dwUserID);
                         }
                     }
+
+                    Debug.Log("收到用户状态,坐下,GameModel.playerInDesk.Count=" + GameModel.playerInDesk.Count
+                        + ",GameModel.playerInRoom.Count=" + GameModel.playerInRoom.Count
+                        + ",HallModel.userId=" + HallModel.userId);
+
                     if (SceneManager.GetActiveScene().name.ToLower().Contains("hall"))
                     {
                         //初次坐下
@@ -470,7 +487,7 @@ public class GameService : MonoBehaviour
             GameModel.playerInRoom[dwUserId].wChairID = wChairID;
 
             //用户状态为空时，表示离开房间
-            if ((byte)rsp.UserInfo.Status == UserState.US_NULL)
+            if (cbUserStatus == UserState.US_NULL)
             {
                 GameModel.playerInRoom.Remove(dwUserId);
             }
@@ -490,7 +507,7 @@ public class GameService : MonoBehaviour
             if (chairID != -1)
             {
                 GameModel.playerInDesk.Remove(chairID);
-                Util.Instance.DoAction(GameEvent.V_RefreshUserInfo, false);                
+                Util.Instance.DoAction(GameEvent.V_RefreshUserInfo, false);
             }
         }
         else if (GameModel.deskId != GameModel.INVALID_TABLE && GameModel.deskId == wTableID)
@@ -508,6 +525,13 @@ public class GameService : MonoBehaviour
             {
                 //玩家坐在空位
                 GameModel.playerInDesk.Add(wChairID, dwUserId);
+
+                Debug.Log("收到用户状态,添加,dwUserId=" + dwUserId + ",HallModel.userId=" + HallModel.userId
+                    + ",cbUserStatus=" + cbUserStatus
+                    + ",wTableID=" + wTableID
+                    + ",wChairID=" + wChairID
+                    + ",GameModel.playerInDesk.Count=" + GameModel.playerInDesk.Count);
+
                 HallService.Instance.QueryUserInfo(dwUserId);
                 Util.Instance.DoAction(GameEvent.V_RefreshUserInfo, true);
             }
@@ -523,27 +547,31 @@ public class GameService : MonoBehaviour
     }
 
     //用户分数变化
-    public void OnReceiveUserScore(CMD_Game_S_UserScore pro)
+    public bool OnReceiveUserScore(Bs.Gateway.TransferDataReq req)
     {
+        Bs.Room.UserScore rsp = NetPacket.Deserialize<Bs.Room.UserScore>(req.Data.ToByteArray());
+
         //更新用户列表中的玩家积分
-        if (GameModel.playerInRoom.ContainsKey(pro.dwUserID))
+        if (GameModel.playerInRoom.ContainsKey(rsp.UserId))
         {
-            GameModel.playerInRoom[pro.dwUserID].lScore = pro.UserScore.lScore;
-            GameModel.playerInRoom[pro.dwUserID].lGrade = pro.UserScore.lGrade;
-            GameModel.playerInRoom[pro.dwUserID].lInsure = pro.UserScore.lInsure;
-            GameModel.playerInRoom[pro.dwUserID].lIngot = pro.UserScore.lIngot;
-            GameModel.playerInRoom[pro.dwUserID].redPack = pro.UserScore.repackCount;
-            GameModel.playerInRoom[pro.dwUserID].dBeans = pro.UserScore.dBeans;
+            GameModel.playerInRoom[rsp.UserId].lScore = rsp.UserScore_.Score;
+            GameModel.playerInRoom[rsp.UserId].lGrade = rsp.UserScore_.Grade;
+            GameModel.playerInRoom[rsp.UserId].lInsure = rsp.UserScore_.Insure;
+            GameModel.playerInRoom[rsp.UserId].lIngot = rsp.UserScore_.Ingot;
+            GameModel.playerInRoom[rsp.UserId].redPack = rsp.UserScore_.RedRevelopes;
+            GameModel.playerInRoom[rsp.UserId].dBeans = rsp.UserScore_.Beans;
 
-            GameModel.playerInRoom[pro.dwUserID].dwWinCount = pro.UserScore.dwWinCount;
-            GameModel.playerInRoom[pro.dwUserID].dwLostCount = pro.UserScore.dwLostCount;
-            GameModel.playerInRoom[pro.dwUserID].dwDrawCount = pro.UserScore.dwDrawCount;
-            GameModel.playerInRoom[pro.dwUserID].dwFleeCount = pro.UserScore.dwFleeCount;
-            GameModel.playerInRoom[pro.dwUserID].lIntegralCount = pro.UserScore.lIntegralCount;
+            GameModel.playerInRoom[rsp.UserId].dwWinCount = rsp.UserScore_.WinCount;
+            GameModel.playerInRoom[rsp.UserId].dwLostCount = rsp.UserScore_.LostCount;
+            GameModel.playerInRoom[rsp.UserId].dwDrawCount = rsp.UserScore_.DrawCount;
+            GameModel.playerInRoom[rsp.UserId].dwFleeCount = rsp.UserScore_.FleeCount;
+            GameModel.playerInRoom[rsp.UserId].lIntegralCount = rsp.UserScore_.IntegralCount;
 
-            GameModel.playerInRoom[pro.dwUserID].dwExperience = pro.UserScore.dwExperience;
-            GameModel.playerInRoom[pro.dwUserID].lLoveLiness = pro.UserScore.lLoveLiness;
+            GameModel.playerInRoom[rsp.UserId].dwExperience = rsp.UserScore_.Experience;
+            GameModel.playerInRoom[rsp.UserId].lLoveLiness = rsp.UserScore_.LoveLiness;
         }
+
+        return true;
     }
 
     #endregion
@@ -555,7 +583,7 @@ public class GameService : MonoBehaviour
     {
         // 从符合条件的元素中随机选取一个
         KeyValuePair<UInt64, GameServerInfo>? randomServer = GetRandomServer(HallModel.serverList, info => (info.wServerLevel == serverLevel));
-        if(!randomServer.HasValue)
+        if (!randomServer.HasValue)
         {
             if (GameEvent.V_OpenDlgTip != null)
             {
@@ -611,7 +639,7 @@ public class GameService : MonoBehaviour
         Debug.Log("进入回复,rsp.ErrInfo.Code=" + rsp.ErrInfo.Code);
 
         return true;
-        
+
         if (rsp.ErrInfo.Code == Bs.Types.ErrorInfo.Types.ResultCode.Success)
         {
             GetChair();
@@ -628,7 +656,7 @@ public class GameService : MonoBehaviour
     public void GetGameStatus()
     {
         Bs.Room.GameOption req = new Bs.Room.GameOption();
-        client.SendTransferData2Gate(Util.GetHighUint32(HallModel.currentServerId),Util.GetLowUint32(HallModel.currentServerId), NetManager.AppRoom, (UInt32)(Bs.Room.CMDRoom.IdgameOption), req);
+        client.SendTransferData2Gate(Util.GetHighUint32(HallModel.currentServerId), Util.GetLowUint32(HallModel.currentServerId), NetManager.AppRoom, (UInt32)(Bs.Room.CMDRoom.IdgameOption), req);
 
         //CMD_Game_C_GetGameStatus pro = new CMD_Game_C_GetGameStatus();
         //client.SendPro(pro);
@@ -661,7 +689,7 @@ public class GameService : MonoBehaviour
         req.TableId = GameModel.INVALID_TABLE;
         req.ChairId = GameModel.INVALID_CHAIR;
         req.Password = "";
-        client.SendTransferData2Gate(Util.GetHighUint32(HallModel.currentServerId), Util.GetLowUint32(HallModel.currentServerId), NetManager.AppRoom, (UInt32)(Bs.Room.CMDRoom.IdgetChairReq),req);
+        client.SendTransferData2Gate(Util.GetHighUint32(HallModel.currentServerId), Util.GetLowUint32(HallModel.currentServerId), NetManager.AppRoom, (UInt32)(Bs.Room.CMDRoom.IdgetChairReq), req);
 
         //CMD_Game_C_UserSit pro = new CMD_Game_C_UserSit();
         //pro.wTableID = 65535;
@@ -692,7 +720,7 @@ public class GameService : MonoBehaviour
                 CMD_Game_C_UserStand pro = new CMD_Game_C_UserStand();
                 pro.wTableID = (ushort)GameModel.deskId;
                 pro.wChairID = (ushort)GameModel.chairId;
-                pro.cbForceLeave = (GameModel.isInGame==true) ? (byte)0 : (byte)1;
+                pro.cbForceLeave = (GameModel.isInGame == true) ? (byte)0 : (byte)1;
                 client.SendPro(pro);
 
                 Invoke("ReturnToHall", 0.5f);
@@ -703,6 +731,7 @@ public class GameService : MonoBehaviour
     //准备
     public void UserAgree()
     {
+        Debug.Log("准备");
     }
 
     #endregion
@@ -769,7 +798,7 @@ public class GameService : MonoBehaviour
         GameModel.ruleGameGrade = (int)pro.dwMaxTimes;
 
         GameModel.hostUserId = (ulong)pro.dwCreateUserID;
-        
+
         Util.Instance.DoAction(GameEvent.V_RefreshUserInfo, false);
         Util.Instance.DoAction(GameEvent.V_RefreshRoomInfo);
     }
@@ -796,7 +825,7 @@ public class GameService : MonoBehaviour
             {
                 Util.Instance.DoAction(GameEvent.V_OpenShortTip, "投票结束，有" + pro.disAgreeUserCount + "位玩家不同意解散，请继续游戏！");
             }
-            
+
             Util.Instance.DoActionDelay(GameEvent.V_CloseDlgDisRoom, 0.5f);
         }
     }
@@ -812,7 +841,7 @@ public class GameService : MonoBehaviour
         Util.Instance.DoAction(GameEvent.V_OpenShortTip, "游戏房间已解散！");
         //解散房间
         GameModel.isInGame = false;
-        Util.Instance.DoActionDelay(GameEvent.S_OnDisRoom, 0.5f);       
+        Util.Instance.DoActionDelay(GameEvent.S_OnDisRoom, 0.5f);
         //数据更新
         GameModel.currentGameCount = 0;
     }
@@ -838,7 +867,7 @@ public class GameService : MonoBehaviour
 
     #region 聊天
 
-      //发送聊天信息-文字
+    //发送聊天信息-文字
     public void SendChatMessage(ChatMessage chatMessage)
     {
         chatMessage.EncodeMessage();
@@ -930,28 +959,32 @@ public class GameService : MonoBehaviour
     //}
 
     //收到系统消息
-    public void OnReceiveSystemInfo(CMD_Hall_S_SystemInfo pro)
+    public bool OnReceiveSystemInfo(Bs.Gateway.TransferDataReq req)
     {
-        if ((pro.wType & 0x0010) != 0 || (pro.wType & 0x0004) != 0 || (pro.wType & 0x0008) != 0)
+        Bs.Room.SystemMessage rsp = NetPacket.Deserialize<Bs.Room.SystemMessage>(req.Data.ToByteArray());
+
+        if ((rsp.Type & 0x0010) != 0 || (rsp.Type & 0x0004) != 0 || (rsp.Type & 0x0008) != 0)
         {
             //滚动消息
-            HallModel.messageList.Add(pro.szString);
+            HallModel.messageList.Add(rsp.Info);
             Util.Instance.DoAction(GameEvent.S_ReceiveSystemMsg);
         }
-        else if ((pro.wType & 0x0002) != 0 && GameEvent.V_OpenDlgTip != null)
+        else if ((rsp.Type & 0x0002) != 0 && GameEvent.V_OpenDlgTip != null)
         {
             //弹窗消息
-            GameEvent.V_OpenDlgTip.Invoke(pro.szString, "", null, null);
+            GameEvent.V_OpenDlgTip.Invoke(rsp.Info, "", null, null);
         }
         //返回大厅
-        if ((pro.wType & 0x0100) != 0 || (pro.wType & 0x0200) != 0 || (pro.wType & 0x0400) != 0)
+        if ((rsp.Type & 0x0100) != 0 || (rsp.Type & 0x0200) != 0 || (rsp.Type & 0x0400) != 0)
         {
             GameService.Instance.BreakConnect();
             if (GameEvent.V_OpenDlgTip != null)
             {
-                GameEvent.V_OpenDlgTip.Invoke(pro.szString, "", ReturnToHall, ReturnToHall);
+                GameEvent.V_OpenDlgTip.Invoke(rsp.Info, "", ReturnToHall, ReturnToHall);
             }
         }
+
+        return true;
     }
 
     #endregion
@@ -963,7 +996,7 @@ public class GameService : MonoBehaviour
     /// <param name="pro"></param>
     public void On_CM_S_TaskProgress(CMD_CM_S_TaskProgress pro)
     {
-        Debug.LogError("游戏内 任务进度,ID" + pro.wFinishTaskID+",进度,"+pro.wTaskProgress);
+        Debug.LogError("游戏内 任务进度,ID" + pro.wFinishTaskID + ",进度," + pro.wTaskProgress);
 
         foreach (TagTaskStatus taskItem in HallModel.taskStatus)
         {
@@ -1017,7 +1050,7 @@ public class GameService : MonoBehaviour
     public void On_CM_S_DigTreasure(CMD_CM_S_DigTreasure pro)
     {
         //刷新局数
-        if(pro.bResult == true)
+        if (pro.bResult == true)
         {
             HallModel.curPlayCount = 0;
             Util.Instance.DoAction(GameEvent.V_RefreshDigTreasureState);
@@ -1091,15 +1124,15 @@ public class GameService : MonoBehaviour
         else
         {
             //首充判断
-            if(HallModel.isFirstCharge == false)
+            if (HallModel.isFirstCharge == false)
             {
                 //弹首充
-                Util.Instance.DoActionDelay(GameEvent.V_OpenDlgFirstCharge, 3f,delegate { GameEvent.V_OpenDlgStoreInGame.Invoke(DlgStoreArg.DiamondPage); });
+                Util.Instance.DoActionDelay(GameEvent.V_OpenDlgFirstCharge, 3f, delegate { GameEvent.V_OpenDlgStoreInGame.Invoke(DlgStoreArg.DiamondPage); });
             }
             else
             {
                 //弹游戏内充值
-                Util.Instance.DoActionDelay(GameEvent.V_OpenDlgStoreInGame, 3f,DlgStoreArg.DiamondPage);
+                Util.Instance.DoActionDelay(GameEvent.V_OpenDlgStoreInGame, 3f, DlgStoreArg.DiamondPage);
             }
         }
     }
@@ -1112,12 +1145,12 @@ public class GameService : MonoBehaviour
     //领取低保  0,红包场,1,金币场
     public void GetBaseEnsure(int type)
     {
-       CMD_Game_C_BaseEnsureTake pro = new CMD_Game_C_BaseEnsureTake();
-       pro.dwUserID = (uint)HallModel.userId;
-       pro.nBaseEnsureType = type;
-       pro.szPassword = HallModel.dynamicPassword;
-       pro.szMachineID = Util.GetMacCode();
-       client.SendPro(pro);
+        CMD_Game_C_BaseEnsureTake pro = new CMD_Game_C_BaseEnsureTake();
+        pro.dwUserID = (uint)HallModel.userId;
+        pro.nBaseEnsureType = type;
+        pro.szPassword = HallModel.dynamicPassword;
+        pro.szMachineID = Util.GetMacCode();
+        client.SendPro(pro);
     }
 
     //领取低保
@@ -1125,29 +1158,29 @@ public class GameService : MonoBehaviour
     {
         if (pro.bSuccessed)
         {
-           AudioManager.Instance.PlaySound(GameModel.audioGetAward);
-           if (SceneManager.GetActiveScene().name.ToLower().Contains("game"))
-           {
-               if (GameEvent.V_OpenDlgTip != null)
-               {
-                   GameEvent.V_OpenDlgTip.Invoke(pro.szNotifyContent, "", GetChair, GetChair);
-               }
-           }
-           HallModel.currentCoinBaseEnsureTimes++;
+            AudioManager.Instance.PlaySound(GameModel.audioGetAward);
+            if (SceneManager.GetActiveScene().name.ToLower().Contains("game"))
+            {
+                if (GameEvent.V_OpenDlgTip != null)
+                {
+                    GameEvent.V_OpenDlgTip.Invoke(pro.szNotifyContent, "", GetChair, GetChair);
+                }
+            }
+            HallModel.currentCoinBaseEnsureTimes++;
         }
         else
         {
-           if (SceneManager.GetActiveScene().name.ToLower().Contains("game"))
-           {
-               if (GameEvent.V_OpenDlgTip != null)
-               {
-                   GameEvent.V_OpenDlgTip.Invoke(pro.szNotifyContent, "", ReturnToHall, ReturnToHall);
-               }
-           }
-           else
-           {
-               Util.Instance.DoAction(GameEvent.V_OpenShortTip, pro.szNotifyContent);
-           }
+            if (SceneManager.GetActiveScene().name.ToLower().Contains("game"))
+            {
+                if (GameEvent.V_OpenDlgTip != null)
+                {
+                    GameEvent.V_OpenDlgTip.Invoke(pro.szNotifyContent, "", ReturnToHall, ReturnToHall);
+                }
+            }
+            else
+            {
+                Util.Instance.DoAction(GameEvent.V_OpenShortTip, pro.szNotifyContent);
+            }
         }
     }
 

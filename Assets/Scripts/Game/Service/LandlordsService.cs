@@ -7,7 +7,7 @@ public class LandlordsService : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("AddHandler");
+        //Debug.Log("AddHandler");
         Instance = this;
         HallService.Instance.client.netManager.AddHandler(new LandlordsHandler());
     }
@@ -16,57 +16,89 @@ public class LandlordsService : MonoBehaviour
     //用户叫分
     public void C2S_CallScore(byte cbCallScore)
     {
-        CMD_Landlords_C_CallScore pro = new CMD_Landlords_C_CallScore();
-        pro.cbCallScore = cbCallScore;
-        GameService.Instance.client.SendPro(pro);
+        Bs.Gameddz.C_RobLand req = new Bs.Gameddz.C_RobLand();
+        req.RobLand = cbCallScore;
+        //Debug.Log("用户叫分,cbCallScore=" + cbCallScore + ",RobLand=" + req.RobLand);
+        GameService.Instance.client.SendTransferData2Gate(Util.GetHighUint32(HallModel.currentServerId), Util.GetLowUint32(HallModel.currentServerId), NetManager.MDM_GF_GAME, (System.UInt32)(Bs.Gameddz.CMDGameddz.IdCCallScore), req);
+        
+        //CMD_Landlords_C_CallScore pro = new CMD_Landlords_C_CallScore();
+        //pro.cbCallScore = cbCallScore;
+        //GameService.Instance.client.SendPro(pro);
     }
 
     //用户加倍
     public void C2S_AddTime(byte cbAddTimes)
     {
-        CMD_Landlords_C_AddTimes pro = new CMD_Landlords_C_AddTimes();
-        pro.cbAddTimes = cbAddTimes;
-        GameService.Instance.client.SendPro(pro);
+        Bs.Gameddz.C_AddTimes req = new Bs.Gameddz.C_AddTimes();
+        req.AddTimes = cbAddTimes;
+        GameService.Instance.client.SendTransferData2Gate(Util.GetHighUint32(HallModel.currentServerId), Util.GetLowUint32(HallModel.currentServerId), NetManager.MDM_GF_GAME, (System.UInt32)(Bs.Gameddz.CMDGameddz.IdCAddtimes), req);
+
+        //CMD_Landlords_C_AddTimes pro = new CMD_Landlords_C_AddTimes();
+        //pro.cbAddTimes = cbAddTimes;
+        //GameService.Instance.client.SendPro(pro);
     }
 
     //用户出牌
     public void C2S_OutCard(byte cardCount, byte[] cardData)
     {
-        CMD_Landlords_C_OutCard pro = new CMD_Landlords_C_OutCard();
-        pro.cbCardCount = cardCount;
-        pro.cbCardData = cardData;
-        GameService.Instance.client.SendPro(pro);
+        Bs.Gameddz.C_OutCard req = new Bs.Gameddz.C_OutCard();
+        for(int i = 0; i< cardCount; i ++)
+        {
+            req.CardData.Add(cardData[i]);
+        }
+        GameService.Instance.client.SendTransferData2Gate(Util.GetHighUint32(HallModel.currentServerId), Util.GetLowUint32(HallModel.currentServerId), NetManager.MDM_GF_GAME, (System.UInt32)(Bs.Gameddz.CMDGameddz.IdCOutCard), req);
+
+        //CMD_Landlords_C_OutCard pro = new CMD_Landlords_C_OutCard();
+        //pro.cbCardCount = cardCount;
+        //pro.cbCardData = cardData;
+        //GameService.Instance.client.SendPro(pro);
     }
 
     //用户放弃
     public void C2S_PassCard()
     {
-        CMD_Landlords_C_PassCard pro = new CMD_Landlords_C_PassCard();
-        GameService.Instance.client.SendPro(pro);
+        GameService.Instance.client.SendTransferData2Gate(Util.GetHighUint32(HallModel.currentServerId), Util.GetLowUint32(HallModel.currentServerId), NetManager.MDM_GF_GAME, (System.UInt32)(Bs.Gameddz.CMDGameddz.IdCPassCard), null);
+
+        //CMD_Landlords_C_PassCard pro = new CMD_Landlords_C_PassCard();
+        //GameService.Instance.client.SendPro(pro);
     }
 
     //托管
     public void C2S_Trustee(byte bTrustee)
     {
-        CMD_Landlords_C_Trustee pro = new CMD_Landlords_C_Trustee();
-        pro.bTrustee = bTrustee;
-        GameService.Instance.client.SendPro(pro);
+        Bs.Gameddz.C_TRUSTEE req = new Bs.Gameddz.C_TRUSTEE();
+        req.Trustee = bTrustee;
+        GameService.Instance.client.SendTransferData2Gate(Util.GetHighUint32(HallModel.currentServerId), Util.GetLowUint32(HallModel.currentServerId), NetManager.MDM_GF_GAME, (System.UInt32)(Bs.Gameddz.CMDGameddz.IdCTrustee), req);
+
+        //CMD_Landlords_C_Trustee pro = new CMD_Landlords_C_Trustee();
+        //pro.bTrustee = bTrustee;
+        //GameService.Instance.client.SendPro(pro);
     }
     #endregion
 
     #region 接收
     //空闲状态
-    public void S2C_StateFree(CMD_Landlords_S_StatusFree pro)
+    public void S2C_StateFree(Bs.Gameddz.S_StatusFree pro)
     {
         LandlordsModel.InitData();
         //保存数据
         GameModel.isInGame = false;
-        LandlordsModel.playerInGame = pro.cbPlayStatus;
-        LandlordsModel.callTime = pro.cbTimeCallScore;
-        LandlordsModel.addTime = pro.cbTimeAddTime;
-        LandlordsModel.firstOutCardTime = pro.cbTimeHeadOutCard;
-        LandlordsModel.outCardTime = pro.cbTimeOutCard;
-        LandlordsModel.canotAfford = pro.cbTimePassCard;
+        for(int i = 0; i < pro.PlayStatus.Count; i ++)
+        {
+            LandlordsModel.playerInGame[i] = (byte)pro.PlayStatus[i];
+        }
+        LandlordsModel.callTime = (int)pro.TimeCallLand;
+        LandlordsModel.addTime = (int)pro.TimeAddTime;
+        LandlordsModel.firstOutCardTime = (int)pro.TimeHeadOutCard;
+        LandlordsModel.outCardTime = (int)pro.TimeOutCard;
+        LandlordsModel.canotAfford = (int)pro.TimePassCard;
+
+        //LandlordsModel.playerInGame = pro.cbPlayStatus;
+        //LandlordsModel.callTime = pro.cbTimeCallScore;
+        //LandlordsModel.addTime = pro.cbTimeAddTime;
+        //LandlordsModel.firstOutCardTime = pro.cbTimeHeadOutCard;
+        //LandlordsModel.outCardTime = pro.cbTimeOutCard;
+        //LandlordsModel.canotAfford = pro.cbTimePassCard;
         //用户头像为空时，重新加载头像信息
         for (int i = 0; i < 3; i++)
         {
@@ -91,21 +123,31 @@ public class LandlordsService : MonoBehaviour
     }
 
     //叫分状态
-    public void S2C_StatusCall(CMD_Landlords_S_StatusCall pro)
+    public void S2C_StatusCall(Bs.Gameddz.S_StatusCall pro)
     {
         LandlordsModel.InitData();
         //保存数据
         GameModel.isInGame = true;
-        LandlordsModel.playerInGame = pro.cbPlayStatus;
-        LandlordsModel.callTime = pro.cbTimeCallScore;
-        LandlordsModel.addTime = pro.cbTimeAddTime;
-        LandlordsModel.firstOutCardTime = pro.cbTimeHeadOutCard;
-        LandlordsModel.outCardTime = pro.cbTimeOutCard;
-        LandlordsModel.canotAfford = pro.cbTimePassCard;
+        for (int i = 0; i < pro.PlayStatus.Count; i++)
+        {
+            LandlordsModel.playerInGame[i] = (byte)pro.PlayStatus[i];
+        }
+        LandlordsModel.callTime = (int)pro.TimeCallLand;
+        LandlordsModel.addTime = (int)pro.TimeAddTime;
+        LandlordsModel.firstOutCardTime = (int)pro.TimeHeadOutCard;
+        LandlordsModel.outCardTime = (int)pro.TimeOutCard;
+        LandlordsModel.canotAfford = (int)pro.TimePassCard;
+
+        //LandlordsModel.playerInGame = pro.cbPlayStatus;
+        //LandlordsModel.callTime = pro.cbTimeCallScore;
+        //LandlordsModel.addTime = pro.cbTimeAddTime;
+        //LandlordsModel.firstOutCardTime = pro.cbTimeHeadOutCard;
+        //LandlordsModel.outCardTime = pro.cbTimeOutCard;
+        //LandlordsModel.canotAfford = pro.cbTimePassCard;
         //用户头像为空时，重新加载头像信息
         for (int i = 0; i < 3; i++)
         {
-            LandlordsModel.isPlayerTrustee[i] = (pro.cbUserTrustee[i] == 1);
+            LandlordsModel.isPlayerTrustee[i] = (pro.UserTrustee[i] == 1);
             PlayerInRoom player = GameModel.GetDeskUser(i);
             if (player != null && GameModel.GetUserPhoto(i) == HallModel.defaultPhoto)
             {
@@ -120,22 +162,33 @@ public class LandlordsService : MonoBehaviour
     }
 
     //加倍状态
-    public void S2C_StatusAddTime(CMD_Landlords_S_StatusAddTime pro)
+    public void S2C_StatusAddTime(Bs.Gameddz.S_StatusAddTimes pro)
     {
         LandlordsModel.InitData();
         //保存数据
         GameModel.isInGame = true;
-        LandlordsModel.playerInGame = pro.cbPlayStatus;
-        LandlordsModel.bankerChairdId = pro.wBankerChairId;
-        LandlordsModel.callTime = pro.cbTimeCallScore;
-        LandlordsModel.addTime = pro.cbTimeAddTime;
-        LandlordsModel.firstOutCardTime = pro.cbTimeHeadOutCard;
-        LandlordsModel.outCardTime = pro.cbTimeOutCard;
-        LandlordsModel.canotAfford = pro.cbTimePassCard;
+        for (int i = 0; i < pro.PlayStatus.Count; i++)
+        {
+            LandlordsModel.playerInGame[i] = (byte)pro.PlayStatus[i];
+        }
+        LandlordsModel.bankerChairdId = (int)pro.LandUser;
+        LandlordsModel.callTime = (int)pro.TimeCallLand;
+        LandlordsModel.addTime = (int)pro.TimeAddTime;
+        LandlordsModel.firstOutCardTime = (int)pro.TimeHeadOutCard;
+        LandlordsModel.outCardTime = (int)pro.TimeOutCard;
+        LandlordsModel.canotAfford = (int)pro.TimePassCard;
+
+        //LandlordsModel.playerInGame = pro.cbPlayStatus;
+        //LandlordsModel.bankerChairdId = pro.wBankerChairId;
+        //LandlordsModel.callTime = pro.cbTimeCallScore;
+        //LandlordsModel.addTime = pro.cbTimeAddTime;
+        //LandlordsModel.firstOutCardTime = pro.cbTimeHeadOutCard;
+        //LandlordsModel.outCardTime = pro.cbTimeOutCard;
+        //LandlordsModel.canotAfford = pro.cbTimePassCard;
         //用户头像为空时，重新加载头像信息
         for (int i = 0; i < 3; i++)
         {
-            LandlordsModel.isPlayerTrustee[i] = (pro.cbUserTrustee[i] == 1);
+            LandlordsModel.isPlayerTrustee[i] = (pro.UserTrustee[i] == 1);
             PlayerInRoom player = GameModel.GetDeskUser(i);
             if (player != null && GameModel.GetUserPhoto(i) == HallModel.defaultPhoto)
             {
@@ -150,22 +203,33 @@ public class LandlordsService : MonoBehaviour
     }
 
     //游戏状态
-    public void S2C_StatusPlay(CMD_Landlords_S_StatusPlay pro)
+    public void S2C_StatusPlay(Bs.Gameddz.S_StatusPlay pro)
     {
         LandlordsModel.InitData();
         //保存数据
         GameModel.isInGame = true;
-        LandlordsModel.playerInGame = pro.cbPlayStatus;
-        LandlordsModel.bankerChairdId = pro.wBankerUser;
-        LandlordsModel.callTime = pro.cbTimeCallScore;
-        LandlordsModel.addTime = pro.cbTimeAddTime;
-        LandlordsModel.firstOutCardTime = pro.cbTimeHeadOutCard;
-        LandlordsModel.outCardTime = pro.cbTimeOutCard;
-        LandlordsModel.canotAfford = pro.cbTimePassCard;
+        for (int i = 0; i < pro.PlayStatus.Count; i++)
+        {
+            LandlordsModel.playerInGame[i] = (byte)pro.PlayStatus[i];
+        }
+        LandlordsModel.bankerChairdId = (int)pro.BankerUser;
+        LandlordsModel.callTime = (int)pro.TimeCallLand;
+        LandlordsModel.addTime = (int)pro.TimeAddTime;
+        LandlordsModel.firstOutCardTime = (int)pro.TimeHeadOutCard;
+        LandlordsModel.outCardTime = (int)pro.TimeOutCard;
+        LandlordsModel.canotAfford = (int)pro.TimePassCard;
+
+        //LandlordsModel.playerInGame = pro.cbPlayStatus;
+        //LandlordsModel.bankerChairdId = pro.wBankerUser;
+        //LandlordsModel.callTime = pro.cbTimeCallScore;
+        //LandlordsModel.addTime = pro.cbTimeAddTime;
+        //LandlordsModel.firstOutCardTime = pro.cbTimeHeadOutCard;
+        //LandlordsModel.outCardTime = pro.cbTimeOutCard;
+        //LandlordsModel.canotAfford = pro.cbTimePassCard;
         //用户头像为空时，重新加载头像信息
         for (int i = 0; i < 3; i++)
         {
-            LandlordsModel.isPlayerTrustee[i] = (pro.cbUserTrustee[i] == 1);
+            LandlordsModel.isPlayerTrustee[i] = (pro.UserTrustee[i] == 1);
             PlayerInRoom player = GameModel.GetDeskUser(i);
             if (player != null && GameModel.GetUserPhoto(i) == HallModel.defaultPhoto)
             {
@@ -180,12 +244,15 @@ public class LandlordsService : MonoBehaviour
     }
 
     //游戏开始
-    public void S2C_GameStart(CMD_Landlords_S_GameStart pro)
+    public void S2C_GameStart(Bs.Gameddz.S_GameStart pro)
     {
         //保存数据
         GameModel.isInGame = true;
         Util.Instance.DoAction(GameEvent.V_CloseLeaveGame);
-        LandlordsModel.playerInGame = pro.cbPlayStatus;
+        for (int i = 0; i < pro.PlayStatus.Count; i++)
+        {
+            LandlordsModel.playerInGame[i] = (byte)pro.PlayStatus[i];
+        }
         Util.Instance.DoAction(GameEvent.V_ShowWaitMatch, false);
         Util.Instance.DoAction(GameEvent.V_RefreshUserInfo, true);
         Util.Instance.DoAction(LandlordsEvent.S_GameStart, pro);
@@ -193,7 +260,7 @@ public class LandlordsService : MonoBehaviour
     }
 
     //重新发牌
-    public void S2C_ReSendCard(CMD_Landlords_S_ReSendCard pro)
+    public void S2C_ReSendCard(Bs.Gameddz.S_ReOutCard pro)
     {
         Util.Instance.DoAction(LandlordsEvent.S_ReSendCard, pro); 
     }
@@ -205,52 +272,56 @@ public class LandlordsService : MonoBehaviour
     }
 
     //作弊扑克
-    public void S2C_CheatCard(CMD_Landlords_S_CheatCard pro)
+    public void S2C_CheatCard(Bs.Gameddz.S_CheatCard pro)
     {
         //Debug.Log("S2C----------------------------作弊扑克");
     }
 
     //用户叫分
-    public void S2C_CallScore(CMD_Landlords_S_CallScore pro)
+    public void S2C_CallScore(Bs.Gameddz.S_RobLand pro)
     {
         Util.Instance.DoAction(LandlordsEvent.S_UserCall, pro);
     }
 
     //庄家信息
-    public void S2C_BankerInfo(CMD_Landlords_S_BankerInfo pro)
+    public void S2C_BankerInfo(Bs.Gameddz.S_BankerInfo pro)
     {
-        LandlordsModel.bankerChairdId = pro.wBankerUser;
-        LandlordsModel.bankerHoleCards = pro.cbBankerCard;
+        LandlordsModel.bankerChairdId = (int)pro.BankerUser;
+        for(int i = 0; i < pro.BankerCard.Count; i ++)
+        {
+            LandlordsModel.bankerHoleCards[i] = (byte)pro.BankerCard[i];
+            //Debug.Log("庄家信息,card=" + LandlordsModel.bankerHoleCards[i]);
+        }
 
         Util.Instance.DoAction(LandlordsEvent.S_BankerStartOutCard, pro);
     }
 
     //用户加倍
-    public void S2C_AddTimes(CMD_Landlords_S_AddTimes pro)
+    public void S2C_AddTimes(Bs.Gameddz.S_AddTimes pro)
     {
         Util.Instance.DoAction(LandlordsEvent.S_UserAddTime, pro);
     }
 
     //用户出牌
-    public void S2C_OutCard(CMD_Landlords_S_OutCard pro)
+    public void S2C_OutCard(Bs.Gameddz.S_OutCard pro)
     {
         Util.Instance.DoAction(LandlordsEvent.S_UserOutCard, pro);
     }
 
     //出牌错误
-    public void S2C_OutCardFail(CMD_Landlords_S_OutCardFail pro)
+    public void S2C_OutCardFail(Bs.Gameddz.S_OutCardFail pro)
     {  
         Util.Instance.DoAction(LandlordsEvent.S_OutCardFail, pro);
     }
 
     //放弃出牌
-    public void S2C_PassCard(CMD_Landlords_S_PassCard pro)
+    public void S2C_PassCard(Bs.Gameddz.S_PassCard pro)
     {
-        Util.Instance.DoAction(LandlordsEvent.S_GiveUpOutCard, pro);
+        Util.Instance.DoAction(LandlordsEvent.S_PassCard, pro);
     }
 
     //游戏结束
-    public void S2C_GameEnd(CMD_Landlords_S_GameEnd pro)
+    public void S2C_GameEnd(Bs.Gameddz.S_GameConclude pro)
     {
         //保存数据
         GameModel.isInGame = false;
@@ -262,11 +333,11 @@ public class LandlordsService : MonoBehaviour
     }
 
     //托管
-    public void S2C_Trustee(CMD_Landlords_S_Trustee pro)
+    public void S2C_Trustee(Bs.Gameddz.S_TRUSTEE pro)
     {
-        if (pro.wTrusteeUser >= 0 && pro.wTrusteeUser < 3)
+        if (pro.TrusteeUser >= 0 && pro.TrusteeUser < 3)
         {
-            LandlordsModel.isPlayerTrustee[pro.wTrusteeUser] = (pro.bTrustee == 1);
+            LandlordsModel.isPlayerTrustee[pro.TrusteeUser] = (pro.Trustee == 1);
         }
         Util.Instance.DoAction(LandlordsEvent.OnUserTrustee, pro);
         Util.Instance.DoAction(GameEvent.V_RefreshUserInfo, false);

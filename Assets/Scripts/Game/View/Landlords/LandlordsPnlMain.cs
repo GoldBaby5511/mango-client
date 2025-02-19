@@ -440,11 +440,12 @@ public class LandlordsPnlMain : View
     //刷新玩家信息显示
     public void RefreshUserInfo(bool isRefreshScore)
     {
-        if (GameModel.chairId == 65535)
+        if (GameModel.chairId == GameModel.INVALID_CHAIR)
         {
             if (GameModel.playerInRoom.ContainsKey((uint)HallModel.userId))
             {
                 GameModel.chairId = GameModel.playerInRoom[(uint)HallModel.userId].wChairID;
+                Debug.Log("刷新玩家信息显示,设置椅子,chairId=" + GameModel.chairId + ",isRefreshScore=" + isRefreshScore);
             }
         }
         for (int i = 0; i < 3; i++)
@@ -452,8 +453,9 @@ public class LandlordsPnlMain : View
             int chairId = (GameModel.chairId + i) % 3;
             PlayerInRoom player = GameModel.GetDeskUser(chairId);
 
-            if (player == null || GameModel.chairId == 65535)
-            { 
+            if (player == null || GameModel.chairId == GameModel.INVALID_CHAIR)
+            {
+                Debug.LogError("刷新玩家信息显示,未找到,chairId=" + GameModel.chairId + ",chairId=" + chairId + ",player.null="+ (player == null) + ",isRefreshScore=" + isRefreshScore);
                 users[i].Find("userPhoto").GetComponent<UITexture>().mainTexture = HallModel.defaultPhoto;
                 users[i].Find("lblUserName").GetComponent<UILabel>().text = "等待加入...";
                 users[i].Find("sptIsOffline").gameObject.SetActive(false);

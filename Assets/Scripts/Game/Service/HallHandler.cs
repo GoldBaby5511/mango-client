@@ -278,7 +278,7 @@ public class HallHandler : IHandler
             case (UInt32)Bs.Gateway.CMDGateway.IdtransferDataReq:
                 {
                     Bs.Gateway.TransferDataReq req = packet.Deserialize<Bs.Gateway.TransferDataReq>();
-                    Debug.Log("收到转发,MainCmdId=" + req.MainCmdId + ",SubCmdId=" + req.SubCmdId);
+                    //Debug.Log("收到转发,MainCmdId=" + req.MainCmdId + ",SubCmdId=" + req.SubCmdId);
 
                     switch (req.MainCmdId)
                     {
@@ -288,12 +288,15 @@ public class HallHandler : IHandler
                             return handlerListMessage(req);
                         case NetManager.AppRoom:
                             return handlerRoomMessage(req);
+                        case NetManager.MDM_GF_GAME:
+                            //游戏消息去游戏层处理
+                            return false;
                         default:
                             Debug.LogError("异常,没有处理的网关消息,MainCmdId=" + req.MainCmdId + ",SubCmdId=" + req.SubCmdId);
                             break;
                     }
                 }
-                return true;
+                return false;
             default:
                 Debug.LogError("异常,没有处理的消息,mainCmdId=" + packet.GetMainCmdID() + ",cmdId=" + packet.GetSubCmdID());
                 break;
@@ -373,6 +376,24 @@ public class HallHandler : IHandler
             case (uint)Bs.Room.CMDRoom.IdlogonFinish:
                 {
                     return GameService.Instance.OnLoginFinish(req);
+                }
+            case (uint)Bs.Room.CMDRoom.IdgameStatus:
+            case (uint)Bs.Room.CMDRoom.IdgameScene:
+                {
+                    //这两个去LandlordsHandler内处理
+                    return false;
+                }
+            case (uint)Bs.Room.CMDRoom.IdsystemMessage:
+                {
+                    return GameService.Instance.OnReceiveSystemInfo(req);
+                }
+            case (uint)Bs.Room.CMDRoom.IdwaitDistribute:    //等待分配
+                {
+                    return GameService.Instance.OnReceiveWaitDistribute();
+                }
+            case (uint)Bs.Room.CMDRoom.IduserScore:         //用户分数
+                {
+                    return GameService.Instance.OnReceiveUserScore(req);
                 }
             default:
                 Debug.LogError("异常,room,没有处理的消息,SubCmdId=" + req.SubCmdId);

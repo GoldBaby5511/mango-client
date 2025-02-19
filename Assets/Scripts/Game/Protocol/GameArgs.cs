@@ -587,7 +587,7 @@ public class PlayerInRoom
     public UInt32 dwDrawCount;						//和局盘数
     public UInt32 dwFleeCount;						//逃跑盘数
     public UInt32 dwExperience;						//用户经验
-    public UInt32 lLoveLiness;						//用户魅力
+    public Int64 lLoveLiness;						//用户魅力
     public Int64 lIntegralCount;					//积分总数(当前房间)
 
     //代理信息
