@@ -1189,7 +1189,12 @@ public class GameService : MonoBehaviour
     /// 返回大厅
     public void ReturnToHall()
     {
-        BreakConnect();
+        Debug.Log("返回大厅,sceneName=" + AppConfig.gameDic[HallModel.currentGameFlag].sceneName);
+
+        Bs.Room.ExitReq req = new Bs.Room.ExitReq();
+        client.SendTransferData2Gate(Util.GetHighUint32(HallModel.currentServerId), Util.GetLowUint32(HallModel.currentServerId), NetManager.AppRoom, (UInt32)(Bs.Room.CMDRoom.IdexitReq), req);
+
+        //BreakConnect();
         HallModel.isReturnFromGame = true;
         SceneManager.LoadScene("hall", LoadSceneMode.Single);
 

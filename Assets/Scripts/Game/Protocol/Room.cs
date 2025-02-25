@@ -29,46 +29,47 @@ namespace Bs.Room {
             "cm9ySW5mbyJDCgtHZXRDaGFpclJlcRIQCgh0YWJsZV9pZBgBIAEoDRIQCghj",
             "aGFpcl9pZBgCIAEoDRIQCghwYXNzd29yZBgDIAEoCSJECgtHZXRDaGFpclJz",
             "cBIOCgZhcHBfaWQYASABKA0SJQoIZXJyX2luZm8YYyABKAsyEy5icy50eXBl",
-            "cy5FcnJvckluZm8iCQoHRXhpdFJlcSIwCgdFeGl0UnNwEiUKCGVycl9pbmZv",
-            "GGMgASgLMhMuYnMudHlwZXMuRXJyb3JJbmZvIjcKClVzZXJTdGF0dXMSKQoJ",
-            "dXNlcl9pbmZvGAEgASgLMhYuYnMudHlwZXMuQmFzZVVzZXJJbmZvIjcKDlJl",
-            "cXVlc3RGYWlsdXJlEiUKCGVycl9pbmZvGGMgASgLMhMuYnMudHlwZXMuRXJy",
-            "b3JJbmZvInsKDENvbmZpZ1NlcnZlchITCgt0YWJsZV9jb3VudBgBIAEoDRIT",
-            "CgtjaGFpcl9jb3VudBgCIAEoDRITCgtzZXJ2ZXJfdHlwZRgDIAEoDRITCgtz",
-            "ZXJ2ZXJfcnVsZRgEIAEoDRIXCg9taW5fdGFibGVfc2NvcmUYBSABKAMizAQK",
-            "CVVzZXJFbnRlchIPCgdnYW1lX2lkGAEgASgNEg8KB3VzZXJfaWQYAiABKA0S",
-            "EAoIZ3JvdXBfaWQYAyABKA0SDwoHZmFjZV9pZBgEIAEoDRIRCgljdXN0b21f",
-            "aWQYBSABKA0SEgoKaXNfYW5kcm9pZBgGIAEoCBIOCgZnZW5kZXIYByABKA0S",
-            "FAoMbWVtYmVyX29yZGVyGAggASgNEhQKDG1hc3Rlcl9vcmRlchgJIAEoDRIR",
-            "Cgl1c2VyX3R5cGUYCiABKA0SEAoIdGFibGVfaWQYCyABKA0SEAoIY2hhaXJf",
-            "aWQYDCABKA0SEwoLdXNlcl9zdGF0dXMYDSABKA0SEAoIbGF0aXR1ZGUYDiAB",
-            "KAISEQoJbG9uZ2l0dWRlGA8gASgCEg4KBmhlaWdodBgQIAEoAhINCgVzY29y",
-            "ZRgRIAEoAxINCgVncmFkZRgSIAEoAxIOCgZpbnN1cmUYEyABKAMSDQoFaW5n",
-            "b3QYFCABKAMSFQoNcmVkX3JldmVsb3BlcxgVIAEoAxINCgViZWFucxgWIAEo",
-            "ARIRCgl3aW5fY291bnQYFyABKA0SEgoKbG9zdF9jb3VudBgYIAEoDRISCgpk",
-            "cmF3X2NvdW50GBkgASgNEhIKCmZsZWVfY291bnQYGiABKA0SEgoKZXhwZXJp",
-            "ZW5jZRgbIAEoDRITCgtsb3ZlX2xpbmVzcxgcIAEoBRIWCg5pbnRlZ3JhbF9j",
-            "b3VudBgdIAEoAxIQCghhZ2VudF9pZBgeIAEoDRIRCgluaWNrX25hbWUYHyAB",
-            "KAkiUwoJVGFibGVJbmZvEhMKC3RhYmxlX2NvdW50GAEgASgNEjEKEnRhYmxl",
-            "X3N0YXR1c19hcnJheRgCIAMoCzIVLmJzLnR5cGVzLlRhYmxlU3RhdHVzIkwK",
-            "C1RhYmxlU3RhdHVzEhAKCHRhYmxlX2lkGAEgASgNEisKDHRhYmxlX3N0YXR1",
-            "cxgCIAEoCzIVLmJzLnR5cGVzLlRhYmxlU3RhdHVzIiEKC0xvZ29uRmluaXNo",
-            "EhIKCmd1aWRlX3Rhc2sYASABKAgiUQoKR2FtZU9wdGlvbhIUCgxhbGxvd19s",
-            "b29rb24YASABKA0SFQoNZnJhbWVfdmVyc2lvbhgCIAEoDRIWCg5jbGllbnRf",
-            "dmVyc2lvbhgDIAEoDSI3CgpHYW1lU3RhdHVzEhMKC2dhbWVfc3RhdHVzGAEg",
-            "ASgNEhQKDGFsbG93X2xvb2tvbhgCIAEoDSI7Cg1TeXN0ZW1NZXNzYWdlEgwK",
-            "BHR5cGUYASABKA0SDgoGbGVuZ3RoGAIgASgNEgwKBGluZm8YAyABKAkiRQoJ",
-            "VXNlclNjb3JlEg8KB3VzZXJfaWQYASABKA0SJwoKdXNlcl9zY29yZRgCIAEo",
-            "CzITLmJzLnR5cGVzLlVzZXJTY29yZSr/AgoHQ01EUm9vbRIKCgZJRE5vbmUQ",
-            "ABIOCgpJREVudGVyUmVxEAESDgoKSURFbnRlclJzcBACEhEKDUlER2V0Q2hh",
-            "aXJSZXEQAxIRCg1JREdldENoYWlyUnNwEAQSEAoMSURVc2VyU3RhdHVzEAUS",
-            "FAoQSURSZXF1ZXN0RmFpbHVyZRAGEg0KCUlERXhpdFJlcRAKEg0KCUlERXhp",
-            "dFJzcBALEhIKDklEQ29uZmlnU2VydmVyEAwSDwoLSURVc2VyRW50ZXIQDRIP",
-            "CgtJRFRhYmxlSW5mbxAOEhEKDUlEVGFibGVTdGF0dXMQDxIRCg1JRExvZ29u",
-            "RmluaXNoEBASEAoMSURHYW1lT3B0aW9uEBESEAoMSURHYW1lU3RhdHVzEBIS",
-            "DwoLSURHYW1lU2NlbmUQExIPCgtJRFVzZXJSZWFkeRAUEhMKD0lEU3lzdGVt",
-            "TWVzc2FnZRAVEhQKEElEV2FpdERpc3RyaWJ1dGUQFhIPCgtJRFVzZXJTY29y",
-            "ZRAXQhBaDm1hbmdvL2FwaS9yb29tYgZwcm90bzM="));
+            "cy5FcnJvckluZm8iHgoHRXhpdFJlcRITCgtmb3JjZV9sZWF2ZRgBIAEoCCIw",
+            "CgdFeGl0UnNwEiUKCGVycl9pbmZvGGMgASgLMhMuYnMudHlwZXMuRXJyb3JJ",
+            "bmZvIjcKClVzZXJTdGF0dXMSKQoJdXNlcl9pbmZvGAEgASgLMhYuYnMudHlw",
+            "ZXMuQmFzZVVzZXJJbmZvIjcKDlJlcXVlc3RGYWlsdXJlEiUKCGVycl9pbmZv",
+            "GGMgASgLMhMuYnMudHlwZXMuRXJyb3JJbmZvInsKDENvbmZpZ1NlcnZlchIT",
+            "Cgt0YWJsZV9jb3VudBgBIAEoDRITCgtjaGFpcl9jb3VudBgCIAEoDRITCgtz",
+            "ZXJ2ZXJfdHlwZRgDIAEoDRITCgtzZXJ2ZXJfcnVsZRgEIAEoDRIXCg9taW5f",
+            "dGFibGVfc2NvcmUYBSABKAMizAQKCVVzZXJFbnRlchIPCgdnYW1lX2lkGAEg",
+            "ASgNEg8KB3VzZXJfaWQYAiABKA0SEAoIZ3JvdXBfaWQYAyABKA0SDwoHZmFj",
+            "ZV9pZBgEIAEoDRIRCgljdXN0b21faWQYBSABKA0SEgoKaXNfYW5kcm9pZBgG",
+            "IAEoCBIOCgZnZW5kZXIYByABKA0SFAoMbWVtYmVyX29yZGVyGAggASgNEhQK",
+            "DG1hc3Rlcl9vcmRlchgJIAEoDRIRCgl1c2VyX3R5cGUYCiABKA0SEAoIdGFi",
+            "bGVfaWQYCyABKA0SEAoIY2hhaXJfaWQYDCABKA0SEwoLdXNlcl9zdGF0dXMY",
+            "DSABKA0SEAoIbGF0aXR1ZGUYDiABKAISEQoJbG9uZ2l0dWRlGA8gASgCEg4K",
+            "BmhlaWdodBgQIAEoAhINCgVzY29yZRgRIAEoAxINCgVncmFkZRgSIAEoAxIO",
+            "CgZpbnN1cmUYEyABKAMSDQoFaW5nb3QYFCABKAMSFQoNcmVkX3JldmVsb3Bl",
+            "cxgVIAEoAxINCgViZWFucxgWIAEoARIRCgl3aW5fY291bnQYFyABKA0SEgoK",
+            "bG9zdF9jb3VudBgYIAEoDRISCgpkcmF3X2NvdW50GBkgASgNEhIKCmZsZWVf",
+            "Y291bnQYGiABKA0SEgoKZXhwZXJpZW5jZRgbIAEoDRITCgtsb3ZlX2xpbmVz",
+            "cxgcIAEoBRIWCg5pbnRlZ3JhbF9jb3VudBgdIAEoAxIQCghhZ2VudF9pZBge",
+            "IAEoDRIRCgluaWNrX25hbWUYHyABKAkiUwoJVGFibGVJbmZvEhMKC3RhYmxl",
+            "X2NvdW50GAEgASgNEjEKEnRhYmxlX3N0YXR1c19hcnJheRgCIAMoCzIVLmJz",
+            "LnR5cGVzLlRhYmxlU3RhdHVzIkwKC1RhYmxlU3RhdHVzEhAKCHRhYmxlX2lk",
+            "GAEgASgNEisKDHRhYmxlX3N0YXR1cxgCIAEoCzIVLmJzLnR5cGVzLlRhYmxl",
+            "U3RhdHVzIiEKC0xvZ29uRmluaXNoEhIKCmd1aWRlX3Rhc2sYASABKAgiUQoK",
+            "R2FtZU9wdGlvbhIUCgxhbGxvd19sb29rb24YASABKA0SFQoNZnJhbWVfdmVy",
+            "c2lvbhgCIAEoDRIWCg5jbGllbnRfdmVyc2lvbhgDIAEoDSI3CgpHYW1lU3Rh",
+            "dHVzEhMKC2dhbWVfc3RhdHVzGAEgASgNEhQKDGFsbG93X2xvb2tvbhgCIAEo",
+            "DSI7Cg1TeXN0ZW1NZXNzYWdlEgwKBHR5cGUYASABKA0SDgoGbGVuZ3RoGAIg",
+            "ASgNEgwKBGluZm8YAyABKAkiRQoJVXNlclNjb3JlEg8KB3VzZXJfaWQYASAB",
+            "KA0SJwoKdXNlcl9zY29yZRgCIAEoCzITLmJzLnR5cGVzLlVzZXJTY29yZSr/",
+            "AgoHQ01EUm9vbRIKCgZJRE5vbmUQABIOCgpJREVudGVyUmVxEAESDgoKSURF",
+            "bnRlclJzcBACEhEKDUlER2V0Q2hhaXJSZXEQAxIRCg1JREdldENoYWlyUnNw",
+            "EAQSEAoMSURVc2VyU3RhdHVzEAUSFAoQSURSZXF1ZXN0RmFpbHVyZRAGEg0K",
+            "CUlERXhpdFJlcRAKEg0KCUlERXhpdFJzcBALEhIKDklEQ29uZmlnU2VydmVy",
+            "EAwSDwoLSURVc2VyRW50ZXIQDRIPCgtJRFRhYmxlSW5mbxAOEhEKDUlEVGFi",
+            "bGVTdGF0dXMQDxIRCg1JRExvZ29uRmluaXNoEBASEAoMSURHYW1lT3B0aW9u",
+            "EBESEAoMSURHYW1lU3RhdHVzEBISDwoLSURHYW1lU2NlbmUQExIPCgtJRFVz",
+            "ZXJSZWFkeRAUEhMKD0lEU3lzdGVtTWVzc2FnZRAVEhQKEElEV2FpdERpc3Ry",
+            "aWJ1dGUQFhIPCgtJRFVzZXJTY29yZRAXQhBaDm1hbmdvL2FwaS9yb29tYgZw",
+            "cm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Bs.Types.TypesReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Bs.Room.CMDRoom), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -76,7 +77,7 @@ namespace Bs.Room {
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Room.EnterRsp), global::Bs.Room.EnterRsp.Parser, new[]{ "ErrInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Room.GetChairReq), global::Bs.Room.GetChairReq.Parser, new[]{ "TableId", "ChairId", "Password" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Room.GetChairRsp), global::Bs.Room.GetChairRsp.Parser, new[]{ "AppId", "ErrInfo" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Room.ExitReq), global::Bs.Room.ExitReq.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Room.ExitReq), global::Bs.Room.ExitReq.Parser, new[]{ "ForceLeave" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Room.ExitRsp), global::Bs.Room.ExitRsp.Parser, new[]{ "ErrInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Room.UserStatus), global::Bs.Room.UserStatus.Parser, new[]{ "UserInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Room.RequestFailure), global::Bs.Room.RequestFailure.Parser, new[]{ "ErrInfo" }, null, null, null, null),
@@ -1064,6 +1065,7 @@ namespace Bs.Room {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public ExitReq(ExitReq other) : this() {
+      forceLeave_ = other.forceLeave_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1071,6 +1073,21 @@ namespace Bs.Room {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public ExitReq Clone() {
       return new ExitReq(this);
+    }
+
+    /// <summary>Field number for the "force_leave" field.</summary>
+    public const int ForceLeaveFieldNumber = 1;
+    private bool forceLeave_;
+    /// <summary>
+    ///强行离开
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool ForceLeave {
+      get { return forceLeave_; }
+      set {
+        forceLeave_ = value;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1088,6 +1105,7 @@ namespace Bs.Room {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (ForceLeave != other.ForceLeave) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1095,6 +1113,7 @@ namespace Bs.Room {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
+      if (ForceLeave != false) hash ^= ForceLeave.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1113,6 +1132,10 @@ namespace Bs.Room {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
+      if (ForceLeave != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(ForceLeave);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1123,6 +1146,10 @@ namespace Bs.Room {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (ForceLeave != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(ForceLeave);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1133,6 +1160,9 @@ namespace Bs.Room {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
+      if (ForceLeave != false) {
+        size += 1 + 1;
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -1144,6 +1174,9 @@ namespace Bs.Room {
     public void MergeFrom(ExitReq other) {
       if (other == null) {
         return;
+      }
+      if (other.ForceLeave != false) {
+        ForceLeave = other.ForceLeave;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1160,6 +1193,10 @@ namespace Bs.Room {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
+          case 8: {
+            ForceLeave = input.ReadBool();
+            break;
+          }
         }
       }
     #endif
@@ -1175,6 +1212,10 @@ namespace Bs.Room {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
+          case 8: {
+            ForceLeave = input.ReadBool();
+            break;
+          }
         }
       }
     }

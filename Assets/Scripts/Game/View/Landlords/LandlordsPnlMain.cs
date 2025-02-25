@@ -455,7 +455,7 @@ public class LandlordsPnlMain : View
 
             if (player == null || GameModel.chairId == GameModel.INVALID_CHAIR)
             {
-                Debug.LogError("刷新玩家信息显示,未找到,chairId=" + GameModel.chairId + ",chairId=" + chairId + ",player.null="+ (player == null) + ",isRefreshScore=" + isRefreshScore);
+                //Debug.LogError("刷新玩家信息显示,未找到,chairId=" + GameModel.chairId + ",chairId=" + chairId + ",player.null="+ (player == null) + ",isRefreshScore=" + isRefreshScore);
                 users[i].Find("userPhoto").GetComponent<UITexture>().mainTexture = HallModel.defaultPhoto;
                 users[i].Find("lblUserName").GetComponent<UILabel>().text = "等待加入...";
                 users[i].Find("sptIsOffline").gameObject.SetActive(false);

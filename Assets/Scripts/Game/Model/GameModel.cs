@@ -212,7 +212,7 @@ public class GameModel
 
             return kvp.Value;
         }
-        Debug.Log("取得房间用户,未找到,chairId=" + GameModel.chairId + ",chairId=" + chairId + ",playerInRoom.Count=" + playerInRoom.Count);
+        //Debug.Log("取得房间用户,未找到,chairId=" + GameModel.chairId + ",chairId=" + chairId + ",playerInRoom.Count=" + playerInRoom.Count);
         return null;
         //if (playerInDesk.ContainsKey(chairId) && playerInRoom.ContainsKey(playerInDesk[chairId]))
         //{
