@@ -286,10 +286,16 @@ public class HallService : MonoBehaviour
     //注销登录
     public void LoginOut()
     {
-        CMD_Hall_C_LoginOut pro = new CMD_Hall_C_LoginOut();
-        pro.dwUserID = (uint)HallModel.userId;
-        pro.dwGameID = (uint)HallModel.gameId;
-        client.SendPro(pro);
+        Debug.Log("注销登录,userId=" + HallModel.userId);
+
+        LogoutReq req = new LogoutReq();
+        req.UserId = HallModel.userId;
+        client.SendTransferData2Gate(NetManager.AppLobby, NetManager.Send2AnyOne, NetManager.AppLobby, (UInt32)(CMDLobby.IdlogoutReq), req);
+
+        //CMD_Hall_C_LoginOut pro = new CMD_Hall_C_LoginOut();
+        //pro.dwUserID = (uint)HallModel.userId;
+        //pro.dwGameID = (uint)HallModel.gameId;
+        //client.SendPro(pro);
     }
 
     //注册账号
@@ -454,6 +460,9 @@ public class HallService : MonoBehaviour
             serverInfo.wKindID = (UInt16)rsp.Rooms[i].Kind;
             serverInfo.wServerType = (UInt16)rsp.Rooms[i].Type;
             serverInfo.wServerLevel = (UInt16)rsp.Rooms[i].Level;
+            serverInfo.lCellScore = rsp.Rooms[i].CellScore;
+            serverInfo.serviceMoney = rsp.Rooms[i].ServiceIngot;
+            serverInfo.serviceIngot = rsp.Rooms[i].ServiceScore;
             serverInfo.lEnterScore = rsp.Rooms[i].MinTableScore;
 
             if (HallModel.serverList.ContainsKey(serviceID))
@@ -1133,7 +1142,7 @@ public class HallService : MonoBehaviour
         //关闭游戏
         if ((pro.wType & 0x0100) != 0 || (pro.wType & 0x0200) != 0)
         {
-            GameService.Instance.BreakConnect();
+            //GameService.Instance.BreakConnect();
             if (GameEvent.V_OpenDlgTip != null)
             {
                 GameEvent.V_OpenDlgTip.Invoke(pro.szString, "", GameService.Instance.ReturnToHall, GameService.Instance.ReturnToHall);
@@ -1142,7 +1151,7 @@ public class HallService : MonoBehaviour
         //关闭大厅
         if ((pro.wType & 0x0400) != 0 || (pro.wType & 0x1000) != 0)
         {
-            GameService.Instance.BreakConnect();
+            //GameService.Instance.BreakConnect();
             HallService.Instance.BreakConnect();
             if (GameEvent.V_OpenDlgTip != null)
             {

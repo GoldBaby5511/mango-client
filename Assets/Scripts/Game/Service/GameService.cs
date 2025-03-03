@@ -56,18 +56,18 @@ public class GameService : MonoBehaviour
     }
 
     //网络监测
-    void ConnectDetection()
-    {
-        if (!isConnect)
-        {
-            BreakConnect();
-            if (isAutoConnectOnBreak)
-            {
-                //Connect();
-                HallService.Instance.GetUserGameState();
-            }
-        }
-    }
+    //void ConnectDetection()
+    //{
+    //    if (!isConnect)
+    //    {
+    //        BreakConnect();
+    //        if (isAutoConnectOnBreak)
+    //        {
+    //            //Connect();
+    //            HallService.Instance.GetUserGameState();
+    //        }
+    //    }
+    //}
 
     //游戏状态监测
     void OnApplicationPause(bool state)
@@ -77,8 +77,8 @@ public class GameService : MonoBehaviour
             if (!state)
             {
                 //开始网络监测
-                CancelInvoke("ConnectDetection");
-                InvokeRepeating("ConnectDetection", 1f, 5f);
+                //CancelInvoke("ConnectDetection");
+                //InvokeRepeating("ConnectDetection", 1f, 5f);
                 //发送心跳包
                 CancelInvoke("SendHeartPacket");
                 InvokeRepeating("SendHeartPacket", 1f, 5f);
@@ -93,10 +93,10 @@ public class GameService : MonoBehaviour
                 //CancelInvoke("SendHeartPacket");
 
                 //关闭网络连接
-                if (Application.platform == RuntimePlatform.Android)
-                {
-                    BreakConnect();
-                }
+                //if (Application.platform == RuntimePlatform.Android)
+                //{
+                //    BreakConnect();
+                //}
             }
         }
     }
@@ -135,14 +135,14 @@ public class GameService : MonoBehaviour
     }
 
     //断开连接
-    public void BreakConnect()
-    {
-        isConnect = false;
-        client.CloseConnect();
-        Util.Instance.DoAction(GameEvent.V_CloseConnectTip);
-        CancelInvoke("ConnectDetection");
-        CancelInvoke("TestSpeed");
-    }
+    //public void BreakConnect()
+    //{
+    //    isConnect = false;
+    //    client.CloseConnect();
+    //    Util.Instance.DoAction(GameEvent.V_CloseConnectTip);
+    //    CancelInvoke("ConnectDetection");
+    //    CancelInvoke("TestSpeed");
+    //}
 
     //网速测试
     public void TestSpeed()
@@ -604,6 +604,11 @@ public class GameService : MonoBehaviour
 
         Bs.Room.EnterReq req = new Bs.Room.EnterReq();
         client.SendTransferData2Gate(baseInfo.dwType, baseInfo.dwID, NetManager.AppRoom, (UInt32)(Bs.Room.CMDRoom.IdenterReq), req);
+
+        if (SceneManager.GetActiveScene().name.ToLower().Contains("hall"))
+        {
+            Util.Instance.DoAction(GameEvent.V_OpenConnectTip, "正在进入游戏...");
+        }
     }
 
     private KeyValuePair<UInt64, GameServerInfo>? GetRandomServer(Dictionary<UInt64, GameServerInfo> servers, Func<GameServerInfo, bool> condition)
@@ -636,7 +641,13 @@ public class GameService : MonoBehaviour
     public bool EnterRoomRsp(Bs.Gateway.TransferDataReq req)
     {
         Bs.Room.EnterRsp rsp = NetPacket.Deserialize<Bs.Room.EnterRsp>(req.Data.ToByteArray());
-        Debug.Log("进入回复,rsp.ErrInfo.Code=" + rsp.ErrInfo.Code);
+        Debug.Log("进入回复,rsp.ErrInfo.Code=" + rsp.ErrInfo.Code +",info=" + rsp.ErrInfo.Info);
+
+        if(rsp.ErrInfo.Code != Bs.Types.ErrorInfo.Types.ResultCode.Success)
+        {
+            Util.Instance.DoAction(GameEvent.V_CloseConnectTip);
+            GameEvent.V_OpenDlgTip.Invoke(rsp.ErrInfo.Info, "", null, null);
+        }
 
         return true;
 
@@ -836,7 +847,7 @@ public class GameService : MonoBehaviour
         if (pro.dwRoomNumber != GameModel.currentRoomId) { return; }
         //断开连接
         isAutoConnectOnBreak = false;
-        Util.Instance.DoActionDelay(BreakConnect, 0.3f);
+        //Util.Instance.DoActionDelay(BreakConnect, 0.3f);
         //提示
         Util.Instance.DoAction(GameEvent.V_OpenShortTip, "游戏房间已解散！");
         //解散房间
@@ -977,7 +988,7 @@ public class GameService : MonoBehaviour
         //返回大厅
         if ((rsp.Type & 0x0100) != 0 || (rsp.Type & 0x0200) != 0 || (rsp.Type & 0x0400) != 0)
         {
-            GameService.Instance.BreakConnect();
+            //GameService.Instance.BreakConnect();
             if (GameEvent.V_OpenDlgTip != null)
             {
                 GameEvent.V_OpenDlgTip.Invoke(rsp.Info, "", ReturnToHall, ReturnToHall);

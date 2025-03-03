@@ -133,7 +133,8 @@ public class DlgSet : View
     public void OnBtnSwitchAccountClick()
     {
         AudioManager.Instance.PlaySound(GameModel.audioButtonNormal);
-       
+        HallService.Instance.LoginOut();
+
         Close();
         HallModel.isSwitchAccount = true;
         HallService.Instance.BreakConnect();

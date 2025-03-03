@@ -1138,7 +1138,7 @@ public class LandlordsPnlGame : View
     {
         if (GameModel.serverType == GameModel.ServerKind_RedPack && HallModel.serverList.ContainsKey(HallModel.currentServerId))
         {
-            HallModel.messageList.Add("此房间每局消耗 " + HallModel.serverList[HallModel.currentServerId].serviceMoney + " 钻石");
+            HallModel.messageList.Add("此房间每局消耗 " + HallModel.serverList[HallModel.currentServerId].serviceIngot + " 钻石");
             //HallModel.messageList.Add("提示：游戏中换桌不影响红包雨局数累计哦！");
         }
         if (GameModel.serverType == GameModel.ServerKind_Gold && HallModel.serverList.ContainsKey(HallModel.currentServerId))

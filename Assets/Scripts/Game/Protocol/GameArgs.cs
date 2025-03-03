@@ -298,6 +298,7 @@ public class GameServerInfo
     public Int64 lCellScore;            //单元积分
     public Int16 wRatio;                //税收比例
     public Int64 serviceMoney;          //服务费
+    public Int64 serviceIngot;          //服务费
     public Byte cbEnterMember;          //进入会员
     public Int64 lEnterScore;           //进入积分
     public UInt32 dwServerRule;         //房间规则

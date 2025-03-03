@@ -61,7 +61,14 @@ namespace Bs.Types {
             "EhEKCXdpbl9jb3VudBgHIAEoDRISCgpsb3N0X2NvdW50GAggASgNEhIKCmRy",
             "YXdfY291bnQYCSABKA0SEgoKZmxlZV9jb3VudBgKIAEoDRIWCg5pbnRlZ3Jh",
             "bF9jb3VudBgLIAEoAxISCgpleHBlcmllbmNlGAwgASgNEhMKC2xvdmVfbGlu",
-            "ZXNzGA0gASgDQhFaD21hbmdvL2FwaS90eXBlc2IGcHJvdG8z"));
+            "ZXNzGA0gASgDIroCChJTY29yZVZhcmlhdGlvbkluZm8SDQoFc2NvcmUYASAB",
+            "KAMSDQoFaW5nb3QYAiABKAMSFQoNcmVkX3JldmVsb3BlcxgDIAEoAxINCgVn",
+            "cmFkZRgEIAEoAxIOCgZpbnN1cmUYBSABKAMSDwoHcmV2ZW51ZRgGIAEoAxIW",
+            "Cg5jdXN0b21fcmV2ZW51ZRgHIAEoAxIRCgl3aW5fY291bnQYCCABKA0SEgoK",
+            "bG9zdF9jb3VudBgJIAEoDRISCgpkcmF3X2NvdW50GAogASgNEhIKCmZsZWVf",
+            "Y291bnQYCyABKA0SFgoOaW50ZWdyYWxfY291bnQYDCABKAMSFwoPcGxheV90",
+            "aW1lX2NvdW50GA0gASgNEhIKCmV4cGVyaWVuY2UYDiABKA0SEwoLbG92ZV9s",
+            "aW5lc3MYDyABKAVCEVoPbWFuZ28vYXBpL3R5cGVzYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -71,7 +78,8 @@ namespace Bs.Types {
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Types.BaseUserInfo), global::Bs.Types.BaseUserInfo.Parser, new[]{ "Account", "UserId", "GameId", "Gender", "FaceId", "CustomFace", "NickName", "Type", "Props", "TableId", "SeatId", "Status", "MarketId", "SiteId", "RegMarketId", "RegSiteId", "RegisterData", "GateConnId", "RoomConnId" }, null, new[]{ typeof(global::Bs.Types.BaseUserInfo.Types.UserType), typeof(global::Bs.Types.BaseUserInfo.Types.UserStatus) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Types.RoomInfo), global::Bs.Types.RoomInfo.Parser, new[]{ "AppInfo", "Kind", "Type", "Level", "Name", "CellScore", "RevenueRatio", "ServiceScore", "ServiceIngot", "RestrictScore", "MinTableScore", "MinEnterScore", "MaxEnterScore" }, null, new[]{ typeof(global::Bs.Types.RoomInfo.Types.RoomType) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Types.TableStatus), global::Bs.Types.TableStatus.Parser, new[]{ "TableLock", "PlayStatus", "ClubNum", "RoomNum", "CellScore" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Types.UserScore), global::Bs.Types.UserScore.Parser, new[]{ "Score", "Grade", "Insure", "Ingot", "RedRevelopes", "Beans", "WinCount", "LostCount", "DrawCount", "FleeCount", "IntegralCount", "Experience", "LoveLiness" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Types.UserScore), global::Bs.Types.UserScore.Parser, new[]{ "Score", "Grade", "Insure", "Ingot", "RedRevelopes", "Beans", "WinCount", "LostCount", "DrawCount", "FleeCount", "IntegralCount", "Experience", "LoveLiness" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Bs.Types.ScoreVariationInfo), global::Bs.Types.ScoreVariationInfo.Parser, new[]{ "Score", "Ingot", "RedRevelopes", "Grade", "Insure", "Revenue", "CustomRevenue", "WinCount", "LostCount", "DrawCount", "FleeCount", "IntegralCount", "PlayTimeCount", "Experience", "LoveLiness" }, null, null, null, null)
           }));
     }
     #endregion
@@ -3526,6 +3534,761 @@ namespace Bs.Types {
           }
           case 104: {
             LoveLiness = input.ReadInt64();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  ///变更信息
+  /// </summary>
+  public sealed partial class ScoreVariationInfo : pb::IMessage<ScoreVariationInfo>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<ScoreVariationInfo> _parser = new pb::MessageParser<ScoreVariationInfo>(() => new ScoreVariationInfo());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<ScoreVariationInfo> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Bs.Types.TypesReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ScoreVariationInfo() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ScoreVariationInfo(ScoreVariationInfo other) : this() {
+      score_ = other.score_;
+      ingot_ = other.ingot_;
+      redRevelopes_ = other.redRevelopes_;
+      grade_ = other.grade_;
+      insure_ = other.insure_;
+      revenue_ = other.revenue_;
+      customRevenue_ = other.customRevenue_;
+      winCount_ = other.winCount_;
+      lostCount_ = other.lostCount_;
+      drawCount_ = other.drawCount_;
+      fleeCount_ = other.fleeCount_;
+      integralCount_ = other.integralCount_;
+      playTimeCount_ = other.playTimeCount_;
+      experience_ = other.experience_;
+      loveLiness_ = other.loveLiness_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ScoreVariationInfo Clone() {
+      return new ScoreVariationInfo(this);
+    }
+
+    /// <summary>Field number for the "score" field.</summary>
+    public const int ScoreFieldNumber = 1;
+    private long score_;
+    /// <summary>
+    ///积分信息
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long Score {
+      get { return score_; }
+      set {
+        score_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "ingot" field.</summary>
+    public const int IngotFieldNumber = 2;
+    private long ingot_;
+    /// <summary>
+    ///用户元宝
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long Ingot {
+      get { return ingot_; }
+      set {
+        ingot_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "red_revelopes" field.</summary>
+    public const int RedRevelopesFieldNumber = 3;
+    private long redRevelopes_;
+    /// <summary>
+    ///用户红包
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long RedRevelopes {
+      get { return redRevelopes_; }
+      set {
+        redRevelopes_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "grade" field.</summary>
+    public const int GradeFieldNumber = 4;
+    private long grade_;
+    /// <summary>
+    ///用户成绩
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long Grade {
+      get { return grade_; }
+      set {
+        grade_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "insure" field.</summary>
+    public const int InsureFieldNumber = 5;
+    private long insure_;
+    /// <summary>
+    ///用户银行
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long Insure {
+      get { return insure_; }
+      set {
+        insure_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "revenue" field.</summary>
+    public const int RevenueFieldNumber = 6;
+    private long revenue_;
+    /// <summary>
+    ///游戏税收	
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long Revenue {
+      get { return revenue_; }
+      set {
+        revenue_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "custom_revenue" field.</summary>
+    public const int CustomRevenueFieldNumber = 7;
+    private long customRevenue_;
+    /// <summary>
+    ///游戏税收
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long CustomRevenue {
+      get { return customRevenue_; }
+      set {
+        customRevenue_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "win_count" field.</summary>
+    public const int WinCountFieldNumber = 8;
+    private uint winCount_;
+    /// <summary>
+    ///游戏信息
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint WinCount {
+      get { return winCount_; }
+      set {
+        winCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "lost_count" field.</summary>
+    public const int LostCountFieldNumber = 9;
+    private uint lostCount_;
+    /// <summary>
+    ///失败盘数
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint LostCount {
+      get { return lostCount_; }
+      set {
+        lostCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "draw_count" field.</summary>
+    public const int DrawCountFieldNumber = 10;
+    private uint drawCount_;
+    /// <summary>
+    ///和局盘数
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint DrawCount {
+      get { return drawCount_; }
+      set {
+        drawCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "flee_count" field.</summary>
+    public const int FleeCountFieldNumber = 11;
+    private uint fleeCount_;
+    /// <summary>
+    ///逃跑盘数
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint FleeCount {
+      get { return fleeCount_; }
+      set {
+        fleeCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "integral_count" field.</summary>
+    public const int IntegralCountFieldNumber = 12;
+    private long integralCount_;
+    /// <summary>
+    ///积分总数(当前房间)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long IntegralCount {
+      get { return integralCount_; }
+      set {
+        integralCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "play_time_count" field.</summary>
+    public const int PlayTimeCountFieldNumber = 13;
+    private uint playTimeCount_;
+    /// <summary>
+    ///游戏时长
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint PlayTimeCount {
+      get { return playTimeCount_; }
+      set {
+        playTimeCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "experience" field.</summary>
+    public const int ExperienceFieldNumber = 14;
+    private uint experience_;
+    /// <summary>
+    ///全局信息
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint Experience {
+      get { return experience_; }
+      set {
+        experience_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "love_liness" field.</summary>
+    public const int LoveLinessFieldNumber = 15;
+    private int loveLiness_;
+    /// <summary>
+    ///用户魅力
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int LoveLiness {
+      get { return loveLiness_; }
+      set {
+        loveLiness_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as ScoreVariationInfo);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(ScoreVariationInfo other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Score != other.Score) return false;
+      if (Ingot != other.Ingot) return false;
+      if (RedRevelopes != other.RedRevelopes) return false;
+      if (Grade != other.Grade) return false;
+      if (Insure != other.Insure) return false;
+      if (Revenue != other.Revenue) return false;
+      if (CustomRevenue != other.CustomRevenue) return false;
+      if (WinCount != other.WinCount) return false;
+      if (LostCount != other.LostCount) return false;
+      if (DrawCount != other.DrawCount) return false;
+      if (FleeCount != other.FleeCount) return false;
+      if (IntegralCount != other.IntegralCount) return false;
+      if (PlayTimeCount != other.PlayTimeCount) return false;
+      if (Experience != other.Experience) return false;
+      if (LoveLiness != other.LoveLiness) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Score != 0L) hash ^= Score.GetHashCode();
+      if (Ingot != 0L) hash ^= Ingot.GetHashCode();
+      if (RedRevelopes != 0L) hash ^= RedRevelopes.GetHashCode();
+      if (Grade != 0L) hash ^= Grade.GetHashCode();
+      if (Insure != 0L) hash ^= Insure.GetHashCode();
+      if (Revenue != 0L) hash ^= Revenue.GetHashCode();
+      if (CustomRevenue != 0L) hash ^= CustomRevenue.GetHashCode();
+      if (WinCount != 0) hash ^= WinCount.GetHashCode();
+      if (LostCount != 0) hash ^= LostCount.GetHashCode();
+      if (DrawCount != 0) hash ^= DrawCount.GetHashCode();
+      if (FleeCount != 0) hash ^= FleeCount.GetHashCode();
+      if (IntegralCount != 0L) hash ^= IntegralCount.GetHashCode();
+      if (PlayTimeCount != 0) hash ^= PlayTimeCount.GetHashCode();
+      if (Experience != 0) hash ^= Experience.GetHashCode();
+      if (LoveLiness != 0) hash ^= LoveLiness.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Score != 0L) {
+        output.WriteRawTag(8);
+        output.WriteInt64(Score);
+      }
+      if (Ingot != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(Ingot);
+      }
+      if (RedRevelopes != 0L) {
+        output.WriteRawTag(24);
+        output.WriteInt64(RedRevelopes);
+      }
+      if (Grade != 0L) {
+        output.WriteRawTag(32);
+        output.WriteInt64(Grade);
+      }
+      if (Insure != 0L) {
+        output.WriteRawTag(40);
+        output.WriteInt64(Insure);
+      }
+      if (Revenue != 0L) {
+        output.WriteRawTag(48);
+        output.WriteInt64(Revenue);
+      }
+      if (CustomRevenue != 0L) {
+        output.WriteRawTag(56);
+        output.WriteInt64(CustomRevenue);
+      }
+      if (WinCount != 0) {
+        output.WriteRawTag(64);
+        output.WriteUInt32(WinCount);
+      }
+      if (LostCount != 0) {
+        output.WriteRawTag(72);
+        output.WriteUInt32(LostCount);
+      }
+      if (DrawCount != 0) {
+        output.WriteRawTag(80);
+        output.WriteUInt32(DrawCount);
+      }
+      if (FleeCount != 0) {
+        output.WriteRawTag(88);
+        output.WriteUInt32(FleeCount);
+      }
+      if (IntegralCount != 0L) {
+        output.WriteRawTag(96);
+        output.WriteInt64(IntegralCount);
+      }
+      if (PlayTimeCount != 0) {
+        output.WriteRawTag(104);
+        output.WriteUInt32(PlayTimeCount);
+      }
+      if (Experience != 0) {
+        output.WriteRawTag(112);
+        output.WriteUInt32(Experience);
+      }
+      if (LoveLiness != 0) {
+        output.WriteRawTag(120);
+        output.WriteInt32(LoveLiness);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Score != 0L) {
+        output.WriteRawTag(8);
+        output.WriteInt64(Score);
+      }
+      if (Ingot != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(Ingot);
+      }
+      if (RedRevelopes != 0L) {
+        output.WriteRawTag(24);
+        output.WriteInt64(RedRevelopes);
+      }
+      if (Grade != 0L) {
+        output.WriteRawTag(32);
+        output.WriteInt64(Grade);
+      }
+      if (Insure != 0L) {
+        output.WriteRawTag(40);
+        output.WriteInt64(Insure);
+      }
+      if (Revenue != 0L) {
+        output.WriteRawTag(48);
+        output.WriteInt64(Revenue);
+      }
+      if (CustomRevenue != 0L) {
+        output.WriteRawTag(56);
+        output.WriteInt64(CustomRevenue);
+      }
+      if (WinCount != 0) {
+        output.WriteRawTag(64);
+        output.WriteUInt32(WinCount);
+      }
+      if (LostCount != 0) {
+        output.WriteRawTag(72);
+        output.WriteUInt32(LostCount);
+      }
+      if (DrawCount != 0) {
+        output.WriteRawTag(80);
+        output.WriteUInt32(DrawCount);
+      }
+      if (FleeCount != 0) {
+        output.WriteRawTag(88);
+        output.WriteUInt32(FleeCount);
+      }
+      if (IntegralCount != 0L) {
+        output.WriteRawTag(96);
+        output.WriteInt64(IntegralCount);
+      }
+      if (PlayTimeCount != 0) {
+        output.WriteRawTag(104);
+        output.WriteUInt32(PlayTimeCount);
+      }
+      if (Experience != 0) {
+        output.WriteRawTag(112);
+        output.WriteUInt32(Experience);
+      }
+      if (LoveLiness != 0) {
+        output.WriteRawTag(120);
+        output.WriteInt32(LoveLiness);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Score != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Score);
+      }
+      if (Ingot != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Ingot);
+      }
+      if (RedRevelopes != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(RedRevelopes);
+      }
+      if (Grade != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Grade);
+      }
+      if (Insure != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Insure);
+      }
+      if (Revenue != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Revenue);
+      }
+      if (CustomRevenue != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(CustomRevenue);
+      }
+      if (WinCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(WinCount);
+      }
+      if (LostCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(LostCount);
+      }
+      if (DrawCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(DrawCount);
+      }
+      if (FleeCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(FleeCount);
+      }
+      if (IntegralCount != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(IntegralCount);
+      }
+      if (PlayTimeCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayTimeCount);
+      }
+      if (Experience != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Experience);
+      }
+      if (LoveLiness != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(LoveLiness);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(ScoreVariationInfo other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Score != 0L) {
+        Score = other.Score;
+      }
+      if (other.Ingot != 0L) {
+        Ingot = other.Ingot;
+      }
+      if (other.RedRevelopes != 0L) {
+        RedRevelopes = other.RedRevelopes;
+      }
+      if (other.Grade != 0L) {
+        Grade = other.Grade;
+      }
+      if (other.Insure != 0L) {
+        Insure = other.Insure;
+      }
+      if (other.Revenue != 0L) {
+        Revenue = other.Revenue;
+      }
+      if (other.CustomRevenue != 0L) {
+        CustomRevenue = other.CustomRevenue;
+      }
+      if (other.WinCount != 0) {
+        WinCount = other.WinCount;
+      }
+      if (other.LostCount != 0) {
+        LostCount = other.LostCount;
+      }
+      if (other.DrawCount != 0) {
+        DrawCount = other.DrawCount;
+      }
+      if (other.FleeCount != 0) {
+        FleeCount = other.FleeCount;
+      }
+      if (other.IntegralCount != 0L) {
+        IntegralCount = other.IntegralCount;
+      }
+      if (other.PlayTimeCount != 0) {
+        PlayTimeCount = other.PlayTimeCount;
+      }
+      if (other.Experience != 0) {
+        Experience = other.Experience;
+      }
+      if (other.LoveLiness != 0) {
+        LoveLiness = other.LoveLiness;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Score = input.ReadInt64();
+            break;
+          }
+          case 16: {
+            Ingot = input.ReadInt64();
+            break;
+          }
+          case 24: {
+            RedRevelopes = input.ReadInt64();
+            break;
+          }
+          case 32: {
+            Grade = input.ReadInt64();
+            break;
+          }
+          case 40: {
+            Insure = input.ReadInt64();
+            break;
+          }
+          case 48: {
+            Revenue = input.ReadInt64();
+            break;
+          }
+          case 56: {
+            CustomRevenue = input.ReadInt64();
+            break;
+          }
+          case 64: {
+            WinCount = input.ReadUInt32();
+            break;
+          }
+          case 72: {
+            LostCount = input.ReadUInt32();
+            break;
+          }
+          case 80: {
+            DrawCount = input.ReadUInt32();
+            break;
+          }
+          case 88: {
+            FleeCount = input.ReadUInt32();
+            break;
+          }
+          case 96: {
+            IntegralCount = input.ReadInt64();
+            break;
+          }
+          case 104: {
+            PlayTimeCount = input.ReadUInt32();
+            break;
+          }
+          case 112: {
+            Experience = input.ReadUInt32();
+            break;
+          }
+          case 120: {
+            LoveLiness = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Score = input.ReadInt64();
+            break;
+          }
+          case 16: {
+            Ingot = input.ReadInt64();
+            break;
+          }
+          case 24: {
+            RedRevelopes = input.ReadInt64();
+            break;
+          }
+          case 32: {
+            Grade = input.ReadInt64();
+            break;
+          }
+          case 40: {
+            Insure = input.ReadInt64();
+            break;
+          }
+          case 48: {
+            Revenue = input.ReadInt64();
+            break;
+          }
+          case 56: {
+            CustomRevenue = input.ReadInt64();
+            break;
+          }
+          case 64: {
+            WinCount = input.ReadUInt32();
+            break;
+          }
+          case 72: {
+            LostCount = input.ReadUInt32();
+            break;
+          }
+          case 80: {
+            DrawCount = input.ReadUInt32();
+            break;
+          }
+          case 88: {
+            FleeCount = input.ReadUInt32();
+            break;
+          }
+          case 96: {
+            IntegralCount = input.ReadInt64();
+            break;
+          }
+          case 104: {
+            PlayTimeCount = input.ReadUInt32();
+            break;
+          }
+          case 112: {
+            Experience = input.ReadUInt32();
+            break;
+          }
+          case 120: {
+            LoveLiness = input.ReadInt32();
             break;
           }
         }

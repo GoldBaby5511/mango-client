@@ -533,6 +533,9 @@ namespace Bs.Room {
 
   }
 
+  /// <summary>
+  ///请求座位
+  /// </summary>
   public sealed partial class GetChairReq : pb::IMessage<GetChairReq>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -796,6 +799,9 @@ namespace Bs.Room {
 
   }
 
+  /// <summary>
+  ///请求座位
+  /// </summary>
   public sealed partial class GetChairRsp : pb::IMessage<GetChairRsp>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1421,6 +1427,9 @@ namespace Bs.Room {
 
   }
 
+  /// <summary>
+  ///用户状态
+  /// </summary>
   public sealed partial class UserStatus : pb::IMessage<UserStatus>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
