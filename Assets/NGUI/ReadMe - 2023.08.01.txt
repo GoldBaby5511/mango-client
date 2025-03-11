@@ -1,9 +1,8 @@
 ----------------------------------------------
             NGUI: Next-Gen UI kit
- Copyright © 2011-2016 Tasharen Entertainment
-            Version 3.9.8
-    http://www.tasharen.com/?page_id=197
-            support@tasharen.com
+ Copyright © 2011-2020 Tasharen Entertainment
+            Version 2023.08.01
+    https://discord.com/invite/tasharen
 ----------------------------------------------
 
 Thank you for buying NGUI!
@@ -18,9 +17,10 @@ If you've obtained NGUI via some other means then note that your license is effe
 as Tasharen cannot provide support for pirated and/or potentially modified software.
 
 Documentation can be found here: http://www.tasharen.com/forum/index.php?topic=6754.0
+Support is provided here: https://discord.gg/tasharen
 
-If you have any questions, suggestions, comments or feature requests, please
-drop by the NGUI forum, found here: http://www.tasharen.com/forum/index.php?board=1.0
+If you have any questions, please first search the forum: http://www.tasharen.com/forum/index.php?board=1.0
+If you don't find an answer, simply ask in the #ngui-support channel in Discord: https://discord.gg/tasharen
 
 --------------------
  How To Update NGUI
@@ -35,7 +35,7 @@ If you have a Standard License:
 3. Import NGUI from the updated Unity Package.
 
 ---------------------------------------
- Support, documentation, and tutorials
+ Documentation, and tutorials
 ---------------------------------------
 
 All can be found here: http://www.tasharen.com/forum/index.php?topic=6754.0
@@ -54,6 +54,222 @@ and it will not be included in the build of your game. It's only used in the edi
 -----------------
  Version History
 -----------------
+
+2023.08.01
+- NEW: Sprite collection now uses a list instead of a dictionary, as it can be sorted, making it possible to bring certain sub-sprites to the foreground and have events match the draw order properly.
+- FIX: Completely reverted the scroll view and NGUIMath changes back to 2 updates before since they apparently caused certain issues for some people.
+
+2023.07.26
+- NEW: When secondary UVs are requested on the panel, uv2.zw will now hold 0-1 range coordinates of the widget itself for simple texture overlay/mask effects.
+- NEW UISPriteCollection now has a scale value to use as well, for simple scaling effects on its sprites.
+- FIX: NGUI will now change all imported textures to be uncompressed when creating an atlas, matching how it used to work in older versions of Unity.
+- FIX: Changed how UIPlayTween determines if it's still active or not, simplifying it and fixing an issue where it can never end in some situations.
+
+2023.06.25
+- NEW: Added a Save As context menu option when right-clicking on a sprite in the sprite selection window.
+- NEW: Added an OnEnable type activation triggers to the Play Tween script.
+- FIX: Fixed all examples and prefabs to use the Unity's UI layer for simplicity.
+- FIX: Some minor tweaks to the scroll view behaviour in regards to how it dampens movement when the content goes out of the view.
+- FIX: Some tweaks to the Center on Child script for scroll views to make it behave better.
+- FIX: Started using the 'in' prefix for passing strings in some places. I've been replacing the copy with in-ref as I find them.
+- FIX: Got rid of some obsolete platform code.
+
+2023.05.29
+- NEW: Added a UICircle -- a sprite type that can draw a circle. It's also a super basic example of creating a custom widget for NGUI.
+- FIX: Unity 2022 introduced a bug with unloading resources that gets fixed again in Unity 2023. Added a work-around for 2022.
+- FIX: Minor fixes, removal of deprecated platform enums and the like.
+
+2022.06.08
+- NEW: Added NGUI/Selection/Check for issues menu option that automatically checks the hierarchy for potential problems such as non-one scales and offsets that will cause floating point precision issues.
+- FIX: ExampleDragDropItem wasn't calling UIDragDropItem's OnDragDropRelease before destroying itself, causing the dragged object to remain in the list of dragged items.
+- FIX: Improvements to the UIDraggableCamera script, such as making it work with non-pixel perfect UIRoot scaling.
+- FIX: NGUITools.ExecuteAll will no longer call functions on disabled game objects. This fixes NGUITools.ImmediatelyCreateDrawCalls creating draw calls for disabled widgets.
+
+2022.05.13
+- FIX: Fix for an issue with UIInput and mobile keyboards.
+
+2022.04.30
+- NEW: Localization now supports randomly choosing one of the values from the localization data randomly, if the exact key match isn't found, but there are multiple key# values present instead. For example requesting 'test' when 'test0', 'test1' and 'test2' are present instead.
+- FIX: Typewriter effect now supports embedded symbols using the [sp=name] syntax properly.
+- FIX: Renaming sprites in the atlas inspector no longer makes them disappear from the list of sprites.
+- FIX: transform.DestroyChildren() will now use NGUITools.Destroy instead of Object.Destroy, which properly disables the unparented object.
+- FIX: UIGrid should now properly wait on spring transitions to finish before disabling itself.
+- FIX: UIKeyBinding will now ignore its key press if the object it's on is currently involved in a drag & drop operation.
+- FIX: Changed how line spacing works vertically, to make text padded by half above and below instead of all below the line. This makes spaced text appear properly centered.
+
+2021.11.30
+- NEW: NGUI will now automatically save kerning information when creating a TTF-referencing NGUI Font, since this information is still missing in Unity. NGUI pulls this data directly from the FreeType library.
+- NEW: It's now possible to edit kerning data on fonts via inspector.
+- NEW: UIGrid now has a new expansion style parameter that alters how children are positioned, allowing rows to be positioned above, columns to the left, and centered, all based on the chosen pivot point.
+- NEW: Added a new flag to widgets ("Boundless") that allow them to be ignored for bounds calculations.
+- FIX: UIGrid now keeps calling its OnReposition callback while children are springing into place.
+- FIX: Made TypewriterEffect behave better when it comes to resetting it to the beginning.
+- FIX: Removed some questionable code that was breaking ellipsis functionality in labels when symbols were used.
+- FIX: If no valid widgets were found, CalculateRelativeWidgetBounds will now use the specified transform's position in its bounds calculations rather than returning zeroed out position bounds.
+
+2021.9.10
+- NEW: Added support for being able to change font scaling mid-sentence using the [y=0.75]text[/y] syntax.
+- NEW: [sub] and [sup] tax can now a scaling modifier specified, for example [sub=0.8].
+- NEW: Localization now loads all files named "Localization" and will merge them together into one.
+- NEW: Added a "scaled" option to adding new symbols. If turned off, these sprites embedded in labels will remain pixel-perfect rather than being scaled with the label. Useful for line breaks and such.
+- NEW: Added an option to fonts that centers the symbols vertically.
+- FIX: Made the Symbols and Emoticons section of the NGUI Font Inspector more self-explanatory.
+
+2020.2.2
+- FIX: Fixed an issue where having [sub]/[sup] tags would cause Unity to lock up.
+
+2020.2.1
+- FIX: Fixed a bold/italic issue with dynamic fonts when specified on the label rather than embedded via bbcode.
+
+2020.2.0
+- FIX: Fixed NGUI FontMaker causing Unity 2020 to crash by updating the FreeType DLL to 2.10.4.
+- FIX: Fixed Font Maker not being able to edit the font texture in some situations.
+
+2020.1.7
+- FIX: Fixed an issue with font wrapping when using dynamic fonts + italic/bold symbols.
+- FIX: Fixed widget depth adjustment field not updating the depth immediately.
+- FIX: NGUI's buttons and toggles will now automatically ignore duplicate click event that occur in the same frame.
+- FIX: UIDragDropItem now supports dragging of items along both XY and XZ axis.
+- FIX: Optimized some instances in text formatting where string.Substring could be eliminated when appending to the StringBuilder.
+- FIX: Reduced the number of times NGUI will try to request characters from the dynamic font.
+
+2020.1.6
+- NEW: Added an "inverted" option to UIGrid and UITable that simply flips the child sorting order.
+- NEW: Scroll view now has spring and dampen strength values exposed in inspector.
+- NEW: Added a new [t] symbol that forces all following symbols to be color tinted, regardless of their setting.
+- FIX: Made the sprite selection window significantly more performant, mainly by making NGUIAtlas.GetSprite faster.
+- FIX: Fixed Panel Tool selection indicator not visibly selecting the correct panel at times.
+
+2020.1.5
+- NEW: You can now specify per-symbol colorization settings, choosing which symbols get affected by label colors and which don't.
+- FIX: UIProgressBar.onChange will execute when it's enabled.
+- FIX: Fixed the missing #UNITY_EDITOR define preventing building.
+
+2020.1.4
+- NEW: Dynamic fonts now have full symbol (emoticons) support.
+- NEW: Made it possible to embed sprites in labels just by referencing them using [sp=name] syntax, without the need to set up symbol associations.
+- NEW: Panel Tool has been improved, and allows you to expand your panels to see exactly which widgets are causing new draw calls to occur.
+- NEW: Added the ability to scale and offset symbols used by the fonts.
+- NEW: Added the ability to specify maximum symbol (emoticon) height on fonts. If exceeded while printing text, the symbols will be shrunk.
+- NEW: Added the ability to overwrite the space bar width in fonts.
+- NEW: Added an Alpha Shader Property field to UIPanel. If specified, NGUI will set this value in the panel's shaders to the panel's alpha instead of mixing the panel's alpha with that of the widgets. You can use this to have panel alpha-fading effect differ from that of its children -- for example by specifying a "_Dither" property used by your shaders.
+- NEW: Added the ability to specify a texture pre-processor in the Atlas Maker that's able to modify textures prior to adding them to the atlas. This makes it possible to set up a custom renderer that does something like compositing an image from several sources or simply resizing the texture before the sprite gets added to the atlas.
+- NEW: UIGrid has a new "animate fade-in" option that if set to true along with "animate smoothly", will let UIGrid check to see if there is a TweenAlpha on the child objects that fades them in. If yes, and the tween's alpha says that the object is invisible, the objects will appear at their target (final) position instead of tweening from origin.
+- NEW: UIProgressBar with a foreground and background sprites set to 'fill' and 'inverse fill' style will now automatically update the value of the background fill sprite to be the inverse of the foreground.
+- FIX: Fixed pivot point changes moving widgets around if the camera wasn't looking down +Z.
+- FIX: Reduced the number of times NGUI's labels process text.
+- Unity 2020 update.
+
+2019.3.0
+- NEW: Added the Single Camera (old LWRP) example.
+- NEW: Added a 'fixed aspect' option to the UISprite, matching 2D sprite and UI texture.
+- FIX: Re-added NGUI menu -> Create -> Atlas and Font options that create empty ones.
+- FIX: Removed depth hiding of inspected widgets when examining prefabs.
+- FIX: Double-click event will no longer happened when quickly tapping on two different objects.
+- FIX: Adjusting panel's alpha will now again work properly in edit time.
+- FIX: Editing sprite border and padding on the atlas will now correctly mark the atlas as edited.
+- FIX: Dynamic font's default scaling fix.
+- FIX: Changing widget alpha should immediately update the scene view in edit mode again.
+- FIX: "style not found" when examining the UILocalize component in Unity 2018+.
+- FIX: Fixed incorrect line wrapping on labels.
+- FIX: Made NGUIText.WrapText re-use the same StringBuilder rather than making a new one every time.
+
+2018.3.0
+- NEW: As the name suggests, support for Unity 2018.3 and its new prefab workflow. Still supports previous versions, including Unity 5.6.
+- NEW: NGUI's atlases and fonts are now saved as ScriptableObjects instead of prefabs. To upgrade, select any old prefab-based atlas or font, and the Upgrade button will show up. BACK UP FIRST just in case! After the new asset gets created, the old atlas or font will be changed to Reference type, pointing to it. You can use the new asset directly, of course -- and if you are Unity savvy enough, you can swap their GUIDs from the meta files, effectively removing the need for the reference asset altogether.
+- NEW: Added a new widget type: Sprite Collection. It can be used to efficiently add thousands of sprites without the overhead of creating game objects. This is meant to be used from code by programmers, but can speed up the creation and modification of sprites by several orders of magnitude. In Sightseer it allowed the world map creation to go from 3348 ms down to 22 ms, for example.
+- NEW: Added UITweener.Finish() to immediately finish the tween, skipping to the end.
+- FIX: Some fixes for key binding text form serialization.
+
+3.12.1
+- NEW: Added an option to UIDragDropItem to make it work not just with press-and-hold but also with click-move-click dragging actions.
+- Improved the UIKeyBinding a bit (to string and from string conversion to be exact).
+
+3.12.0
+- NEW: Popup list can now accept delegates when setting up the items programmatically (ideally anonymous delegates).
+- NEW: Added Localization.Format overloads for 3 parameters and less to avoid GC allocations.
+- NEW: Added UIWidget.SetColorNoAlpha helper function.
+- NEW: color.LinearToGammaSpace() helper extension to match color.GammaToLinear().
+- NEW: Added a fast path for updating a widget's collider if the collider is already known, and forced it to be used when the widget gets enabled.
+- NEW: Added the "No Outline" option to the symbol coloring style. The symbol won't have an outline even if the text does.
+- FIX: Fixed an issue with the font's actual printed size not being printed correctly in inspector in some situations.
+- FIX: Random minor fixes from the support forum.
+- FIX: Missing localization entry warnings will now only be shown once per keyword.
+- FIX: UICamera will no longer keep assigning UICamera.hoveredObject repeatedly while mouse events are enabled. It will now only be assigned if the hovered object changes, or the mouse moves.
+- FIX: Fixed some issues with NGUIText.InsertHyperlink/ReplaceLink.
+- Merged pull request #26 by Nicki Hansen.
+- Checked against Unity 4.7, 5.6, and 2018.1b2.
+
+3.11.4
+- FIX: Assortment of various minor fixes for issues reported on the forums.
+
+3.11.3
+- NEW: Popup list now has an option to control whether it opens on press or on click.
+- NEW: TweenAlpha is now able to tween light sources as well.
+- NEW: Better logic for UICamera.isOverUI, UICamera.uiHasFocus and UICamera.interactingWithUI.
+- FIX: UICenterOnChild will now scroll up/down in the proper direction when using the mouse wheel.
+- FIX: UIKeyBinding will now set the currentTouch to -1 before firing its OnBindingPress function.
+- FIX: Reverted UILabel.OnFontChanged (dynamic fonts) since it's now working how it used to (?)
+- FIX: Fix for underline and label spacing being broken.
+
+3.11.2
+- FIX: Fix for the popup list not re-opening properly in some cases with touch input.
+- FIX: Rewrote how '...' gets appended at the end of wrapped labels, fixing its functionality when sup/subscript is used in the same label.
+- FIX: Reverted the ordering of triangles for UI, making them face the -Z again.
+- FIX: Added code to NGUI's main default shaders (Unlit/Transparent Colored and Unlit/Text) to handle single pass VR.
+- FIX: Choosing to hide a side of an advanced sprite will now also hide corners on that side.
+- FIX: Small fix to how UIGrid and UITable would handle widgets with SpringPosition attached.
+
+3.11.1
+- NEW: Added a 'keep value' option to the popup list that will make popup values persist even after it disappears, like it used to work before the change many versions back.
+- FIX: Popup list with values defined at edit time no longer has an initial value (unless the new 'keep value' is checked).
+- FIX: Capitalized versions of bbcode keywords like [B] will now work in addition to lowercase.
+- FIX: Backwards compatibility fixes with Unity 5.3.
+
+3.11.0
+- NEW: It's now possible to specify a custom material on regular NGUI sprites and labels.
+- NEW: Added UV2 support, specified on the panels. Secondary UVs can be easily used to add multi-texturing effects such as blended tiled backgrounds or simply detail textures, enhancing your UI's look.
+- NEW: Draw call now uses a material property block to specify the main texture as it works better at edit time.
+- NEW: UIGeometry now has a onCustomWrite delegate that can be used to modify the generated geometry as you see fit.
+- NEW: Added camera.FitOnScreen(transform) to simplify adjusting some group of widget's position to be within screen bounds.
+- NEW: Tweens can now be set to use FixedUpdate for their animation.
+- NEW: Added UIDrawCall.onCreateDrawCall that's called every time a new draw call gets created.
+- NEW: Added UIDrawCall.shadowMode that can be used to change the shadow casting mode.
+- FIX: NGUI's geometry should now work with one-sided shaders.
+- NEW: Added UICamera.lastWorldRay to hold the last ray used to cast into the world.
+- NEW: Added UICamera.mouse0, mouse1, mouse2 to access the mouse directly.
+- NEW: UICamera.uiHasFocus to return 'true' when there is an active UI interaction happening.
+- NEW: NGUI raycasts into the world will now automatically ignore triggers if the event type is set to World_3D.
+- FIX: Popup list's panel now keeps the sorting order of its parent panel.
+- FIX: Tweener.Begin now always clears the onFinished callback list.
+- FIX: Eliminated GC allocations from raycasts.
+
+3.10.2
+- NEW: Added UIDrawCall.MoveToScene for Unity 5.4+ to make it easier to move the UI to another scene.
+- FIX: Fixed an issue with Unity 5.4.1 in regards to the NGUI menu.
+- FIX: DragDropItem will now inverse transform the delta, so it should theoretically work even with rotated panels.
+- FIX: DragDropItem now again clears the scroll view reference after the drag operation completes.
+- FIX: Unity 5.4 DX9 bug work-around (no longer marking VBOs as dynamic).
+
+3.10.1
+- NEW: Added UICamera.ignoreAllEvents to easily disable all NGUI events.
+- FIX: Unity 5.4 editor on OSX: fixes for retina-related glitches of 5.4.
+- FIX: Gamma to linear conversion now happens in the draw call class and no longer needs to be set in each OnFill function.
+
+3.10.0
+- NEW: Added Texture2D.MakeReadable(true/false) -- a convenience extension for the editor. Not sure why this isn't built-in.
+- FIX: UIDragScrollView will no longer inform the scroll view of OnPress(false) on disable unless it's actually being dragged.
+- FIX: Removed ColorMask RGB from shaders since according to Unity docs it may slow down some mobiles.
+- FIX: Fixed Unity 5.4 function deprecation warnings.
+- MISC: Added Profiler.BeginSample/EndSample blocks to clarify GC allocations that only happen in the editor.
+
+3.9.9
+- NEW: Added customizable GetMouse, GetTouch and RemoveTouch delegates to UICamera replacing fixed Input calls. This makes all of NGUI's events go through user-settable delegates.
+- NEW: Sprite Animation script now has a frame offset index you can set if you want it to start at something other than 0.
+- NEW: UIScrollView now has a "constrain on drag" as an option rather than always being off.
+- FIX: UILabel resizing due to overflow settings will now trigger its UIWidget.onChange notification.
+- FIX: Fix for a visibility issue caused by instantiating a panel off-screen then bringing it into view.
+- FIX: Fixed a bug with text wrapping not wrapping colors properly in some situations (UITextList).
 
 3.9.8
 - NEW: NGUI now uses Color instead of Color32 for colors, which work better with linear space colors.

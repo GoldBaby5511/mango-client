@@ -1,7 +1,7 @@
-//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2016 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2023 Tasharen Entertainment Inc
+//-------------------------------------------------
 
 using UnityEngine;
 using System.Collections.Generic;
@@ -17,13 +17,13 @@ public class UITable : UIWidgetContainer
 {
 	public delegate void OnReposition ();
 
-	public enum Direction
+	[DoNotObfuscateNGUI] public enum Direction
 	{
 		Down,
 		Up,
 	}
 
-	public enum Sorting
+	[DoNotObfuscateNGUI] public enum Sorting
 	{
 		None,
 		Alphabetic,
@@ -49,6 +49,9 @@ public class UITable : UIWidgetContainer
 	/// </summary>
 
 	public Sorting sorting = Sorting.None;
+
+	[Tooltip("Whether the sort order will be inverted")]
+	public bool inverted = false;
 
 	/// <summary>
 	/// Final pivot point for the table itself.
@@ -121,9 +124,9 @@ public class UITable : UIWidgetContainer
 		// Sort the list using the desired sorting logic
 		if (sorting != Sorting.None)
 		{
-			if (sorting == Sorting.Alphabetic) list.Sort(UIGrid.SortByName);
-			else if (sorting == Sorting.Horizontal) list.Sort(UIGrid.SortHorizontal);
-			else if (sorting == Sorting.Vertical) list.Sort(UIGrid.SortVertical);
+			if (sorting == Sorting.Alphabetic) { if (inverted) list.Sort(UIGrid.SortByNameInv); else list.Sort(UIGrid.SortByName); }
+			else if (sorting == Sorting.Horizontal) { if (inverted) list.Sort(UIGrid.SortHorizontalInv); else list.Sort(UIGrid.SortHorizontal); }
+			else if (sorting == Sorting.Vertical) { if (inverted) list.Sort(UIGrid.SortVerticalInv); else list.Sort(UIGrid.SortVertical); }
 			else if (onCustomSort != null) list.Sort(onCustomSort);
 			else Sort(list);
 		}
@@ -135,6 +138,8 @@ public class UITable : UIWidgetContainer
 	/// </summary>
 
 	protected virtual void Sort (List<Transform> list) { list.Sort(UIGrid.SortByName); }
+
+	protected virtual void OnEnable () { mReposition = true; }
 
 	/// <summary>
 	/// Position the grid's contents when the script starts.
@@ -185,17 +190,17 @@ public class UITable : UIWidgetContainer
 		int cols = columns > 0 ? children.Count / columns + 1 : 1;
 		int rows = columns > 0 ? columns : children.Count;
 
-		Bounds[,] bounds = new Bounds[cols, rows];
-		Bounds[] boundsRows = new Bounds[rows];
-		Bounds[] boundsCols = new Bounds[cols];
+		var bounds = new Bounds[cols, rows];
+		var boundsRows = new Bounds[rows];
+		var boundsCols = new Bounds[cols];
 
 		int x = 0;
 		int y = 0;
 
 		for (int i = 0, imax = children.Count; i < imax; ++i)
 		{
-			Transform t = children[i];
-			Bounds b = NGUIMath.CalculateRelativeWidgetBounds(t, !hideInactive);
+			var t = children[i];
+			var b = NGUIMath.CalculateRelativeWidgetBounds(t, !hideInactive);
 
 			Vector3 scale = t.localScale;
 			b.min = Vector3.Scale(b.min, scale);
@@ -260,7 +265,7 @@ public class UITable : UIWidgetContainer
 
 			float fx, fy;
 
-			Bounds b = NGUIMath.CalculateRelativeWidgetBounds(transform);
+			var b = NGUIMath.CalculateRelativeWidgetBounds(transform, !hideInactive);
 
 			fx = Mathf.Lerp(0f, b.size.x, po.x);
 			fy = Mathf.Lerp(-b.size.y, 0f, po.y);
@@ -274,8 +279,10 @@ public class UITable : UIWidgetContainer
 
 				if (sp != null)
 				{
+					sp.enabled = false;
 					sp.target.x -= fx;
 					sp.target.y -= fy;
+					sp.enabled = true;
 				}
 				else
 				{
@@ -298,18 +305,17 @@ public class UITable : UIWidgetContainer
 		if (Application.isPlaying && !mInitDone && NGUITools.GetActive(this)) Init();
 
 		mReposition = false;
-		Transform myTrans = transform;
-		List<Transform> ch = GetChildList();
+		var myTrans = transform;
+		var ch = GetChildList();
 		if (ch.Count > 0) RepositionVariableSize(ch);
 
 		if (keepWithinPanel && mPanel != null)
 		{
 			mPanel.ConstrainTargetToBounds(myTrans, true);
-			UIScrollView sv = mPanel.GetComponent<UIScrollView>();
+			var sv = mPanel.GetComponent<UIScrollView>();
 			if (sv != null) sv.UpdateScrollbars(true);
 		}
 
-		if (onReposition != null)
-			onReposition();
+		if (onReposition != null) onReposition();
 	}
 }

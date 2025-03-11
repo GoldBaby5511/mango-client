@@ -1,7 +1,7 @@
-//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2016 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2023 Tasharen Entertainment Inc
+//-------------------------------------------------
 
 using UnityEngine;
 using System.Collections.Generic;
@@ -15,6 +15,12 @@ using System.Collections.Generic;
 [AddComponentMenu("NGUI/UI/Sprite Animation")]
 public class UISpriteAnimation : MonoBehaviour
 {
+	/// <summary>
+	/// Index of the current frame in the sprite animation.
+	/// </summary>
+
+	public int frameIndex = 0;
+
 	[HideInInspector][SerializeField] protected int mFPS = 30;
 	[HideInInspector][SerializeField] protected string mPrefix = "";
 	[HideInInspector][SerializeField] protected bool mLoop = true;
@@ -22,7 +28,6 @@ public class UISpriteAnimation : MonoBehaviour
 
 	protected UISprite mSprite;
 	protected float mDelta = 0f;
-	protected int mIndex = 0;
 	protected bool mActive = true;
 	protected List<string> mSpriteNames = new List<string>();
 
@@ -77,15 +82,15 @@ public class UISpriteAnimation : MonoBehaviour
 			{
 				mDelta = (rate > 0f) ? mDelta - rate : 0f;
 
-				if (++mIndex >= mSpriteNames.Count)
+				if (++frameIndex >= mSpriteNames.Count)
 				{
-					mIndex = 0;
+					frameIndex = 0;
 					mActive = mLoop;
 				}
 
 				if (mActive)
 				{
-					mSprite.spriteName = mSpriteNames[mIndex];
+					mSprite.spriteName = mSpriteNames[frameIndex];
 					if (mSnap) mSprite.MakePixelPerfect();
 				}
 			}
@@ -101,23 +106,24 @@ public class UISpriteAnimation : MonoBehaviour
 		if (mSprite == null) mSprite = GetComponent<UISprite>();
 		mSpriteNames.Clear();
 
-		if (mSprite != null && mSprite.atlas != null)
+		if (mSprite != null)
 		{
-			List<UISpriteData> sprites = mSprite.atlas.spriteList;
+			var atlas = mSprite.atlas;
 
-			for (int i = 0, imax = sprites.Count; i < imax; ++i)
+			if (atlas != null)
 			{
-				UISpriteData sprite = sprites[i];
+				var sprites = atlas.spriteList;
 
-				if (string.IsNullOrEmpty(mPrefix) || sprite.name.StartsWith(mPrefix))
+				for (int i = 0, imax = sprites.Count; i < imax; ++i)
 				{
-					mSpriteNames.Add(sprite.name);
+					var sprite = sprites[i];
+					if (string.IsNullOrEmpty(mPrefix) || sprite.name.StartsWith(mPrefix)) mSpriteNames.Add(sprite.name);
 				}
+				mSpriteNames.Sort();
 			}
-			mSpriteNames.Sort();
 		}
 	}
-	
+
 	/// <summary>
 	/// Reset the animation to the beginning.
 	/// </summary>
@@ -137,11 +143,11 @@ public class UISpriteAnimation : MonoBehaviour
 	public void ResetToBeginning ()
 	{
 		mActive = true;
-		mIndex = 0;
+		frameIndex = 0;
 
 		if (mSprite != null && mSpriteNames.Count > 0)
 		{
-			mSprite.spriteName = mSpriteNames[mIndex];
+			mSprite.spriteName = mSpriteNames[frameIndex];
 			if (mSnap) mSprite.MakePixelPerfect();
 		}
 	}

@@ -1,7 +1,7 @@
-//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2016 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2023 Tasharen Entertainment Inc
+//-------------------------------------------------
 
 #if UNITY_EDITOR || !UNITY_FLASH
 #define REFLECTION_SUPPORT
@@ -285,7 +285,7 @@ public class EventDelegate
 			return callback.Equals(mCachedCallback);
 #endif
 		}
-		
+
 		if (obj is EventDelegate)
 		{
 			EventDelegate del = obj as EventDelegate;
@@ -358,7 +358,7 @@ public class EventDelegate
 		{
 			if (mTarget != null && !string.IsNullOrEmpty(mMethodName))
 			{
-				System.Type type = mTarget.GetType();
+				var type = mTarget.GetType();
  #if NETFX_CORE
 				try
 				{
@@ -402,10 +402,10 @@ public class EventDelegate
 
 				if (mMethod == null)
 				{
-					Debug.LogError("Could not find method '" + mMethodName + "' on " + mTarget.GetType(), mTarget);
+					Debug.LogError("Could not find method '" + mMethodName + "' on " + mTarget.GetType() + ". This may also happen if there are overloaded functions with the same name with different parameters.", mTarget);
 					return;
 				}
-				
+
 				if (mMethod.ReturnType != typeof(void))
 				{
 					Debug.LogError(mTarget.GetType() + "." + mMethodName + " must have a 'void' return type.", mTarget);
@@ -532,7 +532,7 @@ public class EventDelegate
 
 					if (mTarget == null) msg += mMethod.Name;
 					else msg += mTarget.GetType() + "." + mMethod.Name;
-					
+
 					msg += ": " + ex.Message;
 					msg += "\n  Expected: ";
 
@@ -637,8 +637,8 @@ public class EventDelegate
 					}
 					catch (System.Exception ex)
 					{
-						if (ex.InnerException != null) Debug.LogError(ex.InnerException.Message);
-						else Debug.LogError(ex.Message);
+						if (ex.InnerException != null) Debug.LogException(ex.InnerException);
+						else Debug.LogException(ex);
 					}
 #else
 					del.Execute();
@@ -759,7 +759,7 @@ public class EventDelegate
 				if (del != null && del.Equals(ev))
 					return;
 			}
-			
+
 			EventDelegate copy = new EventDelegate(ev.target, ev.methodName);
 			copy.oneShot = oneShot;
 
@@ -786,7 +786,7 @@ public class EventDelegate
 			for (int i = 0, imax = list.Count; i < imax; ++i)
 			{
 				EventDelegate del = list[i];
-				
+
 				if (del != null && del.Equals(callback))
 				{
 					list.RemoveAt(i);

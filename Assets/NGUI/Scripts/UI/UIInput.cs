@@ -1,9 +1,9 @@
-//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2016 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2023 Tasharen Entertainment Inc
+//-------------------------------------------------
 
-#if !UNITY_EDITOR && (UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8 || UNITY_WP_8_1 || UNITY_BLACKBERRY || UNITY_WINRT || UNITY_METRO)
+#if !UNITY_EDITOR && (UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8 || UNITY_WP_8_1 || UNITY_BLACKBERRY)
 #define MOBILE
 #endif
 
@@ -18,14 +18,14 @@ using System.Text;
 [AddComponentMenu("NGUI/UI/Input Field")]
 public class UIInput : MonoBehaviour
 {
-	public enum InputType
+	[DoNotObfuscateNGUI] public enum InputType
 	{
 		Standard,
 		AutoCorrect,
 		Password,
 	}
 
-	public enum Validation
+	[DoNotObfuscateNGUI] public enum Validation
 	{
 		None,
 		Integer,
@@ -37,7 +37,7 @@ public class UIInput : MonoBehaviour
 	}
 
 #if UNITY_EDITOR
-	public enum KeyboardType
+	[DoNotObfuscateNGUI] public enum KeyboardType
 	{
 		Default = (int)TouchScreenKeyboardType.Default,
 		ASCIICapable = (int)TouchScreenKeyboardType.ASCIICapable,
@@ -49,7 +49,7 @@ public class UIInput : MonoBehaviour
 		EmailAddress = (int)TouchScreenKeyboardType.EmailAddress,
 	}
 #else
-	public enum KeyboardType
+	[DoNotObfuscateNGUI] public enum KeyboardType
 	{
 		Default = 0,
 		ASCIICapable = 1,
@@ -62,7 +62,7 @@ public class UIInput : MonoBehaviour
 	}
 #endif
 
-	public enum OnReturnKey
+	[DoNotObfuscateNGUI] public enum OnReturnKey
 	{
 		Default,
 		Submit,
@@ -119,6 +119,12 @@ public class UIInput : MonoBehaviour
 
 	[System.NonSerialized]
 	public bool selectAllTextOnFocus = true;
+
+	/// <summary>
+	/// Whether the input text will be submitted when the input field gets unselected. By default this is off, and submit event will only be called when Enter is used.
+	/// </summary>
+
+	public bool submitOnUnselect = false;
 
 	/// <summary>
 	/// What kind of validation to use with the input field's data.
@@ -298,11 +304,11 @@ public class UIInput : MonoBehaviour
 		// BB10's implementation has a bug in Unity
 #if UNITY_4_3
 		if (Application.platform == RuntimePlatform.BB10Player)
-#else
-		if (Application.platform == RuntimePlatform.BlackBerryPlayer)
-#endif
 			value = value.Replace("\\b", "\b");
-
+#elif UNITY_4_7 || UNITY_5_0 || UNITY_5_1 || UNITY_5_2 || UNITY_5_3
+		if (Application.platform == RuntimePlatform.BlackBerryPlayer)
+			value = value.Replace("\\b", "\b");
+#endif
 		// Validate all input
 		value = Validate(value);
 #if MOBILE
@@ -500,7 +506,6 @@ public class UIInput : MonoBehaviour
 			mDoInit = false;
 			mDefaultText = label.text;
 			mDefaultColor = label.color;
-			label.supportEncoding = false;
 			mEllipsis = label.overflowEllipsis;
 
 			if (label.alignment == NGUIText.Alignment.Justified)
@@ -540,6 +545,8 @@ public class UIInput : MonoBehaviour
 	{
 		if (isSelected)
 		{
+			if (label != null) label.supportEncoding = false;
+
 #if !MOBILE
 			if (mOnGUI == null)
 				mOnGUI = gameObject.AddComponent<UIInputOnGUI>();
@@ -616,12 +623,14 @@ public class UIInput : MonoBehaviour
 
 		selection = null;
 		UpdateLabel();
+
+		if (submitOnUnselect) Submit();
 	}
 
 	/// <summary>
 	/// Update the text based on input.
 	/// </summary>
-	
+
 	protected virtual void Update ()
 	{
 #if UNITY_EDITOR
@@ -649,18 +658,7 @@ public class UIInput : MonoBehaviour
 			label.color = activeTextColor;
 #if MOBILE
 			RuntimePlatform pf = Application.platform;
-			if (pf == RuntimePlatform.IPhonePlayer
-				|| pf == RuntimePlatform.Android
-				|| pf == RuntimePlatform.WP8Player
- #if UNITY_4_3
-				|| pf == RuntimePlatform.BB10Player
- #else
-				|| pf == RuntimePlatform.BlackBerryPlayer
-				|| pf == RuntimePlatform.MetroPlayerARM
-				|| pf == RuntimePlatform.MetroPlayerX64
-				|| pf == RuntimePlatform.MetroPlayerX86
- #endif
-			)
+			if (pf == RuntimePlatform.IPhonePlayer || pf == RuntimePlatform.Android)
 			{
 				string val;
 				TouchScreenKeyboardType kt;
@@ -691,9 +689,6 @@ public class UIInput : MonoBehaviour
 					TouchScreenKeyboard.Open(val, kt, false, false, true) :
 					TouchScreenKeyboard.Open(val, kt, !inputShouldBeHidden && inputType == InputType.AutoCorrect,
 						label.multiLine && !hideInput, false, false, defaultText);
-#if UNITY_METRO
-				mKeyboard.active = true;
-#endif
 			}
 			else
 #endif // MOBILE
@@ -713,7 +708,7 @@ public class UIInput : MonoBehaviour
 		if (mKeyboard != null)
 		{
 			string text = (mKeyboard.done || !mKeyboard.active) ? mCached : mKeyboard.text;
- 
+
 			if (inputShouldBeHidden)
 			{
 				if (text != "|")
@@ -766,6 +761,7 @@ public class UIInput : MonoBehaviour
 					if (ch == '\uF701') continue;
 					if (ch == '\uF702') continue;
 					if (ch == '\uF703') continue;
+					if (ch == '\uF728') continue;
 
 					Insert(ch.ToString());
 				}
@@ -850,7 +846,7 @@ public class UIInput : MonoBehaviour
 		int frame = Time.frameCount;
 
 		if (mIgnoreKey == frame) return;
-		
+
 		if (mCam != null && (key == mCam.cancelKey0 || key == mCam.cancelKey1))
 		{
 			mIgnoreKey = frame;
@@ -893,9 +889,16 @@ public class UIInput : MonoBehaviour
 
 		RuntimePlatform rp = Application.platform;
 
+#if UNITY_4_7 || UNITY_5_0 || UNITY_5_1 || UNITY_5_2 || UNITY_5_3
 		bool isMac = (
 			rp == RuntimePlatform.OSXEditor ||
-			rp == RuntimePlatform.OSXPlayer );
+			rp == RuntimePlatform.OSXPlayer ||
+			rp == RuntimePlatform.OSXWebPlayer);
+#else
+		bool isMac = (
+			rp == RuntimePlatform.OSXEditor ||
+			rp == RuntimePlatform.OSXPlayer);
+#endif
 
 		bool ctrl = isMac ?
 			((ev.modifiers & EventModifiers.Command) != 0) :
@@ -1023,7 +1026,11 @@ public class UIInput : MonoBehaviour
 			{
 				ev.Use();
 
-				if (!string.IsNullOrEmpty(mValue))
+				if (onUpArrow != null)
+				{
+					onUpArrow();
+				}
+				else if (!string.IsNullOrEmpty(mValue))
 				{
 					mSelectionEnd = label.GetCharacterIndex(mSelectionEnd, KeyCode.UpArrow);
 					if (mSelectionEnd != 0) mSelectionEnd += mDrawStart;
@@ -1037,7 +1044,11 @@ public class UIInput : MonoBehaviour
 			{
 				ev.Use();
 
-				if (!string.IsNullOrEmpty(mValue))
+				if (onDownArrow != null)
+				{
+					onDownArrow();
+				}
+				else if (!string.IsNullOrEmpty(mValue))
 				{
 					mSelectionEnd = label.GetCharacterIndex(mSelectionEnd, KeyCode.DownArrow);
 					if (mSelectionEnd != label.processedText.Length) mSelectionEnd += mDrawStart;
@@ -1099,6 +1110,9 @@ public class UIInput : MonoBehaviour
 	}
 #endif
 
+	[System.NonSerialized] public System.Action onUpArrow;
+	[System.NonSerialized] public System.Action onDownArrow;
+
 	/// <summary>
 	/// Insert the specified text string into the current input value, respecting selection and validation.
 	/// </summary>
@@ -1158,7 +1172,7 @@ public class UIInput : MonoBehaviour
 
 	protected string GetLeftText ()
 	{
-		int min = Mathf.Min(mSelectionStart, mSelectionEnd);
+		int min = Mathf.Min(mSelectionStart, mSelectionEnd, mValue.Length);
 		return (string.IsNullOrEmpty(mValue) || min < 0) ? "" : mValue.Substring(0, min);
 	}
 
@@ -1240,7 +1254,19 @@ public class UIInput : MonoBehaviour
 	/// Ensure we've released the dynamically created resources.
 	/// </summary>
 
-	void OnDisable () { Cleanup(); }
+	void OnDisable ()
+	{
+		Cleanup();
+
+#if !MOBILE
+		if (mOnGUI != null)
+		{
+			Destroy(mOnGUI);
+			mOnGUI = null;
+		}
+#endif
+		if (selection == this) OnDeselectEvent();
+	}
 
 	/// <summary>
 	/// Cleanup.
@@ -1303,12 +1329,9 @@ public class UIInput : MonoBehaviour
 				if (inputType == InputType.Password)
 				{
 					processed = "";
-
 					string asterisk = "*";
-
-					if (label.bitmapFont != null && label.bitmapFont.bmFont != null &&
-						label.bitmapFont.bmFont.GetGlyph('*') == null) asterisk = "x";
-
+					var fnt = label.font as INGUIFont;
+					if (fnt != null && fnt.bmFont != null && fnt.bmFont.GetGlyph('*') == null) asterisk = "x";
 					for (int i = 0, imax = fullText.Length; i < imax; ++i) processed += asterisk;
 				}
 				else processed = fullText;
